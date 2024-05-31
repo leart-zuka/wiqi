@@ -1,5 +1,9 @@
 {
     "Index": {
-        "hello": "Hi this is some text"
+        "hello": "Hi this is some text",
+        "hello_elem": "Hi this is an easy text",
+        "hello_high": "Hi this is a more complicated text",
+        "hello_coll": "Hi this is a very complicated text",
+        "hello_tech": "Hi this is an interesting text"
     }
 }

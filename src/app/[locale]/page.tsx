@@ -1,8 +1,14 @@
+'use client';
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useState } from "react";
+import Link from "next/link";
+import DropDown from "../components/DropDownSelect";
 
 export default function Home() {
     const t = useTranslations('Index')
+    const [locale, setLocale] = useState(useLocale())
+    const [difficulty, setDifficulty] = useState("elem")
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -10,9 +16,20 @@ export default function Home() {
                     Get started by editing&nbsp;
                     <code className="font-mono font-bold">app/page.tsx</code>
                 </p>
+                <Link href={locale === 'de' ? '/en' : '/de'}>
+                    <Image
+                        src={useLocale() + ".svg"}
+                        alt={useLocale() + " Flag"}
+                        className="fixed right-0 top-0 p-2 cursor-pointer"
+                        width={50}
+                        height={12}
+                        priority
+                    />
+                </Link>
                 <div className="flex justify-center">
+                    <DropDown className={"fixed left-10"} stateChange={setDifficulty} />
                     <p className="fixed border-2 border-sky-500 w-auto p-4">
-                        {t('hello')}
+                        {t(`hello_${difficulty}`)}
                     </p>
                 </div>
                 <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
