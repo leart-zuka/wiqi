@@ -7,6 +7,7 @@ function classNames(...classes) {
 }
 
 export default function DropDown({ className, stateChange }: { className: string, stateChange: Dispatch<SetStateAction<string>> }) {
+    const list_items = ["Elementary School Student", "Highschool Student", "College Student", "Tech Enthusiast"]
     return (
         <Menu as="div" className={className}>
             <div>
@@ -26,6 +27,22 @@ export default function DropDown({ className, stateChange }: { className: string
             >
                 <MenuItems className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
+                        {list_items.map(level =>
+                            <MenuItem key={level}>
+                                {({ focus }) => (
+                                    <a
+                                        href="#"
+                                        className={classNames(
+                                            focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            'block px-4 py-2 text-sm'
+                                        )}
+                                        onClick={() => stateChange("elem")}
+                                    >
+                                        {level}
+                                    </a>
+                                )}
+                            </MenuItem>
+                        )}
                         <MenuItem>
                             {({ focus }) => (
                                 <a
