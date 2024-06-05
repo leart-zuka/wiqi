@@ -8,7 +8,7 @@ import DropDown from "../components/DropDownSelect";
 export default function Home() {
     const t = useTranslations('Index')
     const [locale, setLocale] = useState(useLocale())
-    const [difficulty, setDifficulty] = useState("elem")
+    const [difficulty, setDifficulty] = useState("Elementary School Student")
     return (
         <main className="flex  flex-col items-center justify-between p-24 font-mono">
             <div className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex min-h-display">
@@ -26,7 +26,7 @@ export default function Home() {
             <div className="flex justify-center space-y-4">
                 <DropDown className={"fixed left-10 w-20 "} stateChange={setDifficulty} />
                 <p className="fixed border-2 border-sky-500 w-fit p-4">
-                    {t(`hello_${difficulty}`)}
+                    {t(`${difficulty}`)}
                 </p>
             </div>
         </main>
