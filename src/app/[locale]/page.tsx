@@ -10,7 +10,7 @@ export default function Home() {
     const [locale, setLocale] = useState(useLocale())
     const [difficulty, setDifficulty] = useState("Elementary School Student")
     return (
-        <main className="text-center">
+        <main >
             <div>
                 <Link href={locale === 'de' ? '/en' : '/de'}>
                     <Image
@@ -18,16 +18,20 @@ export default function Home() {
                         alt={useLocale() + " Flag"}
                         width={50}
                         height={12}
+                        className="relative float-right p-2"
                         priority
                     />
                 </Link>
             </div>
-            <div>
-                <DropDown className={"w-20"} stateChange={setDifficulty} />
-                <p>
+            <div className="text-center">
+                <h1 className="relative left-2"> Hi this is the title of my page </h1>
+            </div>
+            <DropDown className={"absolute left-2 w-20"} stateChange={setDifficulty} />
+            <div className="relative top-10 ">
+                <p className="text-center">
                     {t(`${difficulty}`)}
                 </p>
             </div>
-        </main>
+        </main >
     );
 }
