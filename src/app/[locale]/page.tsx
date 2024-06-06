@@ -25,7 +25,7 @@ export default function Home() {
             <div>
                 <DropDown className={"w-20"} stateChange={setDifficulty} />
                 <p>
-                    {t(`hello_${difficulty}`)}
+                    {t(`${difficulty}`)}
                 </p>
             </div>
         </main>
