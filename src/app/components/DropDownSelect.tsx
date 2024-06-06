@@ -2,7 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/r
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Dispatch, SetStateAction } from 'react'
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
@@ -36,69 +36,13 @@ export default function DropDown({ className, stateChange }: { className: string
                                             focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                             'block px-4 py-2 text-sm'
                                         )}
-                                        onClick={() => stateChange("elem")}
+                                        onClick={() => stateChange(level)}
                                     >
                                         {level}
                                     </a>
                                 )}
                             </MenuItem>
                         )}
-                        <MenuItem>
-                            {({ focus }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                    onClick={() => stateChange("elem")}
-                                >
-                                    Elementary School Student
-                                </a>
-                            )}
-                        </MenuItem>
-                        <MenuItem>
-                            {({ focus }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                    onClick={() => stateChange("high")}
-                                >
-                                    Highschool Student
-                                </a>
-                            )}
-                        </MenuItem>
-                        <MenuItem>
-                            {({ focus }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                    onClick={() => stateChange("coll")}
-                                >
-                                    College Student
-                                </a>
-                            )}
-                        </MenuItem>
-                        <MenuItem>
-                            {({ focus }) => (
-                                <a
-                                    href="#"
-                                    className={classNames(
-                                        focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block px-4 py-2 text-sm'
-                                    )}
-                                    onClick={() => stateChange("tech")}
-                                >
-                                    Tech Enthusiast
-                                </a>
-                            )}
-                        </MenuItem>
                     </div>
                 </MenuItems>
             </Transition>

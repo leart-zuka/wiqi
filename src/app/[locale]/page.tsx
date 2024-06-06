@@ -8,7 +8,7 @@ import DropDown from "../components/DropDownSelect";
 export default function Home() {
     const t = useTranslations('Index')
     const [locale, setLocale] = useState(useLocale())
-    const [difficulty, setDifficulty] = useState("elem")
+    const [difficulty, setDifficulty] = useState("Elementary School Student")
     return (
         <main className="text-center">
             <div>
