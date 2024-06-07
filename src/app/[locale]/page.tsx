@@ -11,23 +11,21 @@ export default function Home() {
     const [difficulty, setDifficulty] = useState("Elementary School Student")
     return (
         <main >
-            <div>
+            <nav className="fixed bg-white border-gray-200 top-5 w-screen start-0 flex flex-wrap items-center mx-auto h-auto justify-between">
+                <DropDown className={"space-x-10 w-20 scale-75 rtl:space-x-3"} stateChange={setDifficulty} />
                 <Link href={locale === 'de' ? '/en' : '/de'}>
                     <Image
                         src={useLocale() + ".svg"}
                         alt={useLocale() + " Flag"}
                         width={50}
                         height={12}
-                        className="relative float-right p-2"
+                        className="self-center p-2 md:order-2"
                         priority
                     />
                 </Link>
-            </div>
-            <div className="text-center">
-                <h1 className="relative left-2"> Hi this is the title of my page </h1>
-            </div>
-            <DropDown className={"absolute left-2 w-20"} stateChange={setDifficulty} />
-            <div className="relative top-10 ">
+            </nav>
+
+            <div className="relative top-52">
                 <p className="text-center">
                     {t(`${difficulty}`)}
                 </p>
