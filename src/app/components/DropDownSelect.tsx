@@ -11,7 +11,7 @@ export default function DropDown({ className, stateChange }: { className: string
     return (
         <Menu as="div" className={className}>
             <div>
-                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-slate-800 px-3 py-2 text-sm text-slate-400 font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-slate-700">
                     Level
                     <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                 </MenuButton>
@@ -33,7 +33,7 @@ export default function DropDown({ className, stateChange }: { className: string
                                     <a
                                         href="#"
                                         className={classNames(
-                                            focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            focus ? 'bg-gray-100 text-gray-900' : 'text-red-700',
                                             'block px-4 py-2 text-sm'
                                         )}
                                         onClick={() => stateChange(level)}
