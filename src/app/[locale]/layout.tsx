@@ -20,7 +20,12 @@ export default async function LocaleLayout({
 
     return (
         <html lang={locale}>
-            <body>
+            <head>
+                <meta charSet="utf-8" />
+                <title>wiqi</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </head>
+            <body className='min-h-screen'>
                 <NextIntlClientProvider messages={messages}>
                     {children}
                 </NextIntlClientProvider>
