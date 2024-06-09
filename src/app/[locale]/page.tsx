@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main>
       <nav className="bg-opacity-20 bg-white w-full start-0 h-fit">
-        <div className="flex flex-wrap items-center mx-auto justify-between p-2">
+        <div className="relative flex flex-wrap items-center mx-auto justify-between p-2">
           <a
             href="https://www.pushquantum.tech/"
             className="flex items-center space-x-0"

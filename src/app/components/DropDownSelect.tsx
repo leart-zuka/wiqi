@@ -45,7 +45,7 @@ export default function DropDown({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-slate-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {list_items.map((level) => (
               <MenuItem key={level}>
@@ -53,7 +53,7 @@ export default function DropDown({
                   <a
                     href="#"
                     className={classNames(
-                      focus ? "bg-gray-100 text-gray-900" : "text-red-700",
+                      focus ? "bg-slate-400" : "",
                       "block px-4 py-2 text-sm",
                     )}
                     onClick={() => stateChange(level)}
