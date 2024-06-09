@@ -17,7 +17,13 @@ export default function Home() {
             href="https://www.pushquantum.tech/"
             className="flex items-center space-x-0"
           >
-            <img src="pq_logo.svg" className="h-8 p-2" alt="PushQuantum Logo" />
+            <Image
+              src="pq_logo.svg"
+              className="h-8 p-2"
+              alt="PushQuantum Logo"
+              width={35}
+              height={20}
+            />
             <span className="text-lg font-semibold italic dark:text-white">
               {" "}
               PushQuantum
