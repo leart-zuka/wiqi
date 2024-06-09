@@ -1,9 +1,9 @@
 {
-    "Index": {
-        "hello": "Hi das ist ein text",
-        "Elementary School Student": "Hi das ist ein einfacher text",
-        "Highschool Student": "Hi das ist ein schwererer text",
-        "College Student": "Hi das ist ein sehr schwerer text",
-        "Tech Enthusiast": "Hi das ist ein interessanter text"
-    }
+  "Index": {
+    "hello": "Hi das ist ein text",
+    "Elementary School Student": "Hi das ist ein einfacher text",
+    "Highschool Student": "Hi das ist ein schwererer text",
+    "College Student": "Hi das ist ein sehr schwerer text",
+    "Tech Enthusiast": "Hi das ist ein interessanter text"
+  }
 }
