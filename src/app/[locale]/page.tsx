@@ -21,7 +21,7 @@ export default function Home() {
               src="pq_logo.svg"
               className="h-8 p-2"
               alt="PushQuantum Logo"
-              width={35}
+              width={34}
               height={20}
             />
             <span className="text-lg font-semibold italic dark:text-white">
