@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import Link from "next/link";
 import DropDown from "../components/DropDownSelect";
+import CustomLink from "../components/CustomLink";
 
 export default function Home() {
   const t = useTranslations("Index");
@@ -47,6 +48,7 @@ export default function Home() {
       </nav>
       <div className="text-center top-24 h-fit">
         <p className="">{t(`${difficulty}`)}</p>
+        <h1 className="text-5xl"> Hi this is a text </h1>
         <h1> Hi this is a text </h1>
         <h1> Hi this is a text </h1>
         <h1> Hi this is a text </h1>
