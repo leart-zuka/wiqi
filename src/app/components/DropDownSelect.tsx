@@ -28,7 +28,7 @@ export default function DropDown({
   return (
     <Menu as="div" className={className}>
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-slate-800 px-3 py-2 text-sm text-slate-400 font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-slate-700">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-2xl bg-slate-800 px-3 py-2 text-sm text-slate-400 font-semibold shadow-sm hover:border hover:border-slate-600 hover:bg-slate-700">
           Level
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
@@ -45,21 +45,24 @@ export default function DropDown({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-slate-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-slate-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-slate-600">
           <div className="py-1">
             {list_items.map((level) => (
               <MenuItem key={level}>
                 {({ focus }) => (
-                  <a
-                    href="#"
-                    className={classNames(
-                      focus ? "bg-slate-400" : "",
-                      "block px-4 py-2 text-sm",
-                    )}
-                    onClick={() => stateChange(level)}
-                  >
-                    {level}
-                  </a>
+                  <div className="flex">
+                    <a
+                      href="#"
+                      className={classNames(
+                        focus ? "bg-slate-400 rounded-md" : "",
+                        "block px-4 py-2 text-sm",
+                      )}
+                      onClick={() => stateChange(level)}
+                    >
+                      {level}
+                      {focus ? " ✓" : ""}
+                    </a>
+                  </div>
                 )}
               </MenuItem>
             ))}
