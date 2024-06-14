@@ -1,89 +1,102 @@
+import Image from "next/image";
 import React from "react";
-import axios from "axios";
 
 export default function CustomLink({
-  children,
-  href,
+    children,
+    href,
 }: {
-  children: React.ReactNode;
-  href: string;
+    children: React.ReactNode;
+    href: string;
 }) {
-  let [imagePreview, setImagePreview] = React.useState("");
-  let [isHovering, setIsHovering] = React.useState(false);
+    let [imagePreview, setImagePreview] = React.useState("");
+    let [isHovering, setIsHovering] = React.useState(false);
 
-  let inImagePreview = false;
-  let inLink = false;
+    let inImagePreview = false;
+    let inLink = false;
 
-  let handleMouseEnterImage = () => {
-    inImagePreview = true;
-    setIsHovering(true);
-  };
+    let handleMouseEnterImage = () => {
+        inImagePreview = true;
+        setIsHovering(true);
+    };
 
-  let handleMouseLeaveImage = () => {
-    inImagePreview = false;
-    setIsHovering(inLink);
-  };
+    let handleMouseLeaveImage = () => {
+        inImagePreview = false;
+        setIsHovering(inLink);
+    };
 
-  let handleMouseEnterLink = () => {
-    inLink = true;
-    setIsHovering(true);
-  };
+    let handleMouseEnterLink = () => {
+        inLink = true;
+        setIsHovering(true);
+    };
 
-  let handleMouseLeaveLink = () => {
-    inLink = false;
-    setIsHovering(inImagePreview);
-  };
+    let handleMouseLeaveLink = () => {
+        inLink = false;
+        setIsHovering(inImagePreview);
+    };
 
-  let handleFetchImage = async (url: string) => {
-    let {
-      data: { image },
-    } = await axios.get("http://localhost:3000/api/preview", {
-      params: { url },
-    });
-    setImagePreview(image);
-  };
+    let handleFetchImage = async (url: string) => {
+        const response = await fetch("api/",
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "url": url })
+            })
+        const data = await response.json()
+        setImagePreview(data.image);
+    };
 
-  React.useEffect(() => {
-    handleFetchImage(href);
+    React.useEffect(() => {
+        handleFetchImage(href);
 
-    return () => setImagePreview("");
-  }, [href]);
+        return () => setImagePreview("");
+    }, [href]);
 
-  return (
-    <span className="relative z-10 inline-block">
-      <a
-        href={href}
-        className={`${isHovering && "underline"}`}
-        onMouseEnter={handleMouseEnterLink}
-        onMouseLeave={handleMouseLeaveLink}
-        onFocus={handleMouseEnterLink}
-        onBlur={handleMouseLeaveLink}
-      >
-        {children}
-      </a>
-      {isHovering && (
-        <a href={href}>
-          <span
-            className="w-36 h-28 absolute -top-32 left-1/2 transform -translate-x-[4.5rem] translate-y-8 flex items-start justify-center"
-            onMouseEnter={handleMouseEnterLink}
-            onMouseLeave={handleMouseLeaveLink}
-            onFocus={handleMouseEnterLink}
-            onBlur={handleMouseLeaveLink}
-          >
-            {imagePreview ? (
-              <img
-                className="w-36 h-24 rounded-md bg-white shadow-lg object-cover object-top"
-                src={`data:image/jpeg;base64, ${imagePreview}`}
-                alt={typeof children === "string" ? children : ""}
-              />
-            ) : (
-              <span className="w-36 h-24 rounded-md bg-slate-800 shadow-lg flex items-center justify-center">
-                <h1>hi</h1>
-              </span>
+    return (
+        <span className="relative z-10 inline-block">
+            <a
+                href={href}
+                className={`${isHovering && "underline"}`}
+                onMouseEnter={handleMouseEnterLink}
+                onMouseLeave={handleMouseLeaveLink}
+                onFocus={handleMouseEnterLink}
+                onBlur={handleMouseLeaveLink}
+            >
+                {children}
+            </a>
+            {isHovering && (
+                <a href={href}>
+                    <span
+                        className="w-36 h-28 absolute -top-32 left-1/2 transform -translate-x-[4.5rem] translate-y-8 flex items-start justify-center"
+                        onMouseEnter={handleMouseEnterLink}
+                        onMouseLeave={handleMouseLeaveLink}
+                        onFocus={handleMouseEnterLink}
+                        onBlur={handleMouseLeaveLink}
+                    >
+                        {imagePreview ? (
+                            <Image
+                                className="w-36 h-24 rounded-md bg-white shadow-lg object-cover object-top"
+                                height={24}
+                                width={36}
+                                src={`data:image/jpeg;base64, ${imagePreview}`}
+                                alt={typeof children === "string" ? children : ""}
+                            />
+                        ) : (
+                            <span className="w-36 h-24 rounded-md bg-slate-800 shadow-lg flex items-center justify-center">
+                                <div
+                                    className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                                    role="status">
+                                    <span
+                                        className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                                    >Loading...</span
+                                    >
+                                </div>
+                            </span>
+                        )}
+                    </span>
+                </a>
             )}
-          </span>
-        </a>
-      )}
-    </span>
-  );
+        </span>
+    );
 }
