@@ -19,7 +19,7 @@ let getImageBase64 = async (url: string) => {
         await page.goto(url);
         let image = await page.screenshot({ encoding: "base64" });
         await browser.close();
-        return NextResponse.json({ "test": "hi2" }, { status: 204 })
+        return "hi"
         return image;
     } catch (error) {
         return NextResponse.json({ "error": "Couldn't fetch screenshot of website 1" }, { status: 500 })
