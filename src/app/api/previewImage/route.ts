@@ -8,7 +8,7 @@ export async function POST(req: Request, res: Response) {
         const image = await getImageBase64(body.url);
         return Response.json({ image });
     } catch (error) {
-        return NextResponse.json({ "test": "hi" }, { status: 500 })
+        return NextResponse.json({ "error": "Couldn't fetch screenshot off of website 2" }, { status: 500 })
     }
 }
 
@@ -21,6 +21,6 @@ let getImageBase64 = async (url: string) => {
         await browser.close();
         return image;
     } catch (error) {
-        throw new Error(`${error}`);
+        return NextResponse.json({ "error": "Couldn't fetch screenshot of website 1" }, { status: 500 })
     }
 };

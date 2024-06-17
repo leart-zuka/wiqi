@@ -38,17 +38,21 @@ export default function CustomLink({
     const pathName = process.env.NEXT_PUBLIC_API_BASE_URL!
 
     let handleFetchImage = async (url: string) => {
-        const response = await fetch(`${pathName}/api/previewImage`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+        try {
+            const response = await fetch(`${pathName}/api/previewImage`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ url: url }),
                 },
-                body: JSON.stringify({ url: url }),
-            },
-        );
-        const data = await response.json();
-        setImagePreview(data.image);
+            );
+            const data = await response.json();
+            setImagePreview(data.image);
+        } catch (error) {
+            console.debug("An error occured while trying to make the api request", error)
+        }
     };
 
     React.useEffect(() => {
