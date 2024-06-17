@@ -2,6 +2,7 @@ import puppeteer from "puppeteer";
 
 export async function POST(req: Request, res: Response) {
     try {
+        console.debug(req)
         const body = await req.json()
         const image = await getImageBase64(body.url)
         return Response.json({ image })

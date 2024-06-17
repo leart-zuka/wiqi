@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export default function CustomLink({
@@ -34,8 +35,10 @@ export default function CustomLink({
         setIsHovering(inImagePreview);
     };
 
+    const pathName = usePathname()
+
     let handleFetchImage = async (url: string) => {
-        const response = await fetch("api/",
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${pathName}/api`,
             {
                 method: "POST",
                 headers: {
