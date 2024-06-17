@@ -36,10 +36,8 @@ export default function CustomLink({
         setIsHovering(inImagePreview);
     };
 
-    const pathName = usePathname();
-
     let handleFetchImage = async (url: string) => {
-        const response = await fetch("api/previewImage",
+        const response = await fetch("/api/previewImage",
             {
                 method: "POST",
                 headers: {
