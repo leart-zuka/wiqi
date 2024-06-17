@@ -37,7 +37,7 @@ export default function CustomLink({
     };
 
     let handleFetchImage = async (url: string) => {
-        const response = await fetch(path.join(process.env.NODE_ENV === "production" ? "/" : "api/", "previewImage"),
+        const response = await fetch("/api/previewImage",
             {
                 method: "POST",
                 headers: {
