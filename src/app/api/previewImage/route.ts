@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
     try {
@@ -7,7 +8,7 @@ export async function POST(req: Request, res: Response) {
         const image = await getImageBase64(body.url);
         return Response.json({ image });
     } catch (error) {
-        throw new Error(`${error}`);
+        return NextResponse.json({ "test": "hi" }, { status: 500 })
     }
 }
 

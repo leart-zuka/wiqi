@@ -1,7 +1,6 @@
+'use client';
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import React from "react";
-import path from "path";
 
 export default function CustomLink({
     children,
@@ -36,8 +35,10 @@ export default function CustomLink({
         setIsHovering(inImagePreview);
     };
 
+    const pathName = process.env.NEXT_PUBLIC_API_BASE_URL!
+
     let handleFetchImage = async (url: string) => {
-        const response = await fetch("/api/previewImage",
+        const response = await fetch(`${pathName}/api/previewImage`,
             {
                 method: "POST",
                 headers: {
