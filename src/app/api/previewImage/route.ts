@@ -4,9 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request, res: Response) {
     try {
         const body = await req.json();
-        console.debug(body)
         const image = await getImageBase64(body.url);
-        return Response.json({ image });
+        return Response.json({ 'image': image });
     } catch (error) {
         return NextResponse.json({ "error": "Couldn't fetch screenshot off of website 2" }, { status: 500 })
     }
