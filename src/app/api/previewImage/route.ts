@@ -5,7 +5,7 @@ export async function POST(req: Request, res: Response) {
     try {
         const body = await req.json();
         const image = await getImageBase64(body.url);
-        return Response.json({ 'image': image });
+        return Response.json({ 'image': image, "test": "this is a test" });
     } catch (error) {
         return NextResponse.json({ "error": "Couldn't fetch screenshot off of website 2" }, { status: 500 })
     }
