@@ -8,7 +8,7 @@
     "build": "bun run install-deps && next build && bunx playwright install",
     "start": "next start",
     "lint": "next lint",
-    "install-deps": "apt-get update && apt-get install -y libnss3 libnspr4 libgbm1"
+    "postinstall": "sh ./install-deps.sh"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",

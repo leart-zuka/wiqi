@@ -4,14 +4,5 @@
       "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true",
       "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "true"
     }
-  },
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "installCommand": "apt-get update && apt-get install -y libnss3 libnspr4 libgbm1 && bun install"
-      }
-    }
-  ]
+  }
 }
