@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import { chromium } from "playwright";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: NextResponse) {
@@ -13,13 +14,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 let getImageBase64 = async (url: string) => {
     try {
-        let browser = await puppeteer.launch();
+        let browser = await chromium.launch();
         let page = await browser.newPage();
         await page.goto(url);
-        let image = await page.screenshot({ encoding: "base64" });
+        const image = await page.screenshot();
         await browser.close();
-        return image;
+        return image.toString('base64')
     } catch (error) {
-        return NextResponse.json({ "error": "Couldn't fetch screenshot of website 1" }, { status: 500 })
+        return `${error}`
     }
 };

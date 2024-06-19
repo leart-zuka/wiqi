@@ -23,7 +23,7 @@
     "markdown-to-jsx": "^7.4.7",
     "next": "14.2.3",
     "next-intl": "^3.14.1",
-    "puppeteer": "^22.10.0",
+    "playwright": "^1.44.1",
     "puppeteer-core": "^22.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
