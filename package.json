@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "bunx playwright install-deps && bunx playwright install &&next build",
     "start": "next start",
     "lint": "next lint"
   },
