@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "bun run install-deps && next build && bunx playwright install",
+    "build": "next build && bunx playwright install",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "sh ./install-deps.sh"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",

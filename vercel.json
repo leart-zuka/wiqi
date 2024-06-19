@@ -1,8 +1,0 @@
-{
-  "build": {
-    "env": {
-      "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true",
-      "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "true"
-    }
-  }
-}
