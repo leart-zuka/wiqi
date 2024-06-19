@@ -1,4 +1,3 @@
-import puppeteer from "puppeteer";
 import { chromium } from "playwright";
 import { NextRequest, NextResponse } from "next/server";
 
