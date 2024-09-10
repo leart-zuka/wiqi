@@ -31,7 +31,7 @@ export default function Home() {
             </span>
           </a>
           <DropDown
-            className={"relative right-12 w-20"}
+            className={"relative right-12 w-20 z-50"}
             stateChange={setDifficulty}
           />
           <Link href={locale === "de" ? "/en" : "/de"}>
