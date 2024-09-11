@@ -3,6 +3,8 @@ import { Browser as CoreBrowser } from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 import { NextRequest, NextResponse } from "next/server";
 
+export const maxDuration = 60;
+
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const body = await req.json();
