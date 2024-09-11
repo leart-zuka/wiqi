@@ -39,7 +39,7 @@ export default function CustomLink({
 
   let handleFetchImage = async (url: string) => {
     try {
-      const response = await fetch(`${pathName}/api/previewImage`, {
+      const response = await fetch(`/api/previewImage`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
