@@ -25,10 +25,15 @@ export default async function LocaleLayout({
         <title>wiqi</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="min-h-screen">
+      <body className="flex flex-col h-screen">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <div className="flex-grow">{children}</div>
         </NextIntlClientProvider>
+        <footer className="bg-slate-700 px-3 py-3">
+          <p className="text-xs">
+            © 2024, Built with ❤️ by PushQuantum for Humans
+          </p>
+        </footer>
       </body>
     </html>
   );

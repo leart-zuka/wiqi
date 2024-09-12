@@ -8,9 +8,7 @@ export const maxDuration = 60;
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const body = await req.json();
-    console.debug(body);
     const image = await getImageBase64(body.url);
-    console.debug(image);
     return NextResponse.json(
       { image: image, test: "this is a test" },
       { status: 200 },
@@ -40,7 +38,6 @@ let getImageBase64 = async (url: string) => {
     await page.goto(url);
     const image = await page.screenshot({ encoding: "base64" });
     await browser.close();
-    console.debug("done with fetching image");
     return image;
   } catch (error) {
     return `${error}`;

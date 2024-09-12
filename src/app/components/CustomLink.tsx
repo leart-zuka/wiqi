@@ -66,7 +66,7 @@ export default function CustomLink({
     <span className="relative z-10 inline-block">
       <a
         href={href}
-        className={`${isHovering && "underline"}`}
+        className={"underline"}
         onMouseEnter={handleMouseEnterLink}
         onMouseLeave={handleMouseLeaveLink}
         onFocus={handleMouseEnterLink}
