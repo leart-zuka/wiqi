@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 import "katex/dist/katex.min.css";
 import { NextIntlClientProvider } from "next-intl";
+import Footer from "../components/Footer";
 import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
@@ -25,15 +26,11 @@ export default async function LocaleLayout({
         <title>wiqi</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="flex flex-col h-screen">
+      <body className="flex flex-col h-screen text-white">
         <NextIntlClientProvider messages={messages}>
           <div className="flex-grow">{children}</div>
         </NextIntlClientProvider>
-        <footer className="bg-slate-700 px-3 py-3">
-          <p className="text-xs">
-            © 2024, Built with ❤️ by PushQuantum for Humans
-          </p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
