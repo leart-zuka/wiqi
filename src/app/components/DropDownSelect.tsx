@@ -28,7 +28,7 @@ export default function DropDown({
   return (
     <Menu as="div" className={className}>
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-2xl bg-slate-800 px-3 py-2 text-sm text-slate-400 font-semibold shadow-sm hover:border hover:border-slate-600 hover:bg-slate-700">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-2xl bg-slate-800 px-3 py-2 text-sm text-white font-semibold shadow-sm hover:border hover:border-slate-600 hover:bg-slate-700">
           Level
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
@@ -55,7 +55,7 @@ export default function DropDown({
                       href="#"
                       className={classNames(
                         focus ? "bg-slate-400 rounded-md" : "",
-                        "block px-4 py-2 text-sm",
+                        "block px-4 py-2 text-sm text-white",
                       )}
                       onClick={() => stateChange(level)}
                     >
