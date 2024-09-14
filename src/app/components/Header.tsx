@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DropDown from "../components/DropDownSelect";
 import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Dispatch, SetStateAction } from "react";
 
 export default function Header({
@@ -10,9 +10,9 @@ export default function Header({
 }: {
   stateChange: Dispatch<SetStateAction<string>>;
 }) {
-  const [locale, setLocale] = useState(useLocale());
+  const [locale] = useState(useLocale());
   return (
-    <nav className="bg-opacity-20 bg-white w-full start-0 h-fit">
+    <nav className="bg-slate-700 w-full start-0 h-fit">
       <div className="relative flex flex-wrap items-center mx-auto justify-between p-2">
         <a
           href="https://www.pushquantum.tech/"
@@ -25,7 +25,7 @@ export default function Header({
             width={34}
             height={20}
           />
-          <span className="text-lg font-semibold italic dark:text-white">
+          <span className="text-lg font-semibold italic text-white">
             {" "}
             PushQuantum
           </span>
