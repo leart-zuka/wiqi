@@ -1,0 +1,24 @@
+{
+  "Index": {
+    "hello": "Hi das ist ein text",
+    "Elementary School Student": "Hi das ist ein einfacher text",
+    "Highschool Student": "Hi das ist ein schwererer text",
+    "College Student": "Hi das ist ein sehr schwerer text",
+    "Tech Enthusiast": "Hi das ist ein interessanter text"
+  },
+  "MarkDownFiles": {
+    "quantum_tuesdays": "quantum_tuesdays",
+    "posts": {
+      "test": {
+        "title": "page",
+        "subtitle": "We be doing a little bit of the funny stuff",
+        "date": "2024-09-13"
+      },
+      "test1": {
+        "title": "test_page",
+        "subtitle": "test_subtitle",
+        "date": "test_date"
+      }
+    }
+  }
+}
