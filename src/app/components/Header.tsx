@@ -1,16 +1,20 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import DropDown from "../components/DropDownSelect";
-import { useState } from "react";
-import { useLocale } from "next-intl";
-import { Dispatch, SetStateAction } from "react";
+import { usePathname } from "next/navigation";
 
-export default function Header({
-  stateChange,
-}: {
-  stateChange: Dispatch<SetStateAction<string>>;
-}) {
-  const [locale] = useState(useLocale());
+interface HeaderProps {
+  locale: string;
+}
+
+const replaceLocale = (locale: string, pathName: string): string => {
+  return locale === "de"
+    ? pathName.replace(locale, "en")
+    : pathName.replace(locale, "de");
+};
+
+const Header = (props: HeaderProps) => {
+  const pathName = usePathname();
   return (
     <nav className="bg-slate-700 w-full start-0 h-fit">
       <div className="relative flex flex-wrap items-center mx-auto justify-between p-2">
@@ -19,7 +23,7 @@ export default function Header({
           className="flex items-center space-x-0"
         >
           <Image
-            src="pq_logo.svg"
+            src="/pq_logo.svg"
             className="h-8 p-2"
             alt="PushQuantum Logo"
             width={34}
@@ -30,14 +34,10 @@ export default function Header({
             PushQuantum
           </span>
         </a>
-        <DropDown
-          className={"relative right-12 w-20 z-50"}
-          stateChange={stateChange}
-        />
-        <Link href={locale === "de" ? "/en" : "/de"}>
+        <Link href={replaceLocale(props.locale, pathName)}>
           <Image
-            src={useLocale() + ".svg"}
-            alt={useLocale() + " Flag"}
+            src={`/${props.locale}.svg`}
+            alt={`${props.locale} Flag`}
             width={50}
             height={12}
             className="self-center p-2 md:order-2"
@@ -47,4 +47,6 @@ export default function Header({
       </div>
     </nav>
   );
-}
+};
+
+export default Header;
