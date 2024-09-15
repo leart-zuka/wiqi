@@ -15,16 +15,6 @@ export default function CustomLink({
   let inImagePreview = false;
   let inLink = false;
 
-  let handleMouseEnterImage = () => {
-    inImagePreview = true;
-    setIsHovering(true);
-  };
-
-  let handleMouseLeaveImage = () => {
-    inImagePreview = false;
-    setIsHovering(inLink);
-  };
-
   let handleMouseEnterLink = () => {
     inLink = true;
     setIsHovering(true);
@@ -34,8 +24,6 @@ export default function CustomLink({
     inLink = false;
     setIsHovering(inImagePreview);
   };
-
-  const pathName = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
   let handleFetchImage = async (url: string) => {
     try {
