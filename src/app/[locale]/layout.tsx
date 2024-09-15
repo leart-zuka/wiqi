@@ -3,6 +3,7 @@ import "../globals.css";
 import "katex/dist/katex.min.css";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
@@ -23,10 +24,13 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <head>
         <meta charSet="utf-8" />
-        <title>wiqi</title>
+        <meta name="title" property="og:title" content="wiqi" />
+        <meta name="image" property="og:image" content="public/wq.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>wiqi</title>
       </head>
       <body className="flex flex-col h-screen text-black">
+        <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <div className="flex-grow">{children}</div>
         </NextIntlClientProvider>
