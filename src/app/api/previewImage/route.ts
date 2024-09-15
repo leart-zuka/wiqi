@@ -9,10 +9,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const body = await req.json();
     const image = await getImageBase64(body.url);
-    return NextResponse.json(
-      { image: image, test: "this is a test" },
-      { status: 200 },
-    );
+    return NextResponse.json({ image: image }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: "Couldn't fetch screenshot off of website 2" },
@@ -35,8 +32,11 @@ let getImageBase64 = async (url: string) => {
       browser = await puppeteer.launch();
     }
     let page = await browser.newPage();
-    await page.goto(url);
-    const image = await page.screenshot({ encoding: "base64" });
+    page.setViewport({ width: 1080, height: 1920 });
+    await page.goto(url, {
+      waitUntil: "networkidle2",
+    });
+    const image = await page.screenshot({ encoding: "base64", fullPage: true });
     await browser.close();
     return image;
   } catch (error) {
