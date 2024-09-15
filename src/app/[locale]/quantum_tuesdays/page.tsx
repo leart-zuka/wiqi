@@ -4,7 +4,7 @@ export default function Page({ params }: { params: { locale: string } }) {
   let mdxfiles = getBlogPosts("quantum_tuesdays");
 
   return (
-    <div>
+    <div className="absolute left-24 top-52">
       {mdxfiles.map((file) => {
         return (
           <PostPreview
