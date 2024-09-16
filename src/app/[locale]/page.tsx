@@ -1,6 +1,7 @@
 "use client";
 import CustomLink from "../components/CustomLink";
 import { useTranslations } from "next-intl";
+import SuperpositionButton from "../components/SuperpositionButton";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <CustomLink href="https://www.pushquantum.tech/">test</CustomLink>
         <p>blablaba</p>
       </div>
+      <SuperpositionButton />
       <h1> Hi this is a text </h1>
       <h1> Hi this is a text </h1>
       <h1> Hi this is a text </h1>
