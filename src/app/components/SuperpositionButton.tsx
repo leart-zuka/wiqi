@@ -18,19 +18,17 @@ const SuperpositionButton = () => {
   };
 
   return (
-    <button
-      className={`rounded-md p-1 text-white font-bold bg-gradient-to-tr from-blue-700 to-rose-700`}
+    <div
+      className={`mx-auto flex w-fit rounded-md bg-gradient-to-r from-blue-700 to-rose-700`}
     >
-      <span
-        className={`flex w-full rounded p-2 transition duration-500 ${
-          hoverColor ? hoverColor : "bg-black"
-        }`}
+      <button
+        className={`p-2 transition-all rounded-md  duration-500 hover:opacity-100 ${hoverColor}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        This is a button
-      </span>
-    </button>
+        <div className="h-full w-full">Test</div>
+      </button>
+    </div>
   );
 };
 
