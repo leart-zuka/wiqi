@@ -34,6 +34,9 @@ const Header = (props: HeaderProps) => {
             PushQuantum
           </span>
         </a>
+        <Link href={`${props.locale}/quantum_tuesdays`}>
+          <h1 className="text-white font-bold">Quantum Tuesdays</h1>
+        </Link>
         <Link href={replaceLocale(props.locale, pathName)}>
           <Image
             src={`/${props.locale}.svg`}
