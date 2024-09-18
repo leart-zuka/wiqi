@@ -11,7 +11,9 @@ export default function Home() {
         <CustomLink href="https://www.pushquantum.tech/">test</CustomLink>
         <p>blablaba</p>
       </div>
-      <SuperpositionButton />
+      <SuperpositionButton>
+        This is a superposition button, hover above me and see what happens
+      </SuperpositionButton>
       <h1> Hi this is a text </h1>
       <h1> Hi this is a text </h1>
       <h1> Hi this is a text </h1>

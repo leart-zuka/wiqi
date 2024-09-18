@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SuperpositionButton = () => {
+const SuperpositionButton = ({ children }: { children: React.ReactNode }) => {
   const [hoverColor, setHoverColor] = useState("");
 
   const getRandomColorClass = () => {
@@ -26,7 +26,7 @@ const SuperpositionButton = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="h-full w-full">Test</div>
+        <div className="h-full w-full">{children}</div>
       </button>
     </div>
   );
