@@ -1,6 +1,5 @@
 "use client";
 import CustomLink from "../components/CustomLink";
-import { useTranslations } from "next-intl";
 import SuperpositionButton from "../components/SuperpositionButton";
 
 export default function Home() {
