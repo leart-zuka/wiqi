@@ -1,17 +1,13 @@
 import PostPreview from "@/app/components/PostPreview";
 import { getBlogPosts } from "@/app/components/utils";
-import { useTranslations } from "next-intl";
+import { cookies } from "next/headers";
 
 export default function Page({ params }: { params: { locale: string } }) {
-  let mdxfiles = getBlogPosts("quantum_tuesdays");
-  const t = useTranslations("MarkDownFiles");
-  const keys = ["test", "test1"] as const;
-  keys.map((key: string) => {
-    console.debug(`${t(`posts.${key}.title`)}`);
-  });
-  // ${t(`${key}.subtitle`)}, ${t(`${key}.date`)}
+  const cookieStore = cookies();
+  const difficulty = cookieStore.get("difficulty")?.value ?? "highschool";
+  let mdxfiles = getBlogPosts("quantum_tuesdays", params.locale, difficulty);
   return (
-    <div className="absolute left-24 top-52">
+    <div className="p-2">
       {mdxfiles.map((file) => {
         return (
           <PostPreview
