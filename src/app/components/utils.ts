@@ -39,6 +39,12 @@ export function getPostContent(folder: string, slug: string) {
   return matterResult;
 }
 
-export function getBlogPosts(folder: string) {
-  return getMDXData(path.join(process.cwd(), "public", "posts", folder));
+export function getBlogPosts(
+  folder: string,
+  locale: string,
+  difficulty: string,
+) {
+  return getMDXData(
+    path.join(process.cwd(), "public", "posts", locale, difficulty, folder),
+  );
 }
