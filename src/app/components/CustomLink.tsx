@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 export default function CustomLink({
   children,
   href,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   href: string;
 }) {
-  let [imagePreview, setImagePreview] = React.useState("");
-  let [isHovering, setIsHovering] = React.useState(false);
+  let [imagePreview, setImagePreview] = useState("");
+  let [isHovering, setIsHovering] = useState(false);
 
   let inImagePreview = false;
   let inLink = false;
@@ -44,7 +44,7 @@ export default function CustomLink({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleFetchImage(href);
 
     return () => setImagePreview("");
