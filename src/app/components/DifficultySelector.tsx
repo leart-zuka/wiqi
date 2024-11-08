@@ -14,8 +14,8 @@ export default function DifficultySelector({
   return (
     <div className="flex flex-row-reverse">
       <button
-        className={`p-2 border border-black hover:bg-green-500 rounded-r-full ${
-          difficulty === "college" ? "bg-green-400" : ""
+        className={`p-2 border border-black hover:bg-red-500 rounded-r-full ${
+          difficulty === "college" ? "bg-red-400" : ""
         }`}
         onClick={() => {
           setDifficulty("college");
@@ -36,8 +36,8 @@ export default function DifficultySelector({
         🧑‍💻
       </button>
       <button
-        className={`p-2 border border-black hover:bg-red-400 rounded-l-full ${
-          difficulty === "elementary" ? "bg-red-400" : ""
+        className={`p-2 border border-black hover:bg-green-400 rounded-l-full ${
+          difficulty === "elementary" ? "bg-green-400" : ""
         }`}
         onClick={() => {
           setDifficulty("elementary");
