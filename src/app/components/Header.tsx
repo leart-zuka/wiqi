@@ -34,7 +34,7 @@ const Header = (props: HeaderProps) => {
             PushQuantum
           </span>
         </a>
-        <Link href={`${props.locale}/quantum_tuesdays`}>
+        <Link href={`/${props.locale}/quantum_tuesdays`}>
           <h1 className="text-white font-bold hover:text-sky-400">
             Quantum Tuesdays
           </h1>
