@@ -9,7 +9,9 @@ export default function DifficultySelector({
   initialDifficulty,
 }: DifficultySelector) {
   const cookies = useCookies();
-  const [difficulty, setDifficulty] = useState(initialDifficulty);
+  const [difficulty, setDifficulty] = useState(
+    initialDifficulty ?? cookies.set("difficulty", "highschool"),
+  );
 
   return (
     <div className="flex flex-row-reverse">
