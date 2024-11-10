@@ -6,12 +6,10 @@ import matter from "gray-matter";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    console.debug(body.language, body.difficulty);
-    const mdxFiles = getBlogPosts(body.folder, body.language, body.difficulty);
-    mdxFiles.map((file) => {
-      console.debug(file.slug);
-    });
-    return NextResponse.json({ files: mdxFiles });
+    console.debug(body.folder, body.language, body.difficulty);
+    const files = getBlogPosts(body.folder, body.language, body.difficulty);
+    console.debug(files);
+    return NextResponse.json({ files: files }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: "Couldn't retrieve blog posts" },
@@ -44,21 +42,10 @@ function getMDXData(dir: string) {
   });
 }
 
-function getPostContent(folder: string, slug: string) {
-  const file = path.join(
-    process.cwd(),
-    "public",
-    "posts",
-    folder,
-    `${slug}.mdx`,
-  );
-  const content = fs.readFileSync(file, "utf8");
-  const matterResult = matter(content);
-  return matterResult;
-}
-
 function getBlogPosts(folder: string, locale: string, difficulty: string) {
   return getMDXData(
-    path.join(process.cwd(), "public", "posts", locale, difficulty, folder),
+    path.join(
+      `${process.cwd()}/public/posts/${locale}/${difficulty}/${folder}`,
+    ),
   );
 }
