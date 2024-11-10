@@ -4,11 +4,21 @@ import { useEffect, useState } from "react";
 import DifficultySelector from "@/app/components/DifficultySelector";
 import { useCookies } from "next-client-cookies";
 
+type File = {
+  key: string;
+  slug: string;
+  metadata: {
+    subtitle: string;
+    date: string;
+  };
+  locale: string;
+};
+
 export default function Page({ params }: { params: { locale: string } }) {
   const cookies = useCookies();
   const initialDifficulty = cookies.get("difficulty") ?? "highschool";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<File[]>([]);
 
   let getFiles = async (difficulty: string, locale: string) => {
     try {
