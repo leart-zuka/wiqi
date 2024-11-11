@@ -1,3 +1,5 @@
+name: Formatting and Linting with Bun
+
 on:
   push:
     branches: [main]
@@ -5,13 +7,53 @@ on:
     branches: [main]
 
 jobs:
-  formatting_check:
-    name: formatting_check
+  formatting_and_linting:
+    name: Format and Lint
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      # Step 1: Checkout repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Cache Bun Dependencies
+      - name: Cache Bun Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      # Step 3: Setup Bun
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - run: bun install
-      - run: bun prettier -c ./
+
+      # Step 3a: Ensure the Bun cache directory exists
+      - name: Ensure Bun Cache Directory Exists
+        run: mkdir -p ~/.bun/cache
+
+      # Step 4: Install dependencies
+      - name: Install Dependencies
+        run: bun install
+
+      # Step 5: Format code
+      - name: Format Code
+        run: bun run format
+
+      # Step 6: Lint code
+      - name: Lint Code
+        run: bun run lint
+
+      # Step 7: Perform formatting check
+      - name: Check Formatting
+        run: bun run format:check
+
+      # Optional: Save Bun Dependencies Cache
+      - name: Save Bun Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}

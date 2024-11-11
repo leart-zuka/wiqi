@@ -11,8 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "types": "tsc",
-    "lft": "pnpm format && pnpm lint && pnpm types && pnpm format:check",
-    "status": "pnpm lft && git status"
+    "lft": "bun format && bun lint && bun types && bun format:check",
+    "status": "bun lft && git status"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
