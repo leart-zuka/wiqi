@@ -1,4 +1,4 @@
-import { setCookie } from "cookies-next/client";
+import { setCookie } from "cookies-next";
 
 interface DifficultySelector {
   initialDifficulty: string;
