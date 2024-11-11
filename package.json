@@ -25,7 +25,7 @@
     "gray-matter": "^4.0.3",
     "headlessui": "^0.0.0",
     "i18n": "^0.15.1",
-    "next": "14.2.3",
+    "next": "14.2.10",
     "next-client-cookies": "^1.1.1",
     "next-intl": "^3.14.1",
     "puppeteer": "^22.11.2",
