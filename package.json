@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "types": "tsc",
+    "lft": "bun format && bun lint && bun types && bun format:check",
+    "status": "bun lft && git status"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
@@ -49,7 +54,8 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
     "postcss": "^8.4.38",
-    "prettier": "3.3.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"
   }

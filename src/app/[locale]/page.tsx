@@ -4,7 +4,7 @@ import SuperpositionButton from "../components/SuperpositionButton";
 
 export default function Home() {
   return (
-    <div className="text-center top-24 h-fit">
+    <div className="top-24 h-fit text-center">
       <h1 className="text-5xl"> Hi this is a text </h1>
       <div>
         <CustomLink href="https://www.pushquantum.tech/">test</CustomLink>
