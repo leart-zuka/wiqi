@@ -29,7 +29,7 @@ export default async function LocaleLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>wiqi</title>
       </head>
-      <body className="flex flex-col h-screen text-black">
+      <body className="flex h-screen flex-col text-black">
         <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <div className="flex-grow">{children}</div>
