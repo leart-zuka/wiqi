@@ -6,9 +6,7 @@ import matter from "gray-matter";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    console.debug(body.folder, body.language, body.difficulty);
     const files = getBlogPosts(body.folder, body.language, body.difficulty);
-    console.debug(files);
     return NextResponse.json({ files: files }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
