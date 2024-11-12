@@ -6,6 +6,7 @@ interface PostPreviewProps {
   subtitle: string;
   date: string;
   locale: string;
+  difficulty: string;
 }
 
 const PostPreview = (props: PostPreviewProps) => {
@@ -15,7 +16,7 @@ const PostPreview = (props: PostPreviewProps) => {
       key={props.slug}
     >
       <CustomLink
-        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${props.locale}/quantum_tuesdays/${props.slug}`}
+        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${props.locale}/quantum_tuesdays/${props.difficulty}/${props.slug}`}
       >
         <h1 className="mb-4 text-violet-600 hover:underline">{props.slug}</h1>
       </CustomLink>

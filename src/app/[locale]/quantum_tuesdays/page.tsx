@@ -59,6 +59,7 @@ export default function Page({ params }: { params: { locale: string } }) {
               subtitle={file.metadata.subtitle}
               date={file.metadata.date}
               locale={params.locale}
+              difficulty={difficulty}
             />
           );
         })}
