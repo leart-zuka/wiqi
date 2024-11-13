@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
 import { getPostContent } from "@/app/components/utils";
 
 export default function Post({
@@ -21,7 +22,7 @@ export default function Post({
 
       <article className="prose mx-auto block max-w-2xl px-6 text-black">
         <ReactMarkdown
-          remarkPlugins={[remarkMath]}
+          remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[rehypeKatex]} // need both remark and rehype plugins for proper latex rendering
         >
           {post.content}

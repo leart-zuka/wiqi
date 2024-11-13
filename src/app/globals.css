@@ -37,3 +37,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.katex {
+  display: block;
+  text-align: center;
+}
