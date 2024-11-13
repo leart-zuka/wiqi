@@ -42,6 +42,7 @@
     "react-spinner": "^0.2.7",
     "react-spinners": "^0.13.8",
     "rehype-katex": "^7.0.0",
+    "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "sugar-high": "^0.7.0"
   },
