@@ -3,14 +3,14 @@ import path from "path";
 import matter from "gray-matter";
 
 /**
- * Überprüft, ob der Slug sicher ist.
- * Verhindert Path Traversal durch Ausschluss von '../' und absoluten Pfaden.
- * Erlaubt alle anderen Zeichen.
- * @param slug Der decodierte Slug.
- * @returns true, wenn der Slug gültig ist; sonst false.
+ * Checks if slug is safe.
+ * Denies path traversal by excluding '../' and absolute path.
+ * Allows all other symbols.
+ * @param slug Decoded slug.
+ * @returns true, if slug is valid, else false.
  */
 function isValidSlug(slug: string): boolean {
-  // Ausschluss von Path Traversal Mustern
+  // Exclusion of invalid paths
   if (slug.includes("..") || path.isAbsolute(slug)) {
     return false;
   }
@@ -18,29 +18,29 @@ function isValidSlug(slug: string): boolean {
 }
 
 /**
- * Liest den Inhalt eines Beitrags basierend auf dem Ordner und Slug.
- * Erlaubt alle Zeichen im Slug, führt jedoch Sicherheitsüberprüfungen durch.
- * @param folder Der Ordner, in dem sich der Beitrag befindet.
- * @param slug Der Slug des Beitrags (URL-codiert).
- * @returns Das Matter-Objekt mit Inhalt und Metadaten.
+ * Read content of a file based on folder and slug.
+ * Allows all symbols in slug, but still checks if slug name is valid.
+ * @param folder folder, in which post is located in.
+ * @param slug Slug of the post (URL-coded).
+ * @returns Matter object which includes content and metadata of post.
  */
 export function getPostContent(folder: string, slug: string) {
   try {
-    console.log("Originaler Slug:", slug);
+    console.log("Original slug:", slug);
 
-    // Decodieren des Slugs
+    // Decoding of slug
     const decodedSlug = decodeURIComponent(slug);
-    console.log("Decodierter Slug:", decodedSlug);
+    console.log("Decoded slug:", decodedSlug);
 
-    // Validierung des Slugs
+    // Validation of slug
     if (!isValidSlug(decodedSlug)) {
-      throw new Error("Ungültige Zeichen im Slug.");
+      throw new Error("Invalid symbol in slug.");
     }
 
-    // Optional: Entfernen von führenden/trailing Leerzeichen
+    // Optional: Removal of trailing or preceeding spaces
     const sanitizedSlug = decodedSlug.trim();
 
-    // Erstellen des vollständigen Dateipfads
+    // Creation of full file path
     const file = path.join(
       process.cwd(),
       "public",
@@ -48,29 +48,29 @@ export function getPostContent(folder: string, slug: string) {
       folder,
       `${sanitizedSlug}.mdx`,
     );
-    console.log("Versuchter Dateipfad:", file);
+    console.log("Tried filepath:", file);
 
-    // Path Normalization und Sicherheit
+    // Path Normalization und Security
     const normalizedPath = path.normalize(file);
     const postsPath = path.join(process.cwd(), "public", "posts", folder);
     if (!normalizedPath.startsWith(postsPath)) {
-      throw new Error("Ungültiger Dateipfad.");
+      throw new Error("Invalid filepath.");
     }
 
-    // Überprüfen, ob die Datei existiert
+    // Checks if file exists
     if (!fs.existsSync(file)) {
       throw new Error(
-        `Die Datei ${sanitizedSlug}.mdx existiert nicht im Ordner ${folder}.`,
+        `File ${sanitizedSlug}.mdx doesn't exist in folder ${folder}.`,
       );
     }
 
-    // Lesen des Dateiinhalts
+    // Reads content of file
     const content = fs.readFileSync(file, "utf8");
     const matterResult = matter(content);
-    console.log("Beitragsinhalt erfolgreich gelesen.");
+    console.log("Successfully read file contents.");
     return matterResult;
   } catch (error) {
-    console.error("Fehler beim Lesen des Beitragsinhalts:", error);
+    console.error("Error when reading file contents:", error);
     throw error;
   }
 }
