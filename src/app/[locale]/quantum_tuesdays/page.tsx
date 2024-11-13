@@ -50,19 +50,23 @@ export default function Page({ params }: { params: { locale: string } }) {
         initialDifficulty={difficulty}
         setDifficulty={setDifficulty}
       />
-      <div className="p-40">
-        {files.map((file) => {
-          return (
+      <div className="grid grid-cols-3 gap-6 p-10">
+        {" "}
+        {/* Adjusted padding */}
+        {files.map((file) => (
+          <div
+            key={file.slug} // Unique key for each item
+            className="flex items-center justify-center"
+          >
             <PostPreview
-              key={file.slug}
               slug={file.slug}
               subtitle={file.metadata.subtitle}
               date={file.metadata.date}
               locale={params.locale}
               difficulty={difficulty}
             />
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
