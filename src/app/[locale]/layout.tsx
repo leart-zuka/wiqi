@@ -25,7 +25,7 @@ export default async function LocaleLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="title" property="og:title" content="wiqi" />
-        <meta name="image" property="og:image" content="public/wq.png" />
+        <meta name="image" property="og:image" content="/public/wq.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>wiqi</title>
       </head>
