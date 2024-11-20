@@ -21,10 +21,6 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["puppeteer-core", "@sparticuz/chromium"],
   },
-  webpack: (config) => {
-    config.cache = false;
-    return config;
-  },
 };
 
 const combinedConfig = withNextIntl(withMDX(nextConfig));
