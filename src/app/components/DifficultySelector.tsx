@@ -2,7 +2,7 @@ import { setCookie } from "cookies-next";
 
 interface DifficultySelector {
   initialDifficulty: string;
-  setDifficulty: (difficulty: string) => void;
+  setDifficulty: any;
 }
 
 export default function DifficultySelector({
