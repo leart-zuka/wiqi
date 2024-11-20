@@ -297,7 +297,7 @@ Programming in dark matter:
         (¬_¬)
 
 "Invisible, yet influential."
-        `
+        `,
       ];
 
       const randomIndex = Math.floor(Math.random() * asciiArts.length);
