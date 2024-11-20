@@ -46,11 +46,13 @@ export default function Page({ params }: { params: { locale: string } }) {
 
   return (
     <div className="m-10">
-      <DifficultySelector
-        initialDifficulty={difficulty}
-        setDifficulty={setDifficulty}
-      />
-      <div className="grid grid-cols-3 gap-6 p-10">
+      <div className="sticky top-10 z-20">
+        <DifficultySelector
+          initialDifficulty={difficulty}
+          setDifficulty={setDifficulty}
+        />
+      </div>
+      <div className="z-10 grid grid-cols-3 gap-6 p-10">
         {" "}
         {/* Adjusted padding */}
         {files.map((file) => (
