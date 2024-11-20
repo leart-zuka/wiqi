@@ -12,17 +12,17 @@ export default function DifficultySelector({
   const difficulties = [
     {
       id: "elementary",
-      emoji: "🧒",
+      emoji: "🧑‍🏫",
       bg: "bg-green-400",
-      hover: "hover:bg-green-500",
+      hover: "bg-green-500",
     },
     {
       id: "highschool",
-      emoji: "🧑‍💻",
+      emoji: "🧑‍🎓",
       bg: "bg-yellow-400",
-      hover: "hover:bg-yellow-500",
+      hover: "bg-yellow-500",
     },
-    { id: "college", emoji: "🧑‍🏫", bg: "bg-red-400", hover: "hover:bg-red-500" },
+    { id: "college", emoji: "🧑‍🔬", bg: "bg-red-400", hover: "bg-red-500" },
   ];
 
   const initialIndex = difficulties.findIndex(
@@ -32,9 +32,7 @@ export default function DifficultySelector({
   return (
     <div className="relative flex h-12 w-48 overflow-hidden rounded-full bg-slate-200">
       <div
-        className={`absolute left-0 top-0 h-full w-1/3 rounded-full transition-all duration-500 ${
-          initialIndex !== -1 ? difficulties[initialIndex].bg : "bg-green-400"
-        } hover: ${initialIndex !== -1 ? difficulties[initialIndex].hover : "hover:bg-green-400"}`}
+        className={`absolute left-0 top-0 h-full w-1/3 rounded-full transition-all duration-500 ${initialIndex !== -1 ? difficulties[initialIndex].bg : "bg-green-400"}`}
         style={{
           transform: `translateX(${initialIndex * 100}%)`,
         }}
@@ -43,7 +41,7 @@ export default function DifficultySelector({
       {difficulties.map((difficulty) => (
         <button
           key={difficulty.id}
-          className={"relative z-10 flex-1 text-center font-bold text-white"}
+          className={`relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:${difficulty.hover}`}
           onClick={() => {
             setDifficulty(difficulty.id);
             setCookie("difficulty", difficulty.id);
