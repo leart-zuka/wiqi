@@ -37,3 +37,12 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Colour-gradient for Map */
+.map-container {
+  background: linear-gradient(to bottom, #06014a, #fe2a77); /* Dark blue to pink gradient */
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}

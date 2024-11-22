@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "leaflet/dist/leaflet.css";
 import "../globals.css";
 import "katex/dist/katex.min.css";
 import { NextIntlClientProvider } from "next-intl";
