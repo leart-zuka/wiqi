@@ -1,6 +1,16 @@
 import { useState } from "react";
 
-const SuperpositionButton = ({ children }: { children: React.ReactNode }) => {
+interface SuperpositionButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const SuperpositionButton: React.FC<SuperpositionButtonProps> = ({
+  children,
+  className = "",
+  ...props
+}) => {
   const [hoverColor, setHoverColor] = useState("");
 
   const getRandomColorClass = () => {
@@ -18,13 +28,12 @@ const SuperpositionButton = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div
-      className={`mx-auto flex w-fit rounded-md bg-gradient-to-r from-blue-700 to-rose-700`}
-    >
+    <div className="mx-auto flex w-fit rounded-md bg-gradient-to-r from-blue-700 to-rose-700">
       <button
-        className={`rounded-md p-2 transition-all duration-500 hover:opacity-100 ${hoverColor}`}
+        className={`rounded-md p-2 transition-all duration-500 hover:opacity-100 ${hoverColor} ${className}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        {...props}
       >
         <div className="h-full w-full">{children}</div>
       </button>

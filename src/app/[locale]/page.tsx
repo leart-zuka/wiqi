@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
-import CustomLink from "../components/CustomLink";
-import SuperpositionButton from "../components/SuperpositionButton";
+import S_Button from "../components/S_Button";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function Home({ params }: { params: { locale: string } }) {
+  const router = useRouter();
   return (
     <div className="y-10 flex items-center justify-between px-10 lg:py-0 xl:rounded-xl xl:border-hidden">
       <div className="space-y-5 p-10 lg:py-6">
@@ -16,9 +17,11 @@ export default function Home() {
         <h1 className="w-9/12 text-3xl">
           We want to teach the world about world of quantum. <br />
         </h1>
-        <SuperpositionButton>
+        <S_Button
+          onClick={() => router.push(`/${params.locale}/quantum_tuesdays`)}
+        >
           <p className="text-white"> Visit our current blogposts </p>
-        </SuperpositionButton>
+        </S_Button>
       </div>
       <Image
         src="/pq_logo.svg"
