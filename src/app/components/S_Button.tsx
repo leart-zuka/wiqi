@@ -28,14 +28,14 @@ const SuperpositionButton: React.FC<SuperpositionButtonProps> = ({
   };
 
   return (
-    <div className="mx-auto flex w-fit rounded-md bg-gradient-to-r from-blue-700 to-rose-700">
+    <div className="w-fit rounded-md bg-gradient-to-r from-blue-700 to-rose-700">
       <button
         className={`rounded-md p-2 transition-all duration-500 hover:opacity-100 ${hoverColor} ${className}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        <div className="h-full w-full">{children}</div>
+        <div className="">{children}</div>
       </button>
     </div>
   );
