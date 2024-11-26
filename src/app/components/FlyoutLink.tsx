@@ -32,7 +32,7 @@ const FlyoutLink = ({
     <div
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      className="relative w-fit h-fit my-10 mx-40"
+      className="relative mx-40 my-10 h-fit w-fit"
     >
       <a href={href} className="relative text-black">
         {children}

@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "types": "tsc",
+    "lft": "bun format && bun lint && bun types && bun format:check",
+    "status": "bun lft && git status"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
@@ -21,6 +26,7 @@
     "@sparticuz/chromium": "^123.0.1",
     "@types/mdx": "^2.0.13",
     "axios": "^1.7.2",
+    "cookies-next": "4.3.0",
     "framer-motion": "^11.5.4",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
@@ -39,22 +45,32 @@
     "react-markdown": "^9.0.1",
     "react-spinner": "^0.2.7",
     "react-spinners": "^0.13.8",
-    "rehype-highlight": "^7.0.0",
+    "react-syntax-highlighter": "^15.6.1",
     "rehype-katex": "^7.0.0",
+    "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "sugar-high": "^0.7.0",
+<<<<<<< HEAD
     "three": "^0.170.0"
+=======
+    "word-counting": "^1.1.4"
+>>>>>>> origin/main
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+<<<<<<< HEAD
     "@types/web": "^0.0.178",
+=======
+    "@types/react-syntax-highlighter": "^15.5.13",
+>>>>>>> origin/main
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
     "postcss": "^8.4.38",
-    "prettier": "3.3.3",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"
   }

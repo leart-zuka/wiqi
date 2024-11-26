@@ -16,8 +16,8 @@ const replaceLocale = (locale: string, pathName: string): string => {
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
   return (
-    <nav className="bg-slate-700 w-full start-0 h-fit">
-      <div className="relative flex flex-wrap items-center mx-auto justify-between p-2">
+    <nav className="start-0 h-fit w-full bg-slate-700">
+      <div className="relative mx-auto flex flex-wrap items-center justify-between p-2">
         <a
           href="https://www.pushquantum.tech/"
           className="flex items-center space-x-0"
@@ -35,7 +35,7 @@ const Header = (props: HeaderProps) => {
           </span>
         </a>
         <Link href={`/${props.locale}/quantum_tuesdays`}>
-          <h1 className="text-white font-bold hover:text-sky-400">
+          <h1 className="font-bold text-white hover:text-sky-400">
             Quantum Tuesdays
           </h1>
         </Link>

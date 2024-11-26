@@ -1,3 +1,4 @@
+// app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import "leaflet/dist/leaflet.css";
 import "../globals.css";
@@ -6,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { getMessages } from "next-intl/server";
+import EasterEgg from "../components/EasterEgg";
 
 export const metadata: Metadata = {
   title: "Wiqi",
@@ -30,9 +32,10 @@ export default async function LocaleLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>wiqi</title>
       </head>
-      <body className="flex flex-col h-screen text-black">
+      <body className="flex h-screen flex-col overflow-x-clip text-black">
         <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
+          <EasterEgg />
           <div className="flex-grow">{children}</div>
         </NextIntlClientProvider>
         <Footer />

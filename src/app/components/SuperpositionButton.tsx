@@ -22,7 +22,7 @@ const SuperpositionButton = ({ children }: { children: React.ReactNode }) => {
       className={`mx-auto flex w-fit rounded-md bg-gradient-to-r from-blue-700 to-rose-700`}
     >
       <button
-        className={`p-2 transition-all rounded-md  duration-500 hover:opacity-100 ${hoverColor}`}
+        className={`rounded-md p-2 transition-all duration-500 hover:opacity-100 ${hoverColor}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

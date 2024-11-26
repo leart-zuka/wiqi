@@ -1,53 +1,63 @@
-import { useCookies } from "next-client-cookies";
-import { useState } from "react";
+import { setCookie } from "cookies-next";
 
 interface DifficultySelector {
-  initialDifficulty: string | undefined;
+  initialDifficulty: string;
+  setDifficulty: any;
 }
 
 export default function DifficultySelector({
   initialDifficulty,
+  setDifficulty,
 }: DifficultySelector) {
-  const cookies = useCookies();
-  const [difficulty, setDifficulty] = useState(
-    initialDifficulty ?? cookies.set("difficulty", "highschool"),
+  const difficulties = [
+    {
+      id: "elementary",
+      emoji: "🧑‍🏫",
+      bg: "bg-green-400",
+      className:
+        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:bg-green-500",
+    },
+    {
+      id: "highschool",
+      emoji: "🧑‍🎓",
+      bg: "bg-yellow-400",
+      className:
+        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:bg-yellow-500",
+    },
+    {
+      id: "college",
+      emoji: "🧑‍🔬",
+      bg: "bg-red-400",
+      className:
+        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:bg-red-500",
+    },
+  ];
+
+  const initialIndex = difficulties.findIndex(
+    (diff) => diff.id === initialDifficulty,
   );
 
   return (
-    <div className="flex flex-row-reverse">
-      <button
-        className={`p-2 border border-black hover:bg-red-500 rounded-r-full ${
-          difficulty === "college" ? "bg-red-400" : ""
-        }`}
-        onClick={() => {
-          setDifficulty("college");
-          cookies.set("difficulty", "college");
+    <div className="relative flex h-12 w-48 overflow-hidden rounded-full bg-slate-200">
+      <div
+        className={`absolute left-0 top-0 h-full w-1/3 rounded-full transition-all duration-500 ${initialIndex !== -1 ? difficulties[initialIndex].bg : "bg-green-400"}`}
+        style={{
+          transform: `translateX(${initialIndex * 100}%)`,
         }}
-      >
-        🧑‍🏫
-      </button>
-      <button
-        className={`p-2 border border-y-black hover:bg-yellow-500 ${
-          difficulty === "highschool" ? "bg-yellow-400" : ""
-        }`}
-        onClick={() => {
-          setDifficulty("highschool");
-          cookies.set("difficulty", "highschool");
-        }}
-      >
-        🧑‍💻
-      </button>
-      <button
-        className={`p-2 border border-black hover:bg-green-400 rounded-l-full ${
-          difficulty === "elementary" ? "bg-green-400" : ""
-        }`}
-        onClick={() => {
-          setDifficulty("elementary");
-          cookies.set("difficulty", "elementary");
-        }}
-      >
-        🧒
-      </button>
+      ></div>
+
+      {difficulties.map((difficulty) => (
+        <button
+          key={difficulty.id}
+          className={difficulty.className}
+          onClick={() => {
+            setDifficulty(difficulty.id);
+            setCookie("difficulty", difficulty.id);
+          }}
+        >
+          {difficulty.emoji}
+        </button>
+      ))}
     </div>
   );
 }

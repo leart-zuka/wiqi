@@ -5,7 +5,7 @@ import MindMap from "../components/mindmap";
 
 export default function Home() {
   return (
-    <div className="text-center top-24 h-fit">
+    <div className="top-24 h-fit text-center">
       <h1 className="text-5xl"> Map of Quantum </h1>
       <div>
         <CustomLink href="https://www.pushquantum.tech/">test</CustomLink>
