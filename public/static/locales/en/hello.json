@@ -1,24 +1,7 @@
 {
   "Index": {
-    "hello": "Hi this is some text",
-    "Elementary School Student": "Hi this is an easy text",
-    "Highschool Student": "Hi this is a more complicated text",
-    "College Student": "Hi this is a very complicated text",
-    "Tech Enthusiast": "Hi this is an interesting text"
-  },
-  "MarkDownFiles": {
-    "quantum_tuesdays": "quantum_tuesdays",
-    "posts": {
-      "test": {
-        "title": "page",
-        "subtitle": "We be doing a little bit of the funny stuff",
-        "date": "2024-09-13"
-      },
-      "test1": {
-        "title": "test_page",
-        "subtitle": "test_subtitle",
-        "date": "test_date"
-      }
-    }
+    "hello": "Welcome to the",
+    "sub hello": "We want to teach the world about the world of quantum.",
+    "hello button": "Visit our current blogposts"
   }
 }
