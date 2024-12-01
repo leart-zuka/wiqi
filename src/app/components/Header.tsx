@@ -28,10 +28,7 @@ const Header = (props: HeaderProps) => {
         <div className="relative flex h-16 items-center justify-between">
           {/* Left Section: Logo */}
           <div className="flex items-center">
-            <Link
-              href="https://www.pushquantum.tech/"
-              className="flex items-center"
-            >
+            <Link href={"/" + props.locale} className="flex items-center">
               <Image
                 src="/pq_logo.svg"
                 className="h-8 w-8"
