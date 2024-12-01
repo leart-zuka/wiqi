@@ -96,7 +96,7 @@ const Home: React.FC<HomeProps> = ({ params }) => {
                   key={index}
                   src={`/${src}`}
                   alt={`Image ${index}`}
-                  className={`absolute inset-0 h-full w-full transition-all duration-700 ease-in-out ${
+                  className={`absolute inset-0 h-full w-full transition-all duration-[1200ms] ease-in-out ${
                     visibleIndex === index
                       ? "z-10 scale-100 opacity-100 blur-0"
                       : "z-0 scale-90 opacity-0 blur-md"
