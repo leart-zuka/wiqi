@@ -93,25 +93,23 @@ const Home: React.FC<HomeProps> = ({ params }) => {
         )}
       </div>
 
-      <section className="relative overflow-hidden bg-black py-12 sm:pb-16 lg:pb-20 xl:pb-24">
+      <section className="relative min-h-screen overflow-hidden bg-black py-12 sm:pb-16 lg:pb-20 xl:pb-24">
         <div className="relativea mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-x-16 gap-y-12 lg:grid-cols-2">
             <div>
               <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-6xl xl:text-7xl">
                 {t("hello")}{" "}
                 <span className="animate-gradient-x bg-200% bg-gradient-to-r from-blue-700 to-rose-700 bg-clip-text text-6xl font-semibold text-transparent">
-                  Wiqi
+                  PushQuantum WiQi
                 </span>
               </h1>
               <p className="mt-4 text-lg font-normal text-gray-400 sm:mt-8">
                 {t("sub hello")}
               </p>
-
               <div className="mt-8 sm:mt-12">
                 <p className="text-lg font-normal text-white">
                   Your 5 Star Site for Quantum Computing
                 </p>
-
                 <div className="mt-3 flex items-center">
                   <div className="flex">
                     {/* Repeat SVG stars as needed */}
@@ -125,7 +123,7 @@ const Home: React.FC<HomeProps> = ({ params }) => {
                       >
                         <path
                           d="M10.8586 4.71248C11.2178 3.60691 12.7819 3.60691 13.1412 4.71248L14.4246 8.66264C14.5853 9.15706 15.046 9.49182 15.5659 9.49182H19.7193C20.8818 9.49182 21.3651 10.9794 20.4247 11.6626L17.0645 14.104C16.6439 14.4095 16.4679 14.9512 16.6286 15.4456L17.912 19.3958C18.2713 20.5013 17.0059 21.4207 16.0654 20.7374L12.7052 18.2961C12.2846 17.9905 11.7151 17.9905 11.2945 18.2961L7.93434 20.7374C6.99388 21.4207 5.72851 20.5013 6.08773 19.3958L7.37121 15.4456C7.53186 14.9512 7.35587 14.4095 6.93529 14.104L3.57508 11.6626C2.63463 10.9794 3.11796 9.49182 4.28043 9.49182H8.43387C8.95374 9.49182 9.41448 9.15706 9.57513 8.66264L10.8586 4.71248Z"
-                          fill="url(#defaultGradient)" // Hier wird der Farbverlauf referenziert
+                          fill="url(#defaultGradient)"
                         />
                         <defs>
                           <linearGradient
@@ -136,13 +134,11 @@ const Home: React.FC<HomeProps> = ({ params }) => {
                             y2="6.90161"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop offset="0%" style={{ stopColor: "purple" }} />{" "}
-                            {/* Cyan */}
+                            <stop offset="0%" style={{ stopColor: "purple" }} />
                             <stop
                               offset="100%"
                               style={{ stopColor: "#FE2B77" }}
-                            />{" "}
-                            {/* Purple */}
+                            />
                           </linearGradient>
                         </defs>
                       </svg>
@@ -157,7 +153,6 @@ const Home: React.FC<HomeProps> = ({ params }) => {
                 </div>
               </div>
             </div>
-
             <div className="relative">
               <div className="absolute inset-0">
                 <svg
@@ -195,7 +190,7 @@ const Home: React.FC<HomeProps> = ({ params }) => {
                 </svg>
               </div>
               <div
-                className="flex items-center justify-center "
+                className="flex items-center justify-center"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
