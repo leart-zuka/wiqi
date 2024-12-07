@@ -65,7 +65,7 @@ const Header = (props: HeaderProps) => {
                 ref={inputRef}
                 autoFocus
                 required
-                className="border border-gray-300 rounded-md px-2 py-1"
+                className="rounded-md border border-gray-300 px-2 py-1"
               />
               <i className="fa fa-search"></i>
               <button
@@ -172,61 +172,6 @@ const Header = (props: HeaderProps) => {
                 */}
               </div>
             </div>
-            <button
-              type="button"
-              className="-my-1 ml-auto flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 lg:hidden dark:text-slate-400 dark:hover:text-slate-300"
-            >
-              <span className="sr-only">Search</span>
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m19 19-3.5-3.5"></path>
-                <circle cx="11" cy="11" r="6"></circle>
-              </svg>
-            </button>
-            <div className="-my-1 ml-2 lg:hidden">
-              <button
-                type="button"
-                className="flex h-8 w-8 items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
-              >
-                <span className="sr-only">Navigation</span>
-                <svg width="24" height="24" fill="none" aria-hidden="true">
-                  <path
-                    d="M12 6v.01M12 12v.01M12 18v.01M12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </button>
-              {/* 
-              <div
-                hidden=""
-                style={{
-                  position: "fixed",
-                  top: "1px",
-                  left: "1px",
-                  width: "1px",
-                  height: "0px",
-                  padding: "0px",
-                  margin: "-1px",
-                  overflow: "hidden",
-                  clip: "rect(0px, 0px, 0px, 0px)",
-                  whiteSpace: "nowrap",
-                  borderWidth: "0px",
-                  display: "none",
-                }}
-              ></div>
-              */}
-            </div>
           </div>
         </div>
         <div className="flex items-center border-b border-slate-900/10 p-4 lg:hidden dark:border-slate-50/[0.06]">
@@ -246,26 +191,6 @@ const Header = (props: HeaderProps) => {
             </svg>
           </button>
           <ol className="ml-4 flex min-w-0 whitespace-nowrap text-sm leading-6">
-            <li className="flex items-center">
-              Getting Started
-              <svg
-                width="3"
-                height="6"
-                aria-hidden="true"
-                className="mx-3 overflow-visible text-slate-400"
-              >
-                <path
-                  d="M0 0L3 3L0 6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                ></path>
-              </svg>
-            </li>
-            <li className="truncate font-semibold text-slate-900 dark:text-slate-200">
-              Installation
-            </li>
           </ol>
         </div>
       </div>
