@@ -1,0 +1,87 @@
+.custom-form {
+  position: relative;
+  top: 50%; /* No change */
+  left: 50%; /* No change */
+  transform: translate(-50%); /* No change */
+  transition: all 0.8s; /* Adjusted transition speed */
+  width: 40px; /* Reduced width */
+  height: 40px; /* Reduced height */
+  background: white; /* No change */
+  box-sizing: border-box; /* No change */
+  border-radius: 3px; /* Reduced border-radius */
+  border: 3px solid white; /* Reduced border width */
+  padding: 4px; /* Reduced padding */
+}
+
+.custom-form input {
+  position: absolute; /* No change */
+  top: 0; /* No change */
+  left: 0; /* No change */
+  width: 0; /* No change */
+  height: 34px; /* Reduced height */
+  line-height: 25px; /* Adjusted line height */
+  outline: 0; /* No change */
+  border: 0; /* No change */
+  font-size: 0.9em; /* Reduced font size */
+  border-radius: 15px; /* Reduced border-radius */
+  padding: 0 15px; /* Adjusted padding */
+}
+
+.custom-form .fa {
+  box-sizing: border-box; /* No change */
+  padding: 8px; /* Reduced padding */
+  width: 34px; /* Reduced width */
+  height: 34px; /* Reduced height */
+  position: absolute; /* No change */
+  top: 0; /* No change */
+  right: 0; /* No change */
+  border-radius: 3px; /* Reduced border-radius */
+  color: #07051a; /* No change */
+  text-align: center; /* No change */
+  font-size: 1em; /* Reduced font size */
+  transition: all 0.8s; /* Adjusted transition speed */
+}
+
+.custom-form:focus-within,
+.custom-form:hover,
+.custom-form:valid {
+  width: 350px; /* Reduced width */
+  cursor: pointer; /* No change */
+}
+
+.custom-form:hover input,
+.custom-form:focus-within input,
+.custom-form:valid input {
+  width: 90%; /* Adjusted input width */
+}
+
+.custom-form:hover .fa,
+.custom-form:focus-within .fa,
+.custom-form:valid .fa {
+  background: #07051a; /* No change */
+  color: white; /* No change */
+}
+
+.custom-form button {
+  display: none; /* No change */
+  position: absolute; /* No change */
+  top: 55px; /* Adjusted position */
+  bottom: 0; /* No change */
+  left: 0; /* No change */
+  right: 0; /* No change */
+  font-size: 16px; /* Reduced font size */
+  color: white; /* No change */
+  padding: 3px; /* Reduced padding */
+  min-height: max-content; /* No change */
+  background: transparent; /* No change */
+  outline: 0; /* No change */
+  border: 1px solid #303030; /* No change */
+  border-radius: 3px; /* Reduced border-radius */
+  text-align: center; /* No change */
+  width: 100%; /* No change */
+  cursor: pointer; /* No change */
+}
+
+.custom-form:valid button {
+  display: hidden; /* No change */
+}

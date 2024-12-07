@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBeer, FaGithub } from "react-icons/fa";
+import "./button.css";
 
 interface HeaderProps {
   locale: string;
@@ -18,10 +19,15 @@ const replaceLocale = (locale: string, pathName: string): string => {
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
+
+  function clearInput(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <div className="sticky top-0 z-40 w-full flex-none rounded-b-md bg-white/60 backdrop-blur transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] dark:bg-[#334155]/60">
@@ -44,7 +50,23 @@ const Header = (props: HeaderProps) => {
                 WiQi
               </span>
             </a>
-
+            <link
+              rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+              integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+              crossOrigin="anonymous"
+            />
+            <form className="custom-form">
+              <input type="search" ref={inputRef} autoFocus required />
+              <i className="fa fa-search"></i>
+              <button
+                type="button"
+                onClick={clearInput}
+                style={{ cursor: "pointer" }}
+              >
+                Clear
+              </button>
+            </form>
             <a
               href="https://tailwindcss.com/blog/2024-05-24-catalyst-application-layouts"
               className="ml-3 hidden items-center rounded-full bg-sky-400/10 px-3 py-1 text-xs font-medium leading-5 text-sky-600 hover:bg-sky-400/20 xl:flex dark:text-sky-400"
@@ -83,7 +105,7 @@ const Header = (props: HeaderProps) => {
                 <ul className="flex space-x-8">
                   <li>
                     <a
-                      className="transition-all duration-300 ease-in-out hover:scale-105 hover:text-pink-600 "
+                      className="transition-all duration-300 ease-in-out hover:scale-105 hover:text-pink-600"
                       href={`/${props.locale}/quantum_tuesdays`}
                     >
                       Quantum Tuesdays
