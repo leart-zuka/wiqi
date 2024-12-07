@@ -12,6 +12,7 @@
   border: 3px solid white; /* Reduced border width */
   padding: 4px; /* Reduced padding */
   opacity: 75%;
+  border-radius: 20px;
 }
 
 .custom-form input {
@@ -26,6 +27,7 @@
   font-size: 0.9em; /* Reduced font size */
   border-radius: 15px; /* Reduced border-radius */
   padding: 0 15px; /* Adjusted padding */
+  border-radius: 20px;
 }
 
 .custom-form .fa {
@@ -41,7 +43,8 @@
   text-align: center; /* Can be removed if using Flexbox */
   font-size: 1em; /* Reduced font size */
   transition: all 0.8s; /* Adjusted transition speed */
-  
+  border-radius: 20px;
+
   /* Flexbox properties for centering */
   display: flex;
   align-items: center;
@@ -86,6 +89,7 @@
   text-align: center; /* No change */
   width: 100%; /* No change */
   cursor: pointer; /* No change */
+  border-radius: 20px;
 }
 
 .custom-form:valid button {
