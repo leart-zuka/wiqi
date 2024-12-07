@@ -1,7 +1,7 @@
 .custom-form {
   position: relative;
   top: 50%; /* No change */
-  left: 50%; /* No change */
+  left: 40%; /* No change */
   transform: translate(-50%); /* No change */
   transition: all 0.8s; /* Adjusted transition speed */
   width: 40px; /* Reduced width */
@@ -11,6 +11,7 @@
   border-radius: 3px; /* Reduced border-radius */
   border: 3px solid white; /* Reduced border width */
   padding: 4px; /* Reduced padding */
+  opacity: 75%;
 }
 
 .custom-form input {
