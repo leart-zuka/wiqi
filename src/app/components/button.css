@@ -38,9 +38,14 @@
   right: 0; /* No change */
   border-radius: 3px; /* Reduced border-radius */
   color: #07051a; /* No change */
-  text-align: center; /* No change */
+  text-align: center; /* Can be removed if using Flexbox */
   font-size: 1em; /* Reduced font size */
   transition: all 0.8s; /* Adjusted transition speed */
+  
+  /* Flexbox properties for centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .custom-form:focus-within,
