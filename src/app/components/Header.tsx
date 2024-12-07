@@ -25,14 +25,17 @@ const Header = (props: HeaderProps) => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  function clearInput(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    throw new Error("Function not implemented.");
+  function clearInput(event: React.MouseEvent<HTMLButtonElement>): void {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
   }
 
   return (
     <div className="sticky top-0 z-40 w-full flex-none rounded-b-md bg-white/60 backdrop-blur transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] dark:bg-[#334155]/60">
-      <div className="max-w-8xl mx-auto">
-        <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-8 dark:border-slate-300/10">
+      {/* Updated container with responsive padding */}
+      <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
+        <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-0 dark:border-slate-300/10">
           <div className="relative flex items-center">
             <a
               className="mr-3 flex w-[2.0625rem] items-center overflow-hidden transition-all duration-200 ease-in-out hover:scale-95 hover:text-pink-700 md:w-auto"
@@ -57,12 +60,18 @@ const Header = (props: HeaderProps) => {
               crossOrigin="anonymous"
             />
             <form className="custom-form">
-              <input type="search" ref={inputRef} autoFocus required />
+              <input
+                type="search"
+                ref={inputRef}
+                autoFocus
+                required
+                className="border border-gray-300 rounded-md px-2 py-1"
+              />
               <i className="fa fa-search"></i>
               <button
                 type="button"
                 onClick={clearInput}
-                style={{ cursor: "pointer" }}
+                className="ml-2 text-sm text-blue-500 hover:text-blue-700"
               >
                 Clear
               </button>
@@ -84,27 +93,26 @@ const Header = (props: HeaderProps) => {
               <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-500">
                 <label
                   className="sr-only"
-                  for="headlessui-listbox-button-:r5:"
-                  id="headlessui-label-:r4:"
-                  data-headlessui-state=""
+                  htmlFor="theme-selector"
+                  id="headlessui-label-theme"
                 >
                   Theme
                 </label>
                 <button
                   type="button"
-                  id="headlessui-listbox-button-:r5:"
+                  id="theme-selector"
                   aria-haspopup="listbox"
                   aria-expanded="false"
-                  data-headlessui-state=""
-                  aria-labelledby="headlessui-label-:r4: headlessui-listbox-button-:r5:"
+                  className="focus:outline-none"
                 >
                   <span className="dark:hidden">
+                    {/* Light mode icon */}
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       className="h-6 w-6"
                     >
                       <path
@@ -118,10 +126,11 @@ const Header = (props: HeaderProps) => {
                     </svg>
                   </span>
                   <span className="hidden dark:inline">
+                    {/* Dark mode icon */}
                     <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M17.715 15.15A6.5 6.5 0 0 1 9 6.035C6.106 6.922 4 9.645 4 12.867c0 3.94 3.153 7.136 7.042 7.136 3.101 0 5.734-2.032 6.673-4.853Z"
                         className="fill-sky-400/20"
                       ></path>
@@ -130,8 +139,8 @@ const Header = (props: HeaderProps) => {
                         className="fill-sky-500"
                       ></path>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
                         className="fill-sky-500"
                       ></path>
@@ -160,7 +169,7 @@ const Header = (props: HeaderProps) => {
                   <span className="sr-only">WiQi on GitHub</span>
                   <FaGithub className="text scale-150 rounded-3xl" />
                 </a>
-                 */}
+                */}
               </div>
             </div>
             <button
@@ -173,9 +182,9 @@ const Header = (props: HeaderProps) => {
                 height="24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 aria-hidden="true"
               >
                 <path d="m19 19-3.5-3.5"></path>
@@ -192,18 +201,31 @@ const Header = (props: HeaderProps) => {
                   <path
                     d="M12 6v.01M12 12v.01M12 18v.01M12 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
               {/* 
               <div
                 hidden=""
-                style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"
+                style={{
+                  position: "fixed",
+                  top: "1px",
+                  left: "1px",
+                  width: "1px",
+                  height: "0px",
+                  padding: "0px",
+                  margin: "-1px",
+                  overflow: "hidden",
+                  clip: "rect(0px, 0px, 0px, 0px)",
+                  whiteSpace: "nowrap",
+                  borderWidth: "0px",
+                  display: "none",
+                }}
               ></div>
-               */}
+              */}
             </div>
           </div>
         </div>
@@ -218,8 +240,8 @@ const Header = (props: HeaderProps) => {
                 d="M5 6h14M5 12h14M5 18h14"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               ></path>
             </svg>
           </button>
@@ -236,8 +258,8 @@ const Header = (props: HeaderProps) => {
                   d="M0 0L3 3L0 6"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 ></path>
               </svg>
             </li>
