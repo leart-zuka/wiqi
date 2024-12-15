@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,6 +25,37 @@ function getContrastingColor(bgColor: string) {
   const b = parseInt(rgbMatch[3], 10);
   const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
   return luminance > 128 ? "black" : "white";
+}
+
+function getBackgroundColorBehindNav(nav: HTMLElement): string {
+  const originalPointerEvents = nav.style.pointerEvents;
+  nav.style.pointerEvents = "none";
+
+  const rect = nav.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const elBehindNav = document.elementFromPoint(
+    centerX,
+    centerY,
+  ) as HTMLElement;
+
+  nav.style.pointerEvents = originalPointerEvents;
+
+  if (!elBehindNav) return "rgb(255, 255, 255)";
+
+  let bgColor = window.getComputedStyle(elBehindNav).backgroundColor;
+
+  let parent = elBehindNav.parentElement;
+  while (
+    parent &&
+    (bgColor === "transparent" || bgColor === "rgba(0, 0, 0, 0)")
+  ) {
+    bgColor = window.getComputedStyle(parent).backgroundColor;
+    parent = parent.parentElement;
+  }
+
+  return bgColor;
 }
 
 const Header = (props: HeaderProps) => {
@@ -62,56 +93,30 @@ const Header = (props: HeaderProps) => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  // Element-Finder: Hintergrund des Elements direkt hinter der Navbar ermitteln
-  function getBackgroundColorBehindNav(nav: HTMLElement): string {
-    const originalPointerEvents = nav.style.pointerEvents;
-    nav.style.pointerEvents = "none";
-
-    const rect = nav.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const elBehindNav = document.elementFromPoint(
-      centerX,
-      centerY,
-    ) as HTMLElement;
-
-    nav.style.pointerEvents = originalPointerEvents;
-
-    if (!elBehindNav) return "rgb(255, 255, 255)";
-
-    let bgColor = window.getComputedStyle(elBehindNav).backgroundColor;
-
-    let parent = elBehindNav.parentElement;
-    while (
-      parent &&
-      (bgColor === "transparent" || bgColor === "rgba(0, 0, 0, 0)")
-    ) {
-      bgColor = window.getComputedStyle(parent).backgroundColor;
-      parent = parent.parentElement;
-    }
-
-    return bgColor;
-  }
-
-  useEffect(() => {
+  // Wir definieren updateTextColor hier, damit wir sie sowohl beim Scrollen als auch beim Theme-Wechsel aufrufen können
+  const updateTextColor = useCallback(() => {
     const navSelector = ".sticky.top-0.z-40.w-full";
     const navElement = document.querySelector(navSelector) as HTMLElement;
     if (!navElement) return;
+    const bgColor = getBackgroundColorBehindNav(navElement);
+    const contrastColor = getContrastingColor(bgColor);
+    setDynamicTextColor(contrastColor);
+  }, []);
 
-    function updateTextColor() {
-      const bgColor = getBackgroundColorBehindNav(navElement);
-      const contrastColor = getContrastingColor(bgColor);
-      setDynamicTextColor(contrastColor);
-    }
-
+  // Beim Scrollen erneuern
+  useEffect(() => {
     window.addEventListener("scroll", updateTextColor);
     updateTextColor();
 
     return () => {
       window.removeEventListener("scroll", updateTextColor);
     };
-  }, []);
+  }, [updateTextColor]);
+
+  // Bei Änderung des Themes auch erneut berechnen
+  useEffect(() => {
+    updateTextColor();
+  }, [theme, updateTextColor]);
 
   return (
     <div
@@ -119,7 +124,7 @@ const Header = (props: HeaderProps) => {
       style={{ color: dynamicTextColor }}
     >
       <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
-        <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-0 dark:border-slate-300/10">
+        <div className="mx-4 border-b border-slate-900/10 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-0">
           <div className="relative flex items-center">
             <a
               className="mr-3 flex w-[2.0625rem] items-center overflow-hidden transition-all duration-200 ease-in-out hover:scale-95 md:w-auto"
@@ -188,7 +193,7 @@ const Header = (props: HeaderProps) => {
                   </li>
                 </ul>
               </nav>
-              <div className="ml-6 flex items-center border-l border-slate-500 pl-6 ">
+              <div className="ml-6 flex items-center border-l border-slate-500 pl-6">
                 <label className="sr-only" htmlFor="theme-selector">
                   Theme
                 </label>
@@ -260,7 +265,7 @@ const Header = (props: HeaderProps) => {
           </div>
         </div>
         {/* Mobile Navigation */}
-        <div className="flex items-center border-b border-slate-900/10 p-4 lg:hidden dark:border-slate-50/[0.06]">
+        <div className="flex items-center border-b border-slate-900/10 p-4 dark:border-slate-50/[0.06] lg:hidden">
           <button
             type="button"
             className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
