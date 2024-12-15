@@ -22,16 +22,32 @@ export default async function LocaleLayout({
 }) {
   const messages = await getMessages();
 
+  // Inline script to set the dark mode class on <html> before hydration
+  const themeScript = `
+    (function() {
+      try {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  `;
+
   return (
     <html lang={locale}>
       <head>
+        {/* Preload theme to prevent FOIT */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <meta charSet="utf-8" />
         <meta name="title" property="og:title" content="wiqi" />
-        <meta name="image" property="og:image" content="public/wq.png" />
+        <meta name="image" property="og:image" content="/wq.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>wiqi</title>
+        <title>WiQi</title>
       </head>
-      <body className="flex h-screen flex-col overflow-x-clip  text-black">
+      <body className="flex h-screen flex-col overflow-x-clip text-black dark:text-base-content">
         <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <EasterEgg />
