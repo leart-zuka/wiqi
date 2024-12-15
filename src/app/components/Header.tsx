@@ -64,29 +64,24 @@ const Header = (props: HeaderProps) => {
 
   // Element-Finder: Hintergrund des Elements direkt hinter der Navbar ermitteln
   function getBackgroundColorBehindNav(nav: HTMLElement): string {
-    // Navbar temporär klick-durchlässig machen
     const originalPointerEvents = nav.style.pointerEvents;
     nav.style.pointerEvents = "none";
 
-    // Mittelpunkt der Navbar berechnen
     const rect = nav.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
 
-    // Element unter der Navbar ermitteln
     const elBehindNav = document.elementFromPoint(
       centerX,
       centerY,
     ) as HTMLElement;
 
-    // PointerEvents zurücksetzen
     nav.style.pointerEvents = originalPointerEvents;
 
-    if (!elBehindNav) return "rgb(255, 255, 255)"; // Fallback, wenn nichts gefunden
+    if (!elBehindNav) return "rgb(255, 255, 255)";
 
     let bgColor = window.getComputedStyle(elBehindNav).backgroundColor;
 
-    // Falls das Element transparent ist, iterativ Eltern durchsuchen
     let parent = elBehindNav.parentElement;
     while (
       parent &&
@@ -111,7 +106,6 @@ const Header = (props: HeaderProps) => {
     }
 
     window.addEventListener("scroll", updateTextColor);
-    // Initial einmal aufrufen
     updateTextColor();
 
     return () => {
@@ -154,7 +148,12 @@ const Header = (props: HeaderProps) => {
               crossOrigin="anonymous"
             />
             {/* Suchleiste */}
-            <form className="custom-form">
+            <form
+              className="custom-form"
+              style={{
+                borderColor: dynamicTextColor, // Dynamic border color
+              }}
+            >
               <input
                 type="search"
                 ref={inputRef}
