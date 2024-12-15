@@ -29,7 +29,7 @@ const Home: React.FC<HomeProps> = ({ params }) => {
 
   return (
     <div className="">
-      <section className="relative min-h-screen overflow-hidden bg-black py-12 sm:pb-16 lg:pb-20 xl:pb-24">
+      <section className="relative min-h-screen overflow-hidden bg-gray-900 py-24 sm:pb-16 lg:pb-20 xl:pb-24">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-x-16 gap-y-12 lg:grid-cols-2">
             <div>
