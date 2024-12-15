@@ -1,9 +1,8 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBeer, FaGithub } from "react-icons/fa";
 import "./button.css";
 
 interface HeaderProps {
@@ -18,22 +17,53 @@ const replaceLocale = (locale: string, pathName: string): string => {
 
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [hasMounted, setHasMounted] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
 
-  function clearInput(event: React.MouseEvent<HTMLButtonElement>): void {
+  // Initialize theme on mount
+  useEffect(() => {
+    setHasMounted(true);
+    const storedTheme = window.localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  // Sync theme changes to DOM and localStorage
+  useEffect(() => {
+    if (!hasMounted) return;
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("theme", theme);
+  }, [theme, hasMounted]);
+
+  // Trigger fade-in once everything is mounted and rendered
+  useEffect(() => {
+    if (hasMounted) {
+      // Wait a frame before starting the transition
+      requestAnimationFrame(() => setFadeIn(true));
+    }
+  }, [hasMounted]);
+
+  function clearInput(): void {
     if (inputRef.current) {
       inputRef.current.value = "";
     }
   }
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
   return (
-    <div className="sticky top-0 z-40 w-full flex-none rounded-b-md bg-white/60 backdrop-blur transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] dark:bg-[#334155]/60">
-      {/* Updated container with responsive padding */}
+    <div
+      className={`sticky top-0 z-40 w-full flex-none rounded-b-md bg-white/60 backdrop-blur transition-all duration-700 ease-out lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] dark:bg-[#334155]/60 ${fadeIn ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"} `}
+    >
       <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
         <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-0 dark:border-slate-300/10">
           <div className="relative flex items-center">
@@ -63,7 +93,6 @@ const Header = (props: HeaderProps) => {
               <input
                 type="search"
                 ref={inputRef}
-                autoFocus
                 required
                 className="rounded-md border border-gray-300 px-2 py-1"
               />
@@ -91,11 +120,7 @@ const Header = (props: HeaderProps) => {
                 </ul>
               </nav>
               <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-500">
-                <label
-                  className="sr-only"
-                  htmlFor="theme-selector"
-                  id="headlessui-label-theme"
-                >
+                <label className="sr-only" htmlFor="theme-selector">
                   Theme
                 </label>
                 <button
@@ -104,9 +129,30 @@ const Header = (props: HeaderProps) => {
                   aria-haspopup="listbox"
                   aria-expanded="false"
                   className="focus:outline-none"
+                  onClick={toggleTheme}
                 >
-                  <span className="dark:hidden">
-                    {/* Light mode icon */}
+                  {theme === "dark" ? (
+                    // Dark mode icon
+                    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M17.715 15.15A6.5 6.5 0 0 1 9 6.035C6.106 6.922 4 9.645 4 12.867c0 3.94 3.153 7.136 7.042 7.136 3.101 0 5.734-2.032 6.673-4.853Z"
+                        className="fill-[#850379]/20"
+                      ></path>
+                      <path
+                        d="m17.715 15.15.95.316a1 1 0 0 0-1.445-1.185l.495.869ZM9 6.035l.846.534a1 1 0 0 0-1.14-1.49L9 6.035Zm8.221 8.246a5.47 5.47 0 0 1-2.72.718v2a7.47 7.47 0 0 0 3.71-.98l-.99-1.738Zm-2.72.718A5.5 5.5 0 0 1 9 9.5H7a7.5 7.5 0 0 0 7.5 7.5v-2ZM9 9.5c0-1.079.31-2.082.845-2.93L8.153 5.5A7.47 7.47 0 0 0 7 9.5h2Zm-4 3.368C5 10.089 6.815 7.75 9.292 6.99L8.706 5.08C5.397 6.094 3 9.201 3 12.867h2Zm6.042 6.136C7.718 19.003 5 16.268 5 12.867H3c0 4.48 3.588 8.136 8.042 8.136v-2Zm5.725-4.17c-.81 2.433-3.074 4.17-5.725 4.17v2c3.552 0 6.553-2.327 7.622-5.537l-1.897-.632Z"
+                        className="fill-[#850379]"
+                      ></path>
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
+                        className="fill-[#850379]"
+                      ></path>
+                    </svg>
+                  ) : (
+                    // Light mode icon
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -117,35 +163,14 @@ const Header = (props: HeaderProps) => {
                     >
                       <path
                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        className="fill-sky-400/20 stroke-sky-500"
+                        className="fill-[#850379]/20 stroke-[#850379]"
                       ></path>
                       <path
                         d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                        className="stroke-sky-500"
+                        className="stroke-[#850379]"
                       ></path>
                     </svg>
-                  </span>
-                  <span className="hidden dark:inline">
-                    {/* Dark mode icon */}
-                    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M17.715 15.15A6.5 6.5 0 0 1 9 6.035C6.106 6.922 4 9.645 4 12.867c0 3.94 3.153 7.136 7.042 7.136 3.101 0 5.734-2.032 6.673-4.853Z"
-                        className="fill-sky-400/20"
-                      ></path>
-                      <path
-                        d="m17.715 15.15.95.316a1 1 0 0 0-1.445-1.185l.495.869ZM9 6.035l.846.534a1 1 0 0 0-1.14-1.49L9 6.035Zm8.221 8.246a5.47 5.47 0 0 1-2.72.718v2a7.47 7.47 0 0 0 3.71-.98l-.99-1.738Zm-2.72.718A5.5 5.5 0 0 1 9 9.5H7a7.5 7.5 0 0 0 7.5 7.5v-2ZM9 9.5c0-1.079.31-2.082.845-2.93L8.153 5.5A7.47 7.47 0 0 0 7 9.5h2Zm-4 3.368C5 10.089 6.815 7.75 9.292 6.99L8.706 5.08C5.397 6.094 3 9.201 3 12.867h2Zm6.042 6.136C7.718 19.003 5 16.268 5 12.867H3c0 4.48 3.588 8.136 8.042 8.136v-2Zm5.725-4.17c-.81 2.433-3.074 4.17-5.725 4.17v2c3.552 0 6.553-2.327 7.622-5.537l-1.897-.632Z"
-                        className="fill-sky-500"
-                      ></path>
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
-                        className="fill-sky-500"
-                      ></path>
-                    </svg>
-                  </span>
+                  )}
                 </button>
 
                 <div className="ml-4 hidden md:flex">
@@ -160,16 +185,6 @@ const Header = (props: HeaderProps) => {
                     />
                   </Link>
                 </div>
-
-                {/* 
-                <a
-                  href="https://github.com/leart-zuka/wiqi"
-                  className="ml-6 block text-white hover:text-slate-500 dark:hover:text-slate-300"
-                >
-                  <span className="sr-only">WiQi on GitHub</span>
-                  <FaGithub className="text scale-150 rounded-3xl" />
-                </a>
-                */}
               </div>
             </div>
           </div>
@@ -190,8 +205,7 @@ const Header = (props: HeaderProps) => {
               ></path>
             </svg>
           </button>
-          <ol className="ml-4 flex min-w-0 whitespace-nowrap text-sm leading-6">
-          </ol>
+          <ol className="ml-4 flex min-w-0 whitespace-nowrap text-sm leading-6"></ol>
         </div>
       </div>
     </div>
