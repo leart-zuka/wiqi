@@ -29,17 +29,17 @@ const Home: React.FC<HomeProps> = ({ params }) => {
 
   return (
     <div className="">
-      <section className="relative min-h-screen overflow-hidden bg-gray-900 py-24 sm:pb-16 lg:pb-20 xl:pb-24">
+      <section className="relative min-h-screen overflow-hidden bg-slate-50 py-24 sm:pb-16 dark:bg-black">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-x-16 gap-y-12 lg:grid-cols-2">
             <div>
-              <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+              <h1 className="text-4xl font-normal text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl dark:text-white">
                 {t("hello")}{" "}
                 <span className="animate-gradient-x bg-gradient-to-r from-blue-700 to-rose-700 bg-200% bg-clip-text text-6xl font-semibold text-transparent">
                   PushQuantum WiQi
                 </span>
               </h1>
-              <p className="mt-4 text-lg font-normal text-gray-400 sm:mt-8">
+              <p className="mt-4 text-lg font-normal text-gray-600 sm:mt-8 dark:text-gray-400">
                 {t("sub hello")}
               </p>
 
@@ -77,10 +77,10 @@ const Home: React.FC<HomeProps> = ({ params }) => {
                     </svg>
                   ))}
                 </div>
-                <span className="ml-2 text-base font-normal text-white">
+                <span className="ml-2 text-base font-normal text-gray-900 dark:text-white">
                   5/5
                 </span>
-                <span className="ml-1 text-base font-normal text-gray-500">
+                <span className="ml-1 text-base font-normal text-gray-500 dark:text-gray-400">
                   2 Reviews (Leart & Alpi)
                 </span>
               </div>
