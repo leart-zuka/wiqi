@@ -15,15 +15,26 @@ const replaceLocale = (locale: string, pathName: string): string => {
     : pathName.replace(locale, "de");
 };
 
+// Kontrastfarbe bestimmen
+function getContrastingColor(bgColor: string) {
+  const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  if (!rgbMatch) return "black"; // Fallback
+
+  const r = parseInt(rgbMatch[1], 10);
+  const g = parseInt(rgbMatch[2], 10);
+  const b = parseInt(rgbMatch[3], 10);
+  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+  return luminance > 128 ? "black" : "white";
+}
+
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [hasMounted, setHasMounted] = useState(false);
-  const [fadeIn, setFadeIn] = useState(false);
+  const [dynamicTextColor, setDynamicTextColor] = useState("black");
 
-  // Initialize theme on mount
   useEffect(() => {
     setHasMounted(true);
     const storedTheme = window.localStorage.getItem("theme");
@@ -35,20 +46,11 @@ const Header = (props: HeaderProps) => {
     }
   }, []);
 
-  // Sync theme changes to DOM and localStorage
   useEffect(() => {
     if (!hasMounted) return;
     document.documentElement.classList.toggle("dark", theme === "dark");
     window.localStorage.setItem("theme", theme);
   }, [theme, hasMounted]);
-
-  // Trigger fade-in once everything is mounted and rendered
-  useEffect(() => {
-    if (hasMounted) {
-      // Wait a frame before starting the transition
-      requestAnimationFrame(() => setFadeIn(true));
-    }
-  }, [hasMounted]);
 
   function clearInput(): void {
     if (inputRef.current) {
@@ -60,16 +62,75 @@ const Header = (props: HeaderProps) => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
+  // Element-Finder: Hintergrund des Elements direkt hinter der Navbar ermitteln
+  function getBackgroundColorBehindNav(nav: HTMLElement): string {
+    // Navbar temporär klick-durchlässig machen
+    const originalPointerEvents = nav.style.pointerEvents;
+    nav.style.pointerEvents = "none";
+
+    // Mittelpunkt der Navbar berechnen
+    const rect = nav.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // Element unter der Navbar ermitteln
+    const elBehindNav = document.elementFromPoint(
+      centerX,
+      centerY,
+    ) as HTMLElement;
+
+    // PointerEvents zurücksetzen
+    nav.style.pointerEvents = originalPointerEvents;
+
+    if (!elBehindNav) return "rgb(255, 255, 255)"; // Fallback, wenn nichts gefunden
+
+    let bgColor = window.getComputedStyle(elBehindNav).backgroundColor;
+
+    // Falls das Element transparent ist, iterativ Eltern durchsuchen
+    let parent = elBehindNav.parentElement;
+    while (
+      parent &&
+      (bgColor === "transparent" || bgColor === "rgba(0, 0, 0, 0)")
+    ) {
+      bgColor = window.getComputedStyle(parent).backgroundColor;
+      parent = parent.parentElement;
+    }
+
+    return bgColor;
+  }
+
+  useEffect(() => {
+    const navSelector = ".sticky.top-0.z-40.w-full";
+    const navElement = document.querySelector(navSelector) as HTMLElement;
+    if (!navElement) return;
+
+    function updateTextColor() {
+      const bgColor = getBackgroundColorBehindNav(navElement);
+      const contrastColor = getContrastingColor(bgColor);
+      setDynamicTextColor(contrastColor);
+    }
+
+    window.addEventListener("scroll", updateTextColor);
+    // Initial einmal aufrufen
+    updateTextColor();
+
+    return () => {
+      window.removeEventListener("scroll", updateTextColor);
+    };
+  }, []);
+
   return (
     <div
-      className={`sticky top-0 z-40 w-full flex-none rounded-b-md bg-white/60 backdrop-blur transition-all duration-700 ease-out lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] dark:bg-[#334155]/60 ${fadeIn ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"} `}
+      className={`sticky top-0 z-40 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]`}
+      style={{ color: dynamicTextColor }}
     >
       <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
         <div className="mx-4 border-b border-slate-900/10 py-4 lg:mx-0 lg:border-0 lg:px-0 dark:border-slate-300/10">
           <div className="relative flex items-center">
             <a
-              className="mr-3 flex w-[2.0625rem] items-center overflow-hidden transition-all duration-200 ease-in-out hover:scale-95 hover:text-pink-700 md:w-auto"
+              className="mr-3 flex w-[2.0625rem] items-center overflow-hidden transition-all duration-200 ease-in-out hover:scale-95 md:w-auto"
               href="/"
+              style={{ color: dynamicTextColor }}
             >
               <span className="sr-only">WiQi home page</span>
               <Image
@@ -79,7 +140,10 @@ const Header = (props: HeaderProps) => {
                 height={30}
                 className="transition-transform duration-200 ease-in-out hover:rotate-12"
               />
-              <span className="ml-3 select-none text-2xl font-semibold text-pink-600 transition-colors duration-200 ease-in-out">
+              <span
+                className="ml-3 select-none text-2xl font-semibold text-pink-600 transition-colors duration-200 ease-in-out"
+                style={{ color: dynamicTextColor }}
+              >
                 WiQi
               </span>
             </a>
@@ -89,6 +153,7 @@ const Header = (props: HeaderProps) => {
               integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
               crossOrigin="anonymous"
             />
+            {/* Suchleiste */}
             <form className="custom-form">
               <input
                 type="search"
@@ -105,13 +170,18 @@ const Header = (props: HeaderProps) => {
                 Clear
               </button>
             </form>
+            {/* Ende Suchleiste */}
 
             <div className="relative ml-auto hidden items-center lg:flex">
-              <nav className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+              <nav
+                className="text-sm font-semibold leading-6"
+                style={{ color: dynamicTextColor }}
+              >
                 <ul className="flex space-x-8">
                   <li>
                     <a
-                      className="transition-all duration-300 ease-in-out hover:scale-105 hover:text-pink-600"
+                      className="transition-all duration-300 ease-in-out hover:scale-105"
+                      style={{ color: dynamicTextColor }}
                       href={`/${props.locale}/quantum_tuesdays`}
                     >
                       Quantum Tuesdays
@@ -130,6 +200,7 @@ const Header = (props: HeaderProps) => {
                   aria-expanded="false"
                   className="focus:outline-none"
                   onClick={toggleTheme}
+                  style={{ color: dynamicTextColor }}
                 >
                   {theme === "dark" ? (
                     // Dark mode icon
@@ -189,6 +260,7 @@ const Header = (props: HeaderProps) => {
             </div>
           </div>
         </div>
+        {/* Mobile Navigation */}
         <div className="flex items-center border-b border-slate-900/10 p-4 lg:hidden dark:border-slate-50/[0.06]">
           <button
             type="button"
