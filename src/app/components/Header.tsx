@@ -188,7 +188,7 @@ const Header = (props: HeaderProps) => {
                   </li>
                 </ul>
               </nav>
-              <div className="ml-6 flex items-center border-l border-slate-200 pl-6 dark:border-slate-500">
+              <div className="ml-6 flex items-center border-l border-slate-500 pl-6 ">
                 <label className="sr-only" htmlFor="theme-selector">
                   Theme
                 </label>
