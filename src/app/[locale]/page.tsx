@@ -29,17 +29,17 @@ const Home: React.FC<HomeProps> = ({ params }) => {
 
   return (
     <div className="">
-      <section className="relative min-h-screen overflow-hidden bg-slate-50 py-24 sm:pb-16 dark:bg-black">
+      <section className="relative min-h-screen overflow-hidden bg-slate-50 py-24 dark:bg-black sm:pb-16">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-x-16 gap-y-12 lg:grid-cols-2">
             <div>
-              <h1 className="text-4xl font-normal text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl dark:text-white">
+              <h1 className="text-4xl font-normal text-gray-900 dark:text-white sm:text-5xl lg:text-6xl xl:text-7xl">
                 {t("hello")}{" "}
                 <span className="animate-gradient-x bg-gradient-to-r from-blue-700 to-rose-700 bg-200% bg-clip-text text-6xl font-semibold text-transparent">
                   PushQuantum WiQi
                 </span>
               </h1>
-              <p className="mt-4 text-lg font-normal text-gray-600 sm:mt-8 dark:text-gray-400">
+              <p className="mt-4 text-lg font-normal text-gray-600 dark:text-gray-400 sm:mt-8">
                 {t("sub hello")}
               </p>
 
