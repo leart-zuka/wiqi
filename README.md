@@ -1,7 +1,12 @@
 <div align="left" style="position: relative;">
 <img src="Wiqi_Mascot_Minimalistic-removebg-preview.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
-<h1>WIQI</h1>
-<p align="left">
+<div id="toc">
+  <ul style="list-style: none">
+    <summary>
+      <h1> WiQi </h1>
+    </summary>
+  </ul>
+</div><p align="left">
     <em>Empowering Dynamic Content with Seamless Interactivity</em>
 </p>
 <p align="left">
@@ -599,7 +604,7 @@ Install wiqi using one of the following methods:
 
 3. Install the project dependencies:
 
-**Using `bun`** &nbsp; [<img align="center" src="" />]()
+**Using `bun`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white" />]()
 
 ```sh
 ❯ bun install
@@ -608,7 +613,7 @@ Install wiqi using one of the following methods:
 ### Usage
 
 Run wiqi using the following command:
-**Using `bun`** &nbsp; [<img align="center" src="" />]()
+**Using `bun`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white" />]()
 
 ```sh
 ❯ bun dev
@@ -617,7 +622,7 @@ Run wiqi using the following command:
 ### Testing Build
 
 Run the test suite using the following command:
-**Using `bun`** &nbsp; [<img align="center" src="" />]()
+**Using `bun`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white" />]()
 
 ```sh
 ❯ bun next build
