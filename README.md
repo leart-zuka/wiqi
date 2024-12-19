@@ -39,9 +39,10 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Testing](#testing)
+  - [Testing Build](#testing-build)
 - [Project Roadmap](#project-roadmap)
 - [Contributing](#contributing)
+- [Contributer](#contributer)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -575,8 +576,8 @@ The wiqi project revolutionizes content management by seamlessly integrating mul
 
 Before getting started with wiqi, ensure your runtime environment meets the following requirements:
 
-- **Programming Language:** Error detecting primary_language: {'mjs': 2, 'ts': 6, 'json': 2, 'tsx': 14, 'css': 2, 'yml': 1, 'mdx': 24, 'MDX': 1}
-- **Package Manager:** Npm
+- **Programming Language:** TypeScript, React
+- **Package Manager:** Bun
 
 ### Installation
 
@@ -598,28 +599,28 @@ Install wiqi using one of the following methods:
 
 3. Install the project dependencies:
 
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
+**Using `bun`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'INSERT-INSTALL-COMMAND-HERE'
+❯ bun install
 ```
 
 ### Usage
 
 Run wiqi using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
+**Using `bun`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'INSERT-RUN-COMMAND-HERE'
+❯ bun dev
 ```
 
-### Testing
+### Testing Build
 
 Run the test suite using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
+**Using `bun`** &nbsp; [<img align="center" src="" />]()
 
 ```sh
-❯ echo 'INSERT-TEST-COMMAND-HERE'
+❯ bun next build
 ```
 
 ---
@@ -663,15 +664,13 @@ Run the test suite using the following command:
 8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
 </details>
 
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
+## Contributer
+
 <p align="left">
    <a href="https://github.com{/leart-zuka/wiqi/}graphs/contributors">
       <img src="https://contrib.rocks/image?repo=leart-zuka/wiqi">
    </a>
 </p>
-</details>
 
 ---
 
@@ -684,5 +683,6 @@ This project is protected under the [SELECT-A-LICENSE](https://choosealicense.co
 ## Acknowledgments
 
 - List any resources, contributors, inspiration, etc. here.
+- I thank Leart (~Alpi)
 
 ---
