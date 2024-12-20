@@ -49,7 +49,7 @@ const config: Config = {
 
           "base-200": "#dedede",
 
-          "base-300": "#bebebe",
+          "base-300": "#A29FBD",
 
           "base-content": "#161616",
 
