@@ -19,8 +19,21 @@ export default function Page({ params }: { params: { locale: string } }) {
   const initialDifficulty = cookies.get("difficulty") ?? "highschool";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
   const [files, setFiles] = useState<File[]>([]);
+  const [scrolled, setScrolled] = useState(false);
 
-  let getFiles = async (difficulty: string, locale: string) => {
+  // Scroll listener that sets the state at >= 40px scroll depth
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const getFiles = async (difficulty: string, locale: string) => {
     try {
       const response = await fetch("/api/getBlogPosts", {
         method: "POST",
@@ -46,21 +59,23 @@ export default function Page({ params }: { params: { locale: string } }) {
 
   return (
     <div className="m-10">
-      {/* place-items-start → leftaligned, -center → centered, -end → rightaligned / using grid to center things / choose the one u like best <3 */}
-      <div className="sticky top-10 z-20 grid place-items-end">
+      {/* 
+        Unterschiedliche Klassen, je nachdem, ob wir gescrollt haben:
+        - vor dem Scrollen:   top-10 pt-0
+        - nach dem Scrollen:  top-0 pt-10
+      */}
+      <div
+        className={`sticky z-40 grid place-items-end transition-all duration-300 ${scrolled ? "top-10 pt-10" : "top-2 pt-0"} `}
+      >
         <DifficultySelector
           initialDifficulty={difficulty}
           setDifficulty={setDifficulty}
         />
       </div>
+
       <div className="z-10 grid grid-cols-3 gap-6 p-10">
-        {" "}
-        {/* Adjusted padding */}
         {files.map((file) => (
-          <div
-            key={file.slug} // Unique key for each item
-            className="flex items-center justify-center"
-          >
+          <div key={file.slug} className="flex items-center justify-center">
             <PostPreview
               slug={file.slug}
               subtitle={file.metadata.subtitle}

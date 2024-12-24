@@ -38,7 +38,7 @@ export default function DifficultySelector({
   );
 
   return (
-    <div className="relative flex h-12 w-48 overflow-hidden rounded-full bg-slate-200">
+    <div className="relative z-40 flex h-12 w-48 overflow-hidden rounded-full bg-slate-200">
       <div
         className={`absolute left-0 top-0 h-full w-1/3 rounded-full transition-all duration-500 ${initialIndex !== -1 ? difficulties[initialIndex].bg : "bg-green-400"}`}
         style={{
