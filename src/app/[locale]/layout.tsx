@@ -47,11 +47,13 @@ export default async function LocaleLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>WiQi</title>
       </head>
-      <body className="flex h-screen flex-col overflow-x-clip bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
+      <body className="flex min-h-screen flex-col overflow-x-clip bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
         <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <EasterEgg />
-          <div className="flex-grow">{children}</div>
+          <div className="flex-grow bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
+            {children}
+          </div>
         </NextIntlClientProvider>
         <Footer />
       </body>
