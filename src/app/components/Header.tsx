@@ -163,7 +163,7 @@ const Header = (props: HeaderProps) => {
                 type="search"
                 ref={inputRef}
                 required
-                className="rounded-md border border-gray-300 px-2 py-1"
+                className="rounded-md border border-gray-300 px-2 py-1 text-black"
               />
               <i className="fa fa-search"></i>
               <button
