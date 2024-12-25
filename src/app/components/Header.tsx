@@ -306,10 +306,6 @@ const Header = (props: HeaderProps) => {
               ? "max-h-96 opacity-100"
               : "hidden max-h-0 opacity-0"
           } flex flex-col overflow-hidden p-4 backdrop-blur-sm transition-all duration-300 ease-in-out lg:hidden`}
-          style={{
-            color: dynamicTextColor,
-            pointerEvents: isMobileMenuOpen ? "auto" : "none",
-          }}
         >
           <nav className="mb-4 text-sm font-semibold leading-6">
             <ul className="space-y-2">
