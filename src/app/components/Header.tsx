@@ -305,7 +305,7 @@ const Header = (props: HeaderProps) => {
             isMobileMenuOpen
               ? "max-h-96 opacity-100"
               : "hidden max-h-0 opacity-0"
-          } flex flex-col overflow-hidden border-b border-slate-900/10 bg-white p-4 transition-all duration-300 ease-in-out dark:border-slate-50/[0.06] dark:bg-slate-800 lg:hidden`}
+          } flex flex-col overflow-hidden p-4 backdrop-blur-sm transition-all duration-300 ease-in-out lg:hidden`}
           style={{
             color: dynamicTextColor,
             pointerEvents: isMobileMenuOpen ? "auto" : "none",
