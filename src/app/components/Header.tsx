@@ -16,10 +16,10 @@ const replaceLocale = (locale: string, pathName: string): string => {
     : pathName.replace(locale, "de");
 };
 
-// Kontrastfarbe bestimmen
+// Determine contrasting color
 function getContrastingColor(bgColor: string) {
   const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-  if (!rgbMatch) return "black"; // Fallback
+  if (!rgbMatch) return "black"; // Fallback if parsing fails
 
   const r = parseInt(rgbMatch[1], 10);
   const g = parseInt(rgbMatch[2], 10);
@@ -90,10 +90,6 @@ const Header = (props: HeaderProps) => {
     }
   };
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
-
   const updateTextColor = useCallback(() => {
     const navSelector = ".sticky.top-0.z-40.w-full";
     const navElement = document.querySelector(navSelector) as HTMLElement;
@@ -103,17 +99,36 @@ const Header = (props: HeaderProps) => {
     setDynamicTextColor(contrastColor);
   }, []);
 
+  // Update color on scroll
   useEffect(() => {
     window.addEventListener("scroll", updateTextColor);
+    // Initial call on mount
     updateTextColor();
     return () => {
       window.removeEventListener("scroll", updateTextColor);
     };
   }, [updateTextColor]);
 
+  // Re-calculate text color whenever theme changes
   useEffect(() => {
-    updateTextColor();
+    // Use requestAnimationFrame to ensure the DOM class (.dark) has been applied
+    // before we compute background colors
+    requestAnimationFrame(() => {
+      updateTextColor();
+    });
   }, [theme, updateTextColor]);
+
+  // Immediately update color on theme toggle
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    // Option 1: requestAnimationFrame
+    requestAnimationFrame(() => {
+      updateTextColor();
+    });
+
+    // Option 2 (alternative): short setTimeout did not like too quick
+    // setTimeout(() => updateTextColor(), 0);
+  };
 
   return (
     <div
@@ -121,7 +136,6 @@ const Header = (props: HeaderProps) => {
       style={{ color: dynamicTextColor }}
     >
       <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
-        {/* Remove the extra border here */}
         <div className="mx-4 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-0">
           <div className="flex items-center justify-between">
             {/* Left side: Logo + Search */}
@@ -284,15 +298,18 @@ const Header = (props: HeaderProps) => {
           </div>
         </div>
 
-        {/* Mobile Menu (smooth animation) */}
+        {/* Mobile Menu */}
         <div
-          className={` ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} flex flex-col overflow-hidden border-b border-slate-900/10 bg-white p-4 transition-all duration-300 ease-in-out dark:border-slate-50/[0.06] dark:bg-slate-800 lg:hidden`}
+          className={`${
+            isMobileMenuOpen
+              ? "max-h-96 opacity-100"
+              : "hidden max-h-0 opacity-0"
+          } flex flex-col overflow-hidden border-b border-slate-900/10 bg-white p-4 transition-all duration-300 ease-in-out dark:border-slate-50/[0.06] dark:bg-slate-800 lg:hidden`}
           style={{
             color: dynamicTextColor,
             pointerEvents: isMobileMenuOpen ? "auto" : "none",
           }}
         >
-          {/* Mobile Nav Links */}
           <nav className="mb-4 text-sm font-semibold leading-6">
             <ul className="space-y-2">
               <li>
@@ -312,7 +329,10 @@ const Header = (props: HeaderProps) => {
             <button
               type="button"
               className="mr-4 focus:outline-none"
-              onClick={toggleTheme}
+              onClick={() => {
+                toggleTheme();
+                setIsMobileMenuOpen(false);
+              }}
             >
               {theme === "dark" ? (
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
