@@ -132,6 +132,7 @@ const Header = (props: HeaderProps) => {
 
   return (
     <div
+      id="mainNavbar"
       className="sticky top-0 z-40 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]"
       style={{ color: dynamicTextColor }}
     >
