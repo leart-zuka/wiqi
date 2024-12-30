@@ -1,5 +1,5 @@
 <div align="left" style="position: relative;">
-<img src="Wiqi_Mascot_Minimalistic-removebg-preview.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
+<img src="./public/Wiqi_Mascot_Minimalistic-removebg-preview.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
 <div id="toc">
   <ul style="list-style: none">
     <summary>
