@@ -226,7 +226,6 @@ const Header = (props: HeaderProps) => {
                 className="rounded-md border border-gray-300 px-2 py-1 text-black"
                 onChange={handleSearch}
                 onFocus={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
               />
               <i className="fa fa-search"></i>
               <button
@@ -238,7 +237,7 @@ const Header = (props: HeaderProps) => {
               </button>
               {showDropdown && searchResults.length > 0 && (
                 <ul
-                  className="absolute z-50 mt-10 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg"
+                  className="absolute z-50 mt-10 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg dark:bg-black"
                   style={{
                     borderColor: dynamicTextColor, // Dynamic border color
                   }}
@@ -246,29 +245,26 @@ const Header = (props: HeaderProps) => {
                   {searchResults.map((result, index) => (
                     <li
                       key={index}
-                      className="cursor-pointer px-4 py-2 text-gray-500 hover:bg-gray-200"
+                      className="cursor-pointer px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
                       onClick={() => {
                         // Navigate to the selected item's slug
                         window.location.href = result.slug;
                         clearInput();
                       }}
                     >
-                      <div>
-                        <p className="font-semibold text-gray-500">
+                      <a
+                        href={`/${props.locale}/quantum_tuesdays/${initialDifficulty}/${result.slug}`}
+                      >
+                        <p className="font-semibold text-black dark:text-white">
                           {result.slug}
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-black dark:text-white">
                           {result.metadata.date}
                         </p>
-                      </div>
+                      </a>
                     </li>
                   ))}
                 </ul>
-              )}
-              {showDropdown && searchResults.length === 0 && (
-                <div className="absolute z-50 mt-10 w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-500 shadow-lg">
-                  No results found.
-                </div>
               )}
             </form>
 
