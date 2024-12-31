@@ -3,11 +3,28 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCookies } from "next-client-cookies";
+import Fuse from "fuse.js";
+
 import "./button.css";
 
 interface HeaderProps {
   locale: string;
 }
+
+type File = {
+  key: string;
+  slug: string;
+  metadata: {
+    subtitle: string;
+    date: string;
+  };
+  locale: string;
+};
+
+const fuseOptions = {
+  keys: ["slug", "metadata.subtitle", "metadata.date"],
+};
 
 const replaceLocale = (locale: string, pathName: string): string => {
   return locale === "de"
@@ -61,10 +78,38 @@ function getBackgroundColorBehindNav(nav: HTMLElement): string {
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
+  const cookies = useCookies();
+  const initialDifficulty = cookies.get("difficulty") ?? "elementary";
 
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [hasMounted, setHasMounted] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [searchResults, setSearchResults] = useState<File[]>([]);
   const [dynamicTextColor, setDynamicTextColor] = useState("black");
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const getFiles = async (difficulty: string, locale: string) => {
+    try {
+      const response = await fetch("/api/getBlogPosts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          language: locale,
+          difficulty: difficulty,
+          folder: "quantum_tuesdays",
+        }),
+      });
+      const data = await response.json();
+      setFiles(data.files);
+    } catch (err) {
+      console.debug(err);
+    }
+  };
+  useEffect(() => {
+    getFiles(initialDifficulty, props.locale);
+  }, [initialDifficulty, props.locale]);
 
   useEffect(() => {
     setHasMounted(true);
@@ -86,6 +131,8 @@ const Header = (props: HeaderProps) => {
   function clearInput(): void {
     if (inputRef.current) {
       inputRef.current.value = "";
+      setSearchResults([]);
+      setShowDropdown(false);
     }
   }
 
@@ -117,6 +164,20 @@ const Header = (props: HeaderProps) => {
   useEffect(() => {
     updateTextColor();
   }, [theme, updateTextColor]);
+
+  const handleSearch = () => {
+    const query = inputRef.current?.value || "";
+    if (query) {
+      setShowDropdown(true);
+      const fuse = new Fuse(files, fuseOptions);
+      const results = fuse.search(query);
+      console.debug(results);
+      setSearchResults(results.map((result) => result.item));
+    } else {
+      setSearchResults([]);
+      setShowDropdown(false);
+    }
+  };
 
   return (
     <div
@@ -152,7 +213,6 @@ const Header = (props: HeaderProps) => {
               integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
               crossOrigin="anonymous"
             />
-            {/* Suchleiste */}
             <form
               className="custom-form"
               style={{
@@ -164,6 +224,9 @@ const Header = (props: HeaderProps) => {
                 ref={inputRef}
                 required
                 className="rounded-md border border-gray-300 px-2 py-1 text-black"
+                onChange={handleSearch}
+                onFocus={() => setShowDropdown(true)}
+                onMouseLeave={() => setShowDropdown(false)}
               />
               <i className="fa fa-search"></i>
               <button
@@ -173,8 +236,41 @@ const Header = (props: HeaderProps) => {
               >
                 Clear
               </button>
+              {showDropdown && searchResults.length > 0 && (
+                <ul
+                  className="absolute z-50 mt-10 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg"
+                  style={{
+                    borderColor: dynamicTextColor, // Dynamic border color
+                  }}
+                >
+                  {searchResults.map((result, index) => (
+                    <li
+                      key={index}
+                      className="cursor-pointer px-4 py-2 text-gray-500 hover:bg-gray-200"
+                      onClick={() => {
+                        // Navigate to the selected item's slug
+                        window.location.href = result.slug;
+                        clearInput();
+                      }}
+                    >
+                      <div>
+                        <p className="font-semibold text-gray-500">
+                          {result.slug}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {result.metadata.date}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {showDropdown && searchResults.length === 0 && (
+                <div className="absolute z-50 mt-10 w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-500 shadow-lg">
+                  No results found.
+                </div>
+              )}
             </form>
-            {/* Ende Suchleiste */}
 
             <div className="relative ml-auto hidden items-center lg:flex">
               <nav
