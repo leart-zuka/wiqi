@@ -16,7 +16,7 @@ type File = {
 
 export default function Page({ params }: { params: { locale: string } }) {
   const cookies = useCookies();
-  const initialDifficulty = cookies.get("difficulty") ?? "highschool";
+  const initialDifficulty = cookies.get("difficulty") ?? "elementary";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
   const [files, setFiles] = useState<File[]>([]);
   const [scrolled, setScrolled] = useState(false);
