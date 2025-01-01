@@ -21,7 +21,6 @@ export default async function LocaleLayout({
   params: { locale: "en" | "de" };
 }) {
   const messages = await getMessages();
-
   // Inline script to set the dark mode class on <html> before hydration
   const themeScript = `
     (function() {
@@ -45,6 +44,7 @@ export default async function LocaleLayout({
         <meta name="title" property="og:title" content="wiqi" />
         <meta name="image" property="og:image" content="/wq.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="algolia-site-verification" content="2AEB75A192ED3EBE" />
         <title>WiQi</title>
       </head>
       <body className="flex min-h-screen flex-col overflow-x-clip bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
