@@ -155,7 +155,7 @@ const Header = (props: HeaderProps) => {
                   className="transition-transform duration-200 ease-in-out hover:rotate-12"
                 />
                 <span
-                  className="ml-3 opacity-0 sm:opacity-100 select-none text-2xl font-semibold text-pink-600 transition-colors duration-200 ease-in-out"
+                  className="ml-3 select-none text-2xl font-semibold text-pink-600 opacity-0 transition-colors duration-200 ease-in-out sm:opacity-100"
                   style={{ color: dynamicTextColor }}
                 >
                   WiQi
@@ -164,7 +164,7 @@ const Header = (props: HeaderProps) => {
             </div>
 
             {/* Search: jetzt zentriert */}
-            <div className="flex flex-1 justify-left pl-20">
+            <div className="justify-left flex w-1/2 flex-1 pl-20">
               <link
                 rel="stylesheet"
                 href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
