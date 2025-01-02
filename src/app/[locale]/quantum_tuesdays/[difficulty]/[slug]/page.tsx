@@ -19,7 +19,7 @@ export default function Post({
   const numberOfWords = wordsCounter(post.content).wordsCount;
   const readingTime = Math.ceil(numberOfWords / 200);
   return (
-    <div>
+    <div className="mt-28">
       <div className="my-12 text-center">
         <h1 className="text-2xl text-slate-600">{post.data.title}</h1>
         <p className="mt-2 text-slate-400">{post.data.date}</p>

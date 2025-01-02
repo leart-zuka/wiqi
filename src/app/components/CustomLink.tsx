@@ -69,7 +69,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({ children, href }) => {
   }, [href, fetchImage]);
 
   return (
-    <span className="relative z-10 inline-block">
+    <span className="relative z-20 inline-block">
       {/* Main Link */}
       <a
         href={href}
