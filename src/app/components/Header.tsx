@@ -158,12 +158,11 @@ const Header = (props: HeaderProps) => {
                   className="ml-3 select-none text-2xl font-semibold text-pink-600 opacity-0 transition-colors duration-200 ease-in-out sm:opacity-100"
                   style={{ color: dynamicTextColor }}
                 >
-                  WiQi
+                  <p className="dark:text-slate-500">WiQi</p>
                 </span>
               </a>
             </div>
 
-            {/* Search: jetzt zentriert */}
             <div className="justify-left flex w-1/2 flex-1 pl-20">
               <link
                 rel="stylesheet"
@@ -207,7 +206,7 @@ const Header = (props: HeaderProps) => {
                       style={{ color: dynamicTextColor }}
                       href={`/${props.locale}/quantum_tuesdays`}
                     >
-                      Quantum Tuesdays
+                      <p className="dark:text-slate-500">Quantum Tuesdays</p>
                     </a>
                   </li>
                 </ul>
