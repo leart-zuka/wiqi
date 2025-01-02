@@ -19,7 +19,7 @@ type File = {
 
 export default function Page({ params }: { params: { locale: string } }) {
   const cookies = useCookies();
-  const initialDifficulty = cookies.get("difficulty") ?? "highschool";
+  const initialDifficulty = cookies.get("difficulty") ?? "elementary";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
   const [files, setFiles] = useState<File[]>([]);
   const [scrolled, setScrolled] = useState(false);
@@ -81,7 +81,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         we do a single sticky container + inline style for dynamic offset
       */}
       <div
-        className="sticky z-40 grid place-items-end pt-3 transition-all duration-300"
+        className="sticky z-20 grid place-items-end pt-3 transition-all duration-300"
         style={{
           top: `${topOffset}px`,
         }}

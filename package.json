@@ -27,6 +27,7 @@
     "cookies-next": "4.3.0",
     "framer-motion": "^11.5.4",
     "fs": "^0.0.1-security",
+    "fuse.js": "^7.0.0",
     "gray-matter": "^4.0.3",
     "headlessui": "^0.0.0",
     "i18n": "^0.15.1",

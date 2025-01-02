@@ -1,9 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 interface HomeProps {
   params: {
@@ -14,7 +12,6 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ params }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const t = useTranslations("Index");
-
   const images = ["superpos.svg", "|1>.svg", "|0>.svg", "main.svg"];
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
 
