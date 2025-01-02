@@ -6,7 +6,6 @@ import { useCookies } from "next-client-cookies";
 import PostPreview from "@/app/components/PostPreview";
 import DifficultySelector from "@/app/components/DifficultySelector";
 import useResizeObserverHeight from "../../components/useResizeObserverHeight";
-// or wherever you placed your `useResizeObserverHeight` hook
 
 type File = {
   key: string;
@@ -73,7 +72,7 @@ export default function Page({ params }: { params: { locale: string } }) {
    *
    *    Adjust to taste if you want more/less offset.
    */
-  const topOffset = scrolled ? navbarHeight + 40 : navbarHeight;
+  const topOffset = scrolled ? navbarHeight  : navbarHeight;
 
   return (
     <div className="m-10">
@@ -82,7 +81,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         we do a single sticky container + inline style for dynamic offset
       */}
       <div
-        className="sticky z-40 grid place-items-end transition-all duration-300"
+        className="sticky z-40 grid place-items-end pt-3 transition-all duration-300"
         style={{
           top: `${topOffset}px`,
         }}
