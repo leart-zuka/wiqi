@@ -72,7 +72,7 @@ export default function Page({ params }: { params: { locale: string } }) {
    *
    *    Adjust to taste if you want more/less offset.
    */
-  const topOffset = scrolled ? navbarHeight  : navbarHeight;
+  const topOffset = scrolled ? navbarHeight : navbarHeight;
 
   return (
     <div className="m-10">
