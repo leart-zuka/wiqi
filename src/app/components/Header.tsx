@@ -141,7 +141,6 @@ const Header = (props: HeaderProps) => {
           <div className="flex items-center justify-between">
             {/* Left side: Logo + Search */}
             <div className="flex items-center space-x-4">
-              {/* Logo */}
               <a
                 className="flex w-[2.0625rem] items-center transition-all duration-200 ease-in-out hover:scale-95 md:w-auto"
                 href="/"
@@ -162,8 +161,10 @@ const Header = (props: HeaderProps) => {
                   WiQi
                 </span>
               </a>
+            </div>
 
-              {/* Search */}
+            {/* Search: jetzt zentriert */}
+            <div className="flex flex-1 justify-left pl-20">
               <link
                 rel="stylesheet"
                 href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
