@@ -7,7 +7,7 @@ date: "2024-01-07"
 
 # Intro
 
-Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.  
+Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.
 
 But first we have to understand what a standard bit is before we move forward to its quantum sibling.
 
@@ -26,7 +26,7 @@ And by a lot of math, I mean a lot.
 So in order to keep it simple we're going to be looking at a metaphor that'll explain the rough idea behind the concept of a qubit.
 We either all were in this situation ourselves or have kids that we have put in this exact situation.
 
-Imagine you're a child that walks into a toystore and you find two toys that you really want to get, let's say a basketball and a stuffed penguin (these examples were picked based on my own experiences). 
+Imagine you're a child that walks into a toystore and you find two toys that you really want to get, let's say a basketball and a stuffed penguin (these examples were picked based on my own experiences).
 Now as you walk through that store, your mind starts twisting and turning on which toy to get, as your parent that's with you keeps mentioning how you're only allowed to pick one.
 In the beginning you favored the penguin more with it's funny looking shape, at another you feel yourself more drawn towards to the basketball and the times you're going to be spending with it on the court.
 Finally, as you start approaching the checkout region, you randomly decide on which toy you want. Is it going to be the cute penguin or the basketball?
@@ -78,7 +78,7 @@ For an `AND` gate we require two bits of input which then gives us one one bit o
 
 A quantum gate in essence always describes a rotation of our state, so our arrow on the Bloch Sphere.
 The main forms of these rotations are the X,Y, and Z - Gates, which as the names suggest, all perform a rotation along their respective axes.
-Another very important 1 qubit gate, is the so called `Hadamard Gate`, named after physicist `Jacques Hadamard`, which brings our arrow from one of our poles of the Bloch Sphere to the equator which will come in handy later. 
+Another very important 1 qubit gate, is the so called `Hadamard Gate`, named after physicist `Jacques Hadamard`, which brings our arrow from one of our poles of the Bloch Sphere to the equator which will come in handy later.
 
 ### 1 Qubit Gates
 
@@ -106,7 +106,7 @@ With this newly gained knowledge, let's now move on to 2 qubit gates, which cont
 
 The most notable 2 qubit gate is the so called `C-NOT` or `controlled NOT` gate. This gate allows us to perform a rotation of one qubit (typically one around the x-axis) based on the state of the other qubit. The one qubit we use to check if we're going to perform the rotation is called the `controlling qubit` (indicated in the images by being on the side with the dot) and the other qubit is called the `target qubit` (indicated in the images by being on the side with the cross).
 
-So let's say we input two qubits into our C-NOT gate, where the first one and second one are in a state `|0>` ("arrow pointing up"). Here the first qubit is the `controlling qubit`, but since it's in a state of `|0>`, it won't perform a rotation of the `target qubit`. 
+So let's say we input two qubits into our C-NOT gate, where the first one and second one are in a state `|0>` ("arrow pointing up"). Here the first qubit is the `controlling qubit`, but since it's in a state of `|0>`, it won't perform a rotation of the `target qubit`.
 
 ![CNOT gate 0](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_0.png)
 
@@ -120,7 +120,7 @@ Now what can we do with all of this?
 
 As mentioned before, if our qubit state is pointing along the equator, that means that the chance of getting either a `|0>` or a `|1>` are 50/50. This begs the question, but what if we have a qubit in such a state, and then perform a `C-NOT` operation with it as the `controlling qubit` on a different `target qubit`.
 
-Doing so would create something physicists call `Quantum Entanglement`, as after performing such operations, we would create a state where the measurement of one qubit will directly influence the outcome of the next one, technically allowing for instant communication between two people if both were to share one of the two qubits. 
+Doing so would create something physicists call `Quantum Entanglement`, as after performing such operations, we would create a state where the measurement of one qubit will directly influence the outcome of the next one, technically allowing for instant communication between two people if both were to share one of the two qubits.
 
 Furthermore what is the best way to technically realize such qubits? Well there is no right answer as of now, as there are many ways to create such a qubit system. Be it trapping ions in so called `Iontraps` and shooting at them with lasers to perform such roations (also works with neutral atoms trapped between fiberoptic cavities), running a current through superconducting circuits where the direction of the special particles indicate our state, or influencing individual spins inside of a diamond crystal. No perfect solution has been proposed so far, as all different platforms which we mentioned have their ups and downs.
 

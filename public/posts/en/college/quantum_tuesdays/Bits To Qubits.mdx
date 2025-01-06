@@ -7,7 +7,7 @@ date: "2024-01-07"
 
 # Intro
 
-Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.  
+Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.
 
 But first we have to look at a standard bit is before we move forward to its quantum sibling.
 
@@ -30,7 +30,7 @@ $$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
 
 However after measuring our qubit (i.e. by looking at our fancy measurement devices), the qubit will ultimately end up being a "1" or "0" or commonly represented as `|1>` or `|0>`, where the probabilities of landing in either state are expressed via the two prefactors whose squares must be equal to 1:
 
-$$ |\alpha|^2  + |\beta|^2 = 1$$
+$$ |\alpha|^2 + |\beta|^2 = 1$$
 
 But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold when performing the actual measurement.
 
@@ -128,7 +128,7 @@ Now what can we do with all of this?
 
 As mentioned before, if our qubit state is pointing along the equator, that means that the chance of getting either a `|0>` or a `|1>` are 50/50. This begs the question, but what if we have a qubit in such a state, and then perform a `C-NOT` operation with it as the `controlling qubit` on a different `target qubit`.
 
-Doing so would create something physicists call `Quantum Entanglement`, as after performing such operations, we would create a state where the measurement of one qubit will directly influence the outcome of the next one, technically allowing for instant communication between two people if both were to share one of the two qubits. 
+Doing so would create something physicists call `Quantum Entanglement`, as after performing such operations, we would create a state where the measurement of one qubit will directly influence the outcome of the next one, technically allowing for instant communication between two people if both were to share one of the two qubits.
 
 The states that can result from these circuits, are called the so called `Bell's states` (named after `John Stewart Bell`) or `EPR pairs` (named after `Albert Einstein`, `Boris Podolsky`, and `Nathan Rosen`):
 
@@ -137,7 +137,7 @@ $$ \ket{\Phi^-} = \frac{\ket{00} - \ket{11}}{\sqrt{2}} $$
 $$ \ket{\Psi^+} = \frac{\ket{10} + \ket{01}}{\sqrt{2}} $$
 $$ \ket{\Psi^-} = \frac{\ket{10} - \ket{01}}{\sqrt{2}} $$
 
-The instantaneous exchange of information however is a direct violation of Einstein's theory of relativity, which states that nothing can move faster than light (which includes the exchange of information). This paradox is described as the `Einstein-Podolsky-Rosen (EPR) paradox`, which argues that the description of physical reality provided by quantum mechanics is incomplete. 
+The instantaneous exchange of information however is a direct violation of Einstein's theory of relativity, which states that nothing can move faster than light (which includes the exchange of information). This paradox is described as the `Einstein-Podolsky-Rosen (EPR) paradox`, which argues that the description of physical reality provided by quantum mechanics is incomplete.
 
 Furthermore what is the best way to technically realize such qubits? Well there is no right answer as of now, as there are many ways to create such a qubit system. Be it trapping ions in so called `Iontraps` and shooting at them with lasers to perform such roations (also works with neutral atoms trapped between fiberoptic cavities), running a current through `superconducting circuits` where the direction of the special particles indicate our state, or influencing `individual nuclear spins` inside of a `diamond crystal`. No perfect solution has been proposed so far, as all different platforms which we mentioned have their ups and downs.
 
