@@ -1,0 +1,147 @@
+---
+title: "Bits to Qubits"
+subtitle: "Was ist der Unterschied zwischen einem Bit und einem Qubit und was ist das zweiteres so interessant (schwer)"
+author: "Leart Zuka"
+date: "2024-01-07"
+---
+
+# Intro
+
+Heute wollen wir die Unterschiede zwischen einem Bit, das in unserer alltäglichen Elektronik und überall dort, wo Daten verarbeitet werden, verwendet wird, und einem Qubit, das die Grundlage eines Quantencomputers bildet, verstehen.  
+
+Aber zuerst müssen wir uns ein Standard-Bit ansehen, bevor wir zu seinem Quanten-Geschwisterchen übergehen.
+
+Danach werden wir uns ansehen, wie wir diese beiden neu erlernten Konzepte umwandeln können und wie sich Qubits dank ihrer Quanteneigenschaften ganz anders verhalten.
+
+# Bit
+
+Ein Bit ist die grundlegendste Informationseinheit, wenn es um Daten geht, die z.B. von Computern verarbeitet werden.
+Es speichert einen Wert, der entweder als „1“ oder „0“ (oder „ein“ oder „aus“) dargestellt werden kann, ähnlich wie ein Lichtschalter entweder auf „ein“ oder „aus“ stehen kann.
+
+## Qubit
+
+Ein Qubit ist leider nicht so einfach wie ein normales Bit und erfordert ein wenig Mathematik, um es richtig zu definieren.
+
+Im Wesentlichen kann ein Qubit als Überlagerung von zwei Basiszuständen verstanden werden. Es ist also so, als ob wir die beiden Ergebnisse unseres Bits (also „1“ und „0“) überlagern würden.
+
+Mathematisch würde man diesen Überlagerungszustand wie folgt beschreiben:
+
+$$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
+
+Nachdem wir jedoch unser Qubit gemessen haben (z.B. mit Hilfe unserer schicken Messgeräte), wird das Qubit letztendlich eine „1“ oder „0“ sein oder allgemein als „1“ oder „0“ dargestellt, wobei die Wahrscheinlichkeit, in einem der beiden Zustände zu landen, durch die beiden Vorfaktoren ausgedrückt wird, deren Quadrate gleich 1 sein müssen:
+
+$$ |\alpha|^2 + |\beta|^2 = 1$$
+
+Das Interessante daran ist jedoch, dass das Qubit zufällig entscheidet, welchen Wert, also entweder „1“ oder „0“ oder allgemein als `|1>` oder `|0>` dargestellt, es bei der eigentlichen Messung annehmen will.
+
+Eine Möglichkeit zur Veranschaulichung dieser „zufälligen Auswahl“ ist eine so genannte „Bloch-Kugel“, bei der die Wahrscheinlichkeit der Auswahl von `|1>` oder `|0>` durch einen Pfeil dargestellt wird, der vom Mittelpunkt der Oberfläche zur Kugel zeigt.
+
+### Visualisierung eines Qubit-Zustands
+
+Ein so genannter Qubit-Zustand, also die Wahrscheinlichkeit, dass ein Qubit entweder `|1>` oder `|0>` ist, kann durch eine so genannte `Bloch-Sphäre` beschrieben werden, benannt nach dem Physiker Felix Bloch.
+
+Bloch Sphere](/posts/assets/quantum_tuesdays/Bits_to_qubits/init.png)
+
+Die wichtigsten Ideen sind:
+
+- Je weiter der Pfeil nach oben oder unten zeigt, desto größer ist die Wahrscheinlichkeit, dass bei der Messung des Zustands des Qubits entweder `|0>` oder `|1>` angezeigt wird. Das bedeutet auch, dass, wenn der Pfeil entlang des Äquators zeigt, die Chancen, entweder `|0>` oder `|1>` zu erhalten, 50/50 sind.
+
+- Nach der Messung zeigt das Qubit, je nach Ergebnis, immer entweder ganz nach oben oder ganz nach unten, da es dann auf seinen endgültigen Wert „kollabiert“.
+
+- Seine Drehung, also ob es entlang der x- oder y-Achse zeigt, spielt ebenfalls eine Rolle, würde aber den Rahmen dieses Beitrags sprengen.
+
+# Logische Gatter
+
+Logische Gatter sind Komponenten von elektrischen oder Quantenschaltungen, die es uns ermöglichen, die in Bits und Qubits gespeicherten Daten umzuwandeln und zu manipulieren.
+
+
+# Logische Gatter
+
+Logische Gatter sind Bestandteile von elektrischen oder Quantenschaltungen, die es uns ermöglichen, die in Bits und Qubits gespeicherten Daten umzuwandeln und zu manipulieren.
+
+## Bits
+
+Wie bereits erwähnt, haben Bits entweder den Wert „1“ oder „0“, und logische Gatter ermöglichen es uns, diese Werte selbst zu ändern oder sie zu verwenden, um die Werte anderer Bits zu ändern.
+
+Zwei wichtige Gatter, unter den vielen anderen, sind das so genannte `NOT` und `AND` Gatter.
+
+### NOT - Gatter
+
+Ein `NOT`-Gatter verhält sich ziemlich einfach, indem es unsere Eingabe nimmt und sie negiert, also eine „1“ in eine „0“ verwandelt und umgekehrt.
+
+![NOT-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/NOT.jpg)
+
+### AND - Gatter
+
+Für ein „UND“-Gatter benötigen wir zwei Bits als Eingabe, die uns dann ein Bit als Ausgabe liefert. Nur wenn beide Bits „1“ sind, dann ist auch der Ausgang „1“, in jedem anderen Fall ist der Ausgang „0“.
+
+![UND-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/AND.jpg)
+
+## Qubits
+
+Ein Quantengatter beschreibt im Wesentlichen immer eine Drehung unseres Zustands, also unseres Pfeils auf der Bloch-Sphäre.
+Die Hauptformen dieser Rotationen sind die X-, Y- und Z-Gatter, die, wie der Name schon sagt, alle eine Rotation entlang ihrer jeweiligen Achse durchführen.
+Ein weiteres sehr wichtiges 1-Qubit-Gatter ist das so genannte „Hadamard-Gatter“, benannt nach dem Physiker Jacques Hadamard, das unseren Pfeil von einem der Pole der Bloch-Sphäre zum Äquator bringt, was sich später als nützlich erweisen wird. 
+
+### 1 Qubit Gater
+
+### X - Gatter
+
+$$\sigma_x =\begin{pmatrix}0&1\\1&0\end{pmatrix} $$
+
+![X-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/x_rot.png)
+
+### Y - Gatter
+
+$$\sigma_y =\begin{pmatrix}0&-i\\i&0\end{pmatrix} $$
+
+![Y-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/y_rot.png)
+
+### Z - Gatter
+
+$$\sigma_z =\begin{pmatrix}1&0\\0&-1\end{pmatrix} $$
+
+![Z-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/z_rot.png)
+
+### Hadamard - Gatter
+
+$$ H = \frac{1}{\sqrt{2}} \begin{pmatrix}1&1\\1&-1\end{pmatrix} $$
+
+![Hadamard-Tor](/posts/assets/quantum_tuesdays/Bits_to_qubits/h_rot.png)
+
+### 2 Qubit-Gatter
+
+Mit diesem neu gewonnenen Wissen wenden wir uns nun den 2-Qubit-Gattern zu, die im Gegensatz zu den klassischen Logikgattern nicht nur einen Ausgang für zwei Eingänge liefern, sondern den Zustand der beiden Eingangs-Qubits verändern.
+
+### C-NOT-Gatter
+
+Das bekannteste 2-Qubit-Gatter ist das so genannte „C-NOT“- oder „kontrollierte NOT“-Gatter. Dieses Gatter ermöglicht es uns, eine Drehung eines Qubits (typischerweise um die x-Achse) auf der Grundlage des Zustands des anderen Qubits durchzuführen. Das eine Qubit, mit dem wir prüfen, ob wir die Drehung durchführen werden, wird als „Kontroll-Qubit“ bezeichnet (in den Bildern auf der Seite mit dem Punkt) und das andere Qubit wird als „Ziel-Qubit“ bezeichnet (in den Bildern auf der Seite mit dem Kreuz).
+
+Nur wenn sich das „kontrollierende Qubit“ im Zustand „1>“ befindet, führt es eine Drehung am „Ziel-Qubit“ durch, die aus seiner Matrixdarstellung abgeleitet werden kann:
+
+$$ CNOT = \begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix} $$
+
+![CNOT gate 0](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_0.png)
+
+![CNOT gate 1](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_1.png)
+
+---
+
+Was können wir nun mit all dem anfangen?
+
+Wie bereits erwähnt, wenn unser Qubit-Zustand entlang des Äquators zeigt, bedeutet das, dass die Chance, entweder ein `|0>` oder ein `|1>` zu erhalten, 50/50 ist. Das wirft die Frage auf, was passiert, wenn wir ein Qubit in einem solchen Zustand haben und dann eine „C-NOT“-Operation mit diesem Qubit als „kontrollierendes Qubit“ an einem anderen „Ziel-Qubit“ durchführen.
+
+Auf diese Weise würde etwas entstehen, das Physiker als „Quantenverschränkung“ bezeichnen, denn nach der Durchführung solcher Operationen würde ein Zustand entstehen, in dem die Messung eines Qubits das Ergebnis des nächsten direkt beeinflusst, was technisch gesehen eine sofortige Kommunikation zwischen zwei Personen ermöglicht, wenn beide eines der beiden Qubits teilen. 
+
+Die Zustände, die sich aus diesen Schaltkreisen ergeben können, werden als so genannte „Bell-Zustände“ (benannt nach John Stewart Bell) oder „EPR-Paare“ (benannt nach Albert Einstein, Boris Podolsky und Nathan Rosen) bezeichnet:
+
+$$ \ket{\Phi^+} = \frac{\ket{00} + \ket{11}}{\sqrt{2}} $$
+$$ \ket{\Phi^-} = \frac{\ket{00} - \ket{11}}{\sqrt{2}} $$
+$$ \ket{\Psi^+} = \frac{\ket{10} + \ket{01}}{\sqrt{2}} $$
+$$ \ket{\Psi^-} = \frac{\ket{10} - \ket{01}}{\sqrt{2}} $$
+
+Der unmittelbare Informationsaustausch ist jedoch ein direkter Verstoß gegen Einsteins Relativitätstheorie, die besagt, dass sich nichts schneller als das Licht bewegen kann (was den Informationsaustausch einschließt). Dieses Paradoxon wird als „Einstein-Podolsky-Rosen-Paradoxon (EPR-Paradoxon)“ bezeichnet, das besagt, dass die Beschreibung der physikalischen Realität durch die Quantenmechanik unvollständig ist. 
+
+Und wie lassen sich solche Qubits technisch am besten realisieren? Nun, darauf gibt es noch keine richtige Antwort, denn es gibt viele Möglichkeiten, ein solches Qubit-System zu erzeugen. Sei es, dass man Ionen in so genannten `Iontraps` einfängt und mit Lasern beschießt, um solche Rotationen durchzuführen (das funktioniert auch mit neutralen Atomen, die zwischen faseroptischen Hohlräumen gefangen sind), dass man Strom durch `supraleitende Schaltkreise` fließen lässt, wobei die Richtung der speziellen Teilchen unseren Zustand anzeigt, oder dass man `individuelle Kernspins` in einem `Diamantkristall` beeinflusst. Bislang wurde noch keine perfekte Lösung vorgeschlagen, da alle genannten Plattformen ihre Vor- und Nachteile haben.
+
+Dies ist jedoch ein Diskussionsthema für einen anderen Tag.

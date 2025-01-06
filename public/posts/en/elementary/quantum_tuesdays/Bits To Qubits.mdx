@@ -1,6 +1,6 @@
 ---
 title: "Bits to Qubits"
-subtitle: "Explaining the differences between bits and qubits and what makes a qubit special"
+subtitle: "Explaining the differences between bits and qubits and what makes a qubit special (easy)"
 author: "Leart Zuka"
 date: "2024-01-07"
 ---
@@ -20,7 +20,7 @@ It stores one value that can be represented as either a "1" or "0" (or "on" or "
 
 ## Qubit
 
-A qubit is unfortunately not so easy to understand, and require a lot of math to get the most correct understanding.
+A qubit is unfortunately not so easy to understand, and requires a lot of math to get the most correct understanding.
 And by a lot of math, I mean a lot.
 
 So in order to keep it simple we're going to be looking at a metaphor that'll explain the rough idea behind the concept of a qubit.
@@ -32,11 +32,9 @@ In the beginning you favored the penguin more with it's funny looking shape, at 
 Finally, as you start approaching the checkout region, you randomly decide on which toy you want. Is it going to be the cute penguin or the basketball?
 
 Qubits, just like in our little metaphor, in the end can only take on one of two values, after they've been asked to "check out", which in and actual lab environment would be measuring which one of the two values it actually holds now.
-But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold.
+But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold when performing the actual measurement.
 
-One way of visualizing how this "random picking" might work is with a so called `Bloch Sphere`, were the chances of picking `|1>` or `|0>` ara represented by an arrow pointing from the center of the surface to the sphere.
-
-This all seems very interesting, but now we also need to understand how to manipulate these qu-/bits in order to make them useful for our, hopefully good-natured, purposes.
+One way of visualizing how this "random picking" might work is with a so called `Bloch Sphere`, where the chances of picking `|1>` or `|0>` are represented by an arrow pointing from the center of the surface to the sphere.
 
 ### Visualization of a qubit state
 
@@ -51,6 +49,8 @@ The main ideas are:
 - After the measurement, depending on the outcome, the qubit will always point either fully up or fully down, as that's when it `collapses` to its definite value.
 
 - Its rotation, so whether it points along the x- or y-axis also plays a role, but is beyond the scope of this post.
+
+This all seems very interesting, but now we also need to understand how to manipulate these qu-/bits in order to make them useful for our, hopefully good-natured, purposes.
 
 # Logical Gates
 
