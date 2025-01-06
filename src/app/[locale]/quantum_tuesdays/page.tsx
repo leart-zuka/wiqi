@@ -11,8 +11,10 @@ type File = {
   key: string;
   slug: string;
   metadata: {
+    title: string;
     subtitle: string;
     date: string;
+    author: string;
   };
   locale: string;
 };
@@ -92,11 +94,12 @@ export default function Page({ params }: { params: { locale: string } }) {
         />
       </div>
 
-      <div className="z-10 grid grid-cols-3 gap-6 p-10">
+      <div className="z-10 grid grid-cols-1 gap-6 p-10 md:grid-cols-3">
         {files.map((file) => (
           <div key={file.slug} className="flex items-center justify-center">
             <PostPreview
               slug={file.slug}
+              title={file.metadata.title}
               subtitle={file.metadata.subtitle}
               date={file.metadata.date}
               locale={params.locale}
