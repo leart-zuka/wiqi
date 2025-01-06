@@ -1,0 +1,127 @@
+---
+title: "Bits to Qubits"
+subtitle: "Explaining the differences between bits and qubits and what makes a qubit special"
+author: "Leart Zuka"
+date: "2024-01-07"
+---
+
+# Intro
+
+Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.  
+
+But first we have to understand what a standard bit is before we move forward to its quantum sibling.
+
+Afterwards we're going to take a look at how we can transform these two newly learned concepts and how qubits behave much more differently thanks to their quantum properties.
+
+# Bit
+
+A bit is the most basic unit of information when it comes data that is being handled, e.g. by computers.
+It stores one value that can be represented as either a "1" or "0" (or "on" or "off"), similar to how a light switch can either be in an "on" or "off" position.
+
+## Qubit
+
+A qubit is unfortunately not so easy to understand, and require a lot of math to get the most correct understanding.
+And by a lot of math, I mean a lot.
+
+So in order to keep it simple we're going to be looking at a metaphor that'll explain the rough idea behind the concept of a qubit.
+We either all were in this situation ourselves or have kids that we have put in this exact situation.
+
+Imagine you're a child that walks into a toystore and you find two toys that you really want to get, let's say a basketball and a stuffed penguin (these examples were picked based on my own experiences). 
+Now as you walk through that store, your mind starts twisting and turning on which toy to get, as your parent that's with you keeps mentioning how you're only allowed to pick one.
+In the beginning you favored the penguin more with it's funny looking shape, at another you feel yourself more drawn towards to the basketball and the times you're going to be spending with it on the court.
+Finally, as you start approaching the checkout region, you randomly decide on which toy you want. Is it going to be the cute penguin or the basketball?
+
+Qubits, just like in our little metaphor, in the end can only take on one of two values, after they've been asked to "check out", which in and actual lab environment would be measuring which one of the two values it actually holds now.
+But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold.
+
+One way of visualizing how this "random picking" might work is with a so called `Bloch Sphere`, were the chances of picking `|1>` or `|0>` ara represented by an arrow pointing from the center of the surface to the sphere.
+
+This all seems very interesting, but now we also need to understand how to manipulate these qu-/bits in order to make them useful for our, hopefully good-natured, purposes.
+
+### Visualization of a qubit state
+
+A so called qubit state, so basically the chances of the qubit either being a `|1>` or `|0>`, can be described by a so called `Bloch Sphere`, named after the physicist Felix Bloch.
+
+![Bloch Sphere](/posts/assets/quantum_tuesdays/Bits_to_qubits/init.png)
+
+The main ideas are:
+
+- The further the arrow points up or down, the higher the chance that when measuring the state of the qubit, it will either show `|0>` or `|1>`. This also means that if the arrow points along the equator, the chances of getting either `|0>` or `|1>` are 50/50.
+
+- After the measurement, depending on the outcome, the qubit will always point either fully up or fully down, as that's when it `collapses` to its definite value.
+
+- Its rotation, so whether it points along the x- or y-axis also plays a role, but is beyond the scope of this post.
+
+# Logical Gates
+
+Logical gates are components of electrical or quantum circuits that allow us to tansform and manipulate the data that is being stored in bits and qubits.
+
+## Bits
+
+Bits as stated before either have a value of "1" or "0", and logical gates allow us to to change these values itself or use them to change values of other bits.
+
+Two important gates, among the many others, are the so called `NOT` and `AND` gate.
+
+### NOT - Gate
+
+Going back on our representation of bits as light switches that turn a light "on" or "off", a `NOT` gate, takes the current value of our bit and negates it, e.g. turning "on" to "off" and vice verca.
+
+![NOT gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/NOT.jpg)
+
+### AND - Gate
+
+For an `AND` gate we require two bits of input which then gives us one one bit of output. Only if both bits are "on", then the output is also "on", in any other case the output is "off".
+
+![AND gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/AND.jpg)
+
+## Qubits
+
+A quantum gate in essence always describes a rotation of our state, so our arrow on the Bloch Sphere.
+The main forms of these rotations are the X,Y, and Z - Gates, which as the names suggest, all perform a rotation along their respective axes.
+Another very important 1 qubit gate, is the so called `Hadamard Gate`, named after physicist `Jacques Hadamard`, which brings our arrow from one of our poles of the Bloch Sphere to the equator which will come in handy later. 
+
+### 1 Qubit Gates
+
+### X - Gate
+
+![X gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/x_rot.png)
+
+### Y - Gate
+
+![Y gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/y_rot.png)
+
+### Z - Gate
+
+![Z gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/z_rot.png)
+
+### Hadamard - Gate
+
+![Hadamard gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/h_rot.png)
+
+### 2 Qubit gates
+
+With this newly gained knowledge, let's now move on to 2 qubit gates, which contrary to the classical logic gates, don't give us only one output based on two inputs, but rather change the state of our two input qubits.
+
+### C-NOT Gate
+
+The most notable 2 qubit gate is the so called `C-NOT` or `controlled NOT` gate. This gate allows us to perform a rotation of one qubit (typically one around the x-axis) based on the state of the other qubit. The one qubit we use to check if we're going to perform the rotation is called the `controlling qubit` (indicated in the images by being on the side with the dot) and the other qubit is called the `target qubit` (indicated in the images by being on the side with the cross).
+
+So let's say we input two qubits into our C-NOT gate, where the first one and second one are in a state `|0>` ("arrow pointing up"). Here the first qubit is the `controlling qubit`, but since it's in a state of `|0>`, it won't perform a rotation of the `target qubit`. 
+
+![CNOT gate 0](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_0.png)
+
+If the `controlling qubit` is in a state `|1>` though ("arrow pointing down"), then it will perform a rotation on the `target qubit`.
+
+![CNOT gate 1](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_1.png)
+
+---
+
+Now what can we do with all of this?
+
+As mentioned before, if our qubit state is pointing along the equator, that means that the chance of getting either a `|0>` or a `|1>` are 50/50. This begs the question, but what if we have a qubit in such a state, and then perform a `C-NOT` operation with it as the `controlling qubit` on a different `target qubit`.
+
+Doing so would create something physicists call `Quantum Entanglement`, as after performing such operations, we would create a state where the measurement of one qubit will directly influence the outcome of the next one, technically allowing for instant communication between two people if both were to share one of the two qubits. 
+
+Furthermore what is the best way to technically realize such qubits? Well there is no right answer as of now, as there are many ways to create such a qubit system. Be it trapping ions in so called `Iontraps` and shooting at them with lasers to perform such roations (also works with neutral atoms trapped between fiberoptic cavities), running a current through superconducting circuits where the direction of the special particles indicate our state, or influencing individual spins inside of a diamond crystal. No perfect solution has been proposed so far, as all different platforms which we mentioned have their ups and downs.
+
+This is a topic of discussion for another day however.
