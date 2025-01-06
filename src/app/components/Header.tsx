@@ -114,7 +114,7 @@ const Header = (props: HeaderProps) => {
       const data = await response.json();
       setFiles(data.files);
     } catch (err) {
-      console.debug(err);
+      console.error(err);
     }
   };
 
