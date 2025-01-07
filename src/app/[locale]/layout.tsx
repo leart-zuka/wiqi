@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { getMessages } from "next-intl/server";
+import { CookiesProvider } from "next-client-cookies/server";
 import EasterEgg from "../components/EasterEgg";
 
 export const metadata: Metadata = {
@@ -42,9 +43,8 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <meta charSet="utf-8" />
         <meta name="title" property="og:title" content="wiqi" />
-        <meta name="image" property="og:image" content="/wq.png" />
+        <meta name="image" property="og:image" content="/public/wq.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="algolia-site-verification" content="2AEB75A192ED3EBE" />
         <title>WiQi</title>
       </head>
       <body className="flex min-h-screen flex-col overflow-x-clip bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
@@ -52,7 +52,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <EasterEgg />
           <div className="flex-grow bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
-            {children}
+            <CookiesProvider>{children}</CookiesProvider>
           </div>
         </NextIntlClientProvider>
         <Footer />

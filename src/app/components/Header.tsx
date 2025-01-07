@@ -4,11 +4,28 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getCookie, setCookie } from "cookies-next";
+import Fuse from "fuse.js";
+
 import "./button.css";
 
 interface HeaderProps {
   locale: string;
 }
+
+type File = {
+  key: string;
+  slug: string;
+  metadata: {
+    subtitle: string;
+    date: string;
+  };
+  locale: string;
+};
+
+const fuseOptions = {
+  keys: ["slug", "metadata.subtitle", "metadata.date"],
+};
 
 const replaceLocale = (locale: string, pathName: string): string => {
   return locale === "de"
@@ -61,11 +78,14 @@ function getBackgroundColorBehindNav(nav: HTMLElement): string {
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const initialDifficulty = getCookie("difficulty")?.toString() ?? "elementary";
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [hasMounted, setHasMounted] = useState(false);
   const [dynamicTextColor, setDynamicTextColor] = useState("black");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [searchResults, setSearchResults] = useState<File[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
@@ -77,6 +97,30 @@ const Header = (props: HeaderProps) => {
       document.documentElement.classList.remove("dark");
     }
   }, []);
+
+  const getFiles = async (difficulty: string, locale: string) => {
+    try {
+      const response = await fetch("/api/getBlogPosts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          language: locale,
+          difficulty: difficulty,
+          folder: "quantum_tuesdays",
+        }),
+      });
+      const data = await response.json();
+      setFiles(data.files);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getFiles(initialDifficulty, props.locale);
+  }, [initialDifficulty, props.locale]);
 
   useEffect(() => {
     if (!hasMounted) return;
@@ -130,10 +174,24 @@ const Header = (props: HeaderProps) => {
     // setTimeout(() => updateTextColor(), 0);
   };
 
+  const handleSearch = () => {
+    const query = inputRef.current?.value || "";
+    if (query) {
+      setShowDropdown(true);
+      const fuse = new Fuse(files, fuseOptions);
+      const results = fuse.search(query);
+      console.debug(results);
+      setSearchResults(results.map((result) => result.item));
+    } else {
+      setSearchResults([]);
+      setShowDropdown(false);
+    }
+  };
+
   return (
     <div
       id="mainNavbar"
-      className="fixed top-0 z-40 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]"
+      className="fixed top-0 z-30 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]"
       style={{ color: dynamicTextColor }}
     >
       <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
@@ -181,6 +239,8 @@ const Header = (props: HeaderProps) => {
                   ref={inputRef}
                   required
                   className="rounded-md border border-gray-300 px-2 py-1 text-black"
+                  onChange={handleSearch}
+                  onFocus={() => setShowDropdown(true)}
                 />
                 <i className="fa fa-search"></i>
                 <button
@@ -190,6 +250,37 @@ const Header = (props: HeaderProps) => {
                 >
                   Clear
                 </button>
+                {showDropdown && searchResults.length > 0 && (
+                  <ul
+                    className="absolute z-50 mt-10 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg dark:bg-black"
+                    style={{
+                      borderColor: dynamicTextColor, // Dynamic border color
+                    }}
+                  >
+                    {searchResults.map((result, index) => (
+                      <li
+                        key={index}
+                        className="cursor-pointer px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        onClick={() => {
+                          // Navigate to the selected item's slug
+                          window.location.href = result.slug;
+                          clearInput();
+                        }}
+                      >
+                        <a
+                          href={`/${props.locale}/quantum_tuesdays/${initialDifficulty}/${result.slug}`}
+                        >
+                          <p className="font-semibold text-black dark:text-white">
+                            {result.slug}
+                          </p>
+                          <p className="text-sm text-black dark:text-white">
+                            {result.metadata.date}
+                          </p>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </form>
             </div>
 
