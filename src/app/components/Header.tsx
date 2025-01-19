@@ -108,7 +108,7 @@ const Header = (props: HeaderProps) => {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: "quantum_tuesdays",
+          folder: ["quantum_tuesdays", "entries"],
         }),
       });
       const data = await response.json();
@@ -284,6 +284,7 @@ const Header = (props: HeaderProps) => {
               </form>
             </div>
 
+            {/* Added: ENTRIES*/}
             {/* Desktop nav (hidden on mobile) */}
             <div className="hidden items-center space-x-6 lg:flex">
               <nav
