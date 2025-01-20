@@ -1,0 +1,71 @@
+---
+title: "Superposition"
+subtitle: "The concept of Superposition and its history (easy)"
+author: "Helena Köhler"
+date: "2024-01-08"
+---
+
+# Intro
+
+Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.
+
+But first we have to look at a standard bit is before we move forward to its quantum sibling.
+
+Afterwards we're going to take a look at how we can transform these two newly learned concepts and how qubits behave much more differently thanks to their quantum properties.
+
+## Bit
+
+A bit is the most basic unit of information when it comes data that is being handled, e.g. by computers.
+It stores one value that can be represented as either a "1" or "0" (or "on" or "off"), similar to how a light switch can either be in an "on" or "off" position.
+
+## Qubit
+
+A qubit is unfortunately not as simple as a regular bit and involves a bit of math to properly define it.
+
+In essence a qubit can be understood as the superposition of two basis states. So it's as if we were to overlap the two outcomes of our bit (so "1" and "0").
+
+Mathematically one would write this superposition state as:
+
+$$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
+
+However after measuring our qubit (i.e. by looking at our fancy measurement devices), the qubit will ultimately end up being a "1" or "0" or commonly represented as `|1>` or `|0>`, where the probabilities of landing in either state are expressed via the two prefactors whose squares must be equal to 1:
+
+$$ |\alpha|^2 + |\beta|^2 = 1$$
+
+But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold when performing the actual measurement.
+
+One way of visualizing how this "random picking" might work is with a so called `Bloch Sphere`, where the chances of picking `|1>` or `|0>` are represented by an arrow pointing from the center of the surface to the sphere.
+
+### Visualization of a qubit state
+
+A so called qubit state, so basically the chances of the qubit either being a `|1>` or `|0>`, can be described by a so called `Bloch Sphere`, named after the physicist Felix Bloch.
+
+![Bloch Sphere](/posts/assets/quantum_tuesdays/Bits_to_qubits/init.png)
+
+The main ideas are:
+
+- The further the arrow points up or down, the higher the chance that when measuring the state of the qubit, it will either show `|0>` or `|1>`. This also means that if the arrow points along the equator, the chances of getting either `|0>` or `|1>` are 50/50.
+
+- After the measurement, depending on the outcome, the qubit will always point either fully up or fully down, as that's when it `collapses` to its definite value.
+
+- Its rotation, so whether it points along the x- or y-axis also plays a role, but is beyond the scope of this post.
+
+This all seems very interesting, but now we also need to understand how to manipulate these qu-/bits in order to make them useful for our, hopefully good-natured, purposes.
+
+# Logical Gates
+
+Logical gates are components of electrical or quantum circuits that allow us to tansform and manipulate the data that is being stored in bits and qubits.
+
+## Bits
+
+Bits as stated before either have a value of "1" or "0", and logical gates allow us to to change these values itself or use them to change values of other bits.
+
+Two important gates, among the many others, are the so called `NOT` and `AND` gate.
+
+### NOT - Gate
+
+A `NOT` gate behaves ins a rather simple fassion, by taking our input and negating it, thus turning a "1" into a "0" and vice verca.
+
+![NOT gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/NOT.jpg)
+
+### AND - Gate

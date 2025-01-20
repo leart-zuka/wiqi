@@ -1,0 +1,39 @@
+---
+title: "Superposition"
+subtitle: "Das Konzept Superposition und dessen Geschichte (einfach)"
+author: "Helena Köhler"
+date: "2024-01-08"
+---
+
+# Intro
+
+Heute wollen wir die Unterschiede zwischen einem Bit, das in unserer alltäglichen Elektronik und überall dort, wo Daten verarbeitet werden, verwendet wird, und einem Qubit, das die Grundlage eines Quantencomputers bildet, verstehen.
+
+Aber zuerst müssen wir uns ein Standard-Bit ansehen, bevor wir zu seinem Quanten-Geschwisterchen übergehen.
+
+Danach werden wir uns ansehen, wie wir diese beiden neu erlernten Konzepte umwandeln können und wie sich Qubits dank ihrer Quanteneigenschaften ganz anders verhalten.
+
+## Bit
+
+Ein Bit ist die grundlegendste Informationseinheit, wenn es um Daten geht, die z.B. von Computern verarbeitet werden.
+Es speichert einen Wert, der entweder als „1“ oder „0“ (oder „ein“ oder „aus“) dargestellt werden kann, ähnlich wie ein Lichtschalter entweder auf „ein“ oder „aus“ stehen kann.
+
+## Qubit
+
+Ein Qubit ist leider nicht so einfach wie ein normales Bit und erfordert ein wenig Mathematik, um es richtig zu definieren.
+
+Im Wesentlichen kann ein Qubit als Überlagerung von zwei Basiszuständen verstanden werden. Es ist also so, als ob wir die beiden Ergebnisse unseres Bits (also „1“ und „0“) überlagern würden.
+
+Mathematisch würde man diesen Überlagerungszustand wie folgt beschreiben:
+
+$$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
+
+Nachdem wir jedoch unser Qubit gemessen haben (z.B. mit Hilfe unserer schicken Messgeräte), wird das Qubit letztendlich eine „1“ oder „0“ sein oder allgemein als „1“ oder „0“ dargestellt, wobei die Wahrscheinlichkeit, in einem der beiden Zustände zu landen, durch die beiden Vorfaktoren ausgedrückt wird, deren Quadrate gleich 1 sein müssen:
+
+$$ |\alpha|^2 + |\beta|^2 = 1$$
+
+Das Interessante daran ist jedoch, dass das Qubit zufällig entscheidet, welchen Wert, also entweder „1“ oder „0“ oder allgemein als `|1>` oder `|0>` dargestellt, es bei der eigentlichen Messung annehmen will.
+
+Eine Möglichkeit zur Veranschaulichung dieser „zufälligen Auswahl“ ist eine so genannte „Bloch-Kugel“, bei der die Wahrscheinlichkeit der Auswahl von `|1>` oder `|0>` durch einen Pfeil dargestellt wird, der vom Mittelpunkt der Oberfläche zur Kugel zeigt.
+
+### Visualisierung eines Qubit-Zustands
