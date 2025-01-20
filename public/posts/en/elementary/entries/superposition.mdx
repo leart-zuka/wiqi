@@ -1,71 +1,65 @@
 ---
 title: "Superposition"
 subtitle: "The concept of Superposition and its history (easy)"
-author: "Helena Köhler"
+author: "Paula García-Mochales, Helena Iréne Köhler, Laura Rojo Guerrero"
 date: "2024-01-08"
 ---
 
-# Intro
+## Corpuscular Theory of Light
 
-Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.
+Sir Isaac Newton's corpuscular theory was one of the first scientific ideas about how light works.
+This theory says that light is made of tiny particles called corpuscles (which means “little particles”). These particles are thought to come from light sources, like the Sun, and move in straight lines at a certain speed. The way they interact with things like surfaces, walls, and our eyes follows simple physical rules.
 
-But first we have to look at a standard bit is before we move forward to its quantum sibling.
+Newton came up with this idea through his work on optics. He didn’t believe the idea that light behaves like waves. He argued, that one can hear sound from behind an obstacle, but can’t see light, thus supporting his view that light is a particle. However, his theory had problems.
+For example, Newton thought different colors of light came from particles of different sizes, but experiments couldn’t prove this. Also, some effects, like interference (when light waves mix to create bright and dark patterns), didn’t fit his idea. These gaps showed the limits of the corpuscular theory.
 
-Afterwards we're going to take a look at how we can transform these two newly learned concepts and how qubits behave much more differently thanks to their quantum properties.
+![Newton](/posts/assets/entries/superposition/light_particle.png)
 
-## Bit
+## Huygens’ Wave Model of Light
 
-A bit is the most basic unit of information when it comes data that is being handled, e.g. by computers.
-It stores one value that can be represented as either a "1" or "0" (or "on" or "off"), similar to how a light switch can either be in an "on" or "off" position.
+At the same time, another scientist, Christiaan Huygens, had a different idea. He said light behaves like a wave, much like ripples on water.
+Huygens suggested that light travels as waves that spread out in all directions. He explained that each point in a wave creates smaller waves called wavelets, and these wavelets combine to form the overall wavefront. This helped explain things like:
 
-## Qubit
+- Reflection (light bouncing off surfaces),
+- Refraction (light bending when it enters something like water), and
+- Diffraction (light bending around objects).
 
-A qubit is unfortunately not as simple as a regular bit and involves a bit of math to properly define it.
+Huygens’ wave model explained many things about light, but it wasn’t perfect. It couldn’t explain some discoveries made later, like the photoelectric effect, which showed how light can knock electrons off metal surfaces. These discoveries eventually led scientists to new ideas about light.
 
-In essence a qubit can be understood as the superposition of two basis states. So it's as if we were to overlap the two outcomes of our bit (so "1" and "0").
+![Newton vs Huygen](/posts/assets/entries/superposition/light_waves.png)
 
-Mathematically one would write this superposition state as:
+## The Double-Slit Experiment
 
-$$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
+In 1801, a scientist named Thomas Young did an experiment that showed light behaves like waves. He shone light through two tiny slits onto a screen.
+Newton’s particle theory and Huygens’ wave theory predicted different outcomes:
 
-However after measuring our qubit (i.e. by looking at our fancy measurement devices), the qubit will ultimately end up being a "1" or "0" or commonly represented as `|1>` or `|0>`, where the probabilities of landing in either state are expressed via the two prefactors whose squares must be equal to 1:
+If light were made of particles, you’d see two bright spots on the screen where the particles passed through the slits.
+But if light behaved like waves, the waves would mix, creating a pattern of bright and dark bands on the screen.
 
-$$ |\alpha|^2 + |\beta|^2 = 1$$
+Young observed the bright and dark bands, which could only be explained if light acted like waves. This experiment was a big challenge to Newton’s particle theory and provided strong evidence for Huygens’ wave model.
 
-But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold when performing the actual measurement.
+![Double-slit Experiment](/posts/assets/entries/superposition/ds_exp.png)
 
-One way of visualizing how this "random picking" might work is with a so called `Bloch Sphere`, where the chances of picking `|1>` or `|0>` are represented by an arrow pointing from the center of the surface to the sphere.
+## Wave-Particle Duality
 
-### Visualization of a qubit state
+Young’s experiment supported the wave theory of light, but later discoveries showed that it wasn’t the whole story. In the 19th and 20th centuries, scientists found that light also behaves like particles in some situations.
+One key discovery was the photoelectric effect. In 1902, Philipp Lenard studied how light can make electrons jump out of metals. He found that this effect depended on the light’s color (or frequency), not just its brightness, which didn’t match Huygens’ wave model.
 
-A so called qubit state, so basically the chances of the qubit either being a `|1>` or `|0>`, can be described by a so called `Bloch Sphere`, named after the physicist Felix Bloch.
+In 1905, Albert Einstein explained this by proposing that light is made of tiny packets of energy called photons. This brought back the idea of light as particles. But since photons can also behave like waves, it introduced a new concept: wave-particle duality.
+In 1924, Louis de Broglie expanded this idea by suggesting that not just light, but also particles like electrons, could behave like waves. This became a key idea in quantum mechanics.
 
-![Bloch Sphere](/posts/assets/quantum_tuesdays/Bits_to_qubits/init.png)
+![Discussion](/posts/assets/entries/superposition/superpos_disc.png)
 
-The main ideas are:
+## Schrödinger’s Cat
 
-- The further the arrow points up or down, the higher the chance that when measuring the state of the qubit, it will either show `|0>` or `|1>`. This also means that if the arrow points along the equator, the chances of getting either `|0>` or `|1>` are 50/50.
+The strange behavior of particles acting like both waves and particles led to even weirder ideas in quantum mechanics. One of these is called superposition, which means a particle can be in multiple states at the same time until it’s observed.
+To explain this, a physicist named Erwin Schrödinger imagined a thought experiment with a cat:
 
-- After the measurement, depending on the outcome, the qubit will always point either fully up or fully down, as that's when it `collapses` to its definite value.
+A cat is put in a box with a poison that depends on a random event, like the decay of a radioactive atom.
 
-- Its rotation, so whether it points along the x- or y-axis also plays a role, but is beyond the scope of this post.
+Until someone opens the box, the cat is in a superposition—both alive and dead at the same time.
 
-This all seems very interesting, but now we also need to understand how to manipulate these qu-/bits in order to make them useful for our, hopefully good-natured, purposes.
+Opening the box forces the system to choose one outcome: the cat is either alive or dead.
+This thought experiment shows how quantum systems can exist in multiple states until we measure them.
 
-# Logical Gates
-
-Logical gates are components of electrical or quantum circuits that allow us to tansform and manipulate the data that is being stored in bits and qubits.
-
-## Bits
-
-Bits as stated before either have a value of "1" or "0", and logical gates allow us to to change these values itself or use them to change values of other bits.
-
-Two important gates, among the many others, are the so called `NOT` and `AND` gate.
-
-### NOT - Gate
-
-A `NOT` gate behaves ins a rather simple fassion, by taking our input and negating it, thus turning a "1" into a "0" and vice verca.
-
-![NOT gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/NOT.jpg)
-
-### AND - Gate
+![Schrödinger's cat](/posts/assets/entries/superposition/superpos_cat.png)

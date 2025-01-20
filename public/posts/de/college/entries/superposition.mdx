@@ -1,39 +1,60 @@
 ---
 title: "Superposition"
-subtitle: "Das Konzept Superposition und dessen Geschichte (einfach)"
-author: "Helena Köhler"
+subtitle: "Das Konzept der Superposition und dessen Geschichte (einfach)"
+author: "Helena Iréne Köhler"
 date: "2024-01-08"
 ---
 
-# Intro
+## Korpuskeltheorie:
 
-Heute wollen wir die Unterschiede zwischen einem Bit, das in unserer alltäglichen Elektronik und überall dort, wo Daten verarbeitet werden, verwendet wird, und einem Qubit, das die Grundlage eines Quantencomputers bildet, verstehen.
+Die Korpuskeltheorie von Sir Isaac Newton war einer der frühesten wissenschaftlichen Versuche, die Natur des Lichts zu verstehen. In der Optik besagt die Theorie, dass das Licht aus kleinen diskreten Teilchen besteht, die „Korpuskeln“ (kleine Teilchen) genannt werden. Man nahm an, dass diese Teilchen von Lichtquellen ausgestrahlt werden und sich mit einer endlichen Geschwindigkeit in geraden Linien  bewegen. Bei ihren Wechselwirkungen mit Materialien wie Gegenstandsoberflächen, Wänden und dem menschlichen Auge wurde davon ausgegangen, dass sie der Newtonschen Physik folgen. Isaac Newton legte mit seinen Arbeiten zur Optik den Grundstein für diese Theorie. 
+Newton lehnte die Wellentheorie des Lichts vor allem deshalb ab, weil er glaubte, dass das Licht, im Gegensatz zum Schall, keine Beugungseigenschaften besitze. Er argumentierte, dass man den Schall hinter einem Hindernis hören, das Licht aber nicht sehen kann, und stützte damit seine Ansicht, dass Licht ein Teilchen ist. 
 
-Aber zuerst müssen wir uns ein Standard-Bit ansehen, bevor wir zu seinem Quanten-Geschwisterchen übergehen.
+Sein Modell hatte jedoch entscheidende Einschränkungen. So schlug Newton beispielsweise vor, dass sich die verschiedenen Farben des Lichts durch die variierende Größe der Teilchen herleiten ließen, doch konnte diese Behauptung nicht experimentell bestätigt werden. Außerdem konnten Phänomene wie die Interferenz - bei der Lichtwellen konstruktiv und destruktiv miteinander interferieren können - mit seiner Teilchentheorie nicht erklärt werden. 
+Das Korpuskelmodell kam somit an seine Grenzen, da es nicht alle Phänomene, wie zum Beispiel die wellenartigen, erklären konnte.
 
-Danach werden wir uns ansehen, wie wir diese beiden neu erlernten Konzepte umwandeln können und wie sich Qubits dank ihrer Quanteneigenschaften ganz anders verhalten.
+![Newton](/posts/assets/entries/superposition/light_particle.png)
 
-## Bit
+## Huygens' Wellenmodell des Lichts:
 
-Ein Bit ist die grundlegendste Informationseinheit, wenn es um Daten geht, die z.B. von Computern verarbeitet werden.
-Es speichert einen Wert, der entweder als „1“ oder „0“ (oder „ein“ oder „aus“) dargestellt werden kann, ähnlich wie ein Lichtschalter entweder auf „ein“ oder „aus“ stehen kann.
+Im Gegensatz zu Newtons Korpuskeltheorie vertrat Christiaan Huygens' Modell die Auffassung, dass sich Licht als Welle verhält, und zwar als Längswelle. Im 17. Jahrhundert schlug Huygens vor, die Ausbreitung des Lichts durch die Beobachtung der Bewegung von Wasserwellen besser zu verstehen. Darüber hinaus erweiterte er das Verständnis von Licht als Welle, indem er vorschlug, dass eine primäre Wellenfront als unendlich viele Punkte wahrgenommen werden kann, wobei jeder Punkt ein sekundäres Wellenelement auf sphärische Weise erzeugt. Durch die Interferenz dieser sekundären Wellenformen entstehen Wellenfronten mit unterschiedlicher Form und Richtung. Sein Modell wird daher auch häufig zum Verständnis des Konzepts der Beugung verwendet. 
+Zum Zeitpunkt dieses Vorschlags war Huygens in der Lage, die meisten Eigenschaften des Lichts zu erklären, darunter Brechung, Reflexion, Teilbrechung und Reflexion sowie Beugung. 
+Ähnlich wie das Newtonsche Modell kam jedoch auch dieses Modell an seine Grenzen. Es konnte zwar viele der klassischen Eigenschaften des Lichts erklären, nicht aber die später beobachteten quantenmechanischen Phänomene wie den photoelektrischen Effekt, den Compton-Effekt oder den Raman-Effekt. Diese Einschränkungen führten schließlich zur Weiterentwicklung des Verständnisses von Licht.
 
-## Qubit
+![Newton vs Huygen](/posts/assets/entries/superposition/light_waves.png)
 
-Ein Qubit ist leider nicht so einfach wie ein normales Bit und erfordert ein wenig Mathematik, um es richtig zu definieren.
+## Das Doppelspaltexperiment
 
-Im Wesentlichen kann ein Qubit als Überlagerung von zwei Basiszuständen verstanden werden. Es ist also so, als ob wir die beiden Ergebnisse unseres Bits (also „1“ und „0“) überlagern würden.
+Im Jahr 1801 führte Thomas Young ein Experiment mit einem Doppelspaltapparat durch, das die wellenartige Natur des Lichts eindeutig bewies. Eine monochromatische Lichtquelle wurde durch zwei schmale Spaltöffnungen geleitet, wodurch auf einem dahinter befindlichen Schirm ein Interferenzmuster entstand. Direkt hinter der Apparatur wurde ein Beobachtungsschirm aufgestellt. Newtons korpuskulares (Teilchen-)Modell des Lichts und Huygens' Wellenmodell des Lichts machten unterschiedliche Vorhersagen hinsichtlich des auf dem Schirm entstehenden Lichtmusters. Wäre das Licht ein Teilchen oder bestünde es aus Teilchen, so würden nach Newton nur die Lichtteilchen, die durch die Schlitze hindurchgehen, auf dem Schirm zu sehen sein, man würde also nur zwei Streifen sehen.  
+Stattdessen beobachtete Young mehrere helle und dunkle Streifen, die sich über eine große Fläche erstreckten. Dieses Phänomen konnte nur durch die Wellennatur des Lichts erklärt werden. Die Wellen, die durch die Spaltöffnungen laufen, überlagern sich und erzeugen abwechselnd dunkle und helle Flecken (Minima und Maxima), da konstruktive Interferenz Maxima und destruktive Minima erzeugt.
 
-Mathematisch würde man diesen Überlagerungszustand wie folgt beschreiben:
+Das Doppelspalt-Beugungsexperiment stellte die Newtonsche Lichttheorie in Frage und lieferte starke Beweise für das Wellenmodell von Huygens, da dieses Experiment vor der Entwicklung der Quantenmechanik und des Konzepts des Welle-Teilchen-Dualismus durchgeführt wurde.
+
+![Double-slit Experiment](/posts/assets/entries/superposition/ds_exp.png)
+
+## Wellen-Teilchen-Dualität
+
+Obwohl Youngs Experiment das Wellenmodell des Lichts bestätigte, blieben seine Einschränkungen weiterhin ungelöst, was dazu führte, dass Forscher im 19. und 20. Jahrhundert dieses Modell in Frage stellten. Die Entdeckung des fotoelektrischen Effekts (Licht kann Elektronen aus den Atomen verschiedener Metalle herausschlagen) war ein bedeutender Bruch dieses Modells. Im Jahr 1902 untersuchte Philipp Lenard, wie die Energie der emittierten Fotoelektronen mit der Intensität und der Frequenz des Lichts variierte. Er maß auch die Größe des Stroms, der durch die ausgeschlagenen Elektronen erzeugt wurde.
+
+Eine variable Lichtquelle wurde verwendet, um eine positiv geladene Metallplatte (Kathode) in einem evakuierten Röhrensystem (Vakuum) zu beleuchten. Die ausgestrahlten Elektronen, die als Fotoelektronen bezeichnet werden, bewegten sich in Richtung des negativ geladenen Metalls (Anode). Aber die experimentellen Ergebnisse stimmten nicht mit den Vorhersagen überein, die auf Huygens' Modell basierten. 1905 formulierte Albert Einstein das "quantum model of light" auf Grundlage dieses Konzepts und der experimentellen Beobachtungen: Licht besteht aus Photonen, die diskrete Energiepakete sind, was zurück zum Teilchenverhalten führt. Louis de Broglie führte 1924 dann die Idee der Elektronenwellen ein, die das Konzept von Elektronen sowohl als Teilchen als auch als Welle vereinte und eine ähnliche relativistische Formulierung von Einstein einige Jahre zuvor verband. De Broglies Vorschlag der „Wellen-Teilchen-Dualität“ der Elektronen führte zu Schrödingers Wellengleichung für die Bewegung der Elektronen, die heute als „Schrödinger-Gleichung“ bekannt ist:
+
+$$ i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H} \ket{\Psi(t)} $$
+
+![Discussion](/posts/assets/entries/superposition/superpos_disc.png)
+
+## Schrödingers Katze
+
+In der Quantenmechanik führt die Wellen-Teilchen-Dualität zu einem Konzept, das als „Superposition“ bezeichnet wird:
 
 $$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
 
-Nachdem wir jedoch unser Qubit gemessen haben (z.B. mit Hilfe unserer schicken Messgeräte), wird das Qubit letztendlich eine „1“ oder „0“ sein oder allgemein als „1“ oder „0“ dargestellt, wobei die Wahrscheinlichkeit, in einem der beiden Zustände zu landen, durch die beiden Vorfaktoren ausgedrückt wird, deren Quadrate gleich 1 sein müssen:
+Ein Teilchen, wie beispielsweise ein Elektron, zeigt sowohl wellenartige als auch teilchenartige Eigenschaften. Aufgrund seiner Wellennatur kann es gleichzeitig in mehreren Wellenpfaden existieren, sozusagen in einer Superposition von Zuständen. Durch die Messung des Teilchens kollabiert diese Superposition in einen der Zustände, ein Phänomen, das als „Wellenfunktionskollaps“ bekannt ist.
 
-$$ |\alpha|^2 + |\beta|^2 = 1$$
+Im Jahr 1935 formulierte der Physiker Erwin Schrödinger folgendes Gedankenexperiment als Analogie. In eine Box werden folgende Sachen eingesperrt: eine Katze und ein tödliches Gift, das abhängig vom Zerfall eines radioaktiven Atoms in der Box zu einem unbestimmten Zeitpunkt freigesetzt werden kann. Wenn das Atom zerfällt, zerbricht die Giftflasche und die Katze stirbt. Wenn das Atom nicht zerfällt, bleibt die Katze am Leben. Laut der Quantenmechanik ist die Katze, bis die Box geöffnet wird und man ihren Zustand ermitteln kann, gleichzeitig sowohl lebendig als auch tot. Der Zustand des Systems ist eine Quanten-Superposition dieser beiden Möglichkeiten.
+Das Bild unten veranschaulicht diese Superposition, wobei der Zustand der Katze als Quanten-Zustandsvektor dargestellt wird. Er kombiniert die beiden gleichermaßen wahrscheinlichen (\frac{1}{\sqrt{2}}) Möglichkeiten, dass die Katze lebendig oder tot ist. Das Öffnen der Box wird das System in einen der beiden Zustände kollabieren lassen. Die folgende Gleichung stellt eine Superposition dar, auf die der Hadamard-Gate angewendet wird:
 
-Das Interessante daran ist jedoch, dass das Qubit zufällig entscheidet, welchen Wert, also entweder „1“ oder „0“ oder allgemein als `|1>` oder `|0>` dargestellt, es bei der eigentlichen Messung annehmen will.
+$$ H = \frac{1}{\sqrt{2}} \begin{pmatrix}1&1\\1&-1\end{pmatrix} $$
 
-Eine Möglichkeit zur Veranschaulichung dieser „zufälligen Auswahl“ ist eine so genannte „Bloch-Kugel“, bei der die Wahrscheinlichkeit der Auswahl von `|1>` oder `|0>` durch einen Pfeil dargestellt wird, der vom Mittelpunkt der Oberfläche zur Kugel zeigt.
+$$ \ket{\Psi} = \frac{1}{\sqrt{2}} \left( \alpha \ket{0} + \beta \ket{1} \right) = \frac{1}{\sqrt{2}} \left( \ket{0} + \ket{1} \right) $$
 
-### Visualisierung eines Qubit-Zustands
+![Schrödinger's cat](/posts/assets/entries/superposition/superpos_cat.png)

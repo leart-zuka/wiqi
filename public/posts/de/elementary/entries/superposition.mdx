@@ -1,39 +1,64 @@
 ---
 title: "Superposition"
-subtitle: "Das Konzept Superposition und dessen Geschichte (einfach)"
-author: "Helena Köhler"
+subtitle: "Das Konzept der Superposition und dessen Geschichte (einfach)"
+author: "Paula García-Mochales, Helena Iréne Köhler, Laura Rojo Guerrero"
 date: "2024-01-08"
 ---
 
-# Intro
+## Korpuskeltheorie
 
-Heute wollen wir die Unterschiede zwischen einem Bit, das in unserer alltäglichen Elektronik und überall dort, wo Daten verarbeitet werden, verwendet wird, und einem Qubit, das die Grundlage eines Quantencomputers bildet, verstehen.
+Die Korpuskeltheorie von Sir Isaac Newton war eine der ersten wissenschaftlichen Ideen darüber, wie Licht funktioniert.
+Diese Theorie besagt, dass Licht aus winzigen Teilchen besteht, die Korpuskeln genannt werden (was „kleine Teilchen“ bedeutet). Man dachte, diese Teilchen kämen von Lichtquellen wie der Sonne und bewegten sich in geraden Linien mit einer bestimmten Geschwindigkeit. Ihre Wechselwirkungen mit Dingen wie Oberflächen, Wänden und unseren Augen folgen einfachen physikalischen Regeln.
 
-Aber zuerst müssen wir uns ein Standard-Bit ansehen, bevor wir zu seinem Quanten-Geschwisterchen übergehen.
+Newton entwickelte diese Idee durch seine Arbeiten in der Optik. Er glaubte nicht an die Vorstellung, dass Licht sich wie Wellen verhält. Er argumentierte, dass man Ton hinter einem Hindernis hören kann, aber Licht nicht sehen kann, was seine Ansicht stützte, dass Licht ein Teilchen ist. Doch seine Theorie hatte Probleme.
+Zum Beispiel dachte Newton, dass verschiedene Farben des Lichts von Teilchen unterschiedlicher Größe stammen, aber Experimente konnten dies nicht beweisen. Auch einige Effekte, wie Interferenz (wenn Lichtwellen sich mischen und helle und dunkle Muster erzeugen), passten nicht zu seiner Theorie. Diese Lücken zeigten die Grenzen der Korpuskeltheorie auf.
 
-Danach werden wir uns ansehen, wie wir diese beiden neu erlernten Konzepte umwandeln können und wie sich Qubits dank ihrer Quanteneigenschaften ganz anders verhalten.
+![Newton](/posts/assets/entries/superposition/light_particle.png)
 
-## Bit
+## Huygens’ Wellenmodell des Lichts
 
-Ein Bit ist die grundlegendste Informationseinheit, wenn es um Daten geht, die z.B. von Computern verarbeitet werden.
-Es speichert einen Wert, der entweder als „1“ oder „0“ (oder „ein“ oder „aus“) dargestellt werden kann, ähnlich wie ein Lichtschalter entweder auf „ein“ oder „aus“ stehen kann.
+Zur gleichen Zeit hatte ein anderer Wissenschaftler, Christiaan Huygens, eine andere Idee. Er sagte, dass sich Licht wie eine Welle verhält, ähnlich wie Wellen auf Wasser.
+Huygens schlug vor, dass Licht als Wellen reist, die sich in alle Richtungen ausbreiten. Er erklärte, dass jeder Punkt in einer Welle kleinere Wellen erzeugt, die Wellenfronten genannt werden, und diese Wellenfronten kombinieren sich, um die Gesamtwelle zu bilden. Dies half, Dinge wie zu erklären:
 
-## Qubit
+- Reflexion (Licht, das von Oberflächen zurückgeworfen wird),
+- Brechung (Licht, das sich biegt, wenn es in etwas wie Wasser eintritt) und
+- Beugung (Licht, das sich um Objekte biegt).
+Huygens’ Wellenmodell erklärte viele Dinge über Licht, aber es war nicht perfekt. Es konnte einige spätere Entdeckungen wie den fotoelektrischen Effekt nicht erklären, der zeigte, wie Licht Elektronen von Metalloberflächen abstoßen kann. Diese Entdeckungen führten schließlich zu neuen Ideen über Licht.
 
-Ein Qubit ist leider nicht so einfach wie ein normales Bit und erfordert ein wenig Mathematik, um es richtig zu definieren.
+![Newton vs Huygen](/posts/assets/entries/superposition/light_waves.png)
 
-Im Wesentlichen kann ein Qubit als Überlagerung von zwei Basiszuständen verstanden werden. Es ist also so, als ob wir die beiden Ergebnisse unseres Bits (also „1“ und „0“) überlagern würden.
+## Das Doppelspalt-Experiment
 
-Mathematisch würde man diesen Überlagerungszustand wie folgt beschreiben:
+Im Jahr 1801 führte der Wissenschaftler Thomas Young ein Experiment durch, das zeigte, dass Licht sich wie Wellen verhält. Er ließ Licht durch zwei winzige Spalte auf eine Leinwand strahlen.
+Die Korpuskeltheorie von Newton und das Wellenmodell von Huygens sagten unterschiedliche Ergebnisse voraus:
 
-$$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
+Wenn Licht aus Teilchen besteht, würde man zwei helle Stellen auf der Leinwand sehen, wo die Teilchen durch die Spalte gingen.
+Aber wenn Licht sich wie Wellen verhält, würden die Wellen sich mischen und ein Muster aus hellen und dunklen Bändern auf der Leinwand erzeugen.
 
-Nachdem wir jedoch unser Qubit gemessen haben (z.B. mit Hilfe unserer schicken Messgeräte), wird das Qubit letztendlich eine „1“ oder „0“ sein oder allgemein als „1“ oder „0“ dargestellt, wobei die Wahrscheinlichkeit, in einem der beiden Zustände zu landen, durch die beiden Vorfaktoren ausgedrückt wird, deren Quadrate gleich 1 sein müssen:
+Young beobachtete die hellen und dunklen Bänder, die nur erklärt werden konnten, wenn Licht sich wie Wellen verhält. Dieses Experiment stellte eine große Herausforderung für Newtons Korpuskeltheorie dar und lieferte starke Beweise für Huygens' Wellenmodell.
 
-$$ |\alpha|^2 + |\beta|^2 = 1$$
+![Double-slit Experiment](/posts/assets/entries/superposition/ds_exp.png)
 
-Das Interessante daran ist jedoch, dass das Qubit zufällig entscheidet, welchen Wert, also entweder „1“ oder „0“ oder allgemein als `|1>` oder `|0>` dargestellt, es bei der eigentlichen Messung annehmen will.
+## Wellen-Teilchen-Dualität
 
-Eine Möglichkeit zur Veranschaulichung dieser „zufälligen Auswahl“ ist eine so genannte „Bloch-Kugel“, bei der die Wahrscheinlichkeit der Auswahl von `|1>` oder `|0>` durch einen Pfeil dargestellt wird, der vom Mittelpunkt der Oberfläche zur Kugel zeigt.
+Youngs Experiment unterstützte das Wellenmodell des Lichts, aber spätere Entdeckungen zeigten, dass es nicht die ganze Geschichte war. Im 19. und 20. Jahrhundert fanden Wissenschaftler heraus, dass Licht auch in einigen Situationen wie Teilchen verhält.
+Eine wichtige Entdeckung war der fotoelektrische Effekt. Im Jahr 1902 untersuchte Philipp Lenard, wie Licht Elektronen aus Metallen herausschlagen kann. Er fand heraus, dass dieser Effekt von der Farbe (oder Frequenz) des Lichts abhängt, nicht nur von seiner Helligkeit, was nicht mit Huygens' Wellenmodell übereinstimmte.
 
-### Visualisierung eines Qubit-Zustands
+Im Jahr 1905 erklärte Albert Einstein dies, indem er vorschlug, dass Licht aus winzigen Energiepaketen besteht, die Photonen genannt werden. Dies brachte die Vorstellung von Licht als Teilchen zurück. Aber da Photonen auch wie Wellen agieren können, führte dies zu einem neuen Konzept: der Wellen-Teilchen-Dualität.
+1924 erweiterte Louis de Broglie diese Idee, indem er vorschlug, dass nicht nur Licht, sondern auch Teilchen wie Elektronen sich wie Wellen verhalten können. Dies wurde zu einer Schlüsselidee der Quantenmechanik.
+
+![Discussion](/posts/assets/entries/superposition/superpos_disc.png)
+
+## Schrödingers Katze
+
+Das seltsame Verhalten von Teilchen, die sowohl wie Wellen als auch wie Teilchen agieren, führte zu noch seltsameren Ideen in der Quantenmechanik. Eine dieser Ideen wird Superposition genannt, was bedeutet, dass ein Teilchen gleichzeitig in mehreren Zuständen existieren kann, bis es beobachtet wird.
+Um dies zu erklären, stellte sich der Physiker Erwin Schrödinger ein Gedankenexperiment mit einer Katze vor:
+
+Eine Katze wird in eine Box gesetzt, die ein Gift enthält, dessen Freisetzung von einem zufälligen Ereignis abhängt, wie dem Zerfall eines radioaktiven Atoms.
+
+Bis jemand die Box öffnet, befindet sich die Katze in einer Superposition—sowohl lebendig als auch tot zur gleichen Zeit.
+
+Das Öffnen der Box zwingt das System dazu, sich für einen Zustand zu entscheiden: Die Katze ist entweder lebendig oder tot.
+Dieses Gedankenexperiment zeigt, wie Quanten-Systeme in mehreren Zuständen existieren können, bis wir sie messen.
+
+![Schrödinger's cat](/posts/assets/entries/superposition/superpos_cat.png)

@@ -1,71 +1,56 @@
 ---
 title: "Superposition"
 subtitle: "The concept of Superposition and its history (difficult)"
-author: "Helena Köhler"
+author: "Helena Iréne Köhler"
 date: "2024-01-08"
 ---
 
-# Intro
+## Corpuscular Theory of Light:
 
-Today we want to understand the differences between a bit, that's being used in our day to day electronics and everything where data is being handled, and a qubit, which forms the basis of a quantum computer.
+Sir Isaac Newton's corpuscular theory was one of the earliest scientific attempts at understanding the nature of light. In optics, the corpuscular theory of light states that light is made up of small discrete particles called "corpuscles" (little particles). These particles were believed to be emitted from luminous sources and travel in straight lines at a finite speed. Their interactions with materials such as surfaces, walls, and the human eye were assumed to follow Newtonian physics. Isaac Newton laid the foundations for this theory through his work in optics. Newton rejected the wave theory of light, primarily because he believed, that unlike sound, light lacked diffraction characteristics. He argued, that one can hear sound from behind an obstacle, but can’t see light, thus supporting his view that light is a particle. 
+However, his model had key limitations. For example, Newton proposed that different colors of light resulted from corpuscles of various sizes, but this claim could not be experimentally validated. Moreover, phenomena like interference—where light waves can constructively and destructively interfere with each other—could not be explained by his particle theory. This lack of an explanation for wave-like phenomena such as interference pointed to the limitations of the corpuscular model.
 
-But first we have to look at a standard bit is before we move forward to its quantum sibling.
+![Newton](/posts/assets/entries/superposition/light_particle.png)
 
-Afterwards we're going to take a look at how we can transform these two newly learned concepts and how qubits behave much more differently thanks to their quantum properties.
+## Huygens’ Wave Model of Light:
 
-## Bit
+In contrast to Newton's corpuscular theory, Christiaan Huygens' wave model of light proposed that light behaves as a wave, specifically a longitudinal wave. In the 17th century, Huygens suggested that light's propagation could be better understood by observing the motion of water waves. In addition, he extended the understanding of light as a wave by proposing that a primary wave front can be perceived as infinite number of points, each point generating a secondary wavelet in a spherical manner. The interference of these secondary wavelets create wavefronts of varying shapes and direction. His model is thereby also often used to understand the concept of diffraction. At the time of this proposal, Huygens was able to explain most of the properties of light including refraction, reflection & partial refraction and reflection, as well as diffraction. 
+However, similarly to Newton’s model, this model also showed limitations. While it was successful in explaining many of light's classical properties, it could not account for the quantum mechanical phenomena observed later, such as the photoelectric effect, the Compton effect, or the Raman effect. These limitations ultimately led to further developments in the understanding of light.
 
-A bit is the most basic unit of information when it comes data that is being handled, e.g. by computers.
-It stores one value that can be represented as either a "1" or "0" (or "on" or "off"), similar to how a light switch can either be in an "on" or "off" position.
+![Newton vs Huygen](/posts/assets/entries/superposition/light_waves.png)
 
-## Qubit
+## The Double-slit Experiment
 
-A qubit is unfortunately not as simple as a regular bit and involves a bit of math to properly define it.
+In 1801, Thomas Young conducted an experiment using a double-slit apparatus, providing clear evidence of light's wave-like nature. A monochromatic light source was directed through two narrow slits, creating an interference pattern on a screen placed behind them. A viewing screen was set-up directly behind the apparatus. Newton's corpuscular (particle) model of light and Huygens' wave model of light made different predictions regarding the pattern of light formed on the screen. According to Newton, if light was a particle or consisted of particles, only light particles which passed through the slits would be observed on the viewing screen, one would thereby only see two bands.  
+Instead, Young observed multiple bright and dark bands spanning a large area. This phenomenon could only be explained by the wave nature of light. The waves passing through the slits interfere with each other, creating alternating dark and bright spots (minima and maxima), since constructive interference produce maxima and destructive produce minima.
 
-In essence a qubit can be understood as the superposition of two basis states. So it's as if we were to overlap the two outcomes of our bit (so "1" and "0").
+The double-slit diffraction experiment challenged Newton’s theory of light and provided strong evidence supporting Huygens’ wave model, as this experiment was conducted before the development of quantum mechanics and the concept of wave–particle duality.
 
-Mathematically one would write this superposition state as:
+![Double-slit Experiment](/posts/assets/entries/superposition/ds_exp.png)
+
+## Wave-Particle Duality
+
+Although Young’s experiment validated the wave model of light, it’s limitations were still not solved and led to researchers in the 19th and 20th century challenging this model, the discovery of the photoelectric effect (light can eject electrons from the atoms of several metals) being a major breakdown of this model. In 1902, Philipp Lenard, studied how the energy of the emitted photoelectrons varied with the intensity and frequency of light. He also measured the magnitude of current produced by the ejected electrons. 
+
+The variable light source was used to illuminate a positively charged metal plate (cathode) in an evacuated tube (vacuum). The ejected electrons, which are termed photoelectrons, were traveling towards the negatively charged metal (anode). But the experimental results did not align with the predictions made based on Huygen’s model. In 1905, Albert Einstein formulated the “quantum model of light” from this concept and the experimental observations: light consists of photons which are discrete packets of energy, leading back to particle behavior. It was Louis de Broglie, who then introduced the idea of electron waves in 1924, merging the idea of them as a particle, as well as as a wave, also connecting to a similar relativistic formulation of Einstein a few years prior. De Broglie's proposal of “wave–particle duality” of electrons led to Schrödinger’s wave equation of motion for electrons, now known as “Schrödinger’s equation”:
+
+$$ i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H} \ket{\Psi(t)} $$
+
+![Discussion](/posts/assets/entries/superposition/superpos_disc.png)
+
+## Schrödinger’s Cat
+
+In quantum mechanics, the wave-particle duality leads to a concept referred to as “superposition”. 
 
 $$ \ket{\Psi} = \alpha \ket{0} + \beta \ket{1} $$
 
-However after measuring our qubit (i.e. by looking at our fancy measurement devices), the qubit will ultimately end up being a "1" or "0" or commonly represented as `|1>` or `|0>`, where the probabilities of landing in either state are expressed via the two prefactors whose squares must be equal to 1:
+A particle, such as an electron, exhibits both wave-like and particle-like behavior. Due its wave nature, it can exist in multiple wave paths simultaneously, in a superposition of states. By measuring the particle, this superposition collapses into one of these states, a phenomena known as “wave function collapse”. 
 
-$$ |\alpha|^2 + |\beta|^2 = 1$$
+In 1935 physicist Erwin Schrödinger formulated the following thought experiment as an analogy. A hypothetical cat is locked into a box with a deadly poison, which may or may not be released at a random point depending on the decay of a radioactive atom in the box. If the atom decays, the poison flask breaks and the cat dies. If the atom does not decay, the cat stays alive. According to quantum mechanics, until one opens the box, the cat is to be considered simultaneously both alive and dead. The system's state is a quantum superposition of these two possibilities.
+The image below illustrates this superposition, where the cat’s state is represented as a quantum state vector. It combines the two equally probable (\frac{1}{\sqrt{2}}) possibilities of the cat being alive or dead. Opening the box will collapse the system into only one of the two states. The following equation presents a superposition, to which the Hadamard gate is applied:
 
-But the interesting features lie in the fact that the qubit randomly decides which value, so either "1" or "0" or commonly represented as `|1>` or `|0>` when talking about qubits, it wants to hold when performing the actual measurement.
+$$ H = \frac{1}{\sqrt{2}} \begin{pmatrix}1&1\\1&-1\end{pmatrix} $$
 
-One way of visualizing how this "random picking" might work is with a so called `Bloch Sphere`, where the chances of picking `|1>` or `|0>` are represented by an arrow pointing from the center of the surface to the sphere.
+$$ \ket{\Psi} = \frac{1}{\sqrt{2}} \left( \alpha \ket{0} + \beta \ket{1} \right) = \frac{1}{\sqrt{2}} \left( \ket{0} + \ket{1} \right) $$
 
-### Visualization of a qubit state
-
-A so called qubit state, so basically the chances of the qubit either being a `|1>` or `|0>`, can be described by a so called `Bloch Sphere`, named after the physicist Felix Bloch.
-
-![Bloch Sphere](/posts/assets/quantum_tuesdays/Bits_to_qubits/init.png)
-
-The main ideas are:
-
-- The further the arrow points up or down, the higher the chance that when measuring the state of the qubit, it will either show `|0>` or `|1>`. This also means that if the arrow points along the equator, the chances of getting either `|0>` or `|1>` are 50/50.
-
-- After the measurement, depending on the outcome, the qubit will always point either fully up or fully down, as that's when it `collapses` to its definite value.
-
-- Its rotation, so whether it points along the x- or y-axis also plays a role, but is beyond the scope of this post.
-
-This all seems very interesting, but now we also need to understand how to manipulate these qu-/bits in order to make them useful for our, hopefully good-natured, purposes.
-
-# Logical Gates
-
-Logical gates are components of electrical or quantum circuits that allow us to tansform and manipulate the data that is being stored in bits and qubits.
-
-## Bits
-
-Bits as stated before either have a value of "1" or "0", and logical gates allow us to to change these values itself or use them to change values of other bits.
-
-Two important gates, among the many others, are the so called `NOT` and `AND` gate.
-
-### NOT - Gate
-
-A `NOT` gate behaves ins a rather simple fassion, by taking our input and negating it, thus turning a "1" into a "0" and vice verca.
-
-![NOT gate](/posts/assets/quantum_tuesdays/Bits_to_qubits/NOT.jpg)
-
-### AND - Gate
+![Schrödinger's cat](/posts/assets/entries/superposition/superpos_cat.png)
