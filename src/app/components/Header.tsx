@@ -108,7 +108,7 @@ const Header = (props: HeaderProps) => {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: ["quantum_tuesdays", "entries"],
+          folder: ["quantum_tuesdays"],
         }),
       });
       const data = await response.json();
