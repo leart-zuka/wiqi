@@ -104,6 +104,7 @@ export default function Page({ params }: { params: { locale: string } }) {
               date={file.metadata.date}
               locale={params.locale}
               difficulty={difficulty}
+              folder="quantum_tuesdays"
             />
           </div>
         ))}
