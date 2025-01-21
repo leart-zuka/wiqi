@@ -418,6 +418,13 @@ const Header = (props: HeaderProps) => {
                 >
                   Quantum Tuesdays
                 </Link>
+                <Link
+                  href={`/${props.locale}/entries`}
+                  className="block w-full py-2 hover:underline"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Entries
+                </Link>
               </li>
             </ul>
           </nav>
