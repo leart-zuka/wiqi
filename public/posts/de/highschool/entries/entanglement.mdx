@@ -1,0 +1,38 @@
+---
+title: "Verschränkung"
+subtitle: "Verschränkung: von EPR bis zu der Bellschen Ungleichung (einfach)"
+author: "Paula García-Mochales, Tim Kaiser, Helena Iréne Köhler, Laura Rojo Guerrero"
+date: "2024-01-08"
+---
+
+## Verschränkung
+
+Verschränkung ist ein Quantenphänomen, bei dem zwei Teilchen so eng miteinander verbunden sind, dass ihre Eigenschaften voneinander abhängen, egal wie weit sie voneinander entfernt sind. Anstatt unabhängig zu sein, ist der Quantenzustand des einen Teilchens direkt mit dem Quantenzustand des anderen verbunden. Das bedeutet, dass man ein Teilchen nicht vollständig beschreiben kann, ohne auch das andere zu beschreiben.
+Um dies zu verstehen, stellen Sie sich zwei Münzen vor. Eine Münze hat zwei mögliche Ergebnisse, wenn sie geworfen wird: Kopf (K) oder Zahl (Z). In ähnlicher Weise können Teilchen Zustände wie Spin nach oben (\uparrow) oder Spin nach unten (\downarrow) haben. Normalerweise ergeben sich beim Werfen von zwei Münzen vier mögliche Kombinationen: \text{KK, KZ, ZK, ZZ}
+
+![Coin entanglement](/posts/assets/entries/entanglement/coin_entanglement.png)
+
+Wenn die beiden Münzen jedoch verschränkt sind, bestimmt das Werfen einer Münze das Ergebnis der anderen. Wenn zum Beispiel Münze A Kopf zeigt, weiß man sofort, dass Münze B Zahl zeigt, noch bevor man sie ansieht. Diese Korrelation besteht auch dann, wenn die Münzen (oder Teilchen) weit voneinander entfernt sind.
+In der Quantenmechanik lässt sich diese Beziehung mathematisch durch einen Quantenzustand, den so genannten Bell-Zustand, ausdrücken, der ein maximal verschränktes System darstellt. Ein solcher Bell-Zustand ist:
+
+\ket{\Psi^-} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\big),
+
+wobei \ket{\uparrow\downarrow} bedeutet, dass Teilchen A ein Aufwärtsspin und Teilchen B ein Abwärtsspin hat, und \ket{\downarrow\uparrow} bedeutet das Gegenteil.
+
+## Das EPR-Gedankenexperiment
+
+1935 verwendeten Albert Einstein, Boris Podolsky und Nathan Rosen (EPR) die Verschränkung in einem Gedankenexperiment, um zu argumentieren, dass die Quantenmechanik unvollständig sein könnte. Sie wollten zeigen, dass die Quantenmechanik nicht alles, was auf der Teilchenebene geschieht, erklären kann.
+Stellen Sie sich vor, zwei Teilchen werden zusammen erzeugt und verschränken sich. Dann werden sie weit auseinander bewegt. Jedes Teilchen hat eine Eigenschaft, die Spin genannt wird und die entweder nach oben oder nach unten gerichtet sein kann. Nach der Quantenmechanik befinden sich die beiden Teilchen in einer Überlagerung, die wie folgt beschrieben wird, bevor man den Spin der beiden Teilchen messen kann:
+
+\ket{\Psi} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow}\big)
+
+Wenn man den Spin eines Teilchens (z. B. Teilchen A) misst, „kollabiert“ die Wellenfunktion, und das Ergebnis des zweiten Teilchens (z. B. Teilchen B) wird sofort bekannt. Wenn man zum Beispiel feststellt, dass Teilchen A einen positiven Spin hat, muss Teilchen B einen negativen Spin haben und umgekehrt.
+Einstein fand diese Idee beunruhigend. Wenn Teilchen A und Teilchen B weit voneinander entfernt sind, wie kann dann die Messung des einen Teilchens sofort das andere beeinflussen? Er nannte dies „spukhafte Fernwirkung“ und schlug vor, dass die Teilchen verborgene Informationen (oder verborgene Variablen) tragen könnten, die ihre Spins von Anfang an bestimmen.
+
+## Die Bellsche Ungleichung
+
+1964 schlug der Physiker John Bell einen Test vor, um festzustellen, ob die Quantenmechanik oder Theorien mit verborgenen Variablen korrekt sind.Bell leitete eine mathematische Ungleichung ab, die heute als Bellsche Ungleichung bezeichnet wird und Grenzen für die Ergebnisse von Messungen setzt, wenn versteckte Variablen existieren.
+Die Bell'sche Ungleichung für zwei verschränkte Teilchen lässt sich beispielsweise wie folgt formulieren:
+|E(a, b) - E(a, c)| \leq 1 + E(b, c),
+wobei E(a,b)E(a, b) die Korrelation zwischen Messungen an Teilchen mit den Einstellungen aa und bb ist.Wenn experimentelle Ergebnisse gegen die Bellsche Ungleichung verstoßen, bedeutet dies, dass versteckte Variablen die Verschränkung nicht erklären können.
+Experimente, in denen die Bellsche Ungleichung getestet wird, zeigen durchweg Verstöße, was beweist, dass die Quantenmechanik - und nicht versteckte Variablen - das Verhalten verschränkter Teilchen beschreibt.Diese Ergebnisse zeigen, dass die Verbindung zwischen verschränkten Teilchen ein grundlegender Aspekt der Quantennatur ist und keine versteckte „Botschaft“. (edited)

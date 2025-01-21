@@ -51,7 +51,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: "quantum_tuesdays",
+          folder: "entries",
         }),
       });
       const data = await response.json();
@@ -104,7 +104,7 @@ export default function Page({ params }: { params: { locale: string } }) {
               date={file.metadata.date}
               locale={params.locale}
               difficulty={difficulty}
-              folder="quantum_tuesdays"
+              folder="entries"
             />
           </div>
         ))}
