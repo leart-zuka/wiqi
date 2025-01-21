@@ -301,6 +301,15 @@ const Header = (props: HeaderProps) => {
                       <p className="dark:text-slate-500">Quantum Tuesdays</p>
                     </a>
                   </li>
+                  <li>
+                    <a
+                      className="transition-all duration-300 ease-in-out hover:scale-105"
+                      style={{ color: dynamicTextColor }}
+                      href={`/${props.locale}/entries`}
+                    >
+                      <p className="dark:text-slate-500">Entries</p>
+                    </a>
+                  </li>
                 </ul>
               </nav>
 
