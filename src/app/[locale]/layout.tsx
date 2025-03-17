@@ -42,8 +42,15 @@ export default async function LocaleLayout({
         {/* Preload theme to prevent FOIT */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <meta charSet="utf-8" />
-        <meta name="title" property="og:title" content="wiqi" />
-        <meta name="image" property="og:image" content="/public/wq.png" />
+        <meta property="og:title" content="WiQi" />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/wq.png`}
+        />
+        <meta
+          property="og:description"
+          content="Teaching the world about the world of quanta. By Humans for Humans"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>WiQi</title>
       </head>
