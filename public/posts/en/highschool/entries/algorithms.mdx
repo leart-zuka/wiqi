@@ -1,8 +1,9 @@
+```
 ---
 title: "Algorithms"
 subtitle: "Algorithms and computational complexity (middle)"
 author: "Helena Iréne Köhler"
-date: "2024-01-08"
+date: "2025-01-08"
 ---
 
 ## Computational Complexity Theory and Big O Notation
@@ -22,7 +23,9 @@ Our “algorithm” to the left isn’t very good, but it also isn’t awful, as
 
 Now, let’s consider our earlier question again: how do I find a cat in a million boxes the most computationally efficient, in regards to the Big O notation and the computational complexity chart? A simple algorithm to find the cat would be, as we did before, to search all possible boxes and keep a running record of all the ones that were already opened. On a classical computer it would take O(n) operations to check each box one by one, which, as depicted on the right, would take 1.000.000 steps on average. With increasing input, the complexity of the algorithm becomes more important.
 
-Grover’s algorithm, also known as quantum search algorithm offers a quadratic advantage to this method by speeding up the classical approach, requiring only O( {\sqrt{n}} ) operations. The number of operations is thus reduced to around 1.000 steps (n = 1.000.000, O({\sqrt{n}}) = {\sqrt{1.000.000}} = 1.000), as visualized on the left. This significant reduction in computational complexity makes Grover's algorithm much more efficient for large-scale searches.
+Grover’s algorithm, also known as quantum search algorithm offers a quadratic advantage to this method by speeding up the classical approach, requiring only \( O( {\sqrt{n}} ) \) operations. The number of operations is thus reduced to around 1.000 steps (n = 1.000.000, O({\sqrt{n}}) = {\sqrt{1.000.000}} = 1.000), as visualized on the left. This significant reduction in computational complexity makes Grover's algorithm much more efficient for large-scale searches.
 The algorithm was developed by Lov Grover in 1996 and was the second major quantum algorithm proposed and is an important example of how quantum computing can offer advantages over classical computing for certain types of problems.
 
 ![Grovers' Algorithm](/posts/assets/entries/algorithms/grover.png)
+
+```
