@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
-import { getPostContent } from "@/app/components/utils";
+import { getPostContent } from "@/app/components/server_utils";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import wordsCounter from "word-counting";

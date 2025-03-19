@@ -151,7 +151,8 @@ The wiqi project revolutionizes content management by seamlessly integrating mul
     │   │   │   ├── PostPreview.tsx
     │   │   │   ├── S_Button.tsx
     │   │   │   ├── button.css
-    │   │   │   └── utils.ts
+    │   │   │   └── server_utils.ts
+    │   │   │   └── client_utils.ts
     │   │   ├── favicon.ico
     │   │   └── globals.css
     │   ├── i18n.ts
@@ -657,9 +658,9 @@ Run the test suite using the following command:
    git checkout -b new-feature-x
    ```
 4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
+5. **Commit Your Changes**: Commit with a clear message describing your updates (please make sure you use the following [commit guidelines](https://www.conventionalcommits.org)).
    ```sh
-   git commit -m 'Implemented new feature x.'
+   git commit -m 'feat: Implemented new feature x.'
    ```
 6. **Push to github**: Push the changes to your forked repository.
    ```sh
@@ -667,6 +668,17 @@ Run the test suite using the following command:
    ```
 7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
 8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
+</details>
+
+<details closed>
+<summary>Pull Request Guidelines</summary>
+
+1. **Approval Requirement**: Before merging, your pull request must receive at least one approval from the appropriate reviewer.
+2. **Self-Merge Policy**: Once your pull request is approved, you are responsible for merging or closing it yourself. Reviewers or other contributors should not merge/close it on your behalf.
+3. **Merge Strategy**: Ensure your branch is up to date with the main branch before merging to avoid conflicts.
+4. **Respect Review Feedback**: Address requested changes before merging to maintain code quality.
+5. **Clean Up**: After merging, consider deleting your branch to keep the repository clean.
+
 </details>
 
 ## Contributer
