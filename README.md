@@ -658,9 +658,9 @@ Run the test suite using the following command:
    git checkout -b new-feature-x
    ```
 4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
+5. **Commit Your Changes**: Commit with a clear message describing your updates [please make sure you use the following commit guidelines](https://www.conventionalcommits.org).
    ```sh
-   git commit -m 'Implemented new feature x.'
+   git commit -m 'feat: Implemented new feature x.'
    ```
 6. **Push to github**: Push the changes to your forked repository.
    ```sh
