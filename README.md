@@ -670,6 +670,17 @@ Run the test suite using the following command:
 8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
 </details>
 
+<details closed>
+<summary>Pull Request Guidelines</summary>
+
+1. **Approval Requirement**: Before merging, your pull request must receive at least one approval from the appropriate reviewer.
+2. **Self-Merge Policy**: Once your pull request is approved, you are responsible for merging or closing it yourself. Reviewers or other contributors should not merge/close it on your behalf.
+3. **Merge Strategy**: Ensure your branch is up to date with the main branch before merging to avoid conflicts.
+4. **Respect Review Feedback**: Address requested changes before merging to maintain code quality.
+5. **Clean Up**: After merging, consider deleting your branch to keep the repository clean.
+
+</details>
+
 ## Contributer
 
 <p align="left">
