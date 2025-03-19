@@ -4,8 +4,13 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import Fuse from "fuse.js";
+import {
+  replaceLocale,
+  getContrastingColor,
+  getBackgroundColorBehindNav,
+} from "./client_utils";
 
 import "./button.css";
 
@@ -26,54 +31,6 @@ type File = {
 const fuseOptions = {
   keys: ["slug", "metadata.subtitle", "metadata.date"],
 };
-
-const replaceLocale = (locale: string, pathName: string): string => {
-  return locale === "de"
-    ? pathName.replace(locale, "en")
-    : pathName.replace(locale, "de");
-};
-
-// Determine contrasting color
-function getContrastingColor(bgColor: string) {
-  const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-  if (!rgbMatch) return "black"; // Fallback if parsing fails
-
-  const r = parseInt(rgbMatch[1], 10);
-  const g = parseInt(rgbMatch[2], 10);
-  const b = parseInt(rgbMatch[3], 10);
-  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-  return luminance > 128 ? "black" : "white";
-}
-
-function getBackgroundColorBehindNav(nav: HTMLElement): string {
-  const originalPointerEvents = nav.style.pointerEvents;
-  nav.style.pointerEvents = "none";
-
-  const rect = nav.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-  const elBehindNav = document.elementFromPoint(
-    centerX,
-    centerY,
-  ) as HTMLElement;
-
-  nav.style.pointerEvents = originalPointerEvents;
-
-  if (!elBehindNav) return "rgb(255, 255, 255)";
-
-  let bgColor = window.getComputedStyle(elBehindNav).backgroundColor;
-
-  let parent = elBehindNav.parentElement;
-  while (
-    parent &&
-    (bgColor === "transparent" || bgColor === "rgba(0, 0, 0, 0)")
-  ) {
-    bgColor = window.getComputedStyle(parent).backgroundColor;
-    parent = parent.parentElement;
-  }
-
-  return bgColor;
-}
 
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();

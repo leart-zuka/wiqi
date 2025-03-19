@@ -151,7 +151,8 @@ The wiqi project revolutionizes content management by seamlessly integrating mul
     │   │   │   ├── PostPreview.tsx
     │   │   │   ├── S_Button.tsx
     │   │   │   ├── button.css
-    │   │   │   └── utils.ts
+    │   │   │   └── server_utils.ts
+    │   │   │   └── client_utils.ts
     │   │   ├── favicon.ico
     │   │   └── globals.css
     │   ├── i18n.ts
