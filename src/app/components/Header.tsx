@@ -370,14 +370,14 @@ const Header = (props: HeaderProps) => {
               <li>
                 <Link
                   href={`/${props.locale}/quantum_tuesdays`}
-                  className="block w-full py-2 hover:underline"
+                  className="block w-full py-2 hover:underline dark:text-slate-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Quantum Tuesdays
                 </Link>
                 <Link
                   href={`/${props.locale}/entries`}
-                  className="block w-full py-2 hover:underline"
+                  className="block w-full py-2 hover:underline dark:text-slate-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Entries
