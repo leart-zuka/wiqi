@@ -1,4 +1,3 @@
-```
 ---
 title: "The non-cloning theorem"
 subtitle: "Why you can't copy a quantum state? (difficult)"
@@ -10,7 +9,7 @@ date: "2025-01-20"
 
 In quantum physics we have the non-cloning theorem, which states that it is not possible to have an operation that can copy a quantum state.
 The fastest way to explain this is to use a simple equation.
-Given two quantum systems \( \ket{\psi}_A \) and \( \ket{\psi}_B \), the non-cloning theorem states that it is impossible to create a unitary operator $U$ that copies the system $\ket{\psi}_A$ to $\ket{\psi}_B$ to get $\ket{\psi}_B$.
+Given two quantum systems \( \ket{\psi}\_A \) and \( \ket{\psi}\_B \), the non-cloning theorem states that it is impossible to create a unitary operator $U$ that copies the system $\ket{\psi}_A$ to $\ket{\psi}_B$ to get $\ket{\psi}_B$.
 To see why, we can first assume that such an operator \( U \) exists.
 This is a common method of proof in mathematics.
 
@@ -28,7 +27,6 @@ If we take the inner product before cloning, we can compute:
 $$ (\ket{\psi} \otimes \ket{\phi}) \cdot \ket{e} \otimes \ket{\phi} = \braket{\psi | e}\braket{\phi | \phi}\ $$
 This is great, now let us do the same thing after using the cloning operator \( U \):
 
-
 $$ (\ket{\psi} \otimes \ket{\psi}) \cdot (\ket{e} \otimes \ket{e}) = \braket{\psi | e} \braket{\psi | e} = \braket{\psi | e}^2 $$
 Now, if we combine our two equations, we get:
 $$ \braket{\psi | e} = \braket{\psi | e}^2 $$
@@ -39,5 +37,3 @@ What is the problem with this?
 Well, the problem is a bit hidden, because this means that the states cannot be arbitrary.
 If we set \( \ket{\psi} \) to any state we want, then we have to set \( \ket{e} \) either to the same state or to an orthogonal state.
 So the theory that we cannot copy an arbitrary quantum state is true.
-
-```
