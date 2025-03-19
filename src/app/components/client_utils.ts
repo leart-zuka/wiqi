@@ -10,6 +10,11 @@ export function replaceLocale(locale: string, pathName: string) {
     : pathName.replace(locale, "de");
 }
 
+/**
+ * Determine contrasting color
+ * @param bgColor current background color
+ * @returns contrasting color based on background color
+ */
 // Determine contrasting color
 export function getContrastingColor(bgColor: string) {
   const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
@@ -22,6 +27,11 @@ export function getContrastingColor(bgColor: string) {
   return luminance > 128 ? "black" : "white";
 }
 
+/**
+ * gets the background color behind a certain HTMLElement of your choice
+ * @param nav the HTMLElement of which get the background color behind it
+ * @returns the background color behind a given HTMLelement
+ */
 export function getBackgroundColorBehindNav(nav: HTMLElement): string {
   const originalPointerEvents = nav.style.pointerEvents;
   nav.style.pointerEvents = "none";
