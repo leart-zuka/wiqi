@@ -194,7 +194,7 @@ const Header = (props: HeaderProps) => {
       className="fixed top-0 z-30 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]"
       style={{ color: dynamicTextColor }}
     >
-      <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
+      <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-32">
         <div className="mx-4 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-0">
           <div className="flex items-center justify-between">
             {/* Left side: Logo + Search */}
@@ -221,7 +221,7 @@ const Header = (props: HeaderProps) => {
               </a>
             </div>
 
-            <div className="justify-left flex w-1/2 flex-1 pl-20">
+            <div className="justify-left flex w-1/2 flex-1 pl-10 lg:pl-40 xl:pl-48 2xl:pl-96">
               <link
                 rel="stylesheet"
                 href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
