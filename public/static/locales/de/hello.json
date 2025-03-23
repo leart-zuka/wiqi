@@ -3,5 +3,8 @@
     "hello": "Willkommen beim",
     "sub hello": "Wir wollen die Welt über die Welt der Quanten belehren.",
     "hello button": "Besuchen Sie unsere aktuellen Blogposts"
+  },
+  "Posts": {
+    "average reading time": "Durchschnittliche Lesezeit"
   }
 }

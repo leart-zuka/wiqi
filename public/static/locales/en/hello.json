@@ -3,5 +3,8 @@
     "hello": "Welcome to the",
     "sub hello": "We want to teach the world about the world of quanta.",
     "hello button": "Visit our current blogposts"
+  },
+  "Posts": {
+    "average reading time": "Average reading time"
   }
 }
