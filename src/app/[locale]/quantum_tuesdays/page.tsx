@@ -17,6 +17,7 @@ type File = {
     author: string;
   };
   locale: string;
+  folder: string;
 };
 
 export default function Page({ params }: { params: { locale: string } }) {
@@ -51,7 +52,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: "quantum_tuesdays",
+          folder: ["quantum_tuesdays"],
         }),
       });
       const data = await response.json();
