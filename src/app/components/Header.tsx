@@ -13,23 +13,11 @@ import {
 } from "./client_utils";
 
 import "./button.css";
+import { File } from "@/types";
 
 interface HeaderProps {
   locale: string;
 }
-
-type File = {
-  key: string;
-  slug: string;
-  metadata: {
-    title: string;
-    subtitle: string;
-    author: string;
-    date: string;
-  };
-  locale: string;
-  folder: string;
-};
 
 const fuseOptions = {
   keys: ["slug", "metadata.subtitle", "metadata.date", "folder"],
