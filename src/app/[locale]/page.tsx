@@ -169,9 +169,8 @@ export default function Home({ params }: HomeProps) {
 
             {/* Interactive Image Display */}
             <div className="relative h-[500px] w-full">
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5"></div>
               <div
-                className="relative h-full w-full overflow-hidden rounded-2xl border border-gray-200 bg-white/30 backdrop-blur-sm dark:border-gray-800 dark:bg-slate-900/30"
+                className="relative h-full w-full overflow-hidden rounded-2xl border-gray-200 backdrop-blur-sm dark:border-gray-800"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
@@ -180,7 +179,7 @@ export default function Home({ params }: HomeProps) {
                     key={index}
                     src={`/${src}`}
                     alt={`Quantum visualization ${index + 1}`}
-                    className="absolute inset-0 h-full w-full object-contain p-8"
+                    className="absolute inset-0 h-full w-full object-contain"
                     initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                     animate={{
                       opacity: visibleIndex === index ? 1 : 0,
@@ -192,9 +191,6 @@ export default function Home({ params }: HomeProps) {
                     transition={{ duration: 0.8, ease: "easeInOut" }}
                   />
                 ))}
-                <div className="absolute bottom-4 right-4 rounded-full bg-white/80 px-3 py-1 text-xs text-gray-600 backdrop-blur-sm dark:bg-slate-800/80 dark:text-gray-300">
-                  {t("hover to interact")}
-                </div>
               </div>
             </div>
           </div>
@@ -236,7 +232,7 @@ export default function Home({ params }: HomeProps) {
               </Card>
             ))}
           </div>
-            <QuantumMap />
+          <QuantumMap />
         </div>
       </section>
 
