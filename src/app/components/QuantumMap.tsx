@@ -21,7 +21,6 @@ export default function QuantumMap() {
     const timer = setTimeout(() => {
       setLoaded(true);
     }, 300);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -94,7 +93,8 @@ export default function QuantumMap() {
   ];
 
   return (
-    <div className="relative mt-20 h-[700px] w-full overflow-hidden rounded-xl border shadow-xl">
+    // Component is hidden on screens smaller than md
+    <div className="relative mx-auto mt-20 hidden aspect-[12/7] w-full max-w-[1200px] overflow-hidden rounded-xl border shadow-xl md:block">
       {/* Munich Map Background */}
       <div className="absolute inset-0">
         <Image
@@ -124,22 +124,40 @@ export default function QuantumMap() {
             onMouseLeave={() => setHoveredNode(null)}
           >
             {node.id === "wiqi" ? (
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-purple-800 font-bold text-white shadow-[0_0_15px_rgba(91,33,182,0.6)] transition-transform duration-300 hover:scale-110">
-                <span className="text-sm">{node.label}</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-800 text-[10px] font-bold text-white shadow-[0_0_15px_rgba(91,33,182,0.6)] transition-transform duration-300 hover:scale-110 lg:h-16 lg:w-16 lg:text-sm">
+                <span>{node.label}</span>
               </div>
             ) : (
               <>
                 <div
-                  className={`flex items-center justify-center ${node.id === "center" ? "h-28 w-28" : "h-16 w-16"} ${node.id === "center" ? "bg-black/80 text-white" : "bg-white/80"} rounded-full border-2 backdrop-blur-sm ${node.id === "center" ? "border-white shadow-[0_0_20px_rgba(0,0,0,0.5)]" : "border-gray-800 shadow-lg"} transition-transform duration-300 hover:scale-110`}
+                  className={`flex items-center justify-center ${
+                    node.id === "center"
+                      ? "h-20 w-20 lg:h-28 lg:w-28"
+                      : "h-10 w-10 lg:h-16 lg:w-16"
+                  } ${
+                    node.id === "center"
+                      ? "bg-black/80 text-white"
+                      : "bg-white/80"
+                  } rounded-full border-2 backdrop-blur-sm ${
+                    node.id === "center"
+                      ? "border-white shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                      : "border-gray-800 shadow-lg"
+                  } transition-transform duration-300 hover:scale-110`}
                 >
                   {node.icon && (
                     <node.icon
-                      className={` ${node.id === "center" ? "h-14 w-14" : "h-8 w-8"} transition-colors duration-300`}
+                      className={`${
+                        node.id === "center"
+                          ? "h-8 w-8 lg:h-14 lg:w-14"
+                          : "h-5 w-5 lg:h-8 lg:w-8"
+                      } transition-colors duration-300`}
                     />
                   )}
                 </div>
                 <div
-                  className={`absolute -top-9 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/70 px-3 py-1.5 text-sm font-medium text-white shadow-md transition-all duration-300 ${hoveredNode === node.id ? "scale-110" : ""} `}
+                  className={`absolute -top-9 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/70 px-3 py-1.5 text-[0.6rem] font-medium text-white shadow-md transition-all duration-300 lg:text-sm ${
+                    hoveredNode === node.id ? "scale-110" : ""
+                  }`}
                 >
                   {node.label}
                 </div>
