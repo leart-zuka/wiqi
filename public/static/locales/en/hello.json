@@ -3,5 +3,13 @@
     "hello": "Welcome to the",
     "sub hello": "We want to teach the world about the world of quanta.",
     "hello button": "Visit our current blogposts"
+  },
+  "About Us": {
+    "main 1": "We are a group of passionate students from PushQuantum e.V., a student initiative based in Munich. Our team is made up of a diverse group of physics and engineering students from the Technical University of Munich and Ludwig-Maximilians University, united by a shared enthusiasm for quantum science and technology.",
+    "main 2": "This project originated from the Quantenträume and Sustainability Department of PushQuantum. “Quanten(t)räume” is an outreach initiative funded by the German Ministry of Education and Research, in collaboration with Deutsches Museum, Max-Planck-Institut für Quantenoptik (MPQ), PhotonLab, Fraunhofer Institut für System- und Innovationsforschung (ISI), TECHNOMUSEUM, Munich Center for Quantum Science & Technology (MCQST), IQM and Munich Quantum Valley (MQV).",
+    "main 3": "Together, we are dedicated to enlightening the general public about the potential applications of quantum technologies and fostering a dialogue between researchers and the public. Our commitment lies in making quantum technology accessible and engaging, not solely for the purpose of attracting talent but to ensure that quantum technology evolves in alignment with the public’s perception and wishes. Only when quantum technology is demystified can we genuinely earn the public’s trust.",
+    "main 4": "Driven by this vision, we have sought new ways to engage with the community and capture the progress that has been made. To that end, we present our digital twin of the “Quanten(t)räume” grant: the WiQi. Through this platform we seek to provide an engaging space for everyone to learn about quantum technology, regardless of their prior knowledge.",
+    "main 5": "We firmly believe that quantum science and technology have the potential to revolutionize our future. As the generation poised to lead this transformation, we are committed to equipping society with the knowledge and tools to prepare for, and actively participate in this ground-breaking movement.",
+    "who are we": "Who are we?"
   }
 }
