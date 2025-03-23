@@ -40,3 +40,6 @@ next-env.d.ts
 # bun
 bun.lockb
 *.patch
+
+# Would be glad if we can keep this file in .gitignore ~Alpi
+tsx_ts_files_content.txt 
