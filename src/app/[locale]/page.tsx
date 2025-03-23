@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import QuantumMap from "../components/QuantumMap";
 
 interface HomeProps {
   params: {
@@ -25,17 +26,17 @@ export default function Home({ params }: HomeProps) {
   const images = ["superpos.svg", "|1>.svg", "|0>.svg", "main.svg"];
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
 
-  // Bildwechsel beim Hover
+  // Image switch on hover
   const handleMouseEnter = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
     setVisibleIndex(randomIndex);
   };
 
   const handleMouseLeave = () => {
-    setVisibleIndex(0); // Zurücksetzen auf das Standardbild
+    setVisibleIndex(0); // Reset to default image
   };
 
-  // Beispiel für Schwierigkeitsgrade
+  // Beispiel-Difficulty-Level
   const difficultyLevels = [
     {
       id: "elementary",
@@ -57,7 +58,7 @@ export default function Home({ params }: HomeProps) {
     },
   ];
 
-  // Beispiel für Features
+  // Beispiel-Features
   const features = [
     {
       icon: <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />,
@@ -86,8 +87,8 @@ export default function Home({ params }: HomeProps) {
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-3xl"></div>
+          <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/5"></div>
+          <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-3xl dark:bg-purple-500/5"></div>
         </div>
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
@@ -166,7 +167,7 @@ export default function Home({ params }: HomeProps) {
               </div>
             </div>
 
-            {/* Interaktive Bildanzeige */}
+            {/* Interactive Image Display */}
             <div className="relative h-[500px] w-full">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5"></div>
               <div
@@ -235,6 +236,7 @@ export default function Home({ params }: HomeProps) {
               </Card>
             ))}
           </div>
+            <QuantumMap />
         </div>
       </section>
 
