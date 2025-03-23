@@ -111,7 +111,7 @@ export default function QuantumMap() {
         {nodes.map((node, index) => (
           <div
             key={node.id}
-            className={`absolute -translate-x-1/2 -translate-y-1/2 transform transition-all duration-500 ${
+            className={`group absolute -translate-x-1/2 -translate-y-1/2 transform transition-all duration-500 ${
               loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
             style={{
@@ -124,7 +124,7 @@ export default function QuantumMap() {
             onMouseLeave={() => setHoveredNode(null)}
           >
             {node.id === "wiqi" ? (
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-800 text-[10px] font-bold text-white shadow-[0_0_15px_rgba(91,33,182,0.6)] transition-transform duration-300 hover:scale-110 lg:h-16 lg:w-16 lg:text-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-800 text-[10px] font-bold text-white shadow-[0_0_15px_rgba(91,33,182,0.6)] transition-transform duration-300 group-hover:scale-110 lg:h-16 lg:w-16 lg:text-sm">
                 <span>{node.label}</span>
               </div>
             ) : (
@@ -142,7 +142,7 @@ export default function QuantumMap() {
                     node.id === "center"
                       ? "border-white shadow-[0_0_20px_rgba(0,0,0,0.5)]"
                       : "border-gray-800 shadow-lg"
-                  } transition-transform duration-300 hover:scale-110`}
+                  } transition-transform duration-300 group-hover:scale-110`}
                 >
                   {node.icon && (
                     <node.icon
@@ -155,9 +155,7 @@ export default function QuantumMap() {
                   )}
                 </div>
                 <div
-                  className={`absolute -top-9 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/70 px-3 py-1.5 text-[0.6rem] font-medium text-white shadow-md transition-all duration-300 lg:text-sm ${
-                    hoveredNode === node.id ? "scale-110" : ""
-                  }`}
+                  className={`absolute -top-9 left-1/2 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/70 px-3 py-1.5 text-[0.6rem] font-medium text-white shadow-md transition-all duration-300 group-hover:scale-110 lg:text-sm`}
                 >
                   {node.label}
                 </div>
