@@ -94,7 +94,7 @@ export default function QuantumMap() {
 
   return (
     // Component is hidden on screens smaller than md
-    <div className="relative mx-auto mt-20 hidden aspect-[12/7] w-full max-w-[1200px] overflow-hidden rounded-xl border shadow-xl md:block">
+    <div className="relative mx-auto mt-20 hidden aspect-[12/7] w-full max-w-[1200px] overflow-hidden rounded-xl border shadow-xl md:block dark:border-gray-800">
       {/* Munich Map Background */}
       <div className="absolute inset-0">
         <Image
@@ -142,7 +142,7 @@ export default function QuantumMap() {
                     node.id === "center"
                       ? "border-white shadow-[0_0_20px_rgba(0,0,0,0.5)]"
                       : "border-gray-800 shadow-lg"
-                  } transition-transform duration-300 group-hover:scale-110`}
+                  } transition-transform duration-300 group-hover:scale-110 dark:!bg-black/80 dark:!text-white dark:!border-white`}
                 >
                   {node.icon && (
                     <node.icon
