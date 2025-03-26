@@ -4,8 +4,13 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import Fuse from "fuse.js";
+import {
+  replaceLocale,
+  getContrastingColor,
+  getBackgroundColorBehindNav,
+} from "./client_utils";
 
 import "./button.css";
 
@@ -26,54 +31,6 @@ type File = {
 const fuseOptions = {
   keys: ["slug", "metadata.subtitle", "metadata.date"],
 };
-
-const replaceLocale = (locale: string, pathName: string): string => {
-  return locale === "de"
-    ? pathName.replace(locale, "en")
-    : pathName.replace(locale, "de");
-};
-
-// Determine contrasting color
-function getContrastingColor(bgColor: string) {
-  const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-  if (!rgbMatch) return "black"; // Fallback if parsing fails
-
-  const r = parseInt(rgbMatch[1], 10);
-  const g = parseInt(rgbMatch[2], 10);
-  const b = parseInt(rgbMatch[3], 10);
-  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-  return luminance > 128 ? "black" : "white";
-}
-
-function getBackgroundColorBehindNav(nav: HTMLElement): string {
-  const originalPointerEvents = nav.style.pointerEvents;
-  nav.style.pointerEvents = "none";
-
-  const rect = nav.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-  const elBehindNav = document.elementFromPoint(
-    centerX,
-    centerY,
-  ) as HTMLElement;
-
-  nav.style.pointerEvents = originalPointerEvents;
-
-  if (!elBehindNav) return "rgb(255, 255, 255)";
-
-  let bgColor = window.getComputedStyle(elBehindNav).backgroundColor;
-
-  let parent = elBehindNav.parentElement;
-  while (
-    parent &&
-    (bgColor === "transparent" || bgColor === "rgba(0, 0, 0, 0)")
-  ) {
-    bgColor = window.getComputedStyle(parent).backgroundColor;
-    parent = parent.parentElement;
-  }
-
-  return bgColor;
-}
 
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
@@ -194,7 +151,7 @@ const Header = (props: HeaderProps) => {
       className="fixed top-0 z-30 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]"
       style={{ color: dynamicTextColor }}
     >
-      <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-64">
+      <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-32">
         <div className="mx-4 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-0">
           <div className="flex items-center justify-between">
             {/* Left side: Logo + Search */}
@@ -221,7 +178,7 @@ const Header = (props: HeaderProps) => {
               </a>
             </div>
 
-            <div className="justify-left flex w-1/2 flex-1 pl-20">
+            <div className="justify-left flex w-1/2 flex-1 pl-10 lg:pl-40 xl:pl-48 2xl:pl-96">
               <link
                 rel="stylesheet"
                 href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -413,14 +370,14 @@ const Header = (props: HeaderProps) => {
               <li>
                 <Link
                   href={`/${props.locale}/quantum_tuesdays`}
-                  className="block w-full py-2 hover:underline"
+                  className="block w-full py-2 hover:underline dark:text-slate-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Quantum Tuesdays
                 </Link>
                 <Link
                   href={`/${props.locale}/entries`}
-                  className="block w-full py-2 hover:underline"
+                  className="block w-full py-2 hover:underline dark:text-slate-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Entries
