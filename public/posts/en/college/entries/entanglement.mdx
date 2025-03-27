@@ -8,18 +8,20 @@ date: "2025-01-08"
 ## Entanglement
 
 Two particles are said to be entangled if they cannot be described independently. Their quantum states are not independent but directly correlated. Their measurements therefore cannot be described separately, as they are intrinsically linked to the state of each other.
-To visualize this, consider the following analogy of two coins. Coins can be in exactly two states: heads or tails. Similarly to particles, which can be in spin up or spin down, or as qubits in their O or 1 state. Measuring the coins (or particles) will have to yield one of the two states.
+To visualize this, consider the following analogy of two coins. Coins can be in exactly two states: heads or tails. Similarly to particles, which can be in spin up or spin down, or as qubits in their $$ O $$ or $$ 1 $$ state. Measuring the coins (or particles) will have to yield one of the two states.
 Thereby, when flipping two coins there a four possible outcomes, shown in the graphic below:
 
 ![Coin entanglement](/posts/assets/entries/entanglement/coin_entanglement.png)
 
-Let's assume that two coins are entangled and then separated. Person 1 receives coin A, Person 2 receives coin B. The two individuals go into separate rooms. On the count of three, both of them flip their coins and keep the results hidden. Person 1 then lifts their hand and sees that coin A shows "Head" (H). Without Person 2 revealing coin B yet, we can already predict with certainty that coin B will show "Tails"(T). Upon revealing coin B, this predictions proves to be correct.
+Let's assume that two coins are entangled and then separated. Person 1 receives coin A, Person 2 receives coin B. The two individuals go into separate rooms. On the count of three, both of them flip their coins and keep the results hidden. Person 1 then lifts their hand and sees that coin A shows "Head" ($$ H $$). Without Person 2 revealing coin B yet, we can already predict with certainty that coin B will show "Tails"($$ T $$). Upon revealing coin B, this predictions proves to be correct.
 Normally, flipping two coins gives four possible combinations: $$ \text{HH, HT, TH, TT}. $$
 In quantum mechanics, this relationship can be expressed mathematically using a quantum state called a Bell state, which represents a maximally entangled system. One such Bell state is:
 
-$$ \ket{\Psi^-} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\big), $$
+$$ 
+\ket{\Psi^-} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\big), 
+$$
 
-where \( \ket{\uparrow\downarrow} \) means particle A is spin up, and particle B is spin down, and \( \ket{\downarrow\uparrow} \) means the opposite.
+where $$ \ket{\uparrow\downarrow} $$ means particle A is spin up, and particle B is spin down, and $$ \ket{\downarrow\uparrow} $$ means the opposite.
 
 ## The EPR thought experiment
 
@@ -27,7 +29,9 @@ In 1935, Albert Einstein, Boris Podolsky, and Nathan Rosen proposed what is now 
 The experiment considers two particles, generated from a single source in such a way that their quantum states become correlated. These particles are then separated by any distance. Particles are in a constant spin, which can either be a spin "down" or a spin "up". Denoting the two particles as A and B, if one measures A and yields spin up as a result, B will with 100% certainty be in a spin down position, and vice versa.
 According to quantum mechanics, before you measure the spin of either particle, they exist in a superposition, described as:
 
-$$ \ket{\Psi} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow}\big). $$
+$$ 
+\ket{\Psi} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow}\big) 
+$$
 
 Yielding a measurement after the collapse of one particle of such a pair allows us to instantaneously know the measurement of the second particle. The crucial point here is that this relationship holds even when the particles are far apart. This suggests, that it is thereby possible to predict the measurement of the second particle without directly interfering or disturbing its state.
 However, this led to a paradox (EPR paradox or Einstein-Podolsky-Rosen Paradox).
@@ -40,7 +44,9 @@ We now know that this is a “misunderstanding” of a quantum mechanical proper
 In 1964, John Bell proved a groundbreaking mathematical theorem that demonstrated the incompatibility of local hidden variable theories with quantum mechanics. He did this by proposing a Gedankenexperiment in which those theories would have different predictions.
 The Bell’s inequality, related to the expected value of a quantity measured in an experiment, must be satisfied by any local hidden variable theory.
 
-$$ |E(a, b) - E(a, c)| \leq 1 + E(b, c), $$
+$$ 
+|E(a, b) - E(a, c)| \leq 1 + E(b, c), 
+$$
 
-where E is the average value obtained over all a particular set of experiments.
+where $$ E $$ is the average value obtained over all a particular set of experiments.
 Clauser, Horne, Shimony, and Holt (CHSH) derived a modified version of Bell’s inequality called CHSH. Since Bell’s pioneering work, numerous experiments have been conducted to test the CHSH inequality. While early experiments suffered from various loopholes, more recent experiments have closed these loopholes and convincingly demonstrated the violation of the CHSH inequality, ruling out local hidden variable theories.

@@ -5,35 +5,49 @@ author: "Jannik Pflieger"
 date: "2025-01-20"
 ---
 
-# Einführung
+## Einführung
 
 In der Quantenphysik gibt es das Non-Cloning-Theorem, das besagt, dass es keine Operation gibt, die einen Quantenzustand kopieren kann.
 Am schnellsten lässt sich dies mit einer einfachen Gleichung erklären.
-Bei zwei Quantensystemen $$ \ket{\psi}\_A \& \ket{\psi}\_B $$ besagt das Non-Cloning-Theorem, dass es unmöglich ist, einen unitären Operator (U) zu erzeugen, der das System $\ket{\psi}_A$ nach $\ket{\psi}_B$ kopiert, um $\ket{\psi}_B$ zu erhalten.
-Um zu sehen, warum, können wir zunächst annehmen, dass ein solcher Operator \( U \) existiert.
+Bei zwei Quantensystemen $$ \ket{\psi}_A \& \ket{\psi}_B $$ besagt das Non-Cloning-Theorem, dass es unmöglich ist, einen unitären Operator (U) zu erzeugen, der das System $\ket{\psi}_A$ nach $\ket{\psi}_B$ kopiert, um $\ket{\psi}_B$ zu erhalten.
+Um zu sehen, warum, können wir zunächst annehmen, dass ein solcher Operator $$ U $$ existiert.
 Dies ist eine gängige Beweismethode in der Mathematik.
 
-# Beweis
+## Beweis
 
 Zuerst nehmen wir an, dass etwas möglich ist, aber dann zeigen wir, dass dies zu einem Widerspruch führt.
-Das vollständige Quantensystem kann durch das Tensorprodukt der beiden Systeme \( A \) und \( B \) beschrieben werden:
+Das vollständige Quantensystem kann durch das Tensorprodukt der beiden Systeme $$ A $$ und $$ B $$ beschrieben werden:
 **A** und **B**
+
 Wenden wir nun den Operator $U$ auf das System A an.
-$$ U(\ket{\psi} \otimes \ket{\phi}) = \ket{\psi} \otimes \ket{\psi} $$
+$$ 
+U(\ket{\psi} \otimes \ket{\phi}) = \ket{\psi} \otimes \ket{\psi} 
+$$
+
 Wir können dies ein zweites Mal mit einem anderen Zustand $\ket{e}$ tun:
-$$ U(\ket{e} \times \ket{\phi}) = \ket{e} \otimes \ket{e} $$
-Da $U$ ein unitärer Operator ist, hat er die Eigenschaft, dass er das innere Produkt dieser beiden Zustände bewahrt.
+$$ 
+U(\ket{e} \times \ket{\phi}) = \ket{e} \otimes \ket{e} 
+$$
+
+Da $$ U $$ ein unitärer Operator ist, hat er die Eigenschaft, dass er das innere Produkt dieser beiden Zustände bewahrt.
 Wenn wir das innere Produkt vor dem Klonen nehmen, können wir es berechnen:
-$$ (\ket{\psi} \otimes \ket{\phi}) \cdot \ket{e} \otimes \ket{\phi} = \braket{\psi | e}\braket{\phi | \phi} $$
-Das ist großartig, nun wollen wir dasselbe tun, nachdem wir den Klonoperator \( U \) verwendet haben:
+$$ 
+(\ket{\psi} \otimes \ket{\phi}) \cdot \ket{e} \otimes \ket{\phi} = \braket{\psi | e}\braket{\phi | \phi} 
+$$
+Das ist großartig, nun wollen wir dasselbe tun, nachdem wir den Klonoperator $$ U $$ verwendet haben:
 
-$$ (\ket{\psi} \times \ket{\psi}) \cdot (\ket{e} \otimes \ket{e}) = \braket{\psi | e} \braket{\psi | e} = \braket{\psi | e}^2 $$
+$$ 
+(\ket{\psi} \times \ket{\psi}) \cdot (\ket{e} \otimes \ket{e}) = \braket{\psi | e} \braket{\psi | e} = \braket{\psi | e}^2 
+$$
+
 Wenn wir nun unsere beiden Gleichungen kombinieren, erhalten wir:
-$$ \braket{\psi | e} = \braket{\psi | e}^2 $$
+$$ 
+\braket{\psi | e} = \braket{\psi | e}^2 
+$$
 
-Diese Gleichung hat nur zwei Lösungen, 0 oder 1. Wenn \( \braket{\psi}{e} = 0 \) ist, dann sind die beiden Quantenzustände völlig orthogonal zueinander. Mit anderen Worten, die Zustände können nicht weiter voneinander entfernt sein.
+Diese Gleichung hat nur zwei Lösungen, 0 oder 1. Wenn $$ \braket{\psi}{e} = 0 $$ ist, dann sind die beiden Quantenzustände völlig orthogonal zueinander. Mit anderen Worten, die Zustände können nicht weiter voneinander entfernt sein.
 Wenn wir 1 erhalten, bedeutet dies, dass die Quantenzustände identisch sein müssen.
 Was ist das Problem dabei?
 Nun, das Problem ist ein wenig versteckt, denn das bedeutet, dass die Zustände nicht beliebig sein können.
-Wenn wir \( \ket{\psi} \) auf einen beliebigen Zustand setzen, dann müssen wir \( \ket{e} \) entweder auf denselben Zustand oder auf einen orthogonalen Zustand setzen.
+Wenn wir $$ \ket{\psi} $$ auf einen beliebigen Zustand setzen, dann müssen wir $$ \ket{e} $$ entweder auf denselben Zustand oder auf einen orthogonalen Zustand setzen.
 Die Theorie, dass wir einen beliebigen Quantenzustand nicht kopieren können, ist also wahr.
