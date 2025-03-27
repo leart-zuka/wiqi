@@ -83,43 +83,24 @@ const config: Config = {
       {
         mytheme: {
           primary: "#850379",
-
           "primary-content": "#e9d0e4",
-
           secondary: "#090647",
-
           "secondary-content": "#c5cada",
-
           accent: "#354FCC",
-
           "accent-content": "#d2ddf8",
-
           neutral: "#963A8D",
-
           "neutral-content": "#ecd7e8",
-
           "base-100": "#ffffff",
-
           "base-200": "#dedede",
-
           "base-300": "#bebebe",
-
           "base-content": "#161616",
-
           info: "#CC3766",
-
           "info-content": "#fad9df",
-
           success: "#00dd00",
-
           "success-content": "#001100",
-
           warning: "#fb923c",
-
           "warning-content": "#150801",
-
           error: "#ff003a",
-
           "error-content": "#160001",
         },
       },
