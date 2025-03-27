@@ -38,8 +38,8 @@ Obwohl Youngs Experiment das Wellenmodell des Lichts bestätigte, blieben seine 
 
 Eine variable Lichtquelle wurde verwendet, um eine positiv geladene Metallplatte (Kathode) in einem evakuierten Röhrensystem (Vakuum) zu beleuchten. Die ausgestrahlten Elektronen, die als Fotoelektronen bezeichnet werden, bewegten sich in Richtung des negativ geladenen Metalls (Anode). Aber die experimentellen Ergebnisse stimmten nicht mit den Vorhersagen überein, die auf Huygens' Modell basierten. 1905 formulierte Albert Einstein das "quantum model of light" auf Grundlage dieses Konzepts und der experimentellen Beobachtungen: Licht besteht aus Photonen, die diskrete Energiepakete sind, was zurück zum Teilchenverhalten führt. Louis de Broglie führte 1924 dann die Idee der Elektronenwellen ein, die das Konzept von Elektronen sowohl als Teilchen als auch als Welle vereinte und eine ähnliche relativistische Formulierung von Einstein einige Jahre zuvor verband. De Broglies Vorschlag der „Wellen-Teilchen-Dualität“ der Elektronen führte zu Schrödingers Wellengleichung für die Bewegung der Elektronen, die heute als „Schrödinger-Gleichung“ bekannt ist:
 
-$$ 
-i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H} \ket{\Psi(t)} 
+$$
+i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H} \ket{\Psi(t)}
 $$
 
 ![Discussion](/posts/assets/entries/superposition/superpos_disc.png)
@@ -48,21 +48,21 @@ $$
 
 In der Quantenmechanik führt die Wellen-Teilchen-Dualität zu einem Konzept, das als „Superposition“ bezeichnet wird:
 
-$$ 
-\ket{\Psi} = \alpha \ket{0} + \beta \ket{1} 
+$$
+\ket{\Psi} = \alpha \ket{0} + \beta \ket{1}
 $$
 
 Ein Teilchen, wie beispielsweise ein Elektron, zeigt sowohl wellenartige als auch teilchenartige Eigenschaften. Aufgrund seiner Wellennatur kann es gleichzeitig in mehreren Wellenpfaden existieren, sozusagen in einer Superposition von Zuständen. Durch die Messung des Teilchens kollabiert diese Superposition in einen der Zustände, ein Phänomen, das als „Wellenfunktionskollaps“ bekannt ist.
 
 Im Jahr 1935 formulierte der Physiker Erwin Schrödinger folgendes Gedankenexperiment als Analogie. In eine Box werden folgende Sachen eingesperrt: eine Katze und ein tödliches Gift, das abhängig vom Zerfall eines radioaktiven Atoms in der Box zu einem unbestimmten Zeitpunkt freigesetzt werden kann. Wenn das Atom zerfällt, zerbricht die Giftflasche und die Katze stirbt. Wenn das Atom nicht zerfällt, bleibt die Katze am Leben. Laut der Quantenmechanik ist die Katze, bis die Box geöffnet wird und man ihren Zustand ermitteln kann, gleichzeitig sowohl lebendig als auch tot. Der Zustand des Systems ist eine Quanten-Superposition dieser beiden Möglichkeiten.
-Das Bild unten veranschaulicht diese Superposition, wobei der Zustand der Katze als Quanten-Zustandsvektor dargestellt wird. Er kombiniert die beiden gleichermaßen wahrscheinlichen (\frac{1}{\sqrt{2}}) Möglichkeiten, dass die Katze lebendig oder tot ist. Das Öffnen der Box wird das System in einen der beiden Zustände kollabieren lassen. Die folgende Gleichung stellt eine Superposition dar, auf die der Hadamard-Gate angewendet wird:
+Das Bild unten veranschaulicht diese Superposition, wobei der Zustand der Katze als Quanten-Zustandsvektor dargestellt wird. Er kombiniert die beiden gleichermaßen wahrscheinlichen ($\frac{1}{\sqrt{2}}$) Möglichkeiten, dass die Katze lebendig oder tot ist. Das Öffnen der Box wird das System in einen der beiden Zustände kollabieren lassen. Die folgende Gleichung stellt eine Superposition dar, auf die der Hadamard-Gate angewendet wird:
 
-$$ 
-H = \frac{1}{\sqrt{2}} \begin{pmatrix}1&1\\1&-1\end{pmatrix} 
+$$
+H = \frac{1}{\sqrt{2}} \begin{pmatrix}1&1\\1&-1\end{pmatrix}
 $$
 
-$$ 
-\ket{\Psi} = \frac{1}{\sqrt{2}} \left( \alpha \ket{0} + \beta \ket{1} \right) = \frac{1}{\sqrt{2}} \left( \ket{0} + \ket{1} \right) 
+$$
+\ket{\Psi} = \frac{1}{\sqrt{2}} \left( \alpha \ket{0} + \beta \ket{1} \right) = \frac{1}{\sqrt{2}} \left( \ket{0} + \ket{1} \right)
 $$
 
 ![Schrödinger's cat](/posts/assets/entries/superposition/superpos_cat.png)
