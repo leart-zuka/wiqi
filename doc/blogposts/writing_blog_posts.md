@@ -28,7 +28,7 @@ As most of our posts are based on concepts in physics, we of course need to be a
 As its standard in this field, we'll be using Latex, which is every physicists best and worst friend.
 If you're familiar with Latex you should have no problems writing any mathematical equations, and I won't really be going over the Latex syntax in here.
 What I want to focus on is how one is able to use Latex inside of their blog post and make it look the way they intend it to look.
-In order to display inline Latex expressions simply use the regular notation ${your_equation_or_whatever}$.
+In order to display inline Latex expressions simply use the regular notation `${your_equation_or_whatever}$`.
 Should you however want to display your expression in a seperate blog in a new line, you'll have to make sure that each double dollar quote (`$$`) is in its own line, otherwise your expression won't be in a seperate line. So:
 
 ```md
