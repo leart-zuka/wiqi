@@ -7,6 +7,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import wordsCounter from "word-counting";
 import { useTranslations } from "next-intl";
+import "katex/dist/katex.min.css";
 
 export default function Post({
   params,
@@ -33,7 +34,9 @@ export default function Post({
       <article className="prose mx-auto block max-w-2xl px-6 text-black dark:text-white dark:prose-headings:text-white dark:prose-a:text-white dark:prose-strong:text-white dark:prose-code:bg-slate-500 dark:prose-code:text-white dark:prose-li:marker:text-white">
         <ReactMarkdown
           remarkPlugins={[remarkMath, remarkGfm]}
-          rehypePlugins={[rehypeKatex]} // need both remark and rehype plugins for proper latex rendering
+          rehypePlugins={[
+            [rehypeKatex, { throwOnError: false, strict: false }],
+          ]}
           components={{
             code({ node, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || "");

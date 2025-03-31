@@ -2,7 +2,24 @@
   "Index": {
     "hello": "Welcome to the",
     "sub hello": "We want to teach the world about the world of quanta.",
-    "hello button": "Visit our current blogposts"
+    "hello button": "Visit our current blogposts",
+    "quantum education": "Quantum Education",
+    "hello": "Hello, welcome to",
+    "sub hello": "Discover the amazing world of quantum physics with interactive courses and practical examples.",
+    "features": "Features",
+    "why choose us": "Why Choose Us?",
+    "features description": "Our platform offers interactive simulations, structured courses, and real-world applications to help you master quantum computing.",
+    "for everyone": "For Everyone",
+    "difficulty levels": "Difficulty Levels",
+    "difficulty description": "Whether you're a beginner, intermediate, or advanced learner, we have content tailored to your level.",
+    "featured content": "Featured Content",
+    "ready to start": "Ready to Start?",
+    "cta description": "Join us and embark on your quantum journey today!",
+    "get started": "Get Started",
+    "view demo": "View Demo",
+    "explore courses": "Explore Courses",
+    "learn more": "Learn More",
+    "hover to interact": "Hover to interact"
   },
   "Posts": {
     "average reading time": "Average reading time"
