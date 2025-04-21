@@ -64,7 +64,7 @@ const QuantumParticle = ({ delay = 0 }: { delay?: number }) => {
 // Quantum field background
 const QuantumField = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-30">
+    <div className="absolute  inset-0 overflow-hidden opacity-90">
       {Array.from({ length: 20 }).map((_, i) => (
         <QuantumParticle key={i} delay={i * 0.4} />
       ))}
@@ -166,11 +166,11 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-900 to-indigo-950 text-white">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white to-blue-100 dark:from-slate-900 dark:to-indigo-950 text-slate-900 dark:text-white">
       {/* Quantum-inspired decorative elements */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-900/0 to-transparent"></div>
-        <QuantumField />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-300/20 via-white/0 to-transparent dark:from-indigo-900/20 dark:via-slate-900/0 dark:to-transparent"></div>
+      <QuantumField />
       </div>
 
       {/* Hero Section */}
@@ -182,63 +182,62 @@ export default function AboutPage() {
           className="relative z-10 mx-auto max-w-5xl"
         >
           <Badge
-            variant="outline"
-            className="mb-6 border-pink-500/50 px-4 py-1.5 text-sm font-medium text-pink-300"
+        variant="outline"
+        className="mb-6 border-pink-500/50 dark:border-pink-500/50 px-4 py-1.5 text-sm font-medium text-pink-700 dark:text-pink-300"
           >
-            <AtomIcon className="mr-2 h-3.5 w-3.5" />
-            {t("our story", "Our Quantum Journey")}
+        <AtomIcon className="mr-2 h-3.5 w-3.5" />
+        {t("our story", "Our Quantum Journey")}
           </Badge>
 
-          <h1 className="bg-gradient-to-r from-white via-pink-200 to-indigo-200 bg-clip-text p-6 font-serif text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl">
-            {t("motivation title", "Shaping the Quantum Future")}
+          <h1 className="bg-gradient-to-r from-slate-900 via-pink-800 to-indigo-800 dark:from-white dark:via-pink-200 dark:to-indigo-200 bg-clip-text p-6 font-serif text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl">
+        {t("motivation title", "Shaping the Quantum Future")}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-indigo-200 sm:text-xl">
-            {t(
-              "motivation subtitle",
-              "Bridging the gap between quantum science and society through education, innovation, and collaboration",
-            )}
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-700 dark:text-indigo-200 sm:text-xl">
+        {t(
+          "motivation subtitle",
+          "Bridging the gap between quantum science and society through education, innovation, and collaboration",
+        )}
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button
-              size="lg"
-              className="relative overflow-hidden bg-gradient-to-r from-pink-600 to-indigo-600 text-white transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_0_20px_rgba(219,39,119,0.3)]"
-              onClick={() => {
-                const element = document.getElementById("story");
-                element?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              <span className="relative z-10 flex items-center">
-                {t("learn more", "Discover Our Mission")}
-                <motion.div
-                  className="ml-2 h-1 w-1 rounded-full bg-white"
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </span>
-              <span className="absolute inset-0 -z-10 bg-gradient-to-r from-pink-600/0 via-white/10 to-indigo-600/0 opacity-0 blur-xl transition-opacity duration-300 hover:opacity-100"></span>
-            </Button>
+        <Button
+          size="lg"
+          className="relative overflow-hidden bg-gradient-to-r from-pink-600 to-indigo-600 text-white transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_0_20px_rgba(219,39,119,0.3)]"
+          onClick={() => {
+            const element = document.getElementById("story");
+            element?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          <span className="relative z-10 flex items-center">
+            {t("learn more", "Discover Our Mission")}
+            <motion.div
+          className="ml-2 h-1 w-1 rounded-full bg-white"
+          animate={{ scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity }}
+            />
+          </span>
+          <span className="absolute inset-0 -z-10 bg-gradient-to-r from-pink-600/0 via-white/10 to-indigo-600/0 opacity-0 blur-xl transition-opacity duration-300 hover:opacity-100"></span>
+        </Button>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className="relative border-2 border-indigo-400/50 bg-indigo-950/30 text-indigo-200 backdrop-blur-sm transition-all duration-300 hover:border-pink-400/70 hover:bg-indigo-900/50 hover:text-white hover:shadow-[0_0_20px_rgba(165,180,252,0.2)]"
-              onClick={() => {
-                const element = document.getElementById("team");
-                element?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              <span className="relative z-10 flex items-center">
-                {t("meet team", "Meet Our Team")}
-                motion.{" "}
-                <motion.div
-                  className="ml-2 h-5 w-5 rounded-full border border-indigo-400/50"
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </span>
-            </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="relative border-2 border-indigo-400/50 bg-white/80 dark:bg-indigo-950/30 text-indigo-800 dark:text-indigo-200 backdrop-blur-sm transition-all duration-300 hover:border-pink-400/70 hover:bg-indigo-100/80 dark:hover:bg-indigo-900/50 hover:text-indigo-900 dark:hover:text-white hover:shadow-[0_0_20px_rgba(165,180,252,0.2)]"
+          onClick={() => {
+            const element = document.getElementById("team");
+            element?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          <span className="relative z-10 flex items-center">
+            {t("meet team", "Meet Our Team")}
+            <motion.div
+          className="ml-2 h-5 w-5 rounded-full border border-indigo-400/50"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 3, repeat: Infinity }}
+            />
+          </span>
+        </Button>
           </div>
         </motion.div>
 
@@ -258,156 +257,156 @@ export default function AboutPage() {
           className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8"
         >
           <div className="mb-16">
-            <Tabs
-              defaultValue="story"
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="mx-auto max-w-3xl"
+        <Tabs
+          defaultValue="story"
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="mx-auto max-w-3xl"
+        >
+          <TabsList className="grid w-full grid-cols-2 bg-slate-100/80 dark:bg-indigo-950/50">
+            <TabsTrigger
+          value="story"
+          className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-600/10 data-[state=active]:to-indigo-600/10 dark:data-[state=active]:from-pink-600/20 dark:data-[state=active]:to-indigo-600/20 data-[state=active]:text-indigo-900 dark:data-[state=active]:text-white"
             >
-              <TabsList className="grid w-full grid-cols-2 bg-indigo-950/50">
-                <TabsTrigger
-                  value="story"
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-600/20 data-[state=active]:to-indigo-600/20 data-[state=active]:text-white"
-                >
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  {t("our story tab", "Our Story")}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="vision"
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-600/20 data-[state=active]:to-indigo-600/20 data-[state=active]:text-white"
-                >
-                  <AtomIcon className="mr-2 h-4 w-4" />
-                  {t("our vision tab", "Our Vision")}
-                </TabsTrigger>
-              </TabsList>
+          <BookOpen className="mr-2 h-4 w-4" />
+          {t("our story tab", "Our Story")}
+            </TabsTrigger>
+            <TabsTrigger
+          value="vision"
+          className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-600/10 data-[state=active]:to-indigo-600/10 dark:data-[state=active]:from-pink-600/20 dark:data-[state=active]:to-indigo-600/20 data-[state=active]:text-indigo-900 dark:data-[state=active]:text-white"
+            >
+          <AtomIcon className="mr-2 h-4 w-4" />
+          {t("our vision tab", "Our Vision")}
+            </TabsTrigger>
+          </TabsList>
 
-              <TabsContent
-                value="story"
-                className="mt-8 space-y-8 rounded-xl bg-indigo-950/30 p-6 backdrop-blur-sm"
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h2 className="mb-6 font-serif text-3xl font-bold text-white">
-                    {t("story title", "A Group of Motivated Students")}
-                  </h2>
+          <TabsContent
+            value="story"
+            className="mt-8 space-y-8 rounded-xl bg-white/70 dark:bg-indigo-950/30 p-6 backdrop-blur-sm"
+          >
+            <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+            >
+          <h2 className="mb-6 font-serif text-3xl font-bold text-slate-900 dark:text-white">
+            {t("story title", "A Group of Motivated Students")}
+          </h2>
 
-                  <div className="prose prose-lg prose-invert max-w-none text-indigo-100">
-                    <p>{motivationParagraphs[0]}</p>
-                    <p>{motivationParagraphs[1]}</p>
-                    <p>{motivationParagraphs[2]}</p>
-                  </div>
-                </motion.div>
-              </TabsContent>
+          <div className="prose prose-lg prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-indigo-100">
+            <p>{motivationParagraphs[0]}</p>
+            <p>{motivationParagraphs[1]}</p>
+            <p>{motivationParagraphs[2]}</p>
+          </div>
+            </motion.div>
+          </TabsContent>
 
-              <TabsContent
-                value="vision"
-                className="mt-8 space-y-8 rounded-xl bg-indigo-950/30 p-6 backdrop-blur-sm"
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h2 className="mb-6 font-serif text-3xl font-bold text-white">
-                    {t("vision title", "Our Vision for Quantum Technology")}
-                  </h2>
+          <TabsContent
+            value="vision"
+            className="mt-8 space-y-8 rounded-xl bg-white/70 dark:bg-indigo-950/30 p-6 backdrop-blur-sm"
+          >
+            <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+            >
+          <h2 className="mb-6 font-serif text-3xl font-bold text-slate-900 dark:text-white">
+            {t("vision title", "Our Vision for Quantum Technology")}
+          </h2>
 
-                  <div className="prose prose-lg prose-invert max-w-none text-indigo-100">
-                    <p>{motivationParagraphs[3]}</p>
-                    <p>{motivationParagraphs[4]}</p>
-                  </div>
-                </motion.div>
-              </TabsContent>
-            </Tabs>
+          <div className="prose prose-lg prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-indigo-100">
+            <p>{motivationParagraphs[3]}</p>
+            <p>{motivationParagraphs[4]}</p>
+          </div>
+            </motion.div>
+          </TabsContent>
+        </Tabs>
           </div>
 
           {/* Mascot Feature */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{
-              opacity: scrollY > 200 ? 1 : 0,
-              y: scrollY > 200 ? 0 : 40,
-            }}
-            transition={{ duration: 0.8 }}
-            className="relative mx-auto mt-20 max-w-5xl overflow-hidden rounded-2xl bg-gradient-to-r from-pink-900/20 to-indigo-900/20 p-8 backdrop-blur-sm lg:p-12"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{
+          opacity: scrollY > 200 ? 1 : 0,
+          y: scrollY > 200 ? 0 : 40,
+        }}
+        transition={{ duration: 0.8 }}
+        className="relative mx-auto mt-20 max-w-5xl overflow-hidden rounded-2xl bg-gradient-to-r from-slate-100/80 to-blue-100/80 dark:from-pink-900/20 dark:to-indigo-900/20 p-8 backdrop-blur-sm lg:p-12"
           >
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-              <div className="flex flex-col justify-center">
-                <Badge
-                  variant="outline"
-                  className="mb-4 w-fit border-pink-500/50 px-3 py-1 text-sm font-medium text-pink-300"
-                >
-                  {t("meet mascot", "Meet Our Mascot")}
-                </Badge>
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="flex flex-col justify-center">
+            <Badge
+          variant="outline"
+          className="mb-4 w-fit border-indigo-500/50 dark:border-pink-500/50 px-3 py-1 text-sm font-medium text-indigo-700 dark:text-pink-300"
+            >
+          {t("meet mascot", "Meet Our Mascot")}
+            </Badge>
 
-                <h2 className="mb-6 font-serif text-3xl font-bold text-white lg:text-4xl">
-                  {t("mascot title", "WiQi: Your Quantum Guide")}
-                </h2>
+            <h2 className="mb-6 font-serif text-3xl font-bold text-slate-900 dark:text-white lg:text-4xl">
+          {t("mascot title", "WiQi: Your Quantum Guide")}
+            </h2>
 
-                <p className="mb-6 text-lg text-indigo-200">
-                  {t(
-                    "mascot description",
-                    "WiQi is our friendly quantum mascot, designed to make the complex world of quantum physics approachable and fun. With a playful personality and deep knowledge, WiQi helps bridge the gap between quantum science and everyday understanding.",
-                  )}
-                </p>
+            <p className="mb-6 text-lg text-slate-700 dark:text-indigo-200">
+          {t(
+            "mascot description",
+            "WiQi is our friendly quantum mascot, designed to make the complex world of quantum physics approachable and fun. With a playful personality and deep knowledge, WiQi helps bridge the gap between quantum science and everyday understanding.",
+          )}
+            </p>
 
-                <Button className="mt-4 w-fit bg-gradient-to-r from-pink-600 to-indigo-600 text-white hover:from-pink-700 hover:to-indigo-700">
-                  {t("learn more mascot", "Learn More About WiQi")}
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+            <Button className="mt-4 w-fit bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-pink-600 dark:to-indigo-600 text-white hover:from-indigo-700 hover:to-blue-700 dark:hover:from-pink-700 dark:hover:to-indigo-700">
+          {t("learn more mascot", "Learn More About WiQi")}
+          <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
 
-              <div className="relative flex items-center justify-center">
-                {/* Quantum effect around mascot */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-64 w-64 animate-pulse rounded-full bg-gradient-to-r from-pink-500/20 to-indigo-500/20 blur-xl"></div>
-                </div>
-
-                {/* Orbiting particles */}
-                <div className="absolute inset-0">
-                  <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite] rounded-full border border-pink-500/30"></div>
-                  <motion.div
-                    className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-500"
-                    animate={{
-                      x: [0, 100, 0, -100, 0],
-                      y: [0, 100, 0, -100, 0],
-                    }}
-                    transition={{
-                      duration: 10,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "linear",
-                    }}
-                  />
-                </div>
-
-                {/* Mascot image with floating animation */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                  className="relative z-10 h-64 w-64 overflow-hidden rounded-full bg-gradient-to-r from-pink-500/10 to-indigo-500/10 p-1 backdrop-blur-sm lg:h-80 lg:w-80"
-                >
-                  <Image
-                    src="/Wiqi_Mascot_Minimalistic.png"
-                    alt="WiQi Mascot"
-                    width={1024}
-                    height={1024}
-                    className="h-full w-full rounded-full object-cover"
-                    priority
-                  />
-                </motion.div>
-              </div>
+          <div className="relative flex items-center justify-center">
+            {/* Quantum effect around mascot */}
+            <div className="absolute inset-0 flex items-center justify-center">
+          <div className="h-64 w-64 animate-pulse rounded-full bg-gradient-to-r from-indigo-500/20 to-blue-500/20 dark:from-pink-500/20 dark:to-indigo-500/20 blur-xl"></div>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-pink-600/10 blur-3xl"></div>
-            <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-indigo-600/10 blur-3xl"></div>
+            {/* Orbiting particles */}
+            <div className="absolute inset-0">
+          <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite] rounded-full border border-indigo-500/30 dark:border-pink-500/30"></div>
+          <motion.div
+            className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500 dark:bg-pink-500"
+            animate={{
+              x: [0, 100, 0, -100, 0],
+              y: [0, 100, 0, -100, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            }}
+          />
+            </div>
+
+            {/* Mascot image with floating animation */}
+            <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{
+            duration: 4,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+          className="relative z-10 h-64 w-64 overflow-hidden rounded-full bg-gradient-to-r from-indigo-500/10 to-blue-500/10 dark:from-pink-500/10 dark:to-indigo-500/10 p-1 backdrop-blur-sm lg:h-80 lg:w-80"
+            >
+          <Image
+            src="/Wiqi_Mascot_Minimalistic.png"
+            alt="WiQi Mascot"
+            width={1024}
+            height={1024}
+            className="h-full w-full rounded-full object-cover"
+            priority
+          />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-blue-600/10 dark:bg-pink-600/10 blur-3xl"></div>
+        <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-indigo-600/10 dark:bg-indigo-600/10 blur-3xl"></div>
           </motion.div>
         </section>
 
@@ -417,182 +416,182 @@ export default function AboutPage() {
           className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8"
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{
-              opacity: scrollY > 800 ? 1 : 0,
-              y: scrollY > 800 ? 0 : 20,
-            }}
-            transition={{ duration: 0.8 }}
-            className="mb-16 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{
+          opacity: scrollY > 800 ? 1 : 0,
+          y: scrollY > 800 ? 0 : 20,
+        }}
+        transition={{ duration: 0.8 }}
+        className="mb-16 text-center"
           >
-            <Badge
-              variant="outline"
-              className="mb-4 border-pink-500/50 px-4 py-1.5 text-sm font-medium text-pink-300"
-            >
-              <Users className="mr-2 h-3.5 w-3.5" />
-              {t("our team", "Our Team")}
-            </Badge>
+        <Badge
+          variant="outline"
+          className="mb-4 border-indigo-500/50 dark:border-pink-500/50 px-4 py-1.5 text-sm font-medium text-indigo-700 dark:text-pink-300"
+        >
+          <Users className="mr-2 h-3.5 w-3.5" />
+          {t("our team", "Our Team")}
+        </Badge>
 
-            <h2 className="bg-gradient-to-r from-white via-pink-200 to-indigo-200 bg-clip-text font-serif text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
-              {t("who are we", "Who are we?")}
-            </h2>
+        <h2 className="bg-gradient-to-r from-slate-900 via-indigo-800 to-blue-900 dark:from-white dark:via-pink-200 dark:to-indigo-200 bg-clip-text font-serif text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
+          {t("who are we", "Who are we?")}
+        </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-indigo-200">
-              {t(
-                "team subtitle",
-                "Meet the passionate minds behind our quantum initiative, working together to bridge science and society",
-              )}
-            </p>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-700 dark:text-indigo-200">
+          {t(
+            "team subtitle",
+            "Meet the passionate minds behind our quantum initiative, working together to bridge science and society",
+          )}
+        </p>
           </motion.div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {teamMembers.map((member, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: scrollY > 900 ? 1 : 0,
-                  y: scrollY > 900 ? 0 : 20,
-                }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+        {teamMembers.map((member, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+          opacity: scrollY > 900 ? 1 : 0,
+          y: scrollY > 900 ? 0 : 20,
+            }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+          >
+            <Card className="group overflow-hidden border-slate-200 dark:border-indigo-800/30 bg-white/80 dark:bg-indigo-950/30 backdrop-blur-sm transition-all duration-300 hover:border-indigo-500/50 dark:hover:border-pink-500/50 hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] dark:hover:shadow-[0_0_30px_rgba(219,39,119,0.15)]">
+          <div className="relative">
+            <div className="aspect-square overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-900/50 dark:to-pink-900/50">
+              <Avatar className="h-full w-full rounded-none">
+            <AvatarImage
+              src={member.image || "/placeholder.svg"}
+              alt={member.name}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <AvatarFallback className="h-full w-full rounded-none bg-gradient-to-br from-indigo-200 to-blue-200 dark:from-indigo-800 dark:to-pink-800 text-4xl text-indigo-800 dark:text-white">
+              {member.name.charAt(0)}
+            </AvatarFallback>
+              </Avatar>
+
+              {/* Quantum effect overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-100/80 to-transparent dark:from-indigo-950/80 dark:to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+            </div>
+
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white/90 to-transparent dark:from-indigo-950 dark:to-transparent p-4 text-slate-900 dark:text-white">
+              <h3 className="text-lg font-bold">{member.name}</h3>
+              <p className="text-sm text-slate-700 dark:text-indigo-300">{member.role}</p>
+            </div>
+          </div>
+
+          <CardContent className="p-4">
+            <div className="max-h-0 overflow-hidden transition-all duration-500 group-hover:max-h-96">
+              <p className="mb-4 mt-2 text-slate-700 dark:text-indigo-200">{member.bio}</p>
+              <div className="mb-4 flex flex-wrap gap-2">
+            {member.skills.map((skill, skillIdx) => (
+              <Badge
+                key={skillIdx}
+                variant="outline"
+                className="border-indigo-500/30 bg-indigo-50 text-indigo-700 dark:border-pink-500/30 dark:bg-pink-950/20 dark:text-pink-300"
               >
-                <Card className="group overflow-hidden border-indigo-800/30 bg-indigo-950/30 backdrop-blur-sm transition-all duration-300 hover:border-pink-500/50 hover:shadow-[0_0_30px_rgba(219,39,119,0.15)]">
-                  <div className="relative">
-                    <div className="aspect-square overflow-hidden bg-gradient-to-br from-indigo-900/50 to-pink-900/50">
-                      <Avatar className="h-full w-full rounded-none">
-                        <AvatarImage
-                          src={member.image || "/placeholder.svg"}
-                          alt={member.name}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <AvatarFallback className="h-full w-full rounded-none bg-gradient-to-br from-indigo-800 to-pink-800 text-4xl">
-                          {member.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-
-                      {/* Quantum effect overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                    </div>
-
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-indigo-950 to-transparent p-4 text-white">
-                      <h3 className="text-lg font-bold">{member.name}</h3>
-                      <p className="text-sm text-indigo-300">{member.role}</p>
-                    </div>
-                  </div>
-
-                  <CardContent className="p-4">
-                    <div className="max-h-0 overflow-hidden transition-all duration-500 group-hover:max-h-96">
-                      <p className="mb-4 mt-2 text-indigo-200">{member.bio}</p>
-                      <div className="mb-4 flex flex-wrap gap-2">
-                        {member.skills.map((skill, skillIdx) => (
-                          <Badge
-                            key={skillIdx}
-                            variant="outline"
-                            className="border-pink-500/30 bg-pink-950/20 text-pink-300"
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <div className="mt-4 flex justify-center gap-3">
-                        <a
-                          href={member.social.github}
-                          className="rounded-full bg-slate-900/80 p-2 text-white backdrop-blur-sm transition-transform hover:scale-110 hover:bg-slate-800"
-                        >
-                          <Github className="h-5 w-5" />
-                        </a>
-                        <a
-                          href={member.social.linkedin}
-                          className="rounded-full bg-slate-900/80 p-2 text-white backdrop-blur-sm transition-transform hover:scale-110 hover:bg-slate-800"
-                        >
-                          <Linkedin className="h-5 w-5" />
-                        </a>
-                        <a
-                          href={`mailto:${member.social.email}`}
-                          className="rounded-full bg-slate-900/80 p-2 text-white backdrop-blur-sm transition-transform hover:scale-110 hover:bg-slate-800"
-                        >
-                          <Mail className="h-5 w-5" />
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="mt-2 flex items-center justify-center">
-                      <ChevronDown className="h-4 w-4 text-indigo-300 transition-transform duration-300 group-hover:rotate-180" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                {skill}
+              </Badge>
             ))}
+              </div>
+
+              <div className="mt-4 flex justify-center gap-3">
+            <a
+              href={member.social.github}
+              className="rounded-full bg-slate-100 dark:bg-slate-900/80 p-2 text-slate-700 dark:text-white backdrop-blur-sm transition-transform hover:scale-110 hover:bg-slate-200 dark:hover:bg-slate-800"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+            <a
+              href={member.social.linkedin}
+              className="rounded-full bg-slate-100 dark:bg-slate-900/80 p-2 text-slate-700 dark:text-white backdrop-blur-sm transition-transform hover:scale-110 hover:bg-slate-200 dark:hover:bg-slate-800"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href={`mailto:${member.social.email}`}
+              className="rounded-full bg-slate-100 dark:bg-slate-900/80 p-2 text-slate-700 dark:text-white backdrop-blur-sm transition-transform hover:scale-110 hover:bg-slate-200 dark:hover:bg-slate-800"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+              </div>
+            </div>
+
+            <div className="mt-2 flex items-center justify-center">
+              <ChevronDown className="h-4 w-4 text-slate-500 dark:text-indigo-300 transition-transform duration-300 group-hover:rotate-180" />
+            </div>
+          </CardContent>
+            </Card>
+          </motion.div>
+        ))}
           </div>
         </section>
       </main>
 
       {/* Footer with quantum-inspired design */}
-      <footer className="relative z-10 mt-20 border-t border-indigo-800/30 bg-indigo-950/80 py-12 backdrop-blur-sm">
+      <footer className="relative z-10 mt-20 border-t border-slate-200/30 dark:border-indigo-800/30 bg-white/80 dark:bg-indigo-950/80 py-12 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-            <div className="flex items-center">
-              <AtomIcon className="mr-2 h-6 w-6 text-pink-400" />
-              <span className="bg-gradient-to-r from-pink-400 to-indigo-400 bg-clip-text text-xl font-bold text-transparent">
-                WiQi
-              </span>
-            </div>
+        <div className="flex items-center">
+          <AtomIcon className="mr-2 h-6 w-6 text-indigo-600 dark:text-pink-400" />
+          <span className="bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-pink-400 dark:to-indigo-400 bg-clip-text text-xl font-bold text-transparent">
+            WiQi
+          </span>
+        </div>
 
-            <div className="flex flex-wrap justify-center gap-8">
-              <a
-                href="#"
-                className="text-sm text-indigo-300 transition-colors hover:text-white"
-              >
-                {t("footer about", "About Us")}
-              </a>
-              <a
-                href="#"
-                className="text-sm text-indigo-300 transition-colors hover:text-white"
-              >
-                {t("footer projects", "Projects")}
-              </a>
-              <a
-                href="#"
-                className="text-sm text-indigo-300 transition-colors hover:text-white"
-              >
-                {t("footer resources", "Resources")}
-              </a>
-              <a
-                href="#"
-                className="text-sm text-indigo-300 transition-colors hover:text-white"
-              >
-                {t("footer contact", "Contact")}
-              </a>
-            </div>
+        <div className="flex flex-wrap justify-center gap-8">
+          <a
+            href="#"
+            className="text-sm text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:text-white transition-colors"
+          >
+            {t("footer about", "About Us")}
+          </a>
+          <a
+            href="#"
+            className="text-sm text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:text-white transition-colors"
+          >
+            {t("footer projects", "Projects")}
+          </a>
+          <a
+            href="#"
+            className="text-sm text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:text-white transition-colors"
+          >
+            {t("footer resources", "Resources")}
+          </a>
+          <a
+            href="#"
+            className="text-sm text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:text-white transition-colors"
+          >
+            {t("footer contact", "Contact")}
+          </a>
+        </div>
 
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="rounded-full bg-indigo-900/50 p-2 text-indigo-300 transition-colors hover:bg-indigo-800 hover:text-white"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="rounded-full bg-indigo-900/50 p-2 text-indigo-300 transition-colors hover:bg-indigo-800 hover:text-white"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="rounded-full bg-indigo-900/50 p-2 text-indigo-300 transition-colors hover:bg-indigo-800 hover:text-white"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
-            </div>
+        <div className="flex gap-4">
+          <a
+            href="#"
+            className="rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-indigo-900/50 p-2 text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:bg-indigo-800 dark:hover:text-white transition-colors"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="#"
+            className="rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-indigo-900/50 p-2 text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:bg-indigo-800 dark:hover:text-white transition-colors"
+          >
+            <Linkedin className="h-5 w-5" />
+          </a>
+          <a
+            href="#"
+            className="rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-indigo-900/50 p-2 text-slate-600 hover:text-slate-900 dark:text-indigo-300 dark:hover:bg-indigo-800 dark:hover:text-white transition-colors"
+          >
+            <Mail className="h-5 w-5" />
+          </a>
+        </div>
           </div>
 
-          <div className="mt-8 text-center text-sm text-indigo-400">
-            <p>
-              © {new Date().getFullYear()} WiQi.{" "}
-              {t("footer rights", "All rights reserved.")}
-            </p>
+          <div className="mt-8 text-center text-sm text-slate-500 dark:text-indigo-400">
+        <p>
+          © {new Date().getFullYear()} WiQi.{" "}
+          {t("footer rights", "All rights reserved.")}
+        </p>
           </div>
         </div>
       </footer>
