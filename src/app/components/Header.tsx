@@ -1,16 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getCookie } from "cookies-next";
 import Fuse from "fuse.js";
-import {
-  replaceLocale,
-  getContrastingColor,
-  getBackgroundColorBehindNav,
-} from "./client_utils";
+import { replaceLocale } from "./client_utils";
 
 import "./button.css";
 
@@ -38,7 +34,6 @@ const Header = (props: HeaderProps) => {
   const initialDifficulty = getCookie("difficulty")?.toString() ?? "elementary";
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [hasMounted, setHasMounted] = useState(false);
-  const [dynamicTextColor, setDynamicTextColor] = useState("black");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const [searchResults, setSearchResults] = useState<File[]>([]);
@@ -88,47 +83,13 @@ const Header = (props: HeaderProps) => {
   const clearInput = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
+      setSearchResults([]);
+      setShowDropdown(false);
     }
   };
 
-  const updateTextColor = useCallback(() => {
-    const navSelector = ".sticky.top-0.z-40.w-full";
-    const navElement = document.querySelector(navSelector) as HTMLElement;
-    if (!navElement) return;
-    const bgColor = getBackgroundColorBehindNav(navElement);
-    const contrastColor = getContrastingColor(bgColor);
-    setDynamicTextColor(contrastColor);
-  }, []);
-
-  // Update color on scroll
-  useEffect(() => {
-    window.addEventListener("scroll", updateTextColor);
-    // Initial call on mount
-    updateTextColor();
-    return () => {
-      window.removeEventListener("scroll", updateTextColor);
-    };
-  }, [updateTextColor]);
-
-  // Re-calculate text color whenever theme changes
-  useEffect(() => {
-    // Use requestAnimationFrame to ensure the DOM class (.dark) has been applied
-    // before we compute background colors
-    requestAnimationFrame(() => {
-      updateTextColor();
-    });
-  }, [theme, updateTextColor]);
-
-  // Immediately update color on theme toggle
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-    // Option 1: requestAnimationFrame
-    requestAnimationFrame(() => {
-      updateTextColor();
-    });
-
-    // Option 2 (alternative): short setTimeout did not like too quick
-    // setTimeout(() => updateTextColor(), 0);
   };
 
   const handleSearch = () => {
@@ -137,7 +98,6 @@ const Header = (props: HeaderProps) => {
       setShowDropdown(true);
       const fuse = new Fuse(files, fuseOptions);
       const results = fuse.search(query);
-      console.debug(results);
       setSearchResults(results.map((result) => result.item));
     } else {
       setSearchResults([]);
@@ -146,20 +106,18 @@ const Header = (props: HeaderProps) => {
   };
 
   return (
-    <div
+    <header
       id="mainNavbar"
-      className="fixed top-0 z-30 w-full flex-none border-b border-slate-900/10 backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06]"
-      style={{ color: dynamicTextColor }}
+      className="fixed top-0 z-30 w-full flex-none border-b border-slate-900/10 bg-white/80 text-black backdrop-blur-sm transition-colors duration-300 ease-out dark:border-slate-50/[0.06] dark:bg-slate-900/80 dark:text-white"
     >
       <div className="max-w-8xl mx-auto px-4 lg:px-8 xl:px-16 2xl:px-32">
-        <div className="mx-4 py-4 dark:border-slate-300/10 lg:mx-0 lg:border-0 lg:px-0">
+        <div className="mx-4 border-b border-slate-300/10 py-4 dark:border-slate-700/10 lg:mx-0 lg:border-0 lg:px-0">
           <div className="flex items-center justify-between">
-            {/* Left side: Logo + Search */}
+            {/* Left side: Logo */}
             <div className="flex items-center space-x-4">
-              <a
-                className="flex w-[2.0625rem] items-center transition-all duration-200 ease-in-out hover:scale-95 md:w-auto"
+              <Link
+                className="flex w-[2.0625rem] items-center text-black transition-all duration-200 ease-in-out hover:scale-95 dark:text-white"
                 href="/"
-                style={{ color: dynamicTextColor }}
               >
                 <span className="sr-only">WiQi home page</span>
                 <Image
@@ -169,15 +127,13 @@ const Header = (props: HeaderProps) => {
                   height={30}
                   className="transition-transform duration-200 ease-in-out hover:rotate-12"
                 />
-                <span
-                  className="ml-3 select-none text-2xl font-semibold text-pink-600 opacity-0 transition-colors duration-200 ease-in-out sm:opacity-100"
-                  style={{ color: dynamicTextColor }}
-                >
-                  <p className="dark:text-slate-500">WiQi</p>
+                <span className="ml-3 select-none text-2xl font-semibold transition-colors duration-200 ease-in-out dark:text-white sm:opacity-100">
+                  WiQi
                 </span>
-              </a>
+              </Link>
             </div>
 
+            {/* Search Bar */}
             <div className="justify-left flex w-1/2 flex-1 pl-10 lg:pl-40 xl:pl-48 2xl:pl-96">
               <link
                 rel="stylesheet"
@@ -185,12 +141,7 @@ const Header = (props: HeaderProps) => {
                 integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
                 crossOrigin="anonymous"
               />
-              <form
-                className="custom-form"
-                style={{
-                  borderColor: dynamicTextColor,
-                }}
-              >
+              <form className="custom-form relative">
                 <input
                   type="search"
                   ref={inputRef}
@@ -203,37 +154,31 @@ const Header = (props: HeaderProps) => {
                 <button
                   type="button"
                   onClick={clearInput}
-                  className="ml-2 text-sm text-blue-500 hover:text-blue-700"
+                  className="ml-2 text-sm text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   Clear
                 </button>
                 {showDropdown && searchResults.length > 0 && (
-                  <ul
-                    className="absolute z-50 mt-10 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg dark:bg-black"
-                    style={{
-                      borderColor: dynamicTextColor, // Dynamic border color
-                    }}
-                  >
+                  <ul className="absolute z-50 mt-10 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg dark:border-gray-600 dark:bg-gray-800">
                     {searchResults.map((result, index) => (
                       <li
                         key={index}
-                        className="cursor-pointer px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        className="cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => {
-                          // Navigate to the selected item's slug
                           window.location.href = result.slug;
                           clearInput();
                         }}
                       >
-                        <a
+                        <Link
                           href={`/${props.locale}/quantum_tuesdays/${initialDifficulty}/${result.slug}`}
                         >
                           <p className="font-semibold text-black dark:text-white">
                             {result.slug}
                           </p>
-                          <p className="text-sm text-black dark:text-white">
+                          <p className="text-sm text-gray-600 dark:text-gray-300">
                             {result.metadata.date}
                           </p>
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -241,47 +186,37 @@ const Header = (props: HeaderProps) => {
               </form>
             </div>
 
-            {/* Added: ENTRIES*/}
             {/* Desktop nav (hidden on mobile) */}
             <div className="hidden items-center space-x-6 lg:flex">
-              <nav
-                className="text-sm font-semibold leading-6"
-                style={{ color: dynamicTextColor }}
-              >
+              <nav className="text-sm font-semibold leading-6 text-black dark:text-white">
                 <ul className="flex space-x-8">
                   <li>
-                    <a
-                      className="transition-all duration-300 ease-in-out hover:scale-105"
-                      style={{ color: dynamicTextColor }}
+                    <Link
+                      className="text-black transition-all duration-300 ease-in-out hover:scale-105 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
                       href={`/${props.locale}/quantum_tuesdays`}
                     >
-                      <p className="dark:text-slate-500">Quantum Tuesdays</p>
-                    </a>
+                      Quantum Tuesdays
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      className="transition-all duration-300 ease-in-out hover:scale-105"
-                      style={{ color: dynamicTextColor }}
+                    <Link
+                      className="text-black transition-all duration-300 ease-in-out hover:scale-105 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
                       href={`/${props.locale}/entries`}
                     >
-                      <p className="dark:text-slate-500">Entries</p>
-                    </a>
+                      Entries
+                    </Link>
                   </li>
                 </ul>
               </nav>
 
               {/* Theme toggle + Language Switch */}
-              <div className="flex items-center border-l border-slate-500 pl-6">
+              <div className="flex items-center border-l border-slate-500 pl-6 dark:border-slate-400">
                 <button
                   type="button"
-                  aria-haspopup="listbox"
-                  aria-expanded="false"
-                  className="mr-4 focus:outline-none"
+                  className="mr-4 text-black focus:outline-none dark:text-white"
                   onClick={toggleTheme}
-                  style={{ color: dynamicTextColor }}
                 >
                   {theme === "dark" ? (
-                    // Dark mode icon
                     <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
                       <path
                         fillRule="evenodd"
@@ -301,7 +236,6 @@ const Header = (props: HeaderProps) => {
                       ></path>
                     </svg>
                   ) : (
-                    // Light mode icon
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -339,7 +273,7 @@ const Header = (props: HeaderProps) => {
             <div className="lg:hidden">
               <button
                 type="button"
-                className="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+                className="text-black hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 <span className="sr-only">Toggle mobile menu</span>
@@ -363,21 +297,21 @@ const Header = (props: HeaderProps) => {
             isMobileMenuOpen
               ? "max-h-96 opacity-100"
               : "hidden max-h-0 opacity-0"
-          } flex flex-col overflow-hidden p-4 backdrop-blur-sm transition-all duration-300 ease-in-out lg:hidden`}
+          } flex flex-col overflow-hidden bg-white/80 p-4 text-black backdrop-blur-sm transition-all duration-300 ease-in-out dark:bg-slate-900/80 dark:text-white lg:hidden`}
         >
           <nav className="mb-4 text-sm font-semibold leading-6">
             <ul className="space-y-2">
               <li>
                 <Link
                   href={`/${props.locale}/quantum_tuesdays`}
-                  className="block w-full py-2 hover:underline dark:text-slate-500"
+                  className="block w-full py-2 text-black hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Quantum Tuesdays
                 </Link>
                 <Link
                   href={`/${props.locale}/entries`}
-                  className="block w-full py-2 hover:underline dark:text-slate-500"
+                  className="block w-full py-2 text-black hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Entries
@@ -390,7 +324,7 @@ const Header = (props: HeaderProps) => {
           <div className="flex items-center justify-between">
             <button
               type="button"
-              className="mr-4 focus:outline-none"
+              className="mr-4 text-black focus:outline-none dark:text-white"
               onClick={() => {
                 toggleTheme();
                 setIsMobileMenuOpen(false);
@@ -452,7 +386,7 @@ const Header = (props: HeaderProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
