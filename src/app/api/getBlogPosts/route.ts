@@ -31,13 +31,13 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const response: Response[] = [];
-    body.folder.map((folder: string) => {
+    body.folder.forEach((folder: string) => {
       const files_in_folder = getBlogPosts(
         folder,
         body.language,
         body.difficulty,
       );
-      files_in_folder.map((file) => {
+      files_in_folder.forEach((file) => {
         response.push({
           metadata: file.metadata,
           slug: file.slug,
