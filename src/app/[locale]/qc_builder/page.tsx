@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { act, useState } from "react";
 import type React from "react";
 
 import {
@@ -15,6 +15,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { QGates } from "@/app/components/QGates";
 import type { QGateInterface } from "@/app/components/QGate";
+import { draftMode } from "next/headers";
 
 const quantum_gates = [
   {
@@ -52,26 +53,82 @@ export default function QuantumCircuitPage() {
   // Number of columns in our circuit
   const columns = 5;
   const [qubits, setQubits] = useState([0, 1]);
+
   // Track which gate is currently being dragged from the circuit
   const [draggedPlacedGateId, setDraggedPlacedGateId] = useState<string | null>(
     null,
   );
 
   const handleDragOver = (event: DragOverEvent) => {
-    console.debug(event.over);
-    console.debug(event.active);
+    console.debug(event.over?.id.toString());
+
+    // What we need to do here is, if over isn't null or undefined, make it display a hover effect over the
+    // box we're currently hovering over
   };
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
+    console.debug(active.id.toString());
 
+    // Fuck whatever this code below me does, it's stupid
     // Check if the dragged item is a placed gate
-    if (active.id.toString().startsWith("placed-")) {
-      setDraggedPlacedGateId(active.id.toString());
-    }
+    // if (active.id.toString().startsWith("placed-")) {
+    //     setDraggedPlacedGateId(active.id.toString());
+    // }
+    //
+    // What we can do instead is maybe keep track of our actively dragged component somehow else in a state maybe, to then
+    // use that state variable to keep track of the info of what we're trying to place
+    // nvm we can just check which gate we picked up from the active object in our dropEvent
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (!over) {
+      if (active.id.toString().startsWith("placed-")) {
+        setPlacedGates(
+          placedGates.filter(
+            (placedGate) =>
+              placedGate.instanceId !=
+              active.id.toString().replace("placed-", ""),
+          ),
+        );
+      }
+      return;
+    } else {
+      // handle the case for when we're placing our gate over something (same as over not being null)
+      // we can also use the check that if the over id is dropable-{number from 0 to numQubits}-{number from 0 to numCols} then we handle that shit
+      // but tbh that seems a bit of a hastle -> easier to just check if over is not null + we only make the gates a droppable area and there won't be any other
+      // areas where we can drop shit
+      //
+      // Get info about where we're dropping (bois)
+      const [_, qubitStr, posStr] = over.id.toString().split("-");
+      const qubit = Number.parseInt(qubitStr);
+      const position = Number.parseInt(posStr);
+
+      // console.debug(`Dropping gate ${active.id.toString()} at qubit ${qubit} at position ${position}`)
+      const draggedGate = gates.find(
+        (gate) => gate.id === active.id.toString(),
+      ); // need to technically check if the gate we picked up isn't null but eh
+      if (draggedGate) {
+        const existingGateIndex = placedGates.findIndex(
+          (gate) => gate.qubit === qubit && gate.position === position,
+        );
+        setPlacedGates([
+          ...placedGates,
+          {
+            ...draggedGate,
+            qubit,
+            position,
+            instanceId: `${draggedGate.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          },
+        ]);
+      }
+      return;
+    }
+  };
+
+  const handleDragEndbla = (event: DragEndEvent) => {
     const { active, over } = event;
 
     // Reset the dragged placed gate id
@@ -176,7 +233,11 @@ export default function QuantumCircuitPage() {
     <div className="space-y-16 p-16">
       <h1 className="text-2xl font-bold">Quantum Circuit Builder</h1>
 
-      <DndContext>
+      <DndContext
+        onDragOver={handleDragOver}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+      >
         <div className="grid grid-cols-1 gap-6 rounded-lg border border-cyan-400 md:grid-cols-4">
           <div className="content-center rounded-lg border border-red-300 bg-gray-900 p-5 md:col-span-3">
             {/* Quantum circuit */}
@@ -217,7 +278,6 @@ export default function QuantumCircuitPage() {
           {/* Quantum gates palette */}
           <QGates qgates={gates} />
         </div>
-        <TrashDroppable id="trash" key="trash" />
       </DndContext>
     </div>
   );
@@ -264,21 +324,6 @@ function DraggablePlacedGate({ gate }: { gate: PlacedGate }) {
       style={style}
     >
       <p className="font-bold">{gate.title}</p>
-    </div>
-  );
-}
-
-function TrashDroppable({ id }: { id: string }) {
-  const { isOver, setNodeRef } = useDroppable({
-    id: id,
-  });
-
-  return (
-    <div
-      ref={setNodeRef}
-      className={`mt-8 flex h-20 items-center justify-center rounded-lg border-2 border-dashed transition-colors ${isOver ? "border-red-500 bg-red-700/20 text-red-300" : "border-gray-500 text-gray-400"}`}
-    >
-      🗑 Drop here to delete gate
     </div>
   );
 }
