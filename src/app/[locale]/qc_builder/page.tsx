@@ -1,9 +1,8 @@
 "use client";
-import { act, useState } from "react";
+import { useState } from "react";
 import type React from "react";
 
 import {
-  closestCorners,
   DndContext,
   type DragEndEvent,
   type DragOverEvent,
@@ -15,7 +14,6 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { QGates } from "@/app/components/QGates";
 import type { QGateInterface } from "@/app/components/QGate";
-import { draftMode } from "next/headers";
 
 const quantum_gates = [
   {
@@ -60,9 +58,8 @@ export default function QuantumCircuitPage() {
   );
 
   const handleDragOver = (event: DragOverEvent) => {
-    console.debug(event.over?.id.toString());
-
-    // What we need to do here is, if over isn't null or undefined, make it display a hover effect over the
+    // console.debug(event.over?.id.toString());
+    // TODO: What we need to do here is, if over isn't null or undefined, make it display a hover effect over the
     // box we're currently hovering over
   };
 
@@ -102,29 +99,45 @@ export default function QuantumCircuitPage() {
       // areas where we can drop shit
       //
       // Get info about where we're dropping (bois)
-      const [_, qubitStr, posStr] = over.id.toString().split("-");
-      const qubit = Number.parseInt(qubitStr);
-      const position = Number.parseInt(posStr);
+      if (active.id.toString().startsWith("placed-")) {
+        const [_, newQubitStr, newPosStr] = over.id.toString().split("-");
+        const qubit = Number.parseInt(newQubitStr);
+        const position = Number.parseInt(newPosStr);
+        const instanceId = active.id.toString().replace("placed-", "");
 
-      // console.debug(`Dropping gate ${active.id.toString()} at qubit ${qubit} at position ${position}`)
-      const draggedGate = gates.find(
-        (gate) => gate.id === active.id.toString(),
-      ); // need to technically check if the gate we picked up isn't null but eh
-      if (draggedGate) {
-        const existingGateIndex = placedGates.findIndex(
-          (gate) => gate.qubit === qubit && gate.position === position,
+        setPlacedGates(
+          placedGates.map((gate) =>
+            gate.instanceId === instanceId
+              ? { ...gate, qubit, position }
+              : gate,
+          ),
         );
-        setPlacedGates([
-          ...placedGates,
-          {
-            ...draggedGate,
-            qubit,
-            position,
-            instanceId: `${draggedGate.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          },
-        ]);
+      } else {
+        const [_, qubitStr, posStr] = over.id.toString().split("-");
+        const qubit = Number.parseInt(qubitStr);
+        const position = Number.parseInt(posStr);
+
+        // console.debug(`Dropping gate ${active.id.toString()} at qubit ${qubit} at position ${position}`)
+        const draggedGate = gates.find(
+          (gate) => gate.id === active.id.toString(),
+        ); // need to technically check if the gate we picked up isn't null but eh
+        console.debug("dragged gate", draggedGate);
+        if (draggedGate) {
+          const existingGateIndex = placedGates.findIndex(
+            (gate) => gate.qubit === qubit && gate.position === position,
+          );
+          setPlacedGates([
+            ...placedGates,
+            {
+              ...draggedGate,
+              qubit,
+              position,
+              instanceId: `${draggedGate.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            },
+          ]);
+        }
+        return;
       }
-      return;
     }
   };
 
