@@ -1,0 +1,35 @@
+---
+title: "Chemistry - Applications of Quantum Computing"
+subtitle: "The applications of Quantum Computing to Chemistry (middle)"
+author: "Helena Iréne Köhler"
+date: "2025-04-23"
+---
+
+## Quantum Simulation - Chemistry
+
+Creating new drugs is a long and expensive process. It can take more than 10 years and cost a lot of money. To speed things up, scientists use computers to help design and test new drugs virtually. This is called Computer-Aided Drug Design (CADD).
+
+CADD becomes even more powerful when combined with Artificial Intelligence (AI) and Machine Learning (ML). These technologies can predict how well a drug works, whether it’s safe, and how to improve it — all without needing physical tests in the early stages. This is also helpful in materials science, where new materials are designed using computers.
+
+However, even powerful classical computers have limits. That’s because molecules follow the rules of quantum mechanics — things like superposition and entanglement, which classical computers can’t naturally simulate. To do so, they need to track every possible state of the molecule, which quickly becomes impossible as molecules get bigger.
+
+For example, a study (1) showed, that simulating 8 caffeine molecules in water took 50 days on a 8-core Linux cluster. And this is still a very moderate system - far from the molecular complexity that real breakthroughs in drug discovery or materials science demand. For reference, compare the size of a caffeine molecule (top) to the cytostatic (medication used to treat cancer) compound Paclitaxel (bottom):
+![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
+*Caffeine*
+![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
+*Taxol*
+
+To deal with this, scientists use approximations, like Density Functional Theory (DFT), but these aren't always accurate, especially for large systems.
+
+This is where quantum computers come in. Instead of using bits (in a classical computer), they use qubits, which behave like electrons because they follow the same quantum rules. Qubits can be in multiple states at once and get entangled — just like electrons in a molecule.
+
+For example, one study showed that simulating just 8 caffeine molecules in water took 50 days using a classical computer cluster. But more complex molecules, like cancer drugs, are far beyond what classical methods can handle well.
+
+Quantum computers are designed to simulate quantum systems directly. In quantum chemistry, scientists use an equation called the Hamiltonian to describe the total energy of a molecule. To run this on a quantum computer, the equation needs to be transformed so it fits into a quantum circuit and provides the most useful information.
+
+Once this transformation is done, quantum algorithms like VQE (Variational Quantum Eigensolver) or QPE (Quantum Phase Estimation) can simulate the molecule’s behavior by calculating things like ground state energy.
+
+
+Quantum simulations will soon help us design better medicines and materials faster than ever before.
+
+(1) Tavagnacco L, Schnupf U, Mason PE, Saboungi ML, Cesàro A, Brady JW. Molecular dynamics simulation studies of caffeine aggregation in aqueous solution. J Phys Chem B. 2011 Sep 22;115(37):10957-66. doi: 10.1021/jp2021352. Epub 2011 Aug 30. PMID: 21812485; PMCID: PMC3189405.
