@@ -2,22 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
-
+import { File } from "@/types";
 import PostPreview from "@/app/components/PostPreview";
 import DifficultySelector from "@/app/components/DifficultySelector";
 import useResizeObserverHeight from "../../components/useResizeObserverHeight";
-
-type File = {
-  key: string;
-  slug: string;
-  metadata: {
-    title: string;
-    subtitle: string;
-    date: string;
-    author: string;
-  };
-  locale: string;
-};
 
 export default function Page({ params }: { params: { locale: string } }) {
   const cookies = useCookies();
@@ -51,7 +39,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: "entries",
+          folder: ["entries"],
         }),
       });
       const data = await response.json();

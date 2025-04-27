@@ -13,23 +13,14 @@ import {
 } from "./client_utils";
 
 import "./button.css";
+import { File } from "@/types";
 
 interface HeaderProps {
   locale: string;
 }
 
-type File = {
-  key: string;
-  slug: string;
-  metadata: {
-    subtitle: string;
-    date: string;
-  };
-  locale: string;
-};
-
 const fuseOptions = {
-  keys: ["slug", "metadata.subtitle", "metadata.date"],
+  keys: ["slug", "metadata.subtitle", "metadata.date", "folder"],
 };
 
 const Header = (props: HeaderProps) => {
@@ -65,7 +56,7 @@ const Header = (props: HeaderProps) => {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: ["quantum_tuesdays"],
+          folder: ["quantum_tuesdays", "entries"],
         }),
       });
       const data = await response.json();
@@ -137,7 +128,6 @@ const Header = (props: HeaderProps) => {
       setShowDropdown(true);
       const fuse = new Fuse(files, fuseOptions);
       const results = fuse.search(query);
-      console.debug(results);
       setSearchResults(results.map((result) => result.item));
     } else {
       setSearchResults([]);
@@ -225,10 +215,10 @@ const Header = (props: HeaderProps) => {
                         }}
                       >
                         <a
-                          href={`/${props.locale}/quantum_tuesdays/${initialDifficulty}/${result.slug}`}
+                          href={`/${props.locale}/${result.folder}/${initialDifficulty}/${result.slug}`}
                         >
                           <p className="font-semibold text-black dark:text-white">
-                            {result.slug}
+                            {result.metadata.title}
                           </p>
                           <p className="text-sm text-black dark:text-white">
                             {result.metadata.date}

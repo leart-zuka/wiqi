@@ -6,6 +6,7 @@ import { getPostContent } from "@/app/components/server_utils";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import wordsCounter from "word-counting";
+import { useTranslations } from "next-intl";
 import "katex/dist/katex.min.css";
 
 export default function Post({
@@ -17,6 +18,7 @@ export default function Post({
     `${params.locale}/${params.difficulty}/quantum_tuesdays`,
     params.slug,
   );
+  const t = useTranslations("Posts");
   const numberOfWords = wordsCounter(post.content).wordsCount;
   const readingTime = Math.ceil(numberOfWords / 200);
   return (
@@ -25,7 +27,7 @@ export default function Post({
         <h1 className="text-2xl text-slate-600">{post.data.title}</h1>
         <p className="mt-2 text-slate-400">{post.data.date}</p>
         <p className="mt-2 text-slate-400">
-          Average reading time ~{readingTime} m
+          {t("average reading time")}: ~{readingTime} m
         </p>
       </div>
 

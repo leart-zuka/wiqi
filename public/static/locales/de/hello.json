@@ -1,19 +1,27 @@
 {
-  "quantum education": "Quantenbildung",
-  "hello": "Hallo, willkommen bei",
-  "sub hello": "Entdecken Sie die faszinierende Welt der Quantenphysik mit interaktiven Kursen und praxisnahen Beispielen.",
-  "features": "Funktionen",
-  "why choose us": "Warum uns wählen?",
-  "features description": "Unsere Plattform bietet interaktive Simulationen, strukturierte Kurse und praxisnahe Anwendungen, um Ihnen zu helfen, Quantencomputing zu meistern.",
-  "for everyone": "Für alle",
-  "difficulty levels": "Schwierigkeitsgrade",
-  "difficulty description": "Egal ob Anfänger, Fortgeschrittener oder Profi – wir haben Inhalte, die genau auf Ihr Niveau abgestimmt sind.",
-  "featured content": "Ausgewählter Inhalt",
-  "ready to start": "Bereit zum Start?",
-  "cta description": "Schließen Sie sich uns an und beginnen Sie noch heute Ihre Reise in die Quantenwelt!",
-  "get started": "Loslegen",
-  "view demo": "Demo ansehen",
-  "explore courses": "Kurse erkunden",
-  "learn more": "Mehr erfahren",
-  "hover to interact": "Zum Interagieren schweben"
+  "Index": {
+    "hello": "Willkommen beim",
+    "sub hello": "Wir wollen die Welt über die Welt der Quanten belehren.",
+    "hello button": "Besuchen Sie unsere aktuellen Blogposts",
+    "quantum education": "Quantenbildung",
+    "hello": "Hallo, willkommen bei",
+    "sub hello": "Entdecken Sie die faszinierende Welt der Quantenphysik mit interaktiven Kursen und praxisnahen Beispielen.",
+    "features": "Funktionen",
+    "why choose us": "Warum uns wählen?",
+    "features description": "Unsere Plattform bietet interaktive Simulationen, strukturierte Kurse und praxisnahe Anwendungen, um Ihnen zu helfen, Quantencomputing zu meistern.",
+    "for everyone": "Für alle",
+    "difficulty levels": "Schwierigkeitsgrade",
+    "difficulty description": "Egal ob Anfänger, Fortgeschrittener oder Profi – wir haben Inhalte, die genau auf Ihr Niveau abgestimmt sind.",
+    "featured content": "Ausgewählter Inhalt",
+    "ready to start": "Bereit zum Start?",
+    "cta description": "Schließen Sie sich uns an und beginnen Sie noch heute Ihre Reise in die Quantenwelt!",
+    "get started": "Loslegen",
+    "view demo": "Demo ansehen",
+    "explore courses": "Kurse erkunden",
+    "learn more": "Mehr erfahren",
+    "hover to interact": "Zum Interagieren schweben"
+  },
+  "Posts": {
+    "average reading time": "Durchschnittliche Lesezeit"
+  }
 }

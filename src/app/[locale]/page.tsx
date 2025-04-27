@@ -22,7 +22,7 @@ interface HomeProps {
 }
 
 export default function Home({ params }: HomeProps) {
-  const t = useTranslations();
+  const t = useTranslations("Index");
   const images = ["superpos.svg", "|1>.svg", "|0>.svg", "main.svg"];
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
 
