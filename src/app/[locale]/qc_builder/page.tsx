@@ -25,7 +25,7 @@ export default function QuantumCircuitPage() {
   );
 
   return (
-    <div className="space-y-16 p-16">
+    <div className="space-y-16 p-32">
       <h1 className="text-2xl font-bold">Quantum Circuit Builder</h1>
       <div className="flex w-fit gap-2 divide-solid rounded-full border border-solid border-black">
         <button

@@ -35,7 +35,7 @@ export const QCircuit = ({
         {Array.from({ length: qubits }).map((_, qIndex) => (
           <div key={qIndex} className="flex items-center space-x-2">
             <p className="w-12 font-mono text-sm text-gray-300">q[{qIndex}]</p>
-            <div className="flex flex-1 items-center">
+            <div className="flex h-0 flex-1 items-center border border-dashed border-gray-100">
               {/* Create droppable areas for each position on the wire */}
               {Array.from({ length: columns }).map((_, colIndex) => {
                 const gateAtPosition = getGateAtPosition(qIndex, colIndex);
@@ -76,7 +76,7 @@ function DroppableArea({
   return (
     <div
       ref={setNodeRef}
-      className={`h-14 w-14 border border-dashed ${isOver ? "border-yellow-400 bg-yellow-900/20" : "border-gray-600"} m-1 flex items-center justify-center rounded-md transition-colors`}
+      className={`h-14 w-14 ${isOver ? "border border-yellow-400 bg-yellow-900/20" : ""} m-1 flex items-center justify-center rounded-md transition-colors`}
     >
       {children}
     </div>
