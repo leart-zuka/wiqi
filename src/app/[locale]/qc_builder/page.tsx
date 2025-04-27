@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
-import type React from "react";
-
 import { DndContext } from "@dnd-kit/core";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 
 import { QGates } from "@/app/components/QGates";
 import { PlacedGate } from "@/app/components/QCircuit";
@@ -47,6 +46,7 @@ export default function QuantumCircuitPage() {
           handleDragEnd(event, placedGates, setPlacedGates, gates)
         }
         onDragOver={handleDragOver}
+        modifiers={[restrictToWindowEdges]}
       >
         <div className="grid grid-cols-1 gap-6 rounded-lg md:grid-cols-4">
           {/* Quantum circuit */}
