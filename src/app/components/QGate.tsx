@@ -1,13 +1,16 @@
+import { Tensor, Rank } from "@tensorflow/tfjs";
+
 export interface QGateInterface {
   id: string;
   title: string;
   color: string;
+  gate: Tensor<Rank>;
 }
 
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
-export const QGate = ({ id, title, color }: QGateInterface) => {
+export const QGate = ({ id, title, color, gate }: QGateInterface) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
 
   const style = {

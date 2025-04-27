@@ -6,7 +6,7 @@ interface QGatesInterface {
 
 export const QGates = ({ qgates }: QGatesInterface) => {
   return (
-    <div className="col-span-1 grid grid-cols-2 grid-rows-2 place-items-center justify-items-center gap-4 rounded-lg border border-red-300 bg-gray-800 p-4">
+    <div className="col-span-1 grid grid-cols-2 grid-rows-2 place-items-center justify-items-center gap-4 rounded-lg bg-gray-800 p-4">
       {qgates.map((qgate) => {
         return (
           <QGate
@@ -14,6 +14,7 @@ export const QGates = ({ qgates }: QGatesInterface) => {
             id={qgate.id}
             title={qgate.title}
             color={qgate.color}
+            gate={qgate.gate}
           />
         );
       })}
