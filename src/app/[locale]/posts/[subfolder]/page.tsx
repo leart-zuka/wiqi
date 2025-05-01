@@ -5,7 +5,7 @@ import { useCookies } from "next-client-cookies";
 import { File } from "@/types";
 import PostPreview from "@/app/components/PostPreview";
 import DifficultySelector from "@/app/components/DifficultySelector";
-import useResizeObserverHeight from "../../components/useResizeObserverHeight";
+import useResizeObserverHeight from "../../../components/useResizeObserverHeight";
 
 export default function Page({
   params,

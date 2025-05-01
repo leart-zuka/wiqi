@@ -8,7 +8,7 @@ import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import wordsCounter from "word-counting";
 import { useTranslations } from "next-intl";
 import "katex/dist/katex.min.css";
-import "@/app/[locale]/[subfolder]/[difficulty]/[slug]/page.css";
+import "./page.css";
 
 export default function Post({
   params,
