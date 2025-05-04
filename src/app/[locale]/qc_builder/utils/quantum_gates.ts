@@ -1,4 +1,5 @@
 import * as tf from "@tensorflow/tfjs";
+import { Tensor, Rank } from "@tensorflow/tfjs";
 
 let real, imag;
 
@@ -38,29 +39,67 @@ real = tf.tensor2d(
 imag = tf.zeros([2, 2]);
 const hGate = tf.complex(real, imag);
 
+real = tf.tensor2d([
+  [1, 0, 0, 0],
+  [0, 1, 0, 0],
+  [0, 0, 0, 1],
+  [0, 1, 0, 0],
+]);
+imag = tf.zeros([4, 4]);
+const cnotGate = tf.complex(real, imag);
+
 export const quantum_gates = [
   {
     id: "hadamard",
     title: "H",
     color: "bg-red-500",
-    gate: hGate,
+    math: hGate,
+    display: true,
   },
   {
     id: "x-rot",
     title: "X",
     color: "bg-blue-500",
-    gate: xGate,
+    math: xGate,
+    display: true,
   },
   {
     id: "y-rot",
     title: "Y",
     color: "bg-blue-500",
-    gate: yGate,
+    math: yGate,
+    display: true,
   },
   {
     id: "z-rot",
     title: "Z",
     color: "bg-blue-500",
-    gate: zGate,
+    math: zGate,
+    display: true,
+  },
+  {
+    id: "cnot-x",
+    title: "CX",
+    color: "bg-rose-500",
+    math: cnotGate,
+    multiQubit: true,
+    display: true,
+  },
+  {
+    id: "control",
+    title: "C",
+    color: "bg-gray-500",
+    math: cnotGate,
+    multiQubit: true,
+    display: false,
   },
 ];
+
+export interface QGateInterface {
+  id: string;
+  title: string;
+  color: string;
+  math: Tensor<Rank>;
+  multiQubit?: boolean;
+  display: boolean;
+}

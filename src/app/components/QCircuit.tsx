@@ -2,12 +2,14 @@ import React from "react";
 import { useDroppable, useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
-import { QGateInterface } from "./QGate";
+import { QGateInterface } from "../[locale]/qc_builder/utils/quantum_gates";
 
 export interface PlacedGate extends QGateInterface {
-  position: number; // Column position
-  qubit: number; // Qubit index
-  instanceId: string; // Unique ID for this placed instance
+  position: number;
+  qubit: number;
+  instanceId: string;
+  controlQubit?: number;
+  targetQubit?: number;
 }
 interface QCircuitInterface {
   qubits: number;
@@ -31,7 +33,7 @@ export const QCircuit = ({
 
   return (
     <div className="content-center rounded-lg bg-gray-900 p-5 md:col-span-3">
-      <div className="flex h-min flex-col space-y-12">
+      <div className="flex h-min w-min flex-col space-y-12">
         {Array.from({ length: qubits }).map((_, qIndex) => (
           <div key={qIndex} className="flex items-center space-x-2">
             <p className="w-12 font-mono text-sm text-gray-300">q[{qIndex}]</p>
