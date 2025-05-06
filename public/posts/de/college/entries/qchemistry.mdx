@@ -29,7 +29,7 @@ Da diese Aufgaben sowohl ressourcen- als auch zeitintensiv sind, werden sie durc
 Näherungsrechnungen sind jedoch immer bis zu einem gewissen Grad ungenau, und die vielleicht größte Herausforderung ist die exponentielle Komplexität eines Quantensystems. Diese Berechnungen können nur für eine sehr kleine Anzahl von Atomen durchgeführt werden, bevor die exponentielle Skalierung die erforderlichen Rechenressourcen auf ein nicht mehr machbares Maß ansteigen lässt.
 An dieser Stelle bieten Quantencomputer einen Quantenvorteil. Klassische Computer haben es schwer, da Elektronen nicht in nur einem Zustand gleichzeitig existieren können, weil sie von Natur aus quantenhaft sind und daher nicht in binärer Logik dargestellt werden können. Ein Qubit verhält sich jedoch gemäß der Quantenmechanik und zeigt daher die gleichen Phänomene. Da Qubits in einem Überlagerungszustand sein können, können sie einfach den Zustand eines Elektrons speichern. In ähnlicher Weise können Qubits miteinander verschränkt werden und die Verschränkung von Elektronen in einem Molekül genau nachahmen.
 
-So wurde beispielsweise eine Studie (1) zeigte, dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
+So wurde beispielsweise eine [Studie](https://pubmed.ncbi.nlm.nih.gov/21812485/) zeigte, dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
 ![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
 _Coffein_
 ![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
@@ -44,7 +44,7 @@ $$
 H = \sum_{pq} h_{pq} a_p^\dagger a_q + \frac{1}{2} \sum_{pqrs} h_{pqrs} a_p^\dagger a_q^\dagger a_r a_s
 $$
 
-Hier sind $ a*p^\dagger $ und $ a_q $ die fermionischen Schöpfungs- und Annihilationsoperatoren, und die Koeffizienten $ h*{pq} $ und $ h\_{pqrs} $ entsprechen Ein- und Zwei-Elektronen-Integralen, die von den Molekülorbitalen abhängen. Dieser Hamiltonian kodiert alle Wechselwirkungen innerhalb des Moleküls und ist das Objekt, das Quantenalgorithmen wie QPEA oder der Variational Quantum Eigensolver (VQE) zu lösen versuchen.
+Hier sind $ a_p^\dagger $ und $ a_q $ die fermionischen Schöpfungs- und Annihilationsoperatoren, und die Koeffizienten $ h_{pq} $ und $ h_{pqrs} $ entsprechen Ein- und Zwei-Elektronen-Integralen, die von den Molekülorbitalen abhängen. Dieser Hamiltonian kodiert alle Wechselwirkungen innerhalb des Moleküls und ist das Objekt, das Quantenalgorithmen wie QPEA oder der Variational Quantum Eigensolver (VQE) zu lösen versuchen.
 
 Im Falle von VQE bereitet der Algorithmus einen Versuchsquantenzustand vor und wertet den Erwartungswert des Hamiltonian aus:
 
@@ -55,7 +55,7 @@ $$
 Dieser Wert wird mit Hilfe eines klassischen Optimierers über die Parameter $ \theta $ minimiert, um die Grundzustandsenergie anzunähern.
 
 Die typische Funktionsweise solcher Algorithmen beginnt mit der Abbildung des Hamiltonian auf Qubit-Zustände und Operationen durch die Codierung der fermionischen Zustände und Operatoren. Fermionen sind eine Gruppe subatomarer Teilchen, einschließlich Elektronen und Protonen. Sie sind fundamentale Teilchen mit einem halbzahligen Spin (1/2), die dem Pauli-Ausschlussprinzip gehorchen. Dieses Prinzip besagt, dass in einem Quantensystem, das den Gesetzen der Quantenmechanik gehorcht, wie z. B. einem Atom, zwei Teilchen mit halbzahligen Spins, wie z. B. Fermionen, nicht gleichzeitig denselben Quantenzustand einnehmen können. In einem Atom nehmen immer zwei Elektronen gleichzeitig denselben Quantenzustand ein. Das bedeutet, dass nur eines der Elektronen einen Aufwärtsspin (+ 1/2) haben kann und das andere einen Abwärtsspin (-1/2) haben muss.
-Die fermionischen Erzeugungs- und Annihilationsoperatoren können auf verschiedene Weise abgebildet werden, z. B. durch die Jordan-Wigner-Transformation. Mit dieser Transformation können fermionische Systeme auf Quantenhardware dargestellt werden. Jeder fermionische Modus entspricht einem Qubit in der \( s_z \) Eigenbasis, und die Besetzung wird direkt in Qubit-Zuständen kodiert. Die Abbildung bewahrt die fermionischen Anti-Kommutationsbeziehungen, indem sie Operatoren in nicht-lokale Ketten von Pauli-Matrizen übersetzt:
+Die fermionischen Erzeugungs- und Annihilationsoperatoren können auf verschiedene Weise abgebildet werden, z. B. durch die Jordan-Wigner-Transformation. Mit dieser Transformation können fermionische Systeme auf Quantenhardware dargestellt werden. Jeder fermionische Modus entspricht einem Qubit in der $ s_z $ Eigenbasis, und die Besetzung wird direkt in Qubit-Zuständen kodiert. Die Abbildung bewahrt die fermionischen Anti-Kommutationsbeziehungen, indem sie Operatoren in nicht-lokale Ketten von Pauli-Matrizen übersetzt:
 
 $$
 a_j = \frac{1}{2} (X_j + i Y_j) \bigotimes_{k=0}^{j-1} Z_k, \quad
@@ -66,4 +66,3 @@ Diese Darstellung ist in einer Dimension exakt und wird häufig für die Simulat
 
 Quantensimulationen haben das Potenzial, die Modellierung von Molekülen und ihren Wechselwirkungen sowohl für die Arzneimittelforschung als auch für die Materialwissenschaft zu revolutionieren. Dies sind zwei der vielversprechendsten Anwendungen der Quantencomputer in der Zukunft.
 
-(1) Tavagnacco L, Schnupf U, Mason PE, Saboungi ML, Cesàro A, Brady JW. Molecular dynamics simulation studies of caffeine aggregation in aqueous solution. J Phys Chem B. 2011 Sep 22;115(37):10957-66. doi: 10.1021/jp2021352. Epub 2011 Aug 30. PMID: 21812485; PMCID: PMC3189405.

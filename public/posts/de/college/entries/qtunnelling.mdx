@@ -11,7 +11,7 @@ Der Mensch hat eine Intuition für die klassische Welt entwickelt und erwartet, 
 
 Wenn man einen Basketball auf den Boden wirft, prallt er zurück. Wirft man denselben Ball gegen eine starre Wand, prallt er zurück. Unser Gehirn, das die Dinge klassisch erlebt hat, ist darauf trainiert, zu erwarten, dass Ereignisse klassisch ablaufen.
 
-Die Idee des Quantentunnels ist dazu da, diese Intuition in Frage zu stellen. Dieses Phänomen ist für das Funktionieren der meisten unserer alltäglichen Geräte von grundlegender Bedeutung, einschließlich des Geräts, auf dem Sie dies lesen, des Kernreaktors, der Strom liefert, und vieles mehr. Es ist einer der Faktoren, die zur Existenz der Sonne und damit auch der Erde selbst beitragen.
+Die Idee des Quantentunnels ist dazu da, diese Intuition in Frage zu stellen. Dieses Phänomen ist für das Funktionieren der meisten unserer alltäglichen Geräte von grundlegender Bedeutung, einschließlich dem Gerät, auf dem Sie dies lesen, und vieles mehr. Es ist einer der Faktoren, die zur Existenz der Sonne und damit auch der Erde selbst beitragen.
 
 Lasst uns das Rätsel lösen und herausfinden, was seine Kraft ist.
 
@@ -33,165 +33,112 @@ Das sich frei ausbreitende Teilchen kann wie jede elektromagnetische Welle darge
 
 Diese Wellenfunktion ermöglicht es dem Teilchen, mit dem Potential in Wechselwirkung zu treten und im Falle einer Energie, die geringer ist als die des Potentials, nicht einfach abzuprallen, sondern die Barriere zu passieren.
 
-## 3\. Klassisch vs. Quanten: Ein schneller Vergleich
+## 3\. Verständnis des Quantentunnelns
 
-- **Klassisches Teilchen:** Klassischerweise bewegt sich eine Kugel auf eine potenzielle Barriere konstanter Höhe zu.
-  _ E = Energie des Teilchens = ½ m v^2
-  _ V = Höhe der potenziellen Barriere bei x = a
-  _ Die Lagrange-Gleichung wird zu L = E - V
-  _ Unter Anwendung der Euler-Lagrange-Gleichungen stellen wir fest, dass die Kraft im gesamten System außer an der Barrierenkante gleich Null ist.
-  _ Wir können die Impuls- und Energieerhaltung anwenden und erhalten, dass das Teilchen die Barriere klassischerweise nicht überschreiten kann und daher reflektiert wird, was intuitiv Sinn macht.
-  **Quantummechanisches Teilchen**
-  _ Das klassische Teilchen würde den Newtonschen Gesetzen oder den Gesetzen der klassischen Physik im Allgemeinen folgen.
-  _ Unser Quanten-Teilchen würde jedoch den Postulaten der Quantenmechanik folgen.
-  _ Mit Hilfe des Postulats der Zeitentwicklung wissen wir, dass die zeitliche Entwicklung eines Teilchens in einem Hamiltonian (Energiebeobachtung) durch die berühmte Schroedinger-Gleichung gegeben ist.
+**a) Das freie Teilchen**
+
+Ein freies Teilchen (kein Potential, V(x) = 0) wird durch eine Wanderwellenlösung beschrieben:
 
 $$
-i\hbar \frac{\partial \Psi(x, t)}{\partial t} = \hat{H} \Psi(x, t)
+\Psi(x)=Ae^{ikx}+Be^{-ikx},k=\frac{\sqrt{2mE}}{\hbar}
 $$
 
-$$
--\frac{\hbar^2}{2m} \frac{d^2 \Psi(x)}{dx^2} + V(x) \Psi(x) = E \Psi(x)
-$$
+Das Teilchen kann sich frei bewegen, ohne dass es auf irgendwelche potenziellen Hindernisse trifft. Dies ist der elementarste Fall und bildet die Grundlage für das Verständnis komplexerer Potentialwechselwirkungen.
 
-Die Wellenfunktion $\Psi_{Teilchen}$ stellt nun den Zustand des Teilchens bei (x,t) dar.
+**b) Stufenpotential**  
 
-- Normalerweise betrachten wir nur stationäre Potentiale, da dies die obige komplexe Gleichung zweiter Ordnung in eine variabel trennbare Form überführt und somit leicht bearbeitet werden kann.
-- Das bedeutet, dass V nur von x abhängt. Für unseren Fall betrachten wir V(x) zunächst als eine Stufenfunktion
+Ein Stufenpotential führt eine Diskontinuität ein:
 
 $$
--\frac{\hbar^2}{2m} \frac{d^2 \Psi(x)}{dx^2} + V(x) \Psi(x) = E \Psi(x)
+V(x) = \begin{cases} 0, & x < 0 \\\ V_0, & x > 0 \end{cases}
 $$
 
-Für ein solches Potenzial erweist sich die Lösung der Wellenfunktion als eine abklingende Funktion in dem Bereich, in dem das Potenzial endlich ist.
+Für $ E > V_0 $ gilt: Das Teilchen sieht die Barriere als einen Wechsel des Mediums und es kommt zu Reflexion und Transmission, ähnlich wie bei Licht an einer Glasgrenzfläche.
 
-- Im Fall von E > V0 verhält sich das Teilchen fast wie ein klassisches Teilchen.
-- Im Bereich des Potentials kommt es aufgrund des zusätzlichen Potentials zu einer Verringerung der Frequenz.
-- Im Fall von E < V0 würde die Wellenfunktion des Teilchens ihr oszillatorisches Verhalten in der Potentialregion verlieren und stattdessen schwächer werden oder zerfallen!
-- Erinnern wir uns nun an den Fall einer Wand, auf die der Ball auftrifft.
-- Wäre der Ball ein Quantenteilchen, wäre die Wahrscheinlichkeit, dass er die Wand durchschlägt, natürlich sehr gering, aber niemals Null.
-- Es besteht eine signifikante Wahrscheinlichkeit, dass das Teilchen die potenzielle Stufenbarriere durchquert.
-- Da es sich um ein unendlich langes Potenzial handelt, gibt es praktisch keine Möglichkeit, dass das Teilchen tief im Potenzial existiert (was natürlich von der Energie des Teilchens abhängt).
-
-- Jetzt sehen wir das wahre Wunder des Tunnelns, die neue Potentialbarriere, die wir betrachten, ist etwas Ähnliches wie die Wand, die wir im klassischen Fall gesehen haben.
-- Definiere ein Potential der Form:
-
+Die Wellenfunktion wird:
 $$
-V(x) =
-\begin{cases}
-0, & x < 0 \\
-V_0, & 0 \leq x \leq a \\
-0, & x > a
-\end{cases}
+\Psi(x) = \begin{cases} Ae^{ik_1 x} + Be^{-ik_1 x}, & x < 0 \\ Ce^{ik_2 x}, & x > 0 \end{cases}
 $$
 
-Der Raum ist in drei Regionen unterteilt (am Beispiel des 1-dimensionalen Raums).
+Wo $k_1= \frac{√2mE}{ℏ} \ , k_2= \frac{√2m(E−V0)}{ℏ}  $
 
-- Angenommen, ein Teilchen mit der Energie E bewegt sich. Wir erhalten die resultierende Wellenfunktion, nachdem wir die Schrödinger-Gleichung gelöst haben, wie sie im Bild dargestellt ist.
-- Das Teilchen zeigt ein oszillatorisches Verhalten, bevor es mit der Umgebung interagiert.
+Wenn aber $ E < V_0 $, hat das Teilchen im klassischen Sinne nicht genug Energie. Im quantenmechanischen Sinne wiederum:
 
-- Dieser Amplitudenabfall erfolgt über die gesamte Breite der Potentialbarriere.
-- Der Amplitudenverlust des transmittierten Zustands wird im reflektierten Fall gewonnen, was sich aus der Lösung der Schrödingergleichung analysieren lässt.
-  ![Ball Wall Chatgpt](/posts/assets/entries/qtunnelling/ballwall.png)
+$$ \Psi(x) = \begin{cases} Ae^{ikx} + Be^{-ikx}, & x < 0 \\ Ce^{-\kappa x}, & x > 0 \end{cases}, \quad \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar} $$
 
-## 4\. Verständnis des Quantentunnelns
+Die Welle klingt im Bereich der Barriere exponentiell ab - es geht keine Energie verloren, aber die Wahrscheinlichkeit nimmt ab.
 
-- **a) Das freie Teilchen**
+**c) Potentialbarriere (Quanten-Tunneling)**  
 
-  - Ein freies Teilchen (kein Potential, V(x) = 0) wird durch eine Wanderwellenlösung beschrieben:
+Ein allgemeineres und realistischeres Szenario ist eine potenzielle Barriere mit endlicher Breite:
 
-    $$
-     \Psi(x)=Ae^{ikx}+Be^{-ikx},k=\frac{\sqrt{2mE}}{\hbar}
-    $$
+$$
+V(x) = \begin{cases} 0, & x < 0 \\\ V_0, & 0 \le x \le a \\\ 0, & x > a \end{cases}
+$$
 
-    Das Teilchen kann sich frei bewegen, ohne dass es auf irgendwelche potenziellen Hindernisse trifft.
+Wenn $E < V_0$, kann hier ein von links einfallendes Teilchen die Barriere durchtunneln:
+- Region I (x < 0) : $$ \psi_I(x)=Ae^{ikx}+Be^{-ikx}$$
+- Region II (0 ≤ x ≤ a) :$$ \psi_{II}(x)=Ce^{κx}+De^{-κx} $$
+- Region III (x > a) : $$\psi_{III}(x)=Fe^{ikx} $$
+Durch Anwendung von Randbedingungen bei x = 0 und x = a bestimmen wir die Transmissions- und Reflexionskoeffizienten. Die Transmissionswahrscheinlichkeit ist:
 
-  - Dies ist der elementarste Fall und bildet die Grundlage für das Verständnis komplexerer Potentialwechselwirkungen.
+$$
+T= \left|\frac{F}{A}\right|^2 \approx e^{-2\kappa a}, \quad \text{mit } \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}
+$$
+![Particle](/posts/assets/entries/qtunnelling/Particle.png)
 
-- **b) Stufenpotential** \* Ein Stufenpotential führt eine Diskontinuität ein:
+## 4\. Anwendungen des Quantentunnelns
 
-          $$
-          V(x) = \begin{cases} 0, & x < 0 \\\ V_0, & x > 0 \end{cases}
-          $$
+**a) Tunneln in Halbleiterbauelementen:** Tunneldioden, Flash-Speicher (Fowler-Nordheim-Tunneln)
 
-      * Wenn $ E > V_0 $: Das Teilchen sieht die Barriere als einen Wechsel des Mediums.
-      * Es kommt zu Reflexion und Transmission, ähnlich wie bei Licht an einer Glasgrenzfläche.
-      * Die Wellenfunktion wird:
-        $$
-          \Psi(x) = \begin{cases} Ae^{ik_1 x} + Be^{-ik_1 x}, & x < 0 \\ Ce^{ik_2 x}, & x > 0 \end{cases}
-          $$
-
-          Wo $$k_1= \frac{√2mE}{ℏ} \ , k_2= \frac{√2m(E−V0)}{ℏ}  $$
-      * Wenn $ E < V_0 $ : das Teilchen hat im klassischen Sinne nicht genug Energie.
-      * Aber, quantenmechanisch:
-
-
-          $$ \Psi(x) = \begin{cases} Ae^{ikx} + Be^{-ikx}, & x < 0 \\ Ce^{-\kappa x}, & x > 0 \end{cases}, \quad \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar} $$
-
-       Die Welle klingt im Bereich der Barriere exponentiell ab - es geht keine Energie verloren, aber die Wahrscheinlichkeit nimmt ab.
-
-  **c) Potentialbarriere (Quanten-Tunneling)** \* Ein allgemeineres und realistischeres Szenario ist eine potenzielle Barriere mit endlicher Breite:
-
-          $$
-          V(x) = \begin{cases} 0, & x < 0 \\\ V_0, & 0 \le x \le a \\\ 0, & x > a \end{cases}
-          $$
-
-
-      * Hier kann ein von links einfallendes Teilchen die Barriere durchtunneln (wenn $E < V_0$ ):
-          * Region I (x < 0) : $$ \psi_I(x)=Ae^{ikx}+Be^{-ikx}$$
-          * Region II (0 ≤ x ≤ a) :$$ \psi_{II}(x)=Ce^{κx}+De^{-κx} $$
-          * Region III (x > a) : $$\psi_{III}(x)=Fe^{ikx} $$
-          * Durch Anwendung von Randbedingungen bei x = 0 und x = a bestimmen wir die Transmissions- und
-          * und Reflexionskoeffizienten. Die Transmissionswahrscheinlichkeit ist:
-
-              $$
-              T= \left|\frac{F}{A}\right|^2 \approx e^{-2\kappa a}, \quad \text{mit } \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}
-              $$
-      ![Particle](/posts/assets/entries/qtunnelling/Particle.png)
-
-      ## 5\. Anwendungen des Quantentunnelns
-
-**a) Tunneln in Halbleiterbauelementen:**- Tunneldioden, Flash-Speicher (Fowler-Nordheim-Tunneln)
-
-- Quanten-Tunnelbau ermöglicht die Bewegung von Elektronen über die Oxidbarriere in Flash-Speicherzellen, ein Prozess, der in der klassischen Physik als verboten gelten würde.
-- Durch Anlegen hoher elektrischer Felder wird beim Fowler-Nordheim-Tunneln Ladung in das schwebende Gate injiziert oder daraus entfernt, wodurch sich die Schwellenspannung ändert und binäre Daten gespeichert werden.
-- Tunneldioden nutzen das Quantentunneln durch eine schmale Verarmungsschicht, um eine Hochgeschwindigkeitsleitung zu erreichen.
-- Bei niedrigen Durchlassspannungen tunneln die Elektronen durch die Potenzialbarriere und erzeugen einen Strom.
-- Wenn die Spannung weiter ansteigt, nimmt dieser Tunneleffekt ab, was zu einem negativen Differenzialwiderstand führt - eine einzigartige und nützliche Eigenschaft für Hochfrequenz- und Schnellschaltschaltungen.
+Quanten-Tunnelbau ermöglicht die Bewegung von Elektronen über die Oxidbarriere in Flash-Speicherzellen, ein Prozess, der in der klassischen Physik als verboten gelten würde.
+Durch Anlegen hoher elektrischer Felder wird beim Fowler-Nordheim-Tunneln Ladung in das schwebende Gate injiziert oder daraus entfernt, wodurch sich die Schwellenspannung ändert und binäre Daten gespeichert werden.
+Tunneldioden nutzen das Quantentunneln durch eine schmale Verarmungsschicht, um eine Hochgeschwindigkeitsleitung zu erreichen.
+Bei niedrigen Durchlassspannungen tunneln die Elektronen durch die Potenzialbarriere und erzeugen einen Strom.
+Wenn die Spannung weiter ansteigt, nimmt dieser Tunneleffekt ab, was zu einem negativen Differenzialwiderstand führt - eine einzigartige und nützliche Eigenschaft für Hochfrequenz- und Schnellschaltschaltungen.
   ![Semicond](https://www.physics-and-radio-electronics.com/electronic-devices-and-circuits/semiconductor-diodes/images/normalpnjunctiondiode.png)
   ![Semicond 2](https://www.physics-and-radio-electronics.com/electronic-devices-and-circuits/semiconductor-diodes/images/tunneldiodebarrier.png)
-- **b) Alphateilchenemission:**\- Entweichen aus Kernen durch Tunneln
-- Der Alphazerfall tritt ein, wenn ein instabiler Kern ein Alphateilchen $({He}^4_2 )$ aussendet.
-- Klassischerweise wird das Alphateilchen durch eine potenzielle Barriere, die durch die Kernkräfte entsteht, im Kern eingeschlossen.
-- Obwohl die Energie des Alphateilchens geringer ist als die Höhe der Barriere, kann es durch Quantentunneln entkommen.
-- Die Wahrscheinlichkeit, die Barriere zu durchtunneln, bestimmt die Zerfallsrate.
-- Dies erklärt, warum Alphateilchen emittiert werden, obwohl die klassische Physik dies nicht zulassen würde.
-- Die Gamow-Theorie quantifiziert diesen Prozess und setzt die Zerfallsraten mit der Energie des Teilchens und den Eigenschaften der Barriere in Beziehung.
+
+**b) Alphateilchenemission:** Entweichen aus Kernen durch Tunneln
+
+Der Alphazerfall tritt ein, wenn ein instabiler Kern ein Alphateilchen $({He}^4_2 )$ aussendet.
+Klassischerweise wird das Alphateilchen durch eine potenzielle Barriere, die durch die Kernkräfte entsteht, im Kern eingeschlossen.
+Obwohl die Energie des Alphateilchens geringer ist als die Höhe der Barriere, kann es durch Quantentunneln entkommen.
+Die Wahrscheinlichkeit, die Barriere zu durchtunneln, bestimmt die Zerfallsrate.
+Dies erklärt, warum Alphateilchen emittiert werden, obwohl die klassische Physik dies nicht zulassen würde.
+Die Gamow-Theorie quantifiziert diesen Prozess und setzt die Zerfallsraten mit der Energie des Teilchens und den Eigenschaften der Barriere in Beziehung.
   ![Alpha Decay](https://nuclear-power.com/wp-content/uploads/2018/08/alpha-decay-quantum-tunneling.png)
-- **c) Rastertunnelmikroskop (STM):**\- Abbildung von Oberflächen mit atomarer Auflösung
-  - Das STM ist ein leistungsfähiges Instrument zur Abbildung von Oberflächen im atomaren Maßstab.
+
+**c) Rastertunnelmikroskop (STM):** Abbildung von Oberflächen mit atomarer Auflösung
+
+Das STM ist ein leistungsfähiges Instrument zur Abbildung von Oberflächen im atomaren Maßstab.
     ![Real-world STM](https://upload.wikimedia.org/wikipedia/commons/d/da/Chiraltube.png)
-  - Es funktioniert nach dem Prinzip des Quantentunnels.
-  - Eine scharfe leitende Spitze wird sehr nahe (bis auf wenige Angström) an die Oberfläche einer leitenden oder halbleitenden Probe gebracht.
-  - Wenn eine kleine Spannung zwischen der Spitze und der Oberfläche angelegt wird, tunneln Elektronen durch den Vakuumspalt und erzeugen einen Tunnelstrom.
-  - Dieser Strom ist sehr empfindlich gegenüber dem Abstand zwischen Spitze und Probe. Indem man die Spitze über die Oberfläche bewegt und den Strom misst, können die Topographie und die elektronische Struktur der Oberfläche bestimmt werden.
-  - STM war eine der ersten und direktesten Anwendungsmöglichkeiten des Quantentunnelns in der Instrumentierung.
+Es funktioniert nach dem Prinzip des Quantentunnels.
+Eine scharfe leitende Spitze wird sehr nahe (bis auf wenige Angström) an die Oberfläche einer leitenden oder halbleitenden Probe gebracht.
+Wenn eine kleine Spannung zwischen der Spitze und der Oberfläche angelegt wird, tunneln Elektronen durch den Vakuumspalt und erzeugen einen Tunnelstrom.
+Dieser Strom ist sehr empfindlich gegenüber dem Abstand zwischen Spitze und Probe. Indem man die Spitze über die Oberfläche bewegt und den Strom misst, können die Topographie und die elektronische Struktur der Oberfläche bestimmt werden.
+STM war eine der ersten und direktesten Anwendungsmöglichkeiten des Quantentunnelns in der Instrumentierung.
     ![Schematic diagram of STM](https://www.researchgate.net/profile/Naresh-Marturi/publication/281534044/figure/fig6/AS:614167945936928@1523440457752/Scanning-tunneling-microscope-schematic-diagram.png)
-- **d) Quantenbiologie:**- Enzymkatalyse, Protonenübertragung
-  - Quanten-Tunneling spielt bei mehreren biologischen Prozessen eine Rolle, indem es Teilchen ermöglicht, Energiebarrieren zu überwinden, die in der klassischen Physik verboten wären.
-  - Wichtige Beispiele sind:
-    - Enzymkatalyse: Elektronen oder Protonen können durch Aktivierungsbarrieren tunneln, wodurch Reaktionen schneller ablaufen, als die klassische Übergangszustandstheorie vorhersagt.
-    - Geruchssinn : Eine Hypothese besagt, dass die Erkennung von Gerüchen mit Elektronentunneln verbunden ist, die durch Molekülschwingungen und nicht nur durch die Molekülform unterstützt werden.
-- **e) Stellare Fusion:** - Kernfusion in Sternen bei niedrigen Temperaturen
-  _ In Sternen kommt es zur Kernfusion, wenn sich zwei positiv geladene Kerne nahe genug kommen, um zu verschmelzen.
-  _ Durch die Coulomb-Abstoßung zwischen ihnen entsteht jedoch eine hohe Potenzialbarriere.
-  _ Bei den Temperaturen, die in Sternkernen herrschen, haben die meisten Kerne nicht genug kinetische Energie, um diese Barriere zu überwinden.
-  _ Dennoch kommt es aufgrund von Quantentunneln zur Fusion, wodurch die Kerne die Barriere durchdringen und verschmelzen können.
-  _ Dieser Prozess ist grundlegend für die Energieerzeugung in Sternen und ermöglicht Reaktionen wie die Proton-Proton-Kette oder den CNO-Zyklus.
-  **Link zum Alphazerfall**
-  _ Sowohl bei der Emission von Alphateilchen als auch bei der Kernfusion durchdringen die Teilchen potenzielle Barrieren durch Tunneln:
-  _ Beim Alphazerfall können Teilchen durch Tunneln aus einem Kern entweichen.
-  _ Bei der Sternfusion können die Teilchen durch Tunneln zusammenkommen und reagieren. \* Es handelt sich also um zwei Seiten derselben Quantenmünze - das Tunneln steuert sowohl das Auseinanderbrechen als auch das Zusammenkommen von Kernen in der Natur.
+
+**d) Quantenbiologie:** Enzymkatalyse, Protonenübertragung
+
+Quanten-Tunneling spielt bei mehreren biologischen Prozessen eine Rolle, indem es Teilchen ermöglicht, Energiebarrieren zu überwinden, die in der klassischen Physik verboten wären.
+Wichtige Beispiele sind:
+- Enzymkatalyse: Elektronen oder Protonen können durch Aktivierungsbarrieren tunneln, wodurch Reaktionen schneller ablaufen, als die klassische Übergangszustandstheorie vorhersagt.
+- Geruchssinn : Eine Hypothese besagt, dass die Erkennung von Gerüchen mit Elektronentunneln verbunden ist, die durch Molekülschwingungen und nicht nur durch die Molekülform unterstützt werden.
+
+**e) Stellare Fusion:** Kernfusion in Sternen bei niedrigen Temperaturen
+
+In Sternen kommt es zur Kernfusion, wenn sich zwei positiv geladene Kerne nahe genug kommen, um zu verschmelzen.
+Durch die Coulomb-Abstoßung zwischen ihnen entsteht jedoch eine hohe Potenzialbarriere. 
+Bei den Temperaturen, die in Sternkernen herrschen, haben die meisten Kerne nicht genug kinetische Energie, um diese Barriere zu überwinden.
+Dennoch kommt es aufgrund von Quantentunneln zur Fusion, wodurch die Kerne die Barriere durchdringen und verschmelzen können.
+Dieser Prozess ist grundlegend für die Energieerzeugung in Sternen und ermöglicht Reaktionen wie die Proton-Proton-Kette oder den CNO-Zyklus.
+
+**Link zum Alphazerfall:**
+Sowohl bei der Emission von Alphateilchen als auch bei der Kernfusion durchdringen die Teilchen potenzielle Barrieren durch Tunneln:
+Beim Alphazerfall können Teilchen durch Tunneln aus einem Kern entweichen.
+Bei der Sternfusion können die Teilchen durch Tunneln zusammenkommen und reagieren. \* Es handelt sich also um zwei Seiten derselben Quantenmünze - das Tunneln steuert sowohl das Auseinanderbrechen als auch das Zusammenkommen von Kernen in der Natur.
 
 ## 6\. Schlussfolgerung
 

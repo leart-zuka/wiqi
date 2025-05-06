@@ -13,22 +13,21 @@ CADD wird noch leistungsfähiger, wenn es mit künstlicher Intelligenz (KI) und 
 
 Doch selbst leistungsstarke klassische Computer haben ihre Grenzen. Das liegt daran, dass Moleküle den Regeln der Quantenmechanik folgen - Dinge wie Überlagerung und Verschränkung, die klassische Computer natürlich nicht simulieren können. Dazu müssten sie jeden möglichen Zustand des Moleküls erfassen, was mit zunehmender Größe der Moleküle schnell unmöglich wird.
 
-So wurde beispielsweise eine Studie (1) zeigte, dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
+So wurde beispielsweise eine [Studie](https://pubmed.ncbi.nlm.nih.gov/21812485/) zeigte, dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
 ![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
 _Coffein_
 ![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
 _Taxol_
 
-Um dies zu bewältigen, verwenden die Wissenschaftler Näherungswerte wie die Dichtefunktionaltheorie (DFT), die jedoch nicht immer genau sind, insbesondere bei großen Systemen.
+Um dies zu bewältigen, verwenden die Wissenschaftler Näherungswerte wie die Dichtefunktionaltheorie (DFT, auf der Elektronendichte basierendes Verfahren zur Bestimmung des quantenmechanischen Grundzustandes eines Vielelektronensystems), die jedoch nicht immer genau sind, insbesondere bei großen Systemen.
 
 An dieser Stelle kommen Quantencomputer ins Spiel. Anstelle von Bits (in einem klassischen Computer) verwenden sie Qubits, die sich wie Elektronen verhalten, weil sie denselben Quantenregeln folgen. Qubits können sich in mehreren Zuständen gleichzeitig befinden und verschränkt werden - genau wie Elektronen in einem Molekül.
 
 So zeigte eine Studie, dass die Simulation von nur 8 Koffeinmolekülen in Wasser mit einem klassischen Computercluster 50 Tage dauerte. Komplexere Moleküle, wie Krebsmedikamente, sind jedoch weit jenseits dessen, was mit klassischen Methoden gut bewältigt werden kann.
 
-Quantencomputer sind darauf ausgelegt, Quantensysteme direkt zu simulieren. In der Quantenchemie verwenden die Wissenschaftler eine Gleichung, den so genannten Hamiltonian, um die Gesamtenergie eines Moleküls zu beschreiben. Um sie auf einem Quantencomputer auszuführen, muss die Gleichung so umgewandelt werden, dass sie in einen Quantenschaltkreis passt und die nützlichsten Informationen liefert.
+Quantencomputer sind darauf ausgelegt, Quantensysteme direkt zu simulieren. In der Quantenchemie verwenden die Wissenschaftler eine Gleichung, die so genannte Schrödinger's Gleichung, welche den Hamiltonian enthält, um die Gesamtenergie eines Moleküls zu beschreiben. Um sie auf einem Quantencomputer auszuführen, muss die Gleichung so umgewandelt werden, dass sie in einen Quantenschaltkreis passt und die nützlichsten Informationen liefert.
 
 Sobald diese Transformation erfolgt ist, können Quantenalgorithmen wie VQE (Variational Quantum Eigensolver) oder QPE (Quantum Phase Estimation) das Verhalten des Moleküls simulieren, indem sie Dinge wie die Grundzustandsenergie berechnen.
 
 Quantensimulationen werden uns bald helfen, bessere Medikamente und Materialien schneller als je zuvor zu entwickeln.
 
-(1) Tavagnacco L, Schnupf U, Mason PE, Saboungi ML, Cesàro A, Brady JW. Molecular dynamics simulation studies of caffeine aggregation in aqueous solution. J Phys Chem B. 2011 Sep 22;115(37):10957-66. doi: 10.1021/jp2021352. Epub 2011 Aug 30. PMID: 21812485; PMCID: PMC3189405.
