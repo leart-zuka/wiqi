@@ -17,7 +17,7 @@ export default function QuantumCircuitPage() {
   // Number of columns in our circuit
   const columns = 5;
   // number of qubits in our circuit
-  const [qubits, setQubits] = useState(2);
+  const [nrQubits, setNrQubits] = useState(2);
   // Track which gate is currently being dragged from the circuit
   const [draggedPlacedGateId, setDraggedPlacedGateId] = useState<string | null>(
     null,
@@ -29,13 +29,13 @@ export default function QuantumCircuitPage() {
       <div className="flex w-fit gap-2 divide-solid rounded-full border border-solid border-black">
         <button
           className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white transition hover:bg-blue-600"
-          onClick={() => setQubits(qubits + 1)}
+          onClick={() => setNrQubits(nrQubits + 1)}
         >
           <p className="text-lg font-bold">+</p>
         </button>
         <button
           className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white transition hover:bg-red-600"
-          onClick={() => setQubits(qubits > 1 ? qubits - 1 : qubits)}
+          onClick={() => setNrQubits(nrQubits > 1 ? nrQubits - 1 : nrQubits)}
         >
           <p className="text-lg font-bold">-</p>
         </button>
@@ -51,13 +51,13 @@ export default function QuantumCircuitPage() {
         <div className="grid grid-cols-1 gap-6 rounded-lg md:grid-cols-4">
           {/* Quantum circuit */}
           <QCircuit
-            qubits={qubits}
+            qubits={nrQubits}
             columns={columns}
             placedGates={placedGates}
             draggedPlacedGateId={draggedPlacedGateId}
           />
           {/* Quantum gates palette */}
-          <QGates qgates={gates} />
+          <QGates qgates={gates} nrQubits={nrQubits} />
         </div>
       </DndContext>
     </div>
