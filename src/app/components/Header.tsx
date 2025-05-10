@@ -243,7 +243,7 @@ const Header = (props: HeaderProps) => {
                     <a
                       className="transition-all duration-300 ease-in-out hover:scale-105"
                       style={{ color: dynamicTextColor }}
-                      href={`/${props.locale}/quantum_tuesdays`}
+                      href={`/${props.locale}/posts/quantum_tuesdays`}
                     >
                       <p className="dark:text-slate-500">Quantum Tuesdays</p>
                     </a>
@@ -252,7 +252,7 @@ const Header = (props: HeaderProps) => {
                     <a
                       className="transition-all duration-300 ease-in-out hover:scale-105"
                       style={{ color: dynamicTextColor }}
-                      href={`/${props.locale}/entries`}
+                      href={`/${props.locale}/posts/entries`}
                     >
                       <p className="dark:text-slate-500">Entries</p>
                     </a>
@@ -359,14 +359,14 @@ const Header = (props: HeaderProps) => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href={`/${props.locale}/quantum_tuesdays`}
+                  href={`/${props.locale}/posts/quantum_tuesdays`}
                   className="block w-full py-2 hover:underline dark:text-slate-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Quantum Tuesdays
                 </Link>
                 <Link
-                  href={`/${props.locale}/entries`}
+                  href={`/${props.locale}/posts/entries`}
                   className="block w-full py-2 hover:underline dark:text-slate-500"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
