@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Heart, Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1] || "en"; // fallback falls locale fehlt
+
   const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
@@ -12,7 +17,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white dark:border-slate-800 dark:from-slate-900 dark:to-slate-950">
+    <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white pt-24 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950">
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo and Tagline */}
@@ -51,28 +56,28 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <a
-                  href="/posts/quantum_tuesdays"
+                <Link
+                  href={`/${locale}/posts/quantum_tuesdays`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
                   Quantum Tuesdays
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/posts/entries"
+                <Link
+                  href={`/${locale}/posts/entries`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
                   Entries
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/about"
+                <Link
+                  href={`/${locale}/about`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
