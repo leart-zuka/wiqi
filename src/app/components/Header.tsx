@@ -1,27 +1,19 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import type React from "react";
+
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getCookie } from "cookies-next";
 import Fuse from "fuse.js";
-import {
-  replaceLocale,
-  getContrastingColor,
-  getBackgroundColorBehindNav,
-} from "./client_utils";
+import { replaceLocale } from "./client_utils";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { File } from "@/types";
+import type { File } from "@/types";
 
 interface HeaderProps {
   locale: string;
@@ -34,7 +26,9 @@ const fuseOptions = {
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
   const inputRef = useRef<HTMLInputElement>(null);
+  const mobileInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+  const mobileSearchContainerRef = useRef<HTMLDivElement>(null);
   const initialDifficulty = getCookie("difficulty")?.toString() ?? "elementary";
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [hasMounted, setHasMounted] = useState(false);
@@ -43,6 +37,7 @@ const Header = (props: HeaderProps) => {
   const [searchResults, setSearchResults] = useState<File[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setHasMounted(true);
@@ -86,20 +81,31 @@ const Header = (props: HeaderProps) => {
   }, [theme, hasMounted]);
 
   const clearInput = () => {
+    setSearchQuery("");
+    setSearchResults([]);
+    setShowDropdown(false);
+
     if (inputRef.current) {
       inputRef.current.value = "";
-      setSearchResults([]);
-      setShowDropdown(false);
+    }
+
+    if (mobileInputRef.current) {
+      mobileInputRef.current.value = "";
     }
   };
 
   // Handle clicks outside of search dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
+      const isDesktopSearchClicked =
         searchContainerRef.current &&
-        !searchContainerRef.current.contains(event.target as Node)
-      ) {
+        searchContainerRef.current.contains(event.target as Node);
+
+      const isMobileSearchClicked =
+        mobileSearchContainerRef.current &&
+        mobileSearchContainerRef.current.contains(event.target as Node);
+
+      if (!isDesktopSearchClicked && !isMobileSearchClicked) {
         setShowDropdown(false);
       }
     };
@@ -117,8 +123,10 @@ const Header = (props: HeaderProps) => {
     });
   };
 
-  const handleSearch = () => {
-    const query = inputRef.current?.value || "";
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
     if (query) {
       setShowDropdown(true);
       const fuse = new Fuse(files, fuseOptions);
@@ -176,35 +184,27 @@ const Header = (props: HeaderProps) => {
               <Input
                 ref={inputRef}
                 type="search"
-                placeholder={`${
-                  props.locale === "de" ? "Suchen..." : "Search..."
-                }`}
+                value={searchQuery}
+                placeholder={`${props.locale === "de" ? "Suchen..." : "Search..."}`}
                 className="h-8 flex-1 border-0 bg-transparent p-0 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white"
                 onChange={handleSearch}
-                onFocus={() => setIsSearchFocused(true)}
+                onFocus={() => {
+                  setIsSearchFocused(true);
+                  if (searchQuery) setShowDropdown(true);
+                }}
                 onBlur={() => setIsSearchFocused(false)}
               />
-              {inputRef.current?.value && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 rounded-full p-0 text-slate-400 hover:bg-slate-100 hover:text-slate-500 dark:text-slate-500 dark:hover:bg-slate-700 dark:hover:text-slate-400"
-                  onClick={clearInput}
-                >
-                  <X className="h-3.5 w-3.5" />
-                  <span className="sr-only">Clear search</span>
-                </Button>
-              )}
+
             </div>
 
             {/* Search Results Dropdown */}
             {showDropdown && searchResults.length > 0 && (
-              <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-80 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
+              <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-xl backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/95">
                 {searchResults.map((result, index) => (
                   <Link
                     key={index}
                     href={`/${props.locale}/${result.folder}/${initialDifficulty}/${result.slug}`}
-                    className="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700"
+                    className="block px-4 py-3 transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/70"
                     onClick={() => {
                       clearInput();
                       setShowDropdown(false);
@@ -213,8 +213,13 @@ const Header = (props: HeaderProps) => {
                     <div className="text-sm font-medium text-slate-900 dark:text-white">
                       {result.metadata.title}
                     </div>
-                    <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                      {result.metadata.date}
+                    <div className="mt-1 flex items-center space-x-2">
+                      <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                        {result.folder}
+                      </span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">
+                        {result.metadata.date}
+                      </span>
                     </div>
                   </Link>
                 ))}
@@ -297,30 +302,44 @@ const Header = (props: HeaderProps) => {
         {isMobileMenuOpen && (
           <div className="border-t border-slate-200 py-4 dark:border-slate-700 lg:hidden">
             {/* Mobile Search */}
-            <div className="mb-4">
+            <div ref={mobileSearchContainerRef} className="mb-4">
               <div className="relative flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-800">
                 <Search
                   className="mr-2 h-4 w-4 text-slate-400"
                   aria-hidden="true"
                 />
                 <Input
+                  ref={mobileInputRef}
                   type="search"
-                  placeholder={`${
-                    props.locale === "de" ? "Suchen..." : "Search..."
-                  }`}
+                  value={searchQuery}
+                  placeholder={`${props.locale === "de" ? "Suchen..." : "Search..."}`}
                   className="h-8 flex-1 border-0 bg-transparent p-0 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white"
                   onChange={handleSearch}
+                  onFocus={() => {
+                    if (searchQuery) setShowDropdown(true);
+                  }}
                 />
+                {searchQuery && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 rounded-full p-0 text-slate-400 hover:bg-slate-100 hover:text-slate-500 dark:text-slate-500 dark:hover:bg-slate-700 dark:hover:text-slate-400"
+                    onClick={clearInput}
+                  >
+                    <X className="h-3.5 w-3.5" />
+                    <span className="sr-only">Clear search</span>
+                  </Button>
+                )}
               </div>
 
               {/* Mobile Search Results */}
               {showDropdown && searchResults.length > 0 && (
-                <div className="mt-2 max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
+                <div className="mt-2 max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-xl dark:border-slate-700 dark:bg-slate-800/95">
                   {searchResults.map((result, index) => (
                     <Link
                       key={index}
                       href={`/${props.locale}/${result.folder}/${initialDifficulty}/${result.slug}`}
-                      className="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700"
+                      className="block px-4 py-3 transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/70"
                       onClick={() => {
                         clearInput();
                         setShowDropdown(false);
@@ -330,8 +349,13 @@ const Header = (props: HeaderProps) => {
                       <div className="text-sm font-medium text-slate-900 dark:text-white">
                         {result.metadata.title}
                       </div>
-                      <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                        {result.metadata.date}
+                      <div className="mt-1 flex items-center space-x-2">
+                        <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                          {result.folder}
+                        </span>
+                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                          {result.metadata.date}
+                        </span>
                       </div>
                     </Link>
                   ))}
