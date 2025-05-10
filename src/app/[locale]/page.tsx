@@ -3,18 +3,13 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import {
-  ChevronRight,
-  Sparkles,
-  BookOpen,
-  GraduationCap,
-  ArrowRight,
-} from "lucide-react";
+import { ChevronRight, Sparkles, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
 import Link from "next/link";
+import FeaturedCard from "../../components/homepage/FeaturedCard";
 
 interface HomeProps {
   params: {
@@ -112,11 +107,13 @@ export default function Home({ params }: HomeProps) {
 
               {/* CTA Buttons */}
               <div className="flex flex-col gap-4 sm:flex-row">
-
-                <Link href={`/${params.locale}/posts/quantum_tuesdays`} className="w-full">
+                <Link
+                  href={`/${params.locale}/posts/quantum_tuesdays`}
+                  className="w-full"
+                >
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r w-full from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
                   >
                     {t("explore courses")}
                     <ChevronRight className="ml-2 h-4 w-4" />
@@ -241,64 +238,10 @@ export default function Home({ params }: HomeProps) {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 -rotate-2 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5"></div>
-              <div className="relative rotate-2 rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-slate-800">
-                <div className="mb-6 flex items-center justify-between">
-                  <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-transparent">
-                    {t("featured content")}
-                  </Badge>
-                  <div className="flex space-x-1">
-                    <div className="h-3 w-3 rounded-full bg-rose-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                    <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">
-                    Introduction to Quantum States
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                    Discover how quantum bits exist in multiple states simultaneously, 
-                    enabling powerful new computing paradigms beyond classical limits.
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                    Learn about superposition, entanglement, and quantum measurement 
-                    through our interactive visualizations and practical examples.
-                    </p>
-                    <div className="flex items-center mt-3 text-blue-600 dark:text-blue-400 text-sm font-medium">
-                    <span>Explore quantum fundamentals</span>
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                    </div>
-
-                  <div className="flex justify-center p-2">
-                    <div className="relative h-48 w-full overflow-hidden rounded-lg">
-                      <img
-                        src="https://images.squarespace-cdn.com/content/v1/64e7982d8cf5894fb5b7f096/1720731669141-5NKSHEIN25SXQ51CHTQN/Borealis-Toronto-P_Xanadu-1024x683-1.jpg"
-                        alt="Quantum computing visualization example"
-                        className="h-full w-full object-cover transition-all hover:scale-105"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-                        <p className="text-sm font-medium text-white">
-                          Quantum state visualization
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                    <div className="flex justify-between items-center mt-4 border-t border-gray-100 dark:border-gray-700 pt-3"></div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Difficulty: Beginner</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">15 min read</div>
-
-                </div>
-              </div>
-            </div>
+            <FeaturedCard locale={params.locale} />
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }

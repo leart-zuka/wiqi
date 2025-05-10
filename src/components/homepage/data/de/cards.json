@@ -1,0 +1,38 @@
+[
+  {
+    "id": "quantum-states-de",
+    "title": "Einführung in Quantenzustände",
+    "description": "Entdecken Sie, wie Quantenbits gleichzeitig in mehreren Zuständen existieren und so neue Rechenparadigmen jenseits klassischer Grenzen ermöglichen.",
+    "additionalInfo": "Lernen Sie Superposition, Verschränkung und Quantenmessung durch interaktive Visualisierungen und praktische Beispiele kennen.",
+    "ctaText": "Quantengrundlagen erkunden",
+    "imageSrc": "https://images.squarespace-cdn.com/content/v1/64e7982d8cf5894fb5b7f096/1720731669141-5NKSHEIN25SXQ51CHTQN/Borealis-Toronto-P_Xanadu-1024x683-1.jpg",
+    "imageAlt": "Beispiel für Quantencomputing-Visualisierung",
+    "imageCaption": "Visualisierung von Quantenzuständen",
+    "difficulty": "Anfänger",
+    "readTime": "15 Min. Lesezeit"
+  },
+  {
+    "id": "quantum-algorithms-de",
+    "title": "Quantenalgorithmen erklärt",
+    "description": "Erforschen Sie die revolutionären Algorithmen, die Quantencomputern ihren Berechnungsvorteil gegenüber klassischen Systemen verleihen.",
+    "additionalInfo": "Von Shors Algorithmus bis zu Grovers Suche - verstehen Sie, wie Quantenalgorithmen Probleme exponentiell schneller lösen.",
+    "ctaText": "Quantenalgorithmen entdecken",
+    "imageSrc": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    "imageAlt": "Visualisierung von Quantenalgorithmen",
+    "imageCaption": "Darstellung von Quantenschaltkreisen",
+    "difficulty": "Fortgeschritten",
+    "readTime": "20 Min. Lesezeit"
+  },
+  {
+    "id": "quantum-error-correction-de",
+    "title": "Quantenfehlerkorrektur",
+    "description": "Erfahren Sie, wie Quantensysteme fragile Quanteninformationen vor Dekohärenz und Umgebungsrauschen schützen.",
+    "additionalInfo": "Erforschen Sie Oberflächencodes, Stabilisator-Formalismus und fehlertolerante Quantencomputertechniken.",
+    "ctaText": "Quantenfehlerkorrektur meistern",
+    "imageSrc": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80",
+    "imageAlt": "Diagramm zur Quantenfehlerkorrektur",
+    "imageCaption": "Visualisierung von Oberflächencodes",
+    "difficulty": "Experte",
+    "readTime": "25 Min. Lesezeit"
+  }
+]
