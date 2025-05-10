@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { Heart, Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   const [year, setYear] = useState(new Date().getFullYear());
 
-  // Update year if needed when component mounts
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
@@ -18,13 +17,27 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo and Tagline */}
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                <span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
-                  WiQi
+            <div
+              className="flex cursor-pointer items-center"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <div className="flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-purple-600 to-pink-500 p-0.5 shadow-lg">
+                  <Image
+                    src="/wq.png"
+                    alt="WiQi Logo"
+                    width={30}
+                    height={30}
+                    className="h-full w-full rounded-full bg-white object-contain p-0.5 dark:bg-slate-900"
+                  />
+                </div>
+                <span className="hidden text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:inline-block">
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+                    WiQi
+                  </span>
                 </span>
-              </span>
-            </Link>
+              </div>
+            </div>
             <p className="mt-3 max-w-md text-sm text-slate-600 dark:text-slate-400">
               Exploring quantum computing concepts through interactive education
               and visualization. Making quantum accessible for everyone.
@@ -38,28 +51,28 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link
+                <a
                   href="/posts/quantum_tuesdays"
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
                   Quantum Tuesdays
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/posts/entries"
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
                   Entries
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="/about"
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
                   About Us
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

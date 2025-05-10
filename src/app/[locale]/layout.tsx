@@ -58,7 +58,7 @@ export default async function LocaleLayout({
         <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <EasterEgg />
-          <div className="flex-grow bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
+          <div className="flex-grow pb-10 bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
             <CookiesProvider>{children}</CookiesProvider>
           </div>
         </NextIntlClientProvider>
