@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
 import Link from "next/link";
-import FeaturedCard from "../../components/homepage/FeaturedCard";
+import FeaturedCard from "../components/homepage/FeaturedCard";
 
 interface HomeProps {
   params: {
@@ -125,7 +125,7 @@ export default function Home({ params }: HomeProps) {
                   variant="outline"
                   className="border-gray-300 dark:border-gray-700"
                 >
-                  {t("learn more")}
+                  {t("About Us")}
                 </Button>
               </div>
             </div>
