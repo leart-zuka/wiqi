@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import type { File } from "@/types";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface HeaderProps {
   locale: string;
@@ -138,6 +139,41 @@ const Header = (props: HeaderProps) => {
     }
   };
 
+  // Animation variants for search results
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      y: -10,
+      scale: 0.98,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut",
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const staggerChildrenVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 backdrop-blur-lg transition-colors duration-300 dark:border-slate-800/80 dark:bg-slate-900/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -194,37 +230,55 @@ const Header = (props: HeaderProps) => {
                 }}
                 onBlur={() => setIsSearchFocused(false)}
               />
-
             </div>
 
-            {/* Search Results Dropdown */}
-            {showDropdown && searchResults.length > 0 && (
-              <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-xl backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/95">
-                {searchResults.map((result, index) => (
-                  <Link
-                    key={index}
-                    href={`/${props.locale}/${result.folder}/${initialDifficulty}/${result.slug}`}
-                    className="block px-4 py-3 transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/70"
-                    onClick={() => {
-                      clearInput();
-                      setShowDropdown(false);
-                    }}
-                  >
-                    <div className="text-sm font-medium text-slate-900 dark:text-white">
-                      {result.metadata.title}
-                    </div>
-                    <div className="mt-1 flex items-center space-x-2">
-                      <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
-                        {result.folder}
-                      </span>
-                      <span className="text-xs text-slate-500 dark:text-slate-400">
-                        {result.metadata.date}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
+            {/* Search Results Dropdown with Animation */}
+            <AnimatePresence>
+              {showDropdown && searchResults.length > 0 && (
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  variants={dropdownVariants}
+                  className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-lg border border-slate-200 bg-white/95 py-1 shadow-xl backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/95"
+                  style={{
+                    boxShadow:
+                      "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  {searchResults.map((result, index) => (
+                    <motion.div
+                      key={index}
+                      custom={index}
+                      variants={staggerChildrenVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <Link
+                        href={`/${props.locale}/posts/${result.folder}/${initialDifficulty}/${result.slug}`}
+                        className="block px-4 py-3 transition-all duration-200 hover:bg-slate-50 hover:shadow-sm dark:hover:bg-slate-700/70"
+                        onClick={() => {
+                          clearInput();
+                          setShowDropdown(false);
+                        }}
+                      >
+                        <div className="text-sm font-medium text-slate-900 dark:text-white">
+                          {result.metadata.title}
+                        </div>
+                        <div className="mt-1 flex items-center space-x-2">
+                          <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                            {result.folder}
+                          </span>
+                          <span className="text-xs text-slate-500 dark:text-slate-400">
+                            {result.metadata.date}
+                          </span>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Navigation - Desktop */}
@@ -332,35 +386,54 @@ const Header = (props: HeaderProps) => {
                 )}
               </div>
 
-              {/* Mobile Search Results */}
-              {showDropdown && searchResults.length > 0 && (
-                <div className="mt-2 max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-xl dark:border-slate-700 dark:bg-slate-800/95">
-                  {searchResults.map((result, index) => (
-                    <Link
-                      key={index}
-                      href={`/${props.locale}/${result.folder}/${initialDifficulty}/${result.slug}`}
-                      className="block px-4 py-3 transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/70"
-                      onClick={() => {
-                        clearInput();
-                        setShowDropdown(false);
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      <div className="text-sm font-medium text-slate-900 dark:text-white">
-                        {result.metadata.title}
-                      </div>
-                      <div className="mt-1 flex items-center space-x-2">
-                        <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
-                          {result.folder}
-                        </span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400">
-                          {result.metadata.date}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
+              {/* Mobile Search Results with Animation */}
+              <AnimatePresence>
+                {showDropdown && searchResults.length > 0 && (
+                  <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    variants={dropdownVariants}
+                    className="mt-2 max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white/95 py-1 shadow-xl backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/95"
+                    style={{
+                      boxShadow:
+                        "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    {searchResults.map((result, index) => (
+                      <motion.div
+                        key={index}
+                        custom={index}
+                        variants={staggerChildrenVariants}
+                        initial="hidden"
+                        animate="visible"
+                      >
+                        <Link
+                          href={`/${props.locale}/posts/${result.folder}/${initialDifficulty}/${result.slug}`}
+                          className="block px-4 py-3 transition-all duration-200 hover:bg-slate-50 hover:shadow-sm dark:hover:bg-slate-700/70"
+                          onClick={() => {
+                            clearInput();
+                            setShowDropdown(false);
+                            setIsMobileMenuOpen(false);
+                          }}
+                        >
+                          <div className="text-sm font-medium text-slate-900 dark:text-white">
+                            {result.metadata.title}
+                          </div>
+                          <div className="mt-1 flex items-center space-x-2">
+                            <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                              {result.folder}
+                            </span>
+                            <span className="text-xs text-slate-500 dark:text-slate-400">
+                              {result.metadata.date}
+                            </span>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Mobile Navigation */}
