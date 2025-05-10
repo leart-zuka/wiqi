@@ -1,38 +1,28 @@
 [
   {
-    "id": "quantum-states",
-    "title": "Introduction to Quantum States",
-    "description": "Discover how quantum bits exist in multiple states simultaneously, enabling powerful new computing paradigms beyond classical limits.",
-    "additionalInfo": "Learn about superposition, entanglement, and quantum measurement through our interactive visualizations and practical examples.",
-    "ctaText": "Explore quantum fundamentals",
-    "imageSrc": "https://images.squarespace-cdn.com/content/v1/64e7982d8cf5894fb5b7f096/1720731669141-5NKSHEIN25SXQ51CHTQN/Borealis-Toronto-P_Xanadu-1024x683-1.jpg",
-    "imageAlt": "Quantum computing visualization example",
-    "imageCaption": "Quantum state visualization",
-    "difficulty": "Beginner",
-    "readTime": "15 min read"
-  },
-  {
-    "id": "quantum-algorithms",
-    "title": "Quantum Algorithms Explained",
-    "description": "Explore the revolutionary algorithms that give quantum computers their computational advantage over classical systems.",
-    "additionalInfo": "From Shor's algorithm to Grover's search, understand how quantum algorithms solve problems exponentially faster.",
-    "ctaText": "Discover quantum algorithms",
+    "id": "bits-to-qubits",
+    "title": "Bits to Qubits: A Beginner's Guide",
+    "description": "Understand the key differences between classical bits and quantum bits, and how they operate in modern computing.",
+    "additionalInfo": "Learn how qubits use superposition and entanglement, how quantum gates manipulate them, and how they differ from bits.",
+    "ctaText": "Explore the world of qubits",
     "imageSrc": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    "imageAlt": "Quantum algorithm visualization",
-    "imageCaption": "Quantum circuit representation",
-    "difficulty": "Intermediate",
-    "readTime": "20 min read"
+    "imageAlt": "Bloch sphere visualizing qubit states",
+    "imageCaption": "Bloch Sphere – visualizing qubit superposition",
+    "difficulty": "Beginner",
+    "readTime": "8 min read",
+    "endpoint": "Bits%20To%20Qubits"
   },
   {
-    "id": "quantum-error-correction",
-    "title": "Quantum Error Correction",
-    "description": "Learn how quantum systems protect fragile quantum information from decoherence and environmental noise.",
-    "additionalInfo": "Explore surface codes, stabilizer formalism, and fault-tolerant quantum computing techniques.",
-    "ctaText": "Master quantum error correction",
-    "imageSrc": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80",
-    "imageAlt": "Quantum error correction diagram",
-    "imageCaption": "Surface code visualization",
-    "difficulty": "Advanced",
-    "readTime": "25 min read"
+    "id": "quantum-games",
+    "title": "Playful Pathways into Quantum Computing",
+    "description": "Explore how quantum concepts like entanglement, superposition, and measurement are taught through engaging games.",
+    "additionalInfo": "From platformers and puzzles to card games and simulations, discover how quantum mechanics can be learned through fun and interaction.",
+    "ctaText": "Play quantum games",
+    "imageSrc": "https://images.unsplash.com/photo-1635325582523-e8c9d0f56794?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "imageAlt": "Quantum-inspired puzzle game visual",
+    "imageCaption": "Gamified quantum learning with playful challenges",
+    "difficulty": "Beginner",
+    "readTime": "7 min read",
+    "endpoint": "quantum_games"
   }
 ]

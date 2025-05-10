@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export interface CardData {
   id: string;
@@ -15,6 +16,7 @@ export interface CardData {
   imageCaption: string;
   difficulty: string;
   readTime: string;
+  endpoint: string;
 }
 
 interface FeaturedCardProps {
@@ -63,13 +65,19 @@ export default function FeaturedCard({ locale }: FeaturedCardProps) {
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
             {card.additionalInfo}
           </p>
-          <div className="mt-3 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
+          <Link
+            href={`/${locale}/posts/quantum_tuesdays/elementary/${card.endpoint}`}
+            className="mt-3 flex items-center text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+          >
             <span>{card.ctaText}</span>
             <ArrowRight className="ml-2 h-4 w-4" />
-          </div>
+          </Link>
 
           <div className="flex justify-center p-2">
-            <div className="relative h-48 w-full overflow-hidden rounded-lg">
+            <Link
+              href={`/${locale}/posts/quantum_tuesdays/elementary/${card.endpoint}`}
+              className="relative h-48 w-full overflow-hidden rounded-lg"
+            >
               <img
                 src={card.imageSrc || "/placeholder.svg"}
                 alt={card.imageAlt}
@@ -80,7 +88,7 @@ export default function FeaturedCard({ locale }: FeaturedCardProps) {
                   {card.imageCaption}
                 </p>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3 dark:border-gray-700">
