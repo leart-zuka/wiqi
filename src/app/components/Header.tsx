@@ -215,7 +215,7 @@ const Header = (props: HeaderProps) => {
                         }}
                       >
                         <a
-                          href={`/${props.locale}/${result.folder}/${initialDifficulty}/${result.slug}`}
+                          href={`/${props.locale}/posts/${result.folder}/${initialDifficulty}/${result.slug}`}
                         >
                           <p className="font-semibold text-black dark:text-white">
                             {result.metadata.title}
