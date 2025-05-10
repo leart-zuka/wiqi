@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
+import Link from "next/link";
 
 interface HomeProps {
   params: {
@@ -109,54 +110,19 @@ export default function Home({ params }: HomeProps) {
                 </p>
               </div>
 
-              {/* Rating Section */}
-              <div className="flex items-center rounded-xl border border-gray-100 bg-white/50 p-4 backdrop-blur-sm dark:border-gray-800 dark:bg-slate-800/50">
-                <div className="flex">
-                  {[...Array(5)].map((_, index) => (
-                    <svg
-                      key={index}
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.8586 4.71248C11.2178 3.60691 12.7819 3.60691 13.1412 4.71248L14.4246 8.66264C14.5853 9.15706 15.046 9.49182 15.5659 9.49182H19.7193C20.8818 9.49182 21.3651 10.9794 20.4247 11.6626L17.0645 14.104C16.6439 14.4095 16.4679 14.9512 16.6286 15.4456L17.912 19.3958C18.2713 20.5013 17.0059 21.4207 16.0654 20.7374L12.7052 18.2961C12.2846 17.9905 11.7151 17.9905 11.2945 18.2961L7.93434 20.7374C6.99388 21.4207 5.72851 20.5013 6.08773 19.3958L7.37121 15.4456C7.53186 14.9512 7.35587 14.4095 6.93529 14.104L3.57508 11.6626C2.63463 10.9794 3.11796 9.49182 4.28043 9.49182H8.43387C8.95374 9.49182 9.41448 9.15706 9.57513 8.66264L10.8586 4.71248Z"
-                        fill="url(#starGradient)"
-                      />
-                      <defs>
-                        <linearGradient
-                          id="starGradient"
-                          x1="3.07813"
-                          y1="3.8833"
-                          x2="23.0483"
-                          y2="6.90161"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop offset="0%" stopColor="#8B5CF6" />
-                          <stop offset="100%" stopColor="#FE2B77" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  ))}
-                </div>
-                <span className="ml-3 text-base font-medium text-gray-900 dark:text-white">
-                  5/5
-                </span>
-                <span className="ml-2 text-base text-gray-500 dark:text-gray-400">
-                  2 Reviews (Leart & Alpi)
-                </span>
-              </div>
-
               {/* CTA Buttons */}
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
-                >
-                  {t("explore courses")}
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
+
+                <Link href={`/${params.locale}/posts/quantum_tuesdays`} className="w-full">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r w-full from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                  >
+                    {t("explore courses")}
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+
                 <Button
                   size="lg"
                   variant="outline"
@@ -279,7 +245,7 @@ export default function Home({ params }: HomeProps) {
               <div className="absolute inset-0 -rotate-2 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5"></div>
               <div className="relative rotate-2 rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-slate-800">
                 <div className="mb-6 flex items-center justify-between">
-                  <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                  <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-transparent">
                     {t("featured content")}
                   </Badge>
                   <div className="flex space-x-1">
@@ -290,52 +256,41 @@ export default function Home({ params }: HomeProps) {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="h-8 w-3/4 rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-full rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-5/6 rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-full rounded bg-gray-100 dark:bg-slate-700"></div>
+                    <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">
+                    Introduction to Quantum States
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    Discover how quantum bits exist in multiple states simultaneously, 
+                    enabling powerful new computing paradigms beyond classical limits.
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                    Learn about superposition, entanglement, and quantum measurement 
+                    through our interactive visualizations and practical examples.
+                    </p>
+                    <div className="flex items-center mt-3 text-blue-600 dark:text-blue-400 text-sm font-medium">
+                    <span>Explore quantum fundamentals</span>
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                    </div>
 
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-sm dark:border-gray-700 dark:bg-slate-900">
-                    <div className="text-gray-800 dark:text-gray-200">
-                      <span className="text-purple-600 dark:text-purple-400">
-                        const
-                      </span>{" "}
-                      <span className="text-blue-600 dark:text-blue-400">
-                        qubit
-                      </span>{" "}
-                      ={" "}
-                      <span className="text-green-600 dark:text-green-400">
-                        new
-                      </span>{" "}
-                      <span className="text-blue-600 dark:text-blue-400">
-                        Qubit
-                      </span>
-                      ();
-                    </div>
-                    <div className="text-gray-800 dark:text-gray-200">
-                      qubit.
-                      <span className="text-blue-600 dark:text-blue-400">
-                        hadamard
-                      </span>
-                      ();
-                    </div>
-                    <div className="text-gray-800 dark:text-gray-200">
-                      <span className="text-purple-600 dark:text-purple-400">
-                        const
-                      </span>{" "}
-                      <span className="text-blue-600 dark:text-blue-400">
-                        result
-                      </span>{" "}
-                      = qubit.
-                      <span className="text-blue-600 dark:text-blue-400">
-                        measure
-                      </span>
-                      ();
+                  <div className="flex justify-center p-2">
+                    <div className="relative h-48 w-full overflow-hidden rounded-lg">
+                      <img
+                        src="https://images.squarespace-cdn.com/content/v1/64e7982d8cf5894fb5b7f096/1720731669141-5NKSHEIN25SXQ51CHTQN/Borealis-Toronto-P_Xanadu-1024x683-1.jpg"
+                        alt="Quantum computing visualization example"
+                        className="h-full w-full object-cover transition-all hover:scale-105"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                        <p className="text-sm font-medium text-white">
+                          Quantum state visualization
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="h-4 w-full rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-4/5 rounded bg-gray-100 dark:bg-slate-700"></div>
+                    <div className="flex justify-between items-center mt-4 border-t border-gray-100 dark:border-gray-700 pt-3"></div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Difficulty: Beginner</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">15 min read</div>
+
                 </div>
               </div>
             </div>
@@ -343,38 +298,7 @@ export default function Home({ params }: HomeProps) {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 md:p-12">
-            <div className="absolute right-0 top-0 -mr-20 -mt-20 h-[400px] w-[400px] rounded-full bg-white/10 blur-3xl"></div>
-            <div className="relative z-10 mx-auto text-center md:w-3/4">
-              <h2 className="text-3xl font-bold text-white">
-                {t("ready to start")}
-              </h2>
-              <p className="mt-4 text-lg text-blue-100">
-                {t("cta description")}
-              </p>
-              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                >
-                  {t("get started")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10"
-                >
-                  {t("view demo")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }
