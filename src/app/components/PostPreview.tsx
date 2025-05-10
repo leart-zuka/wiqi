@@ -15,7 +15,7 @@ const PostPreview = (props: PostPreviewProps) => {
   return (
     <div className="z-10 flex h-80 w-72 flex-col justify-between rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <CustomLink
-        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${props.locale}/${props.folder}/${props.difficulty}/${props.slug}`}
+        href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${props.locale}/posts/${props.folder}/${props.difficulty}/${props.slug}`}
       >
         <h1 className="mb-2 text-lg font-semibold text-violet-600 hover:underline">
           {props.title}

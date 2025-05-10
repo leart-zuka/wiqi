@@ -8,17 +8,23 @@ import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import wordsCounter from "word-counting";
 import { useTranslations } from "next-intl";
 import "katex/dist/katex.min.css";
+import "./page.css";
 
 export default function Post({
   params,
 }: {
-  params: { locale: string; slug: string; difficulty: string };
+  params: {
+    locale: string;
+    subfolder: string;
+    slug: string;
+    difficulty: string;
+  };
 }) {
+  const t = useTranslations("Posts");
   const post = getPostContent(
-    `${params.locale}/${params.difficulty}/quantum_tuesdays`,
+    `${params.locale}/${params.difficulty}/${params.subfolder}`,
     params.slug,
   );
-  const t = useTranslations("Posts");
   const numberOfWords = wordsCounter(post.content).wordsCount;
   const readingTime = Math.ceil(numberOfWords / 200);
   return (
