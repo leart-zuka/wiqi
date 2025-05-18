@@ -88,8 +88,8 @@ export default function Home({ params }: HomeProps) {
         </div>
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-x-12 gap-y-16 lg:grid-cols-2">
-            <div className="space-y-8">
+          <div className="mx-auto flex flex-col items-center justify-center text-center">
+            <div className="space-y-8 max-w-2xl">
               <div>
                 <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/30">
                   {t("quantum education")}
@@ -106,10 +106,10 @@ export default function Home({ params }: HomeProps) {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col gap-4 sm:flex-row">
+              <div className="flex flex-col gap-4 sm:flex-row justify-center">
                 <Link
                   href={`/${params.locale}/posts/quantum_tuesdays`}
-                  className="w-full"
+                  className="w-full sm:w-auto"
                 >
                   <Button
                     size="lg"
@@ -127,33 +127,6 @@ export default function Home({ params }: HomeProps) {
                 >
                   {t("About Us")}
                 </Button>
-              </div>
-            </div>
-
-            {/* Interactive Image Display */}
-            <div className="relative h-[500px] w-full">
-              <div
-                className="relative h-full w-full overflow-hidden rounded-2xl border-gray-200 backdrop-blur-sm dark:border-gray-800"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                {images.map((src, index) => (
-                  <motion.img
-                    key={index}
-                    src={`/${src}`}
-                    alt={`Quantum visualization ${index + 1}`}
-                    className="absolute inset-0 h-full w-full object-contain"
-                    initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-                    animate={{
-                      opacity: visibleIndex === index ? 1 : 0,
-                      scale: visibleIndex === index ? 1 : 0.9,
-                      filter:
-                        visibleIndex === index ? "blur(0px)" : "blur(10px)",
-                      zIndex: visibleIndex === index ? 10 : 0,
-                    }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                ))}
               </div>
             </div>
           </div>
