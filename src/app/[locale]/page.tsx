@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import { useAnimation, useScroll, useTransform } from "motion/react";
 import { ChevronRight, Sparkles, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +11,23 @@ import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
 import Link from "next/link";
 import FeaturedCard from "../components/homepage/FeaturedCard";
+import { WavyBackground } from "@/components/ui/wavy-background";
+
+/**
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * !                                                                             !
+ * !                               CRITICAL TODO                                 !
+ * !                                                                             !
+ * !  DARK MODE FOR HERO SECTIONS MUST BE ADDED VIA BACKFILL                    !
+ * !                                                                             !
+ * !  The current hero sections don't properly respect dark mode settings.       !
+ * !  Implement proper dark mode styling for all hero components including       !
+ * !  background gradients, text colors, and hover states.                       !
+ * !                                                                             !
+ * !  Priority: HIGH                                                             !
+ * !                                                                             !
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
 
 interface HomeProps {
   params: {
@@ -21,6 +39,15 @@ export default function Home({ params }: HomeProps) {
   const t = useTranslations("Index");
   const images = ["superpos.svg", "|1>.svg", "|0>.svg", "main.svg"];
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
+  const controls = useAnimation();
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+
+  // Animate in on mount
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
 
   // Image switch on hover
   const handleMouseEnter = () => {
@@ -78,65 +105,180 @@ export default function Home({ params }: HomeProps) {
     },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.1,
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    }),
+  };
+
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 sm:py-24">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/5"></div>
-          <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-3xl dark:bg-purple-500/5"></div>
+      {/* Hero Section - Full Width with Animated Background */}
+      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+        {/* Quantum Background with hover effect */}
+        <div className="absolute inset-0 h-full w-full">
+          <WavyBackground className="mx-auto max-w-4xl pb-40">
+            <p className="inter-var text-center text-2xl font-bold text-white md:text-4xl lg:text-7xl"></p>
+            <p className="inter-var mt-4 text-center text-base font-normal text-white md:text-lg"></p>
+          </WavyBackground>
         </div>
 
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex flex-col items-center justify-center text-center">
-            <div className="space-y-8 max-w-2xl">
-              <div>
-                <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/30">
-                  {t("quantum education")}
-                </Badge>
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+        <motion.div
+          className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <div className="mx-auto flex flex-col items-center justify-center rounded-xl bg-white/20 p-8 text-center backdrop-blur-md dark:bg-black/20 md:max-w-3xl">
+            <motion.div
+              className="w-full max-w-2xl space-y-8"
+              style={{ opacity, scale }}
+            >
+              <motion.div variants={itemVariants}>
+                <motion.h1
+                  className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl"
+                  variants={itemVariants}
+                >
                   {t("hello")}{" "}
-                  <span className="mt-2 block animate-gradient-x bg-gradient-to-r from-blue-600 via-purple-600 to-rose-600 bg-200% bg-clip-text text-transparent">
+                  <motion.span
+                    className="mt-2 block bg-transparent bg-clip-text text-transparent"
+                    animate={{
+                      backgroundPosition: [
+                        "0% center",
+                        "100% center",
+                        "0% center",
+                      ],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "linear",
+                    }}
+                    style={{
+                      backgroundSize: "200% auto",
+                      WebkitTextStroke: "1px white", // White border for each letter
+                    }}
+                  >
                     PushQuantum WiQi
-                  </span>
-                </h1>
-                <p className="mt-6 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+                  </motion.span>
+                </motion.h1>
+                <motion.p
+                  className="mt-6 max-w-2xl text-xl text-gray-600 dark:text-gray-300"
+                  variants={itemVariants}
+                >
                   {t("sub hello")}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col gap-4 sm:flex-row justify-center">
+              <motion.div
+                className="flex flex-col justify-center gap-4 sm:flex-row"
+                variants={itemVariants}
+              >
                 <Link
                   href={`/${params.locale}/posts/quantum_tuesdays`}
                   className="w-full sm:w-auto"
                 >
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {t("explore courses")}
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
+                    <Button
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                    >
+                      {t("explore courses")}
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{
+                          duration: 1,
+                          repeat: Number.POSITIVE_INFINITY,
+                        }}
+                      >
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </motion.div>
+                    </Button>
+                  </motion.div>
                 </Link>
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-gray-300 dark:border-gray-700"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {t("About Us")}
-                </Button>
-              </div>
-            </div>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-gray-300 dark:border-gray-700"
+                  >
+                    {t("About Us")}
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 z-50 -translate-x-1/2 transform">
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{
+              y: [0, 10, 0],
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200/70 shadow-lg backdrop-blur-md dark:bg-gray-800/70"
+          >
+            <ChevronRight
+              className="rotate-90 text-gray-700 dark:text-gray-200"
+              size={24}
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="bg-gray-50/50 py-16 dark:bg-slate-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
+          <motion.div
+            className="mb-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
             <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-100 dark:bg-purple-900/30 dark:text-purple-300 dark:hover:bg-purple-900/30">
               {t("features")}
             </Badge>
@@ -146,29 +288,54 @@ export default function Home({ params }: HomeProps) {
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
               {t("features description")}
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {features.map((feature, index) => (
-              <Card
+              <motion.div
                 key={index}
-                className="border-gray-200 bg-white/70 backdrop-blur-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800/70"
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
               >
-                <CardContent className="p-6">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30">
-                    {feature.icon}
-                  </div>
-                  <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+                <motion.div
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className="h-full border-gray-200 bg-white/70 backdrop-blur-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800/70">
+                    <CardContent className="p-6">
+                      <motion.div
+                        className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"
+                        whileHover={{ rotate: 5, scale: 1.1 }}
+                      >
+                        {feature.icon}
+                      </motion.div>
+                      <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        {feature.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
-          <QuantumMap />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <QuantumMap />
+          </motion.div>
         </div>
       </section>
 
@@ -176,7 +343,12 @@ export default function Home({ params }: HomeProps) {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
               <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-300 dark:hover:bg-green-900/30">
                 {t("for everyone")}
               </Badge>
@@ -189,29 +361,45 @@ export default function Home({ params }: HomeProps) {
 
               <div className="mt-8 space-y-4">
                 {difficultyLevels.map((level, index) => (
-                  <div
+                  <motion.div
                     key={level.id}
-                    className="flex items-start rounded-xl border border-gray-100 bg-white p-4 transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, x: 5 }}
                   >
-                    <div className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30">
-                      <span className="font-medium text-blue-600 dark:text-blue-400">
-                        {index + 1}
-                      </span>
+                    <div className="flex items-start rounded-xl border border-gray-100 bg-white p-4 transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800">
+                      <motion.div
+                        className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"
+                        whileHover={{ rotate: 5, scale: 1.1 }}
+                      >
+                        <span className="font-medium text-blue-600 dark:text-blue-400">
+                          {index + 1}
+                        </span>
+                      </motion.div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {level.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {level.description}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {level.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {level.description}
-                      </p>
-                    </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <FeaturedCard locale={params.locale} />
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <FeaturedCard locale={params.locale} />
+            </motion.div>
           </div>
         </div>
       </section>

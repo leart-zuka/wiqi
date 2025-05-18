@@ -1,28 +1,28 @@
 [
-    {
-        "id": "bits-to-qubits",
-        "title": "Bits zu Qubits: Ein Anfängerleitfaden",
-        "description": "Verstehen Sie die wichtigsten Unterschiede zwischen klassischen Bits und Quantenbits und wie sie in der modernen Datenverarbeitung funktionieren.",
-        "additionalInfo": "Lernen Sie, wie Qubits Überlagerung und Verschränkung nutzen, wie Quantengatter sie manipulieren und wie sie sich von Bits unterscheiden.",
-        "ctaText": "Entdecken Sie die Welt der Qubits",
-        "imageSrc": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-        "imageAlt": "Bloch-Kugel zur Visualisierung von Qubit-Zuständen",
-        "imageCaption": "Bloch-Kugel – Visualisierung der Qubit-Überlagerung",
-        "difficulty": "Anfänger",
-        "readTime": "8 Min. Lesezeit",
-        "endpoint": "Bits%20To%20Qubits"
-    },
-    {
-        "id": "quantum-games",
-        "title": "Spielerische Wege in die Quanteninformatik",
-        "description": "Entdecken Sie, wie Quantenkonzepte wie Verschränkung, Überlagerung und Messung durch ansprechende Spiele vermittelt werden.",
-        "additionalInfo": "Von Plattformspielen und Rätseln bis hin zu Kartenspielen und Simulationen – entdecken Sie, wie Quantenmechanik durch Spaß und Interaktion erlernt werden kann.",
-        "ctaText": "Quantenspiele spielen",
-        "imageSrc": "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-        "imageAlt": "Visuelles Bild eines von Quantenphysik inspirierten Rätselspiels",
-        "imageCaption": "Spielerisches Quantenlernen mit unterhaltsamen Herausforderungen",
-        "difficulty": "Anfänger",
-        "readTime": "7 Min. Lesezeit",
-        "endpoint": "quantum_games"
-    }
+  {
+    "id": "bits-to-qubits",
+    "title": "Bits zu Qubits: Ein Anfängerleitfaden",
+    "description": "Verstehen Sie die wichtigsten Unterschiede zwischen klassischen Bits und Quantenbits und wie sie in der modernen Datenverarbeitung funktionieren.",
+    "additionalInfo": "Lernen Sie, wie Qubits Überlagerung und Verschränkung nutzen, wie Quantengatter sie manipulieren und wie sie sich von Bits unterscheiden.",
+    "ctaText": "Entdecken Sie die Welt der Qubits",
+    "imageSrc": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "imageAlt": "Bloch-Kugel zur Visualisierung von Qubit-Zuständen",
+    "imageCaption": "Bloch-Kugel – Visualisierung der Qubit-Überlagerung",
+    "difficulty": "Anfänger",
+    "readTime": "8 Min. Lesezeit",
+    "endpoint": "Bits%20To%20Qubits"
+  },
+  {
+    "id": "quantum-games",
+    "title": "Spielerische Wege in die Quanteninformatik",
+    "description": "Entdecken Sie, wie Quantenkonzepte wie Verschränkung, Überlagerung und Messung durch ansprechende Spiele vermittelt werden.",
+    "additionalInfo": "Von Plattformspielen und Rätseln bis hin zu Kartenspielen und Simulationen – entdecken Sie, wie Quantenmechanik durch Spaß und Interaktion erlernt werden kann.",
+    "ctaText": "Quantenspiele spielen",
+    "imageSrc": "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "imageAlt": "Visuelles Bild eines von Quantenphysik inspirierten Rätselspiels",
+    "imageCaption": "Spielerisches Quantenlernen mit unterhaltsamen Herausforderungen",
+    "difficulty": "Anfänger",
+    "readTime": "7 Min. Lesezeit",
+    "endpoint": "quantum_games"
+  }
 ]
