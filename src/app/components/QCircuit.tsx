@@ -8,8 +8,7 @@ export interface PlacedGate extends QGateInterface {
   position: number;
   qubit: number;
   instanceId: string;
-  controlQubit?: number;
-  targetQubit?: number;
+  control?: boolean;
 }
 interface QCircuitInterface {
   qubits: number;

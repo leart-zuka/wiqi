@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DndContext } from "@dnd-kit/core";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 
@@ -14,6 +14,9 @@ export default function QuantumCircuitPage() {
   const [gates, setGates] = useState(quantum_gates);
   // State to track gates placed on the circuit
   const [placedGates, setPlacedGates] = useState<PlacedGate[]>([]);
+  // useEffect(() => {
+  //     placedGates.forEach((gate) => { console.debug(gate) })
+  // }, [placedGates]);
   // Number of columns in our circuit
   const columns = 5;
   // number of qubits in our circuit
