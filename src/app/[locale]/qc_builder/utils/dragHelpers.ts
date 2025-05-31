@@ -162,16 +162,17 @@ export const dropOverEmptySpot = (
       const isControl = draggedGate.control;
       const pairQubit = isControl ? qubit : qubit - 1;
 
+      const pairQubit = isControl ? qubit + 1 : qubit - 1;
       setPlacedGates(
         placedGates.map((gate) => {
           if (gate.instanceId === instanceIdPlacedGate) {
-            return { ...gate, qubit, position };
-          } else if (
+            return { ...gate, position, qubit };
+          }
+          if (
             gate.multiQubit &&
-            gate.control !== draggedGate.control && // other half of pair
-            gate.position === draggedGate.position &&
-            gate.qubit ===
-              (isControl ? draggedGate.qubit + 1 : draggedGate.qubit - 1)
+            gate.position &&
+            position &&
+            gate.qubit === (isControl ? qubit + 1 : qubit - 1)
           ) {
             return { ...gate, qubit: pairQubit, position };
           }
@@ -193,7 +194,7 @@ export const dropOverEmptySpot = (
     const draggedGate = gates.find((gate) => gate.id === active.id.toString())!;
     if (draggedGate.multiQubit) {
       // multi qubit gate
-      if (qubit === 1) {
+      if (qubit === 0) {
         /*
          * INFO: if user tries to place target qubit gate on the 0th qubit, place it on the 1st one instead as the 0th one will get taken up by the control gate
          */
