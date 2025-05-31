@@ -43,7 +43,6 @@ export default function QuantumCircuitPage() {
           <p className="text-lg font-bold">-</p>
         </button>
       </div>
-      {/* place draggable components in here in order to drag and drop them */}
       <DndContext
         onDragEnd={(event) =>
           handleDragEnd(event, placedGates, setPlacedGates, gates)
