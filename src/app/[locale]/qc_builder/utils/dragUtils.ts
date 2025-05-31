@@ -8,6 +8,7 @@ import {
   dropOverNothing,
   dropOverEmptySpot,
   dropOverNonEmptySpot,
+  isOccupied,
 } from "./dragHelpers";
 
 export const handleDragOver = (event: DragOverEvent) => {};
@@ -28,11 +29,7 @@ export const handleDragEnd = (
     let qubit = Number.parseInt(qubitStr);
     let position = Number.parseInt(posStr);
 
-    const gatesAtQubitPosition = placedGates.filter((gate) => {
-      return gate.qubit === qubit && gate.position === position;
-    });
-
-    if (gatesAtQubitPosition.length > 0) {
+    if (isOccupied(qubit, position, placedGates)) {
       dropOverNonEmptySpot(
         active,
         placedGates,
