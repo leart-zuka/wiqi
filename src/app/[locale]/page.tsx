@@ -11,23 +11,9 @@ import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
 import Link from "next/link";
 import FeaturedCard from "../components/homepage/FeaturedCard";
-import { WavyBackground } from "@/components/ui/wavy-background";
+import { DarkModeAwareBackground } from "../components/homepage/DarkModeAwareBackground";
 
-/**
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * !                                                                             !
- * !                               CRITICAL TODO                                 !
- * !                                                                             !
- * !  DARK MODE FOR HERO SECTIONS MUST BE ADDED VIA BACKFILL                    !
- * !                                                                             !
- * !  The current hero sections don't properly respect dark mode settings.       !
- * !  Implement proper dark mode styling for all hero components including       !
- * !  background gradients, text colors, and hover states.                       !
- * !                                                                             !
- * !  Priority: HIGH                                                             !
- * !                                                                             !
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- */
+
 
 interface HomeProps {
   params: {
@@ -149,10 +135,10 @@ export default function Home({ params }: HomeProps) {
       <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
         {/* Quantum Background with hover effect */}
         <div className="absolute inset-0 h-full w-full">
-          <WavyBackground className="mx-auto max-w-4xl pb-40">
-            <p className="inter-var text-center text-2xl font-bold text-white md:text-4xl lg:text-7xl"></p>
-            <p className="inter-var mt-4 text-center text-base font-normal text-white md:text-lg"></p>
-          </WavyBackground>
+          {/* DarkModeAwareBackground: A dynamic background component that switches between light and dark wave animations based on the user's theme preference. 
+              It uses WavyBackgroundDark for dark mode and WavyBackgroundLight for light mode, 
+              automatically detecting and responding to theme changes through DOM mutations. */}
+          <DarkModeAwareBackground />
         </div>
 
         <motion.div
@@ -172,25 +158,7 @@ export default function Home({ params }: HomeProps) {
                   variants={itemVariants}
                 >
                   {t("hello")}{" "}
-                  <motion.span
-                    className="mt-2 block bg-transparent bg-clip-text text-transparent"
-                    animate={{
-                      backgroundPosition: [
-                        "0% center",
-                        "100% center",
-                        "0% center",
-                      ],
-                    }}
-                    transition={{
-                      duration: 8,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "linear",
-                    }}
-                    style={{
-                      backgroundSize: "200% auto",
-                      WebkitTextStroke: "1px white", // White border for each letter
-                    }}
-                  >
+                  <motion.span className="mt-2 block text-gray-900 dark:text-white">
                     PushQuantum WiQi
                   </motion.span>
                 </motion.h1>

@@ -3,23 +3,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
-/**
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * !                                                                             !
- * !                               CRITICAL TODO                                 !
- * !                                                                             !
- * !  DARK MODE FOR HERO SECTIONS MUST BE ADDED VIA BACKFILL                    !
- * !                                                                             !
- * !  The current hero sections don't properly respect dark mode settings.       !
- * !  Implement proper dark mode styling for all hero components including       !
- * !  background gradients, text colors, and hover states.                       !
- * !                                                                             !
- * !  Priority: HIGH                                                             !
- * !                                                                             !
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- */
-
-export const WavyBackground = ({
+export const WavyBackgroundLight = ({
   children,
   className,
   containerClassName,
