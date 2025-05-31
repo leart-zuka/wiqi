@@ -160,8 +160,6 @@ export const dropOverEmptySpot = (
     if (draggedGate.multiQubit) {
       // multi qubit gate
       const isControl = draggedGate.control;
-      const pairQubit = isControl ? qubit : qubit - 1;
-
       const pairQubit = isControl ? qubit + 1 : qubit - 1;
       setPlacedGates(
         placedGates.map((gate) => {
