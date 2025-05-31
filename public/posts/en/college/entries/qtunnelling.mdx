@@ -1,0 +1,215 @@
+---
+title: "Quantum Tunneling"
+subtitle: "Quantum Tunnelling: A Journey Through the Impossible (difficult)"
+author: "Sudharshan Kannan"
+date: "2025-04-21"
+---
+
+# Quantum Tunnelling: A Journey Through the Impossible
+
+## 1\. Introduction
+
+Humans have developed an intuition of the classical world, expecting “particles” or entities with mass and structure to move and interact based on Newtonian laws.
+
+Dropping a basketball to the ground will make it bounce back. Throwing the same ball at a rigid wall will make it rebound. Our brain having experienced things classically, is trained to expect events to happen classically.
+
+The idea of Quantum Tunnelling is here to challenge that intuition. This phenomenon is essential for the working of most of our everyday appliances including the device you are reading this on and much more. It is one of the contributing factors to the existence of the Sun and hence the Earth itself.
+
+Let’s unveil the puzzle and see what its power is.
+
+## 2\. The Idea of Quantum Tunnelling
+
+To build an intuition of what we mean by tunnelling, imagine some hypothetical “X-Ray goggles”. In order for you to observe things happening behind an opaque object you need light of some form to travel through the opaque object, say a wall, to reach your eyes. This is exactly what tunnelling means. The particle or entity is able to cross over some sort of rigid opaque surface.
+
+How and why does this happen? The answer is of course Quantum Mechanics!
+
+Imagine a particle in space moving along some direction. We place a finite potential V along its trajectory. This symbolizes the wall that we considered in our “X-Ray Goggles” thought.
+
+Now if the energy of the particle E is very much greater than V, then it moves almost undisturbed. If the energy of the particle is less than V, classically we would expect the particle to bounce back or reflect in some form (which happens to some extend in quantum mechanics and cannot be rejected). The potential barrier would now blocks the particle’s motion.
+
+In the Quantum Mechanical case though something really interesting happens.
+
+We start off with the understanding now that at the Quantum level, we cannot consider the particle to be just a particle. Instead, we would be describing it as a wave function now. The particle nature and wave nature both are exhibited as we shall see here.
+
+The freely propagating particle can be represented like any electromagnetic wave, a sinusoidal curve. The wave function here represents a quantity whose absolute value squared shows us the probability of the particle being at a certain coordinate, i.e. position and time. We call this the [Born Interpretation](https://en.wikipedia.org/wiki/Born_rule).
+
+This wave function oscillatory nature of the particle allows it to interact with the potential and in the case of having energy lesser than that of the potential wouldn’t just bounce but pass through the barrier with a certain probability.
+
+## 3. Understanding Quantum Tunneling
+
+**a) The Free Particle**
+
+A free particle (no potential, V(x) = 0) is described by a traveling wave solution:
+
+$$
+\Psi(x)=Ae^{ikx}+Be^{-ikx},k=\frac{\sqrt{2mE}}{\hbar}
+$$
+
+The particle can move freely without facing any potential barriers.
+
+This is the most elementary case and forms the basis for understanding more complex potential interactions.
+
+**b) Step Potential**
+
+A step potential introduces a discontinuity:
+
+$$
+V(x) = \begin{cases} 0, & x < 0 \\ V_0, & x > 0 \end{cases}
+$$
+
+If $ E > V_0 $: The particle sees the barrier as a change in medium.
+Reflection and transmission occur, similar to light at a glass interface.
+The wavefunction becomes:
+
+$$
+\Psi(x) = \begin{cases} Ae^{ik_1 x} + Be^{-ik_1 x}, & x < 0 \\ Ce^{ik_2 x}, & x > 0 \end{cases}
+$$
+
+Where $$k_1= \frac{√2mE}{ℏ} \ , k_2= \frac{√2m(E−V0)}{ℏ}  $$
+
+If $ E < V_0 $ : The particle doesn’t have enough energy classically.
+However, quantum mechanically:
+
+$$ \Psi(x) = \begin{cases} Ae^{ikx} + Be^{-ikx}, & x < 0 \\ Ce^{-\kappa x}, & x > 0 \end{cases}, \quad \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar} $$
+
+The wave decays exponentially in the barrier region—no energy is lost, but probability of the particle showing up in the wall so to say decreases.
+
+**c) Potential Barrier (Quantum Tunneling)**
+
+A more general and realistic scenario is a finite-width potential barrier:
+
+$$
+V(x) = \begin{cases} 0, & x < 0 \\ V_0, & 0 \le x \le a \\ 0, & x > a \end{cases}
+$$
+
+Here, a particle incident from the left may tunnel through the barrier (if $E < V_0$ ):
+
+- Region I (x < 0) : $ \psi_I(x)=Ae^{ikx}+Be^{−ikx}$
+- Region II (0 ≤ x ≤ a) :$ \psi\_{II}(x) = Ce^{\kappa x} + De^{-\kappa x} $
+- Region III (x > a) : $\psi\*{III}(x)=Fe^{ikx} $
+
+By applying boundary conditions at x = 0 and x = a, we determine the transmission
+and reflection coefficients. The transmission probability is:
+
+$$
+T= \left|\frac{F}{A}\right|^2 \approx e^{-2\kappa a}, \quad \text{with } \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}
+$$
+
+![Particle](/posts/assets/entries/qtunnelling/Particle.png)
+
+## 4\. Applications of Quantum Tunneling
+
+**a) Tunneling in Semiconductor Devices:** Tunnel Diodes, Flash memory (Fowler–Nordheim tunneling)
+
+Quantum tunnelling enables the movement of electrons across the oxide barrier in flash memory cells, a process that classical physics would deem forbidden.
+By applying high electric fields, Fowler–Nordheim tunnelling injects or removes charge from the floating gate, thus altering the threshold voltage and storing binary data.
+Tunnel diodes utilize quantum tunnelling across a narrow depletion layer to achieve high-speed conduction.
+At low forward voltages, electrons quantum tunnel through the potential barrier, producing a current.
+As voltage increases further, this tunnelling effect diminishes, leading to negative differential resistance—a unique and useful trait in high-frequency and fast-switching circuits.
+![Semicond](https://www.physics-and-radio-electronics.com/electronic-devices-and-circuits/semiconductor-diodes/images/normalpnjunctiondiode.png)
+![Semicond 2](https://www.physics-and-radio-electronics.com/electronic-devices-and-circuits/semiconductor-diodes/images/tunneldiodebarrier.png)
+
+**b) Alpha Particle Emission:** Escape from nuclei via tunnelling
+
+Alpha decay occurs when an unstable nucleus emits an alpha particle $({He}^4_2 )$.
+Classically, the alpha particle is confined within the nucleus by a potential barrier created by nuclear forces.
+Although the alpha particle's energy is less than the barrier height, quantum tunnelling allows it to escape.
+The probability of tunnelling through the barrier determines the rate of decay.
+This explains why alpha particles are emitted even though classical physics would not allow it.
+Gamow’s theory quantifies this process and relates decay rates to the particle’s energy and barrier properties.
+![Alpha Decay](https://nuclear-power.com/wp-content/uploads/2018/08/alpha-decay-quantum-tunneling.png)
+
+**c) Scanning Tunneling Microscope (STM):** Imaging surfaces at atomic resolution
+
+STM is a powerful tool used to image surfaces at the atomic scale.
+![Real-world STM](https://upload.wikimedia.org/wikipedia/commons/d/da/Chiraltube.png)
+It works based on the principle of quantum tunnelling .
+A sharp conducting tip is brought very close (within a few angstroms) to the surface of a conductive or semiconductive sample.
+When a small voltage is applied between the tip and the surface, electrons tunnel through the vacuum gap , creating a tunnelling current.
+This current is highly sensitive to the tip-sample distance. By scanning the tip across the surface and measuring the current, the topography and electronic structure of the surface can be mapped with atomic resolution.
+STM is one of the earliest and most direct applications of quantum tunnelling in instrumentation.
+![Schematic diagram of STM](https://www.researchgate.net/profile/Naresh-Marturi/publication/281534044/figure/fig6/AS:614167945936928@1523440457752/Scanning-tunneling-microscope-schematic-diagram.png)
+
+**d) Quantum Biology:** Enzyme catalysis, Proton transfer
+
+Quantum tunnelling plays a role in several biological processes by allowing particles to cross energy barriers that classical physics would forbid.
+Key examples include: - Enzyme Catalysis : Electrons or protons may tunnel through activation barriers, making reactions faster than classical transition state theory predicts. - Olfaction : One hypothesis suggests that smell detection involves electron tunnelling aided by molecular vibrations, not just molecular shape.
+
+**e) Stellar Fusion:** Nuclear fusion in stars at low temperatures
+
+In stars, nuclear fusion occurs when two positively charged nuclei come close enough to merge.
+However, the Coulomb repulsion between them creates a high potential barrier.
+At the temperatures found in stellar cores, most nuclei do not have enough kinetic energy (classically) to overcome this barrier.
+Yet fusion still occurs due to quantum tunnelling , which allows nuclei to penetrate the barrier and fuse.
+This process is fundamental to energy production in stars, enabling reactions like the proton-proton chain or the CNO cycle .
+
+**Link to Alpha Decay:** Both alpha particle emission and stellar fusion involve particles crossing potential barriers via tunnelling:
+In alpha decay , tunnelling allows particles to escape a nucleus.
+In stellar fusion , tunnelling allows particles to come together and react.
+So yes, they’re two sides of the same quantum coin — tunnelling governs both the breaking apart and the coming together of nuclei in nature.
+
+## 6\. Conclusion
+
+Quantum tunneling: it's not just some abstract physics concept. It's the reason the sun shines, and it's behind some of the coolest tech we have, like flash memory and advanced microscopes. This mind-bending phenomenon, where particles cheat their way through seemingly impossible barriers, reveals a universe far stranger – and more powerful – than we might expect. Understanding tunneling unlocks not just the secrets of the atom, but also the potential for future innovations we can only begin to imagine.
+
+**Note:** This article was enriched with insights and assistance from AI tools, including the generation of Python code for visualizing quantum tunneling concepts.
+
+### Python Code for Graphs
+
+Below is an example Python code snippet for visualizing the wave function in a potential barrier scenario:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define constants
+hbar = 1.0545718e-34  # Reduced Planck's constant (J·s)
+m = 9.10938356e-31    # Mass of an electron (kg)
+V0 = 1e-18            # Potential barrier height (J)
+a = 1e-9              # Barrier width (m)
+E = 0.8e-18           # Particle energy (J)
+
+# Define regions
+x1 = np.linspace(-2e-9, 0, 500)
+x2 = np.linspace(0, a, 500)
+x3 = np.linspace(a, 2e-9, 500)
+
+# Wave function in each region
+k1 = np.sqrt(2 * m * E) / hbar
+kappa = np.sqrt(2 * m * (V0 - E)) / hbar
+k2 = np.sqrt(2 * m * E) / hbar
+
+psi1 = np.exp(1j * k1 * x1)
+psi2 = np.exp(-kappa * x2)
+psi3 = np.exp(1j * k2 * x3)
+
+# Combine regions
+x = np.concatenate((x1, x2, x3))
+psi = np.concatenate((psi1, psi2, psi3))
+
+# Plot wave function
+plt.figure(figsize=(10, 6))
+plt.plot(x, np.abs(psi)**2, label="|Ψ(x)|²")
+plt.axvline(0, color='red', linestyle='--', label="Barrier Start")
+plt.axvline(a, color='red', linestyle='--', label="Barrier End")
+plt.title("Wave Function in a Potential Barrier")
+plt.xlabel("Position (m)")
+plt.ylabel("Probability Density")
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+## References
+
+1.  D.J. Griffiths, _Introduction to Quantum Mechanics_, 2nd Edition, Pearson Prentice Hall, 2005.
+2.  Physics and Radio Electronics, _Semiconductor Diodes_, [https://www.physics-and-radio-electronics.com](https://www.physics-and-radio-electronics.com)
+3.  Nuclear Power, _Alpha Decay Quantum Tunneling_, [https://nuclear-power.com](https://nuclear-power.com)
+4.  Wikimedia Commons, _Real-world STM_, [https://commons.wikimedia.org](https://commons.wikimedia.org)
+5.  ResearchGate, _Scanning Tunneling Microscope Schematic_, [https://www.researchgate.net](https://www.researchgate.net)
+
+6.  Normal PN Junction Diode: [Normal PN Junction Diode](https://www.physics-and-radio-electronics.com/electronic-devices-and-circuits/semiconductor-diodes/images/normalpnjunctiondiode.png)
+7.  Tunnel Diode Barrier: [Tunnel Diode Barrier](https://www.physics-and-radio-electronics.com/electronic-devices-and-circuits/semiconductor-diodes/images/tunneldiodebarrier.png)
+8.  Alpha Decay Quantum Tunneling: [Alpha Decay Quantum Tunneling](https://nuclear-power.com/wp-content/uploads/2018/08/alpha-decay-quantum-tunneling.png)
+9.  Real-world STM: [Real-world STM](https://upload.wikimedia.org/wikipedia/commons/d/da/Chiraltube.png)
+10. Schematic diagram of STM: [Schematic diagram of STM](https://www.researchgate.net/profile/Naresh-Marturi/publication/281534044/figure/fig6/AS:614167945936928@1523440457752/Scanning-tunneling-microscope-schematic-diagram.png)

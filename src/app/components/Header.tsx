@@ -270,6 +270,7 @@ const Header = (props: HeaderProps) => {
                             {result.folder}
                           </span>
                           <span className="text-xs text-slate-500 dark:text-slate-400">
+
                             {result.metadata.date}
                           </span>
                         </div>
