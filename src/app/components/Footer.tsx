@@ -3,12 +3,20 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { Heart, Github, Twitter, Linkedin, Mail } from "lucide-react";
 
-export default function Footer() {
+interface FooterProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default function Footer({ params }: FooterProps) {
   const pathname = usePathname();
-  const locale = pathname.split("/")[1] || "en"; // fallback falls locale fehlt
+  const t = useTranslations("Footer");
+  const locale = params.locale; // fallback falls locale fehlt
 
   const [year, setYear] = useState(new Date().getFullYear());
 
@@ -44,15 +52,14 @@ export default function Footer() {
               </div>
             </div>
             <p className="mt-3 max-w-md text-sm text-slate-600 dark:text-slate-400">
-              Exploring quantum computing concepts through interactive education
-              and visualization. Making quantum accessible for everyone.
+              {t("Slogan")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
-              Resources
+              {t("Resources")}
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
@@ -60,7 +67,7 @@ export default function Footer() {
                   href={`/${locale}/posts/quantum_tuesdays`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
-                  Quantum Tuesdays
+                  {t("Quantum Tuesdays")}
                 </Link>
               </li>
               <li>
@@ -68,7 +75,7 @@ export default function Footer() {
                   href={`/${locale}/posts/entries`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
-                  Entries
+                  {t("Entries")}
                 </Link>
               </li>
               <li>
@@ -76,7 +83,7 @@ export default function Footer() {
                   href={`/${locale}/about`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
-                  About Us
+                  {t("About Us")}
                 </Link>
               </li>
             </ul>
@@ -85,11 +92,11 @@ export default function Footer() {
           {/* Social Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
-              Connect
+              {t("Connect")}
             </h3>
             <div className="mt-4 flex space-x-4">
               <a
-                href="https://github.com"
+                href="https://github.com/leart-zuka/wiqi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
@@ -98,30 +105,31 @@ export default function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:contact@example.com"
+                href="mailto:leart.zuka@web.de"
                 className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
               </a>
+              {/*
+                            <a
+                                href="https://twitter.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                aria-label="Twitter"
+                            >
+                                <Twitter className="h-5 w-5" />
+                            </a>
+                            <a
+                                href="https://linkedin.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                aria-label="LinkedIn"
+                            >
+                                <Linkedin className="h-5 w-5" />
+                            </a>*/}
             </div>
           </div>
         </div>

@@ -61,8 +61,8 @@ export default async function LocaleLayout({
           <div className="flex-grow bg-gray-50 pb-10 text-black dark:bg-gray-900 dark:text-gray-100">
             <CookiesProvider>{children}</CookiesProvider>
           </div>
+          <Footer params={{ locale }} />
         </NextIntlClientProvider>
-        <Footer />
       </body>
     </html>
   );

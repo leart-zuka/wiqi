@@ -6,10 +6,10 @@ import { WavyBackgroundLight } from "@/components/ui/wavy-background-light";
 
 /**
  * DarkModeAwareBackground Component
- * 
+ *
  * A dynamic background component that automatically switches between dark and light wave animations
  * based on the user's theme preference. It uses MutationObserver to detect theme changes in real-time.
- * 
+ *
  * @component
  * @returns {JSX.Element} Renders either WavyBackgroundDark or WavyBackgroundLight based on theme
  */

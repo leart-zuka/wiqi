@@ -13,8 +13,6 @@ import Link from "next/link";
 import FeaturedCard from "../components/homepage/FeaturedCard";
 import { DarkModeAwareBackground } from "../components/homepage/DarkModeAwareBackground";
 
-
-
 interface HomeProps {
   params: {
     locale: string;
@@ -35,35 +33,22 @@ export default function Home({ params }: HomeProps) {
     controls.start("visible");
   }, [controls]);
 
-  // Image switch on hover
-  const handleMouseEnter = () => {
-    const randomIndex = Math.floor(Math.random() * images.length);
-    setVisibleIndex(randomIndex);
-  };
-
-  const handleMouseLeave = () => {
-    setVisibleIndex(0); // Reset to default image
-  };
-
   // Beispiel-Difficulty-Level
   const difficultyLevels = [
     {
       id: "elementary",
-      title: "Elementary",
-      description:
-        "Perfect for beginners with no prior knowledge of quantum concepts.",
+      title: t("Difficulty Elementary 1"),
+      description: t("Difficulty Elementary 2"),
     },
     {
       id: "highschool",
-      title: "High School",
-      description:
-        "Designed for students with basic understanding of physics and mathematics.",
+      title: t("Difficulty High School 1"),
+      description: t("Difficulty High School 2"),
     },
     {
       id: "college",
-      title: "College",
-      description:
-        "Advanced content for university students and professionals.",
+      title: t("Difficulty College 1"),
+      description: t("Difficulty College 2"),
     },
   ];
 
@@ -71,23 +56,20 @@ export default function Home({ params }: HomeProps) {
   const features = [
     {
       icon: <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />,
-      title: "Interactive Learning",
-      description:
-        "Engage with interactive simulations and visualizations to understand quantum concepts.",
+      title: t("Interactive Learning 1"),
+      description: t("Interactive Learning 2"),
     },
     {
       icon: (
         <GraduationCap className="h-6 w-6 text-purple-600 dark:text-purple-400" />
       ),
-      title: "Structured Courses",
-      description:
-        "Follow a carefully designed curriculum that builds your knowledge step by step.",
+      title: t("Structured Courses 1"),
+      description: t("Structured Courses 2"),
     },
     {
       icon: <Sparkles className="h-6 w-6 text-rose-600 dark:text-rose-400" />,
-      title: "Real-world Applications",
-      description:
-        "Learn how quantum computing is applied in various industries and research fields.",
+      title: t("Real-world Applications 1"),
+      description: t("Real-world Applications 2"),
     },
   ];
 
