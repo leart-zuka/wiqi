@@ -1,0 +1,28 @@
+[
+  {
+    "id": "bits-to-qubits",
+    "title": "Bits to Qubits: A Beginner's Guide",
+    "description": "Understand the key differences between classical bits and quantum bits, and how they operate in modern computing.",
+    "additionalInfo": "Learn how qubits use superposition and entanglement, how quantum gates manipulate them, and how they differ from bits.",
+    "ctaText": "Explore the world of qubits",
+    "imageSrc": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "imageAlt": "Bloch sphere visualizing qubit states",
+    "imageCaption": "Bloch Sphere – visualizing qubit superposition",
+    "difficulty": "Beginner",
+    "readTime": "8 min read",
+    "endpoint": "Bits%20To%20Qubits"
+  },
+  {
+    "id": "quantum-games",
+    "title": "Playful Pathways into Quantum Computing",
+    "description": "Explore how quantum concepts like entanglement, superposition, and measurement are taught through engaging games.",
+    "additionalInfo": "From platformers and puzzles to card games and simulations, discover how quantum mechanics can be learned through fun and interaction.",
+    "ctaText": "Play quantum games",
+    "imageSrc": "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "imageAlt": "Quantum-inspired puzzle game visual",
+    "imageCaption": "Gamified quantum learning with playful challenges",
+    "difficulty": "Beginner",
+    "readTime": "7 min read",
+    "endpoint": "quantum_games"
+  }
+]

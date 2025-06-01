@@ -1,10 +1,8 @@
 {
   "Index": {
-    "hello": "Welcome to the",
-    "sub hello": "We want to teach the world about the world of quanta.",
     "hello button": "Visit our current blogposts",
     "quantum education": "Quantum Education",
-    "hello": "Hello, welcome to",
+    "hello": "Welcome to",
     "sub hello": "Discover the amazing world of quantum physics with interactive courses and practical examples.",
     "features": "Features",
     "why choose us": "Why Choose Us?",
@@ -18,10 +16,30 @@
     "get started": "Get Started",
     "view demo": "View Demo",
     "explore courses": "Explore Courses",
-    "learn more": "Learn More",
-    "hover to interact": "Hover to interact"
+    "About Us": "About Us",
+    "hover to interact": "Hover to interact",
+    "Interactive Learning 1": "Interactive Learning",
+    "Interactive Learning 2": "Engage with interactive simulations and visualizations to understand quantum concepts.",
+    "Structured Courses 1": "Structured Courses",
+    "Structured Courses 2": "Follow a carefully designed curriculum that builds your knowledge step by step.",
+    "Real-world Applications 1": "Real-world Applications",
+    "Real-world Applications 2": "Learn how quantum computing is applied in various industries and research fields.",
+    "Difficulty Elementary 1": "Elementary",
+    "Difficulty Elementary 2": "Perfect for beginners with no prior knowledge of quantum concepts.",
+    "Difficulty High School 1": "High School",
+    "Difficulty High School 2": "Designed for students with basic understanding of physics and mathematics.",
+    "Difficulty College 1": "College",
+    "Difficulty College 2": "Advanced content for university students and professionals."
   },
   "Posts": {
     "average reading time": "Average reading time"
+  },
+  "Footer": {
+    "Slogan": "Exploring quantum computing concepts through interactive education and visualization. Making quantum accessible for everyone.",
+    "Resources": "Resources",
+    "Quantum Tuesdays": "Quantum Tuesdays",
+    "Entries": "Entries",
+    "About Us": "Abous Us",
+    "Connect": "Connect"
   }
 }

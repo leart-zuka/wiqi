@@ -1,19 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
-import {
-  ChevronRight,
-  Sparkles,
-  BookOpen,
-  GraduationCap,
-  ArrowRight,
-} from "lucide-react";
+import { motion } from "motion/react";
+import { useAnimation, useScroll, useTransform } from "motion/react";
+import { ChevronRight, Sparkles, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
+import Link from "next/link";
+import FeaturedCard from "../components/homepage/FeaturedCard";
+import { DarkModeAwareBackground } from "../components/homepage/DarkModeAwareBackground";
 
 interface HomeProps {
   params: {
@@ -25,36 +23,32 @@ export default function Home({ params }: HomeProps) {
   const t = useTranslations("Index");
   const images = ["superpos.svg", "|1>.svg", "|0>.svg", "main.svg"];
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
+  const controls = useAnimation();
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
-  // Image switch on hover
-  const handleMouseEnter = () => {
-    const randomIndex = Math.floor(Math.random() * images.length);
-    setVisibleIndex(randomIndex);
-  };
-
-  const handleMouseLeave = () => {
-    setVisibleIndex(0); // Reset to default image
-  };
+  // Animate in on mount
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
 
   // Beispiel-Difficulty-Level
   const difficultyLevels = [
     {
       id: "elementary",
-      title: "Elementary",
-      description:
-        "Perfect for beginners with no prior knowledge of quantum concepts.",
+      title: t("Difficulty Elementary 1"),
+      description: t("Difficulty Elementary 2"),
     },
     {
       id: "highschool",
-      title: "High School",
-      description:
-        "Designed for students with basic understanding of physics and mathematics.",
+      title: t("Difficulty High School 1"),
+      description: t("Difficulty High School 2"),
     },
     {
       id: "college",
-      title: "College",
-      description:
-        "Advanced content for university students and professionals.",
+      title: t("Difficulty College 1"),
+      description: t("Difficulty College 2"),
     },
   ];
 
@@ -62,145 +56,179 @@ export default function Home({ params }: HomeProps) {
   const features = [
     {
       icon: <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />,
-      title: "Interactive Learning",
-      description:
-        "Engage with interactive simulations and visualizations to understand quantum concepts.",
+      title: t("Interactive Learning 1"),
+      description: t("Interactive Learning 2"),
     },
     {
       icon: (
         <GraduationCap className="h-6 w-6 text-purple-600 dark:text-purple-400" />
       ),
-      title: "Structured Courses",
-      description:
-        "Follow a carefully designed curriculum that builds your knowledge step by step.",
+      title: t("Structured Courses 1"),
+      description: t("Structured Courses 2"),
     },
     {
       icon: <Sparkles className="h-6 w-6 text-rose-600 dark:text-rose-400" />,
-      title: "Real-world Applications",
-      description:
-        "Learn how quantum computing is applied in various industries and research fields.",
+      title: t("Real-world Applications 1"),
+      description: t("Real-world Applications 2"),
     },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.1,
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    }),
+  };
+
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 sm:py-24">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/5"></div>
-          <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-3xl dark:bg-purple-500/5"></div>
+      {/* Hero Section - Full Width with Animated Background */}
+      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+        {/* Quantum Background with hover effect */}
+        <div className="absolute inset-0 h-full w-full">
+          {/* DarkModeAwareBackground: A dynamic background component that switches between light and dark wave animations based on the user's theme preference. 
+              It uses WavyBackgroundDark for dark mode and WavyBackgroundLight for light mode, 
+              automatically detecting and responding to theme changes through DOM mutations. */}
+          <DarkModeAwareBackground />
         </div>
 
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-x-12 gap-y-16 lg:grid-cols-2">
-            <div className="space-y-8">
-              <div>
-                <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/30">
-                  {t("quantum education")}
-                </Badge>
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+        <motion.div
+          className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <div className="mx-auto flex flex-col items-center justify-center rounded-xl bg-white/20 p-8 text-center backdrop-blur-md dark:bg-black/20 md:max-w-3xl">
+            <motion.div
+              className="w-full max-w-2xl space-y-8"
+              style={{ opacity, scale }}
+            >
+              <motion.div variants={itemVariants}>
+                <motion.h1
+                  className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl"
+                  variants={itemVariants}
+                >
                   {t("hello")}{" "}
-                  <span className="mt-2 block animate-gradient-x bg-gradient-to-r from-blue-600 via-purple-600 to-rose-600 bg-200% bg-clip-text text-transparent">
+                  <motion.span className="mt-2 block text-gray-900 dark:text-white">
                     PushQuantum WiQi
-                  </span>
-                </h1>
-                <p className="mt-6 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+                  </motion.span>
+                </motion.h1>
+                <motion.p
+                  className="mt-6 max-w-2xl text-xl text-gray-600 dark:text-gray-300"
+                  variants={itemVariants}
+                >
                   {t("sub hello")}
-                </p>
-              </div>
-
-              {/* Rating Section */}
-              <div className="flex items-center rounded-xl border border-gray-100 bg-white/50 p-4 backdrop-blur-sm dark:border-gray-800 dark:bg-slate-800/50">
-                <div className="flex">
-                  {[...Array(5)].map((_, index) => (
-                    <svg
-                      key={index}
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.8586 4.71248C11.2178 3.60691 12.7819 3.60691 13.1412 4.71248L14.4246 8.66264C14.5853 9.15706 15.046 9.49182 15.5659 9.49182H19.7193C20.8818 9.49182 21.3651 10.9794 20.4247 11.6626L17.0645 14.104C16.6439 14.4095 16.4679 14.9512 16.6286 15.4456L17.912 19.3958C18.2713 20.5013 17.0059 21.4207 16.0654 20.7374L12.7052 18.2961C12.2846 17.9905 11.7151 17.9905 11.2945 18.2961L7.93434 20.7374C6.99388 21.4207 5.72851 20.5013 6.08773 19.3958L7.37121 15.4456C7.53186 14.9512 7.35587 14.4095 6.93529 14.104L3.57508 11.6626C2.63463 10.9794 3.11796 9.49182 4.28043 9.49182H8.43387C8.95374 9.49182 9.41448 9.15706 9.57513 8.66264L10.8586 4.71248Z"
-                        fill="url(#starGradient)"
-                      />
-                      <defs>
-                        <linearGradient
-                          id="starGradient"
-                          x1="3.07813"
-                          y1="3.8833"
-                          x2="23.0483"
-                          y2="6.90161"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop offset="0%" stopColor="#8B5CF6" />
-                          <stop offset="100%" stopColor="#FE2B77" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  ))}
-                </div>
-                <span className="ml-3 text-base font-medium text-gray-900 dark:text-white">
-                  5/5
-                </span>
-                <span className="ml-2 text-base text-gray-500 dark:text-gray-400">
-                  2 Reviews (Leart & Alpi)
-                </span>
-              </div>
+                </motion.p>
+              </motion.div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
-                >
-                  {t("explore courses")}
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-gray-300 dark:border-gray-700"
-                >
-                  {t("learn more")}
-                </Button>
-              </div>
-            </div>
-
-            {/* Interactive Image Display */}
-            <div className="relative h-[500px] w-full">
-              <div
-                className="relative h-full w-full overflow-hidden rounded-2xl border-gray-200 backdrop-blur-sm dark:border-gray-800"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+              <motion.div
+                className="flex flex-col justify-center gap-4 sm:flex-row"
+                variants={itemVariants}
               >
-                {images.map((src, index) => (
-                  <motion.img
-                    key={index}
-                    src={`/${src}`}
-                    alt={`Quantum visualization ${index + 1}`}
-                    className="absolute inset-0 h-full w-full object-contain"
-                    initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-                    animate={{
-                      opacity: visibleIndex === index ? 1 : 0,
-                      scale: visibleIndex === index ? 1 : 0.9,
-                      filter:
-                        visibleIndex === index ? "blur(0px)" : "blur(10px)",
-                      zIndex: visibleIndex === index ? 10 : 0,
-                    }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                ))}
-              </div>
-            </div>
+                <Link
+                  href={`/${params.locale}/posts/quantum_tuesdays`}
+                  className="w-full sm:w-auto"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                    >
+                      {t("explore courses")}
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{
+                          duration: 1,
+                          repeat: Number.POSITIVE_INFINITY,
+                        }}
+                      >
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </motion.div>
+                    </Button>
+                  </motion.div>
+                </Link>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-gray-300 dark:border-gray-700"
+                  >
+                    {t("About Us")}
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 z-50 -translate-x-1/2 transform">
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{
+              y: [0, 10, 0],
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200/70 shadow-lg backdrop-blur-md dark:bg-gray-800/70"
+          >
+            <ChevronRight
+              className="rotate-90 text-gray-700 dark:text-gray-200"
+              size={24}
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="bg-gray-50/50 py-16 dark:bg-slate-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
+          <motion.div
+            className="mb-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
             <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-100 dark:bg-purple-900/30 dark:text-purple-300 dark:hover:bg-purple-900/30">
               {t("features")}
             </Badge>
@@ -210,29 +238,54 @@ export default function Home({ params }: HomeProps) {
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
               {t("features description")}
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {features.map((feature, index) => (
-              <Card
+              <motion.div
                 key={index}
-                className="border-gray-200 bg-white/70 backdrop-blur-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800/70"
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
               >
-                <CardContent className="p-6">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30">
-                    {feature.icon}
-                  </div>
-                  <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+                <motion.div
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className="h-full border-gray-200 bg-white/70 backdrop-blur-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800/70">
+                    <CardContent className="p-6">
+                      <motion.div
+                        className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"
+                        whileHover={{ rotate: 5, scale: 1.1 }}
+                      >
+                        {feature.icon}
+                      </motion.div>
+                      <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        {feature.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
-          <QuantumMap />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <QuantumMap />
+          </motion.div>
         </div>
       </section>
 
@@ -240,7 +293,12 @@ export default function Home({ params }: HomeProps) {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
               <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-300 dark:hover:bg-green-900/30">
                 {t("for everyone")}
               </Badge>
@@ -253,125 +311,45 @@ export default function Home({ params }: HomeProps) {
 
               <div className="mt-8 space-y-4">
                 {difficultyLevels.map((level, index) => (
-                  <div
+                  <motion.div
                     key={level.id}
-                    className="flex items-start rounded-xl border border-gray-100 bg-white p-4 transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, x: 5 }}
                   >
-                    <div className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30">
-                      <span className="font-medium text-blue-600 dark:text-blue-400">
-                        {index + 1}
-                      </span>
+                    <div className="flex items-start rounded-xl border border-gray-100 bg-white p-4 transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800">
+                      <motion.div
+                        className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"
+                        whileHover={{ rotate: 5, scale: 1.1 }}
+                      >
+                        <span className="font-medium text-blue-600 dark:text-blue-400">
+                          {index + 1}
+                        </span>
+                      </motion.div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {level.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {level.description}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {level.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {level.description}
-                      </p>
-                    </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="relative">
-              <div className="absolute inset-0 -rotate-2 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5"></div>
-              <div className="relative rotate-2 rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-slate-800">
-                <div className="mb-6 flex items-center justify-between">
-                  <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
-                    {t("featured content")}
-                  </Badge>
-                  <div className="flex space-x-1">
-                    <div className="h-3 w-3 rounded-full bg-rose-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="h-8 w-3/4 rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-full rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-5/6 rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-full rounded bg-gray-100 dark:bg-slate-700"></div>
-
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-sm dark:border-gray-700 dark:bg-slate-900">
-                    <div className="text-gray-800 dark:text-gray-200">
-                      <span className="text-purple-600 dark:text-purple-400">
-                        const
-                      </span>{" "}
-                      <span className="text-blue-600 dark:text-blue-400">
-                        qubit
-                      </span>{" "}
-                      ={" "}
-                      <span className="text-green-600 dark:text-green-400">
-                        new
-                      </span>{" "}
-                      <span className="text-blue-600 dark:text-blue-400">
-                        Qubit
-                      </span>
-                      ();
-                    </div>
-                    <div className="text-gray-800 dark:text-gray-200">
-                      qubit.
-                      <span className="text-blue-600 dark:text-blue-400">
-                        hadamard
-                      </span>
-                      ();
-                    </div>
-                    <div className="text-gray-800 dark:text-gray-200">
-                      <span className="text-purple-600 dark:text-purple-400">
-                        const
-                      </span>{" "}
-                      <span className="text-blue-600 dark:text-blue-400">
-                        result
-                      </span>{" "}
-                      = qubit.
-                      <span className="text-blue-600 dark:text-blue-400">
-                        measure
-                      </span>
-                      ();
-                    </div>
-                  </div>
-
-                  <div className="h-4 w-full rounded bg-gray-100 dark:bg-slate-700"></div>
-                  <div className="h-4 w-4/5 rounded bg-gray-100 dark:bg-slate-700"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 md:p-12">
-            <div className="absolute right-0 top-0 -mr-20 -mt-20 h-[400px] w-[400px] rounded-full bg-white/10 blur-3xl"></div>
-            <div className="relative z-10 mx-auto text-center md:w-3/4">
-              <h2 className="text-3xl font-bold text-white">
-                {t("ready to start")}
-              </h2>
-              <p className="mt-4 text-lg text-blue-100">
-                {t("cta description")}
-              </p>
-              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                >
-                  {t("get started")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10"
-                >
-                  {t("view demo")}
-                </Button>
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <FeaturedCard locale={params.locale} />
+            </motion.div>
           </div>
         </div>
       </section>
