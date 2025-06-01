@@ -47,95 +47,163 @@ export const dropOverNonEmptySpot = (
   gates: QGateInterface[],
 ) => {
   // over spot is not empty
-  let draggedGate;
-  if (active.id.toString().startsWith("placed-")) {
-    // dragged gate was already placed
-    draggedGate = placedGates.find(
+  if (active.id.toString().startsWith("placed")) {
+    // was already placed
+    const instanceIdPlacedGate = active.id.toString().replace("placed-", "");
+    let draggedGate = placedGates.find(
       (gate) => gate.instanceId === active.id.toString().replace("placed-", ""),
     );
-  } else {
-    // dragged gate was not previously placed
-    draggedGate = gates.find((gate) => gate.id === active.id.toString());
-  }
-
-  if (draggedGate) {
-    if (draggedGate.multiQubit) {
-      if (qubit === 1) {
-        /*
-         * INFO: if user tries to place target qubit gate on the 0th qubit, place it on the 1st one instead as the 0th one will get taken up by the control gate
-         */
-        qubit = 1;
-      }
-      const controlQubit = qubit - 1;
-      let filteredGate = placedGates.filter(
-        (gate) => gate.position === position && gate.qubit === qubit,
-      )[0];
-      if (filteredGate.multiQubit) {
-        // TODO: drop over a multiqubit gate
-      } else {
-        // TODO: drop over single qubit gate
-      }
-    } else {
-      // NOTE: implement case for dropping off over one of the 2 qubit gates, so that it deletes both of them
-
-      let filteredGate = placedGates.filter(
-        (gate) => gate.position === position && gate.qubit === qubit,
-      )[0];
-
-      if (filteredGate.multiQubit) {
-        let controlQubit: number;
-        let targetQubit: number;
-
-        if (!filteredGate.control) {
-          // This is the target gate
-          targetQubit = qubit;
-          controlQubit = targetQubit - 1;
+    if (draggedGate) {
+      if (draggedGate.multiQubit) {
+        const isControl = draggedGate.control;
+        let partnerGateQubit;
+        if (isControl) {
+          partnerGateQubit = qubit + 1;
         } else {
-          // This is the control gate
-          controlQubit = qubit;
-          targetQubit = controlQubit + 1;
+          if (qubit === 0) {
+            qubit = 1;
+          }
+          partnerGateQubit = qubit - 1;
         }
-
-        setPlacedGates((prevGates) => {
-          const targetInstanceId = active.id.toString().replace("placed-", "");
-
-          return [
-            ...prevGates.filter(
-              (gate) =>
-                gate.instanceId !== targetInstanceId && // remove dragged version if any
-                !(
-                  gate.position === position &&
-                  (gate.qubit === controlQubit || gate.qubit === targetQubit)
-                ),
-            ),
-            {
-              ...draggedGate,
-              qubit,
-              position,
-              instanceId: `${draggedGate.id}-${Date.now()}`,
-            },
-          ];
-        });
+        console.debug(partnerGateQubit, qubit);
+        let filteredGate = placedGates.find(
+          (gate) => gate.position === position && gate.qubit === qubit,
+        )!;
+        let partnerGate = placedGates.find(
+          (gate) =>
+            gate.position === draggedGate.position &&
+            gate.qubit ===
+              (isControl ? draggedGate.qubit + 1 : draggedGate.qubit - 1),
+        )!;
+        if (filteredGate.multiQubit) {
+          // TODO: drop over a multiqubit gate but for the case that there is a 1 qubit or 2 qubit gate below the position where we want to drop
+          setPlacedGates((prevGates) => {
+            return [
+              ...placedGates.filter(
+                (gate) =>
+                  !(gate.instanceId === instanceIdPlacedGate) &&
+                  !(gate.position === position && gate.qubit === qubit) &&
+                  !(
+                    gate.position === draggedGate.position &&
+                    gate.qubit ===
+                      (draggedGate.control
+                        ? draggedGate.qubit + 1
+                        : draggedGate.qubit - 1)
+                  ) &&
+                  !(filteredGate.control
+                    ? gate.position === position &&
+                      gate.qubit === filteredGate.qubit + 1
+                    : gate.position === position &&
+                      gate.qubit === filteredGate.qubit - 1),
+              ),
+              {
+                ...draggedGate,
+                qubit,
+                position,
+              },
+              {
+                ...partnerGate,
+                qubit: partnerGateQubit,
+                position,
+              },
+            ];
+          });
+        } else {
+          // TODO: drop over single qubit gate but for the case that there is a 2-qubit gate above and below the position where we want to drop
+          setPlacedGates((prevGate) => {
+            return [
+              ...placedGates.filter(
+                (gate) =>
+                  gate.instanceId !== instanceIdPlacedGate &&
+                  !(gate.position === position && gate.qubit === qubit) &&
+                  !(
+                    gate.position === draggedGate.position &&
+                    gate.qubit ===
+                      (draggedGate.control
+                        ? draggedGate.qubit + 1
+                        : draggedGate.qubit - 1)
+                  ),
+              ),
+              {
+                ...draggedGate,
+                qubit,
+                position,
+              },
+              {
+                ...partnerGate,
+                qubit: partnerGateQubit,
+                position,
+              },
+            ];
+          });
+        }
       } else {
-        setPlacedGates((prevGates) =>
-          prevGates
-            .filter(
-              (gate) =>
-                gate.instanceId !== active.id.toString().replace("placed-", ""),
-            )
-            .map((gate) =>
-              gate.position === position && gate.qubit === qubit
-                ? {
-                    ...draggedGate,
-                    qubit,
-                    position,
-                    instanceId: `${draggedGate.id}-${Date.now()}`,
-                  }
-                : gate,
-            ),
-        );
+        // NOTE: implement case for dropping off over one of the 2 qubit gates, so that it deletes both of them
+        let filteredGate = placedGates.filter(
+          (gate) => gate.position === position && gate.qubit === qubit,
+        )[0];
+
+        if (filteredGate.multiQubit) {
+          let controlQubit: number;
+          let targetQubit: number;
+
+          if (!filteredGate.control) {
+            // This is the target gate
+            targetQubit = qubit;
+            controlQubit = targetQubit - 1;
+          } else {
+            // This is the control gate
+            controlQubit = qubit;
+            targetQubit = controlQubit + 1;
+          }
+
+          setPlacedGates((prevGates) => {
+            const targetInstanceId = active.id
+              .toString()
+              .replace("placed-", "");
+
+            return [
+              ...prevGates.filter(
+                (gate) =>
+                  gate.instanceId !== targetInstanceId && // remove dragged version if any
+                  !(
+                    gate.position === position &&
+                    (gate.qubit === controlQubit || gate.qubit === targetQubit)
+                  ),
+              ),
+              {
+                ...draggedGate,
+                qubit,
+                position,
+                instanceId: `${draggedGate.id}-${Date.now()}`,
+              },
+            ];
+          });
+        } else {
+          setPlacedGates((prevGates) =>
+            prevGates
+              .filter(
+                (gate) =>
+                  gate.instanceId !==
+                  active.id.toString().replace("placed-", ""),
+              )
+              .map((gate) =>
+                gate.position === position && gate.qubit === qubit
+                  ? {
+                      ...draggedGate,
+                      qubit,
+                      position,
+                      instanceId: `${draggedGate.id}-${Date.now()}`,
+                    }
+                  : gate,
+              ),
+          );
+        }
       }
     }
+  } else {
+    // wasn't placed already
+    let draggedGate = gates.find((gate) => gate.id === active.id.toString());
   }
 };
 
@@ -168,10 +236,10 @@ export const dropOverEmptySpot = (
           }
           if (
             gate.multiQubit &&
-            gate.position &&
-            position &&
+            gate.position === draggedGate.position &&
             gate.qubit === (isControl ? qubit + 1 : qubit - 1)
           ) {
+            console.debug(position, qubit, pairQubit);
             return { ...gate, qubit: pairQubit, position };
           }
           return gate;
