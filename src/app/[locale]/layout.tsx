@@ -10,7 +10,7 @@ import { CookiesProvider } from "next-client-cookies/server";
 import EasterEgg from "../components/EasterEgg";
 
 export const metadata: Metadata = {
-  title: "Wiqi",
+  title: "WiQi",
   description: "From humans, for humans",
 };
 
