@@ -95,14 +95,22 @@ function DraggablePlacedGate({ gate }: { gate: PlacedGate }) {
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      {...attributes}
-      {...listeners}
-      className={`${gate.color} flex h-12 w-12 cursor-grab items-center justify-center rounded-md shadow-md active:cursor-grabbing`}
-      style={style}
-    >
-      <p className="font-bold">{gate.title}</p>
+    <div className="relative flex items-center justify-center">
+      {/* Centered vertical line behind the gate (for control) */}
+      {gate.control && (
+        <div className="absolute left-1/2 top-full z-0 h-6 w-0 -translate-x-1/2 border border-white" />
+      )}
+
+      {/* Gate block */}
+      <div
+        ref={setNodeRef}
+        {...attributes}
+        {...listeners}
+        className={`${gate.color} relative z-10 flex h-12 w-12 cursor-grab items-center justify-center rounded-md shadow-md active:cursor-grabbing`}
+        style={style}
+      >
+        <p className="font-bold">{gate.title}</p>
+      </div>
     </div>
   );
 }
