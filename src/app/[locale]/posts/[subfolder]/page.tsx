@@ -2,24 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
-
+import { File } from "@/types";
 import PostPreview from "@/app/components/PostPreview";
 import DifficultySelector from "@/app/components/DifficultySelector";
-import useResizeObserverHeight from "../../components/useResizeObserverHeight";
+import useResizeObserverHeight from "../../../components/useResizeObserverHeight";
 
-type File = {
-  key: string;
-  slug: string;
-  metadata: {
-    title: string;
-    subtitle: string;
-    date: string;
-    author: string;
-  };
-  locale: string;
-};
-
-export default function Page({ params }: { params: { locale: string } }) {
+export default function Page({
+  params,
+}: {
+  params: { locale: string; subfolder: string };
+}) {
   const cookies = useCookies();
   const initialDifficulty = cookies.get("difficulty") ?? "elementary";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
@@ -51,7 +43,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         body: JSON.stringify({
           language: locale,
           difficulty: difficulty,
-          folder: "quantum_tuesdays",
+          folder: [params.subfolder],
         }),
       });
       const data = await response.json();
@@ -104,7 +96,7 @@ export default function Page({ params }: { params: { locale: string } }) {
               date={file.metadata.date}
               locale={params.locale}
               difficulty={difficulty}
-              folder="quantum_tuesdays"
+              folder={params.subfolder}
             />
           </div>
         ))}

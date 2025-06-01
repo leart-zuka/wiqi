@@ -1,0 +1,32 @@
+---
+title: "Chemie - Anwendung von Quantencomputern"
+subtitle: "Die Anwendung von Quantencomputern in der Chemie (middle)"
+author: "Helena Iréne Köhler"
+date: "2025-04-23"
+---
+
+## Quantensimulationen - Chemie
+
+Die Entwicklung neuer Arzneimittel ist ein langwieriger und teurer Prozess. Er kann mehr als 10 Jahre dauern und viel Geld kosten. Um die Dinge zu beschleunigen, setzen Wissenschaftler Computer ein, um neue Medikamente virtuell zu entwerfen und zu testen. Dies wird als Computer-Aided Drug Design (CADD) bezeichnet.
+
+CADD wird noch leistungsfähiger, wenn es mit künstlicher Intelligenz (KI) und maschinellem Lernen (ML) kombiniert wird. Diese Technologien können vorhersagen, wie gut ein Medikament wirkt, ob es sicher ist und wie es verbessert werden kann - und das alles, ohne dass in der Anfangsphase physische Tests erforderlich sind. Dies ist auch in der Materialwissenschaft hilfreich, wo neue Materialien mithilfe von Computern entworfen werden.
+
+Doch selbst leistungsstarke klassische Computer haben ihre Grenzen. Das liegt daran, dass Moleküle den Regeln der Quantenmechanik folgen - Dinge wie Überlagerung und Verschränkung, die klassische Computer natürlich nicht simulieren können. Dazu müssten sie jeden möglichen Zustand des Moleküls erfassen, was mit zunehmender Größe der Moleküle schnell unmöglich wird.
+
+So wurde beispielsweise eine [Studie](https://pubmed.ncbi.nlm.nih.gov/21812485/) zeigte, dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
+![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
+_Coffein_
+![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
+_Taxol_
+
+Um dies zu bewältigen, verwenden die Wissenschaftler Näherungswerte wie die Dichtefunktionaltheorie (DFT, auf der Elektronendichte basierendes Verfahren zur Bestimmung des quantenmechanischen Grundzustandes eines Vielelektronensystems), die jedoch nicht immer genau sind, insbesondere bei großen Systemen.
+
+An dieser Stelle kommen Quantencomputer ins Spiel. Anstelle von Bits (in einem klassischen Computer) verwenden sie Qubits, die sich wie Elektronen verhalten, weil sie denselben Quantenregeln folgen. Qubits können sich in mehreren Zuständen gleichzeitig befinden und verschränkt werden - genau wie Elektronen in einem Molekül.
+
+So zeigte eine Studie, dass die Simulation von nur 8 Koffeinmolekülen in Wasser mit einem klassischen Computercluster 50 Tage dauerte. Komplexere Moleküle, wie Krebsmedikamente, sind jedoch weit jenseits dessen, was mit klassischen Methoden gut bewältigt werden kann.
+
+Quantencomputer sind darauf ausgelegt, Quantensysteme direkt zu simulieren. In der Quantenchemie verwenden die Wissenschaftler eine Gleichung, die so genannte Schrödinger's Gleichung, welche den Hamiltonian enthält, um die Gesamtenergie eines Moleküls zu beschreiben. Um sie auf einem Quantencomputer auszuführen, muss die Gleichung so umgewandelt werden, dass sie in einen Quantenschaltkreis passt und die nützlichsten Informationen liefert.
+
+Sobald diese Transformation erfolgt ist, können Quantenalgorithmen wie VQE (Variational Quantum Eigensolver) oder QPE (Quantum Phase Estimation) das Verhalten des Moleküls simulieren, indem sie Dinge wie die Grundzustandsenergie berechnen.
+
+Quantensimulationen werden uns bald helfen, bessere Medikamente und Materialien schneller als je zuvor zu entwickeln.

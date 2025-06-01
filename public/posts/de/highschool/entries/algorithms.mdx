@@ -2,7 +2,7 @@
 title: "Algorithmen"
 subtitle: "Algorithmen und die Komplexitätstheorie (mittel)"
 author: "Helena Iréne Köhler"
-date: "2024-01-08"
+date: "2025-01-08"
 ---
 
 ## Komplexitätstheorie
@@ -12,14 +12,20 @@ date: "2024-01-08"
 
 Die Komplexitätstheorie ist ein Teilgebiet der theoretischen Informatik und befasst sich damit, wie schwer es für einen Computer ist, bestimmte Probleme zu lösen. Die Komplexität wird durch die Berechnungskosten eines Problems charakterisiert, also durch den Aufwand, der benötigt wird, um ein Problem zu lösen, sowohl z.B. in Bezug auf die Rechenzeit, als auch auf den Speicherbedarf. Die Komplexität eines Problems hängt von der Effizienz des verwendeten Algorithmus ab.
 
-Zum Beispiel, betrachtet man einen Algorithmus, der versucht, Schrödingers Katze in einer Reihe von Boxen zu finden. Um die Katze zu finden, muss der Algorithmus alle Boxen öffnen. Diesen Prozess würde man als O(n) klassifiziert, wobei n die Anzahl der Boxen ist und daher der Funktionsbereich. Die O Notation, auch Landau-Symbole gennant, ist ein mathematisches Konzept, das verwendet wird, um das Verhalten einer Funktion zu beschreiben, wenn sie gegen einen bestimmten Wert strebt oder einfach wächst. In der Informatik, wie auch hier, wird diese Notation verwendet, um die Berechnungskosten (Zeit- oder Speicherkomplexität) eines Algorithmus in Bezug auf die zunehmende Eingabegröße zu beschreiben.
+Zum Beispiel, betrachtet man einen Algorithmus, der versucht, Schrödingers Katze in einer Reihe von Boxen zu finden. Um die Katze zu finden, muss der Algorithmus alle Boxen öffnen. Diesen Prozess würde man als $$ O(n) $$ klassifiziert, wobei $$ n $$ die Anzahl der Boxen ist und daher der Funktionsbereich. Die O Notation, auch Landau-Symbole gennant, ist ein mathematisches Konzept, das verwendet wird, um das Verhalten einer Funktion zu beschreiben, wenn sie gegen einen bestimmten Wert strebt oder einfach wächst. In der Informatik, wie auch hier, wird diese Notation verwendet, um die Berechnungskosten (Zeit- oder Speicherkomplexität) eines Algorithmus in Bezug auf die zunehmende Eingabegröße zu beschreiben.
 
 ![Big O Notation](/posts/assets/entries/algorithms/bigo.png)
 
 ## Grovers Algorithmus
 
-Nun, greifen wir die vorherige Frage noch einmal auf: Wie finde ich eine Katze in einer aus Millionen Boxen auf die effizienteste Weise (in Bezug auf die O Notation und die Grafik oberhalb)? Ein einfacher Algorithmus, um die Katze zu finden, wäre, wie soeben dargestellt, alle möglichen Boxen zu durchsuchen und alle geöffneten Boxen zu protokollieren. Auf einem klassischen Computer würde es O(n) Operationen erfordern, um jede Box einzeln zu überprüfen, was im Durchschnitt 1.000.000 Schritte erfordern würde. Mit zunehmender Eingabe wird die Komplexität des Algorithmus immer wichtiger.
+Nun, greifen wir die vorherige Frage noch einmal auf: Wie finde ich eine Katze in einer aus Millionen Boxen auf die effizienteste Weise (in Bezug auf die O Notation und die Grafik oberhalb)? Ein einfacher Algorithmus, um die Katze zu finden, wäre, wie soeben dargestellt, alle möglichen Boxen zu durchsuchen und alle geöffneten Boxen zu protokollieren. Auf einem klassischen Computer würde es $$ O(n) $$ Operationen erfordern, um jede Box einzeln zu überprüfen, was im Durchschnitt $$ 1.000.000 $$ Schritte erfordern würde. Mit zunehmender Eingabe wird die Komplexität des Algorithmus immer wichtiger.
 
-Der Grover-Algorithmus, auch als quantitativer Suchalgorithmus bekannt, bietet einen quadratischen Vorteil gegenüber dieser Methode, indem er den klassischen Ansatz beschleunigt und nur O({\sqrt{n}}) Operationen erfordert. Die Anzahl der Operationen wird auf etwa 1.000 Schritte reduziert (n = 1.000.000, O({\sqrt{n}}) = {\sqrt{1.000.000}} = 1.000). Diese erhebliche Reduzierung der Berechnungskomplexität macht den Grover-Algorithmus viel effizienter für derartige Probleme. Der Algorithmus stammt aus 1996 von Lov Grover entwickelt und war der zweite wichtige Quantenalgorithmus, der entwickelt wurde. Er ist ein wichtiges Beispiel dafür, wie Quantencomputing in bestimmten Bereichen Vorteile gegenüber klassischen Computern bieten kann.
+Der Grover-Algorithmus, auch als quantitativer Suchalgorithmus bekannt, bietet einen quadratischen Vorteil gegenüber dieser Methode, indem er den klassischen Ansatz beschleunigt und nur $$ O({\sqrt{n}}) $$ Operationen erfordert. Die Anzahl der Operationen wird auf etwa $$ 1.000 $$ Schritte reduziert
+
+$$
+n = 1.000.000, O({\sqrt{n}}) = {\sqrt{1.000.000}} = 1.000
+$$
+
+Diese erhebliche Reduzierung der Berechnungskomplexität macht den Grover-Algorithmus viel effizienter für derartige Probleme. Der Algorithmus stammt aus 1996 von Lov Grover entwickelt und war der zweite wichtige Quantenalgorithmus, der entwickelt wurde. Er ist ein wichtiges Beispiel dafür, wie Quantencomputing in bestimmten Bereichen Vorteile gegenüber klassischen Computern bieten kann.
 
 ![Grovers' Algorithm](/posts/assets/entries/algorithms/grover.png)
