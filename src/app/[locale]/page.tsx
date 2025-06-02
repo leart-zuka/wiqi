@@ -183,18 +183,23 @@ export default function Home({ params }: HomeProps) {
                   </motion.div>
                 </Link>
 
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <Link
+                  href={`/${params.locale}/about`}
+                  className="w-full sm:w-auto"
                 >
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-gray-300 dark:border-gray-700"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {t("About Us")}
-                  </Button>
-                </motion.div>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-gray-300 dark:border-gray-700"
+                    >
+                      {t("About Us")}
+                    </Button>
+                  </motion.div>
+                </Link>
               </motion.div>
             </motion.div>
           </div>
