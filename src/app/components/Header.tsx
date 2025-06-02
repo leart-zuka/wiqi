@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -88,6 +86,8 @@ const Header = (props: HeaderProps) => {
 
     if (inputRef.current) {
       inputRef.current.value = "";
+      setSearchResults([]);
+      setShowDropdown(false);
     }
 
     if (mobileInputRef.current) {
@@ -319,7 +319,6 @@ const Header = (props: HeaderProps) => {
                 <Sun className="h-5 w-5 text-amber-500" />
               )}
             </Button>
-
             {/* Language Switcher */}
             <Link
               href={replaceLocale(props.locale, pathName)}
