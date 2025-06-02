@@ -101,63 +101,76 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: t("member1 name", "Dr. Quantum"),
-      role: t("member1 role", "Quantum Physicist"),
-      image: "/wq.png",
-      bio: t(
-        "member1 bio",
-        "Leading researcher in quantum computing with expertise in quantum algorithms and error correction.",
-      ),
+      name: t("member1 name"),
+      role: t("member1 role"),
+      image: `${process.env.NEXT_PUBLIC_API_BASE_URL}/static/squad/${t("member1 image")}.JPG`,
+      bio: t("member1 bio"),
       skills: ["Quantum Computing", "Algorithm Design", "Physics"],
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        email: "contact@example.com",
+        github: "https://github.com/leart-zuka",
+        linkedin: "https://www.linkedin.com/in/leart-zuka-741092213/",
+        email: "leart.zuka@web.de",
       },
     },
     {
-      name: t("member2 name", "Prof. Entanglement"),
-      role: t("member2 role", "Theoretical Physicist"),
-      image: "/wq.png",
-      bio: t(
-        "member2 bio",
-        "Specializes in quantum entanglement and its applications in secure communications.",
-      ),
+      name: t("member2 name"),
+      role: t("member2 role"),
+      image: `${process.env.NEXT_PUBLIC_API_BASE_URL}/static/squad/${t("member2 image")}.JPG`,
+      bio: t("member2 bio"),
       skills: ["Quantum Entanglement", "Cryptography", "Research"],
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        email: "contact@example.com",
+        github: "https://github.com/noluyorAbi",
+        linkedin: "https://www.linkedin.com/in/alperen-adatepe/",
+        email: "adatepe.alperen.lmu@gmail.com",
       },
     },
     {
-      name: t("member3 name", "Dr. Superposition"),
-      role: t("member3 role", "Quantum Engineer"),
-      image: "/wq.png",
-      bio: t(
-        "member3 bio",
-        "Works on practical implementations of quantum technologies for real-world applications.",
-      ),
+      name: t("member3 name"),
+      role: t("member3 role"),
+      image: `${process.env.NEXT_PUBLIC_API_BASE_URL}/static/squad/${t("member3 image")}.JPG`,
+      bio: t("member3 bio"),
       skills: ["Quantum Hardware", "Engineering", "Innovation"],
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        email: "contact@example.com",
+        github: "https://github.com/helenakhlr",
+        linkedin:
+          "https://www.linkedin.com/in/helena-ir%C3%A9ne-k%C3%B6hler-33a642330/",
+        email: "helena.koehler8@gmail.com",
       },
     },
     {
-      name: t("member4 name", "Prof. Wave Function"),
-      role: t("member4 role", "Education Director"),
-      image: "/wq.png",
-      bio: t(
-        "member4 bio",
-        "Passionate about making quantum concepts accessible to the broader public.",
-      ),
+      name: t("member4 name"),
+      role: t("member4 role"),
+      image: `${process.env.NEXT_PUBLIC_API_BASE_URL}/static/squad/${t("member4 image")}.JPG`,
+      bio: t("member4 bio"),
       skills: ["Education", "Outreach", "Communication"],
       social: {
-        github: "https://github.com",
+        github: "https://github.com/leart-zuka/wiqi",
+        linkedin: "https://www.linkedin.com/in/adhesh-sagar/",
+        email: "adhesh004@gmail.com",
+      },
+    },
+    {
+      name: t("member5 name"),
+      role: t("member5 role"),
+      image: `${process.env.NEXT_PUBLIC_API_BASE_URL}/static/squad/${t("member5 image")}.JPG`,
+      bio: t("member5 bio"),
+      skills: ["Education", "Outreach", "Communication"],
+      social: {
+        github: "https://github.com/codedevil13",
         linkedin: "https://linkedin.com",
-        email: "contact@example.com",
+        email: "rahulkannan356@gmail.com",
+      },
+    },
+    {
+      name: t("member6 name"),
+      role: t("member6 role"),
+      image: `${process.env.NEXT_PUBLIC_API_BASE_URL}/static/squad/${t("member6 image")}.JPG`,
+      bio: t("member6 bio"),
+      skills: ["Education", "Outreach", "Communication"],
+      social: {
+        github: "https://github.com/OtherGitAcc",
+        linkedin: "https://www.linkedin.com/in/bhushan-kad-a36175253/",
+        email: "bhushanbrk@gmail.com",
       },
     },
   ];
@@ -186,7 +199,7 @@ export default function AboutPage() {
             {t("our story", "Our Quantum Journey")}
           </Badge>
 
-          <h1 className="bg-gradient-to-r from-slate-900 via-pink-800 to-indigo-800 bg-clip-text p-6 font-serif text-5xl font-bold tracking-tight text-transparent dark:from-white dark:via-pink-200 dark:to-indigo-200 sm:text-6xl md:text-7xl">
+          <h1 className="bg-gradient-to-r from-slate-900 via-pink-800 to-indigo-800 bg-clip-text px-4 py-4 font-serif text-3xl font-bold tracking-tight text-transparent dark:from-white dark:via-pink-200 dark:to-indigo-200 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             {t("motivation title", "Shaping the Quantum Future")}
           </h1>
 
@@ -271,7 +284,7 @@ export default function AboutPage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.25 }}
                 >
                   <h2 className="mb-6 font-serif text-3xl font-bold text-slate-900 dark:text-white">
                     {t("story title", "A Group of Motivated Students")}
@@ -428,7 +441,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="mb-8 space-y-8">
             {teamMembers.map((member, idx) => {
               const isOdd = idx % 2 !== 0;
               return (
@@ -441,20 +454,20 @@ export default function AboutPage() {
                   }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
-                  <Card className="overflow-hidden border-slate-200 bg-white backdrop-blur-sm dark:border-2 dark:border-purple-800/60 dark:bg-transparent">
+                  <Card className="overflow-hidden border-slate-200 bg-white p-4 backdrop-blur-sm dark:border-2 dark:border-purple-800/60 dark:bg-transparent">
                     <div
                       className={`flex flex-col sm:flex-row ${isOdd ? "sm:flex-row-reverse" : ""}`}
                     >
                       {/* Image Section */}
                       <div className="relative flex sm:w-1/3 sm:items-center sm:justify-center">
-                        <div className="aspect-square w-full max-w-[150px] overflow-hidden bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-gray-600 dark:to-gray-700">
-                          <Avatar className="h-full w-full rounded-none">
+                        <div className="aspect-square w-full max-w-[150px] overflow-hidden rounded-full border border-black/20 bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-gray-600 dark:to-gray-700">
+                          <Avatar className="h-full w-full rounded-full">
                             <AvatarImage
                               src={member.image || "/placeholder.svg"}
                               alt={member.name}
-                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              className="h-full w-full rounded-full border border-black/20 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
-                            <AvatarFallback className="h-full w-full rounded-none bg-gradient-to-br from-indigo-200 to-blue-200 text-4xl text-indigo-800 dark:from-gray-700 dark:to-gray-900 dark:text-gray-200">
+                            <AvatarFallback className="h-full w-full rounded-full border border-black/20 bg-gradient-to-br from-indigo-200 to-blue-200 text-4xl text-indigo-800 dark:from-gray-700 dark:to-gray-900 dark:text-gray-200">
                               {member.name.charAt(0)}
                             </AvatarFallback>
                           </Avatar>
@@ -472,17 +485,18 @@ export default function AboutPage() {
                           <p className="mt-2 text-slate-700 dark:text-gray-200">
                             {member.bio}
                           </p>
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {member.skills.map((skill, skillIdx) => (
-                              <Badge
-                                key={skillIdx}
-                                variant="outline"
-                                className="rounded-full border border-gray-300 bg-transparent px-3 py-1 text-sm font-medium text-gray-800 shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-gray-600 dark:text-gray-100"
-                              >
-                                {skill}
-                              </Badge>
-                            ))}
-                          </div>
+                          {/*
+                                                    <div className="mt-4 flex flex-wrap gap-2">
+                                                        {member.skills.map((skill, skillIdx) => (
+                                                            <Badge
+                                                                key={skillIdx}
+                                                                variant="outline"
+                                                                className="rounded-full border border-gray-300 bg-transparent px-3 py-1 text-sm font-medium text-gray-800 shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-gray-600 dark:text-gray-100"
+                                                            >
+                                                                {skill}
+                                                            </Badge>
+                                                        ))}
+                                                    </div>*/}
                         </div>
                         <div className="f mt-4 flex gap-3">
                           <a
@@ -513,8 +527,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
-      {/* Footer with quantum-inspired design */}
     </div>
   );
 }
