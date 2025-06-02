@@ -409,7 +409,6 @@ export default function AboutPage() {
             </motion.div>
           )}
         </section>
-
         {/* Team Section */}
         <section id="team" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -441,6 +440,26 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative mb-16 flex justify-center"
+          >
+            <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-xl dark:border-indigo-500/20">
+              <Image
+                src="/static/squad/Team.JPG" // Make sure this is in /public
+                alt="Illustration of Our Team"
+                width={1600}
+                height={700}
+                priority={false}
+                className="h-auto w-full object-cover brightness-95 dark:brightness-75"
+                style={{ objectPosition: "center" }}
+              />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/5 dark:ring-white/10"></div>
+            </div>
+          </motion.div>
           <div className="mb-8 space-y-8">
             {teamMembers.map((member, idx) => {
               const isOdd = idx % 2 !== 0;
