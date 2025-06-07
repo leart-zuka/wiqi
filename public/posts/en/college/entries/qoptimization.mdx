@@ -1,12 +1,14 @@
 ---
-title: Quantum Optimization
+title: "Quantum Optimization"
 subtitle: "Quantum Optimization: Solving the Hardest Problems with the Weirdest Tools(difficult)"
-author: Sudharshan Kannan
-date: 2025-05-31
+author: "Sudharshan Kannan"
+date: "2025-05-31"
 ---
+
 # Quantum Optimization: Solving the Hardest Problems with the Weirdest Tools
 
 ## 1. Introduction
+
 Optimization is everywhere. From planning delivery routes for trucks, deciding how to schedule college courses, or even determining the best way to fold proteins in biology—these are all optimization problems. In simple terms, an optimization problem is one where you want to find the **best** solution out of many possible ones.
 
 But as problems grow bigger, the number of possible answers explodes. For example, imagine trying to plan delivery routes for 100 cities—there are more possible paths than there are atoms in the universe. This is where **classical computers** start to struggle.
@@ -16,40 +18,52 @@ Could quantum computers help? That's what **quantum optimization** is all about:
 ---
 
 ## 2. What is Quantum Optimization?
+
 At its core, quantum optimization tries to solve problems by encoding them into a quantum system; specifically, into the energies of different quantum states. The goal is to find the lowest-energy state, also called the **ground state**, which corresponds to the best solution to the original problem. We now explore how we can achieve this
+
 ### a) Quantum Annealing
-This is a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. In **quantum annealing**, the particle can also *tunnel* through hills, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the global minimum without "traversing" the entire landscape as shown in the image below.
 
-![Quantum Annealing](../../../assets/post/qoptimization/Quantum_Annealing.png) 
+This is a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. In **quantum annealing**, the particle can also _tunnel_ through hills, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the global minimum without "traversing" the entire landscape as shown in the image below.
 
-> *Source: [arXiv:1611.04471](https://arxiv.org/abs/1611.04471) - "What is the Computational Value of Finite Range Tunneling?" by Denchev et al.*
+![Quantum Annealing](/posts/assets/entries/qoptimization/Quantum_Annealing.jpg)
 
-This method is used by D-Wave systems and focuses on **Ising model problems**, where each variable is a spin (+1 or -1), and you want to find the best spin configuration. In the next section we engage more with how D-Wave works with Quantum Annealing through the QUBO problem. 
-### b) QUBO problem 
-Many optimization problems can be expressed in a quadratic form over binary variables, known as the **QUBO (Quadratic Unconstrained Binary Optimization)** problem:						
+> _Source: [arXiv:1611.04471](https://arxiv.org/abs/1611.04471) - "What is the Computational Value of Finite Range Tunneling?" by Denchev et al._
+
+This method is used by D-Wave systems and focuses on **Ising model problems**, where each variable is a spin (+1 or -1), and you want to find the best spin configuration. In the next section we engage more with how D-Wave works with Quantum Annealing through the QUBO problem.
+
+### b) QUBO problem
+
+Many optimization problems can be expressed in a quadratic form over binary variables, known as the **QUBO (Quadratic Unconstrained Binary Optimization)** problem:
+
 $$
-							
+
 \min_{x \in \{0,1\}^n} x^T Q x + c^T x
 
+
 $$
-Here $ Q $ is an $ n \times n $ real symmetric matrix that represents the interaction weights between variables, and c is a vector of linear coefficients. In physics and quantum annealing, this is equivalently expressed using spin variables $s_i \in \{ -1, +1 \} $ as the Ising model: 
+
+Here $ Q $ is an $ n \times n $ real symmetric matrix that represents the interaction weights between variables, and c is a vector of linear coefficients. In physics and quantum annealing, this is equivalently expressed using spin variables $s_i \in \{ -1, +1 \} $ as the Ising model:
+
 $$
 \min_{s \in \{-1,+1 \}^n  } \sum_{i <j} J_{ij} s_i s_j \ + \ \sum_i h_is_i
 $$
-The two formulations are related through a simple transformation between variables $ s_i = 2x_i -1 $
-So specific to this problem, quantum annealers work by finding the ground state of the Ising Hamiltonian which directly corresponds to the optimal solution of the original combinatorial problem encoded as QUBO. This equivalence between QUBO and Ising models is foundational for many quantum optimization methods. 
+
+The two formulations are related through a simple transformation between variables $ s_i = 2x_i -1 $.
+So specific to this problem, quantum annealers work by finding the ground state of the Ising Hamiltonian which directly corresponds to the optimal solution of the original combinatorial problem encoded as QUBO. This equivalence between QUBO and Ising models is foundational for many quantum optimization methods.
+
 ### c) Variational Quantum Algorithms (VQAs)
-These are used on gate-based quantum computers like IBM’s or Google’s. The idea is to build a *parameterized quantum circuit*, then adjust the parameters using a classical optimizer until the output gives you a good solution.
+
+These are used on gate-based quantum computers like IBM’s or Google’s. The idea is to build a _parameterized quantum circuit_, then adjust the parameters using a classical optimizer until the output gives you a good solution.
 
 A famous example is the **Quantum Approximate Optimization Algorithm (QAOA)**.
 
 ![QAOA Circuit](https://quantumai.google/cirq/experiments/qaoa/images/qaoa_circuit.png)> [Source of Image and Read More](https://quantumai.google/cirq/experiments/qaoa/example_problems)
 
-> *Source: [arXiv:1411.4028](https://arxiv.org/abs/1411.4028) - "A Quantum Approximate Optimization Algorithm" by Farhi et al.*
+> _Source: [arXiv:1411.4028](https://arxiv.org/abs/1411.4028) - "A Quantum Approximate Optimization Algorithm" by Farhi et al._
 
 QAOA alternates between two Hamiltonians:
 
-1. **Cost Hamiltonian** $H_C$  
+1. **Cost Hamiltonian** $H_C$
 2. **Mixer Hamiltonian** $H_M = \sum_i \sigma_i^x$
 
 The quantum state after 'p' steps is:
@@ -58,7 +72,7 @@ $$
 |\psi(\boldsymbol{\gamma}, \boldsymbol{\beta})\rangle = \prod_{j=1}^{p} e^{-i \beta_j H_M} e^{-i \gamma_j H_C} |+\rangle^{\otimes n}
 $$
 
-To minimize, we define the cost Hamiltonian in more detai
+To minimize, we define the cost Hamiltonian in more detail:
 
 $$
 E(\boldsymbol{\gamma}, \boldsymbol{\beta}) = \langle\psi(\boldsymbol{\gamma}, \boldsymbol{\beta})| H_C |\psi(\boldsymbol{\gamma}, \boldsymbol{\beta})\rangle
@@ -67,25 +81,26 @@ $$
 ---
 
 ## 3. Visualizing the Quantum Advantage
+
 One way to visualize optimization is through a landscape metaphor. The y-axis is the cost or energy (lower is better), and the x-axis is the space of all possible solutions. In classical optimization, you're like a hiker trying to find the lowest valley, but you can get stuck in small dips (local minima).
 
-Quantum optimization, especially quantum annealing as we have seen, allows the particle to *tunnel* through narrow hills. This is governed by the adiabatic theorem: if the system begins in the ground state of \(H(0)\) and the evolution is slow enough, it stays in the instantaneous ground state. The required runtime \(T\) satisfies:
+Quantum optimization, especially quantum annealing as we have seen, allows the particle to _tunnel_ through narrow hills. This is governed by the adiabatic theorem: if the system begins in the ground state of \(H(0)\) and the evolution is slow enough, it stays in the instantaneous ground state. The required runtime \(T\) satisfies:
 
 $$
 T \gg \frac{1}{\Delta_{\min}^2}
 $$
 
-where $ \Delta_{\min} $ is the minimum spectral gap during the evolution.
-
+where $ \Delta\_{\min} $ is the minimum spectral gap during the evolution.
 
 ---
 
 ## 4. Applications
+
 Quantum Optimization is not just theory, especially since it is a hybrid classical-quantum implementation. It has started impacting many fields where problems are too complex for brute-force classical approaches generally used.
 
-- **Logistics**: The most optimistic application of this is seen in the case of solving the Travelling Salesman Problem. Companies like FedEx or UPS need to figure out the most efficient way to deliver packages for example. Classically solving this problem becomes exponentially harder with more locations. Quantum Algorithms can potentially make this a problem with polynomial order complexity 
+- **Logistics**: The most optimistic application of this is seen in the case of solving the Travelling Salesman Problem. Companies like FedEx or UPS need to figure out the most efficient way to deliver packages for example. Classically solving this problem becomes exponentially harder with more locations. Quantum Algorithms can potentially make this a problem with polynomial order complexity
 
-- **Portfolio optimization**: Financial firms want to pick the best mix of investments to maximise returns and minimize risk. All of this can fit into a neat objective function or a cost function which we would want to optimize. But it gets tricky to handle because of so many variables that influence the objective like market behaviours, correlations and even some constraints. Quantum Optimization Techniques can be used to identify the global minimum of financial risk functions more efficiently. This is very similar to finding the ground state of a quantum system! Mathematically, this is modeled as: 
+- **Portfolio optimization**: Financial firms want to pick the best mix of investments to maximise returns and minimize risk. All of this can fit into a neat objective function or a cost function which we would want to optimize. But it gets tricky to handle because of so many variables that influence the objective like market behaviours, correlations and even some constraints. Quantum Optimization Techniques can be used to identify the global minimum of financial risk functions more efficiently. This is very similar to finding the ground state of a quantum system! Mathematically, this is modeled as:
 
 $$
 \min_{x \in \{0,1\}^n} x^T \Sigma x - \lambda \mu^T x
@@ -93,9 +108,9 @@ $$
 
 This quadratic binary problem maps directly to a QUBO format suitable for quantum solvers.
 
-- **Material design**: In chemistry and material science, molecules which are natural quantum systems, always seek the lowest-energy configuration. This, while being the fundamental drive behind Quantum Optimization can offer better approaches to drug discoveries or new material compositions.  
+- **Material design**: In chemistry and material science, molecules which are natural quantum systems, always seek the lowest-energy configuration. This, while being the fundamental drive behind Quantum Optimization can offer better approaches to drug discoveries or new material compositions.
 
-- **Quantum ML**: Training Machine Learning models involves optimizing a loss function just like in the case of material design and the financial portfolio optimization. Quantum Algorithms like QAOA or VQE can be adapted to navigate complex loss landscapes more efficiently than gradient descent. In VQA-based training, the loss function $ \mathcal{L}(\theta)$  depends on quantum circuit parameters. Gradients are estimated using techniques like parameter-shift rule or finite differences:
+- **Quantum ML**: Training Machine Learning models involves optimizing a loss function just like in the case of material design and the financial portfolio optimization. Quantum Algorithms like QAOA or VQE can be adapted to navigate complex loss landscapes more efficiently than gradient descent. In VQA-based training, the loss function $ \mathcal{L}(\theta)$ depends on quantum circuit parameters. Gradients are estimated using techniques like parameter-shift rule or finite differences:
 
 $$
 \nabla_\theta \mathcal{L} \approx \frac{ \mathcal{L}(\theta + \delta) - \mathcal{L}(\theta - \delta) }{2\delta}
@@ -104,6 +119,7 @@ $$
 ---
 
 ## 5. Challenges
+
 - **Noisy Qubits and Decoherence:** Qubits are very sensitive entities. Even small disturbances in the environment can disrupt the state. This error-prone nature can pose difficulties performing long calculation, unless we use error correction. Error correction brings the need to use many more qubits.
 
 - **Limited Qubits:** Solving real world problems might need thousands including error-correction code. Practically, contemporary quantum processes have fewer than 100 reliable qubits. Until we scale up, most optimizations remain at the proof-of-concept stage.
@@ -114,25 +130,26 @@ $$
 \text{Var}\left( \frac{\partial \mathcal{L}}{\partial \theta} \right) \sim \exp(-n)
 $$
 
-where $n$  is the number of qubits — making training infeasible as system size increases. 
- ([arXiv:1803.11173](https://arxiv.org/abs/1803.11173))
+where $n$ is the number of qubits — making training infeasible as system size increases.
+([arXiv:1803.11173](https://arxiv.org/abs/1803.11173))
 
 - **Hard to Benchmark:** It is tricky to prove when quantum methods truly outperform classical heuristics. We still do not have a clear theoretical "quantum advantage" yet!
 
 - **Cost and Access:** Of course, the major issue while running quantum algorithms is the cost of supporting infrastructure, including cloud based support. These are expensive and limited in use time. Even though open-access platforms are helping, reaching widespread deployment is still going to take time.
+
 ---
 
 ## 6. Conclusion
-Quantum optimization blends physics and computing. As technology matures, it might unlock solutions classical methods can’t reach. Quantum optimization doesn’t just accelerate known methods — it uses new physical phenomena like tunneling and entanglement to redefine computational strategies. The full potential, particularly for large-scale combinatorial problems, remains an open question driving current research.
 
+Quantum optimization blends physics and computing. As technology matures, it might unlock solutions classical methods can’t reach. Quantum optimization doesn’t just accelerate known methods — it uses new physical phenomena like tunneling and entanglement to redefine computational strategies. The full potential, particularly for large-scale combinatorial problems, remains an open question driving current research.
 
 ---
 
 ## References
-- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)  
-- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)  
-- Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)  
+
+- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
+- Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)
 - McClean et al., [arXiv:1803.11173](https://arxiv.org/abs/1803.11173)
 - Lucas, A., [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
 - D-Wave Systems, https://docs.dwavesys.com/docs/latest/c_qubo.html
-
