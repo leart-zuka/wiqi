@@ -10,7 +10,7 @@ import { CookiesProvider } from "next-client-cookies/server";
 import EasterEgg from "../components/EasterEgg";
 
 export const metadata: Metadata = {
-  title: "Wiqi",
+  title: "WiQi",
   description: "From humans, for humans",
 };
 
@@ -58,11 +58,11 @@ export default async function LocaleLayout({
         <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <EasterEgg />
-          <div className="flex-grow bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
+          <div className="flex-grow bg-gray-50 pb-10 text-black dark:bg-gray-900 dark:text-gray-100">
             <CookiesProvider>{children}</CookiesProvider>
           </div>
+          <Footer params={{ locale }} />
         </NextIntlClientProvider>
-        <Footer />
       </body>
     </html>
   );
