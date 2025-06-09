@@ -113,7 +113,7 @@ export const WavyBackgroundLight = ({
 
   // Define color schemes for light and dark modes
   const darkModeColors = colors ?? [
-    "#38bdf8",
+    "#354FCC",
     "#818cf8",
     "#c084fc",
     "#e879f9",
@@ -121,10 +121,9 @@ export const WavyBackgroundLight = ({
   ];
 
   const lightModeColors = [
-    "#0ea5e9", // lighter blue
-    "#6366f1", // lighter indigo
-    "#a855f7", // lighter purple
-    "#ec4899", // lighter pink
+    "#354FCC", // lighter blue
+    "#850379", // lighter indigo
+    "#CC3766", // lighter purple
     "#06b6d4", // lighter cyan
   ];
 
@@ -154,7 +153,7 @@ export const WavyBackgroundLight = ({
     ctx.fillRect(0, 0, w, h);
 
     // Draw the waves
-    drawWave(5);
+    drawWave(4);
 
     // Continue the animation
     animationRef.current = requestAnimationFrame(render);
