@@ -74,9 +74,9 @@ export default function Home({ params }: HomeProps) {
   };
 
   return (
-    <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
+    <div className="scroll-snap-container bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
       {/* Hero Section - Full Width with Animated Background */}
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+      <section className="scroll-snap-section relative flex h-screen w-full items-center justify-center overflow-hidden">
         {/* Quantum Background with hover effect */}
         <div className="absolute inset-0 h-full w-full">
           {/* DarkModeAwareBackground: A dynamic background component that switches between light and dark wave animations based on the user's theme preference. 
@@ -187,21 +187,20 @@ export default function Home({ params }: HomeProps) {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gray-50/50 py-16 dark:bg-slate-900/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <QuantumMap />
-          </motion.div>
-        </div>
+      <section className="scroll-snap-section h-screen bg-gray-50/50 py-16 dark:bg-slate-900/50">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="h-full w-full"
+        >
+          <QuantumMap />
+        </motion.div>
       </section>
 
       {/* Difficulty Levels Section */}
-      <section className="py-16">
+      <section className="scroll-snap-section py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <motion.div

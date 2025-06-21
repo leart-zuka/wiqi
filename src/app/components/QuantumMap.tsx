@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   AlertTriangle,
@@ -11,18 +11,44 @@ import {
   AtomIcon,
   MonitorIcon,
 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 export default function QuantumMap() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    // Add a slight delay for the entrance animation
-    const timer = setTimeout(() => {
-      setLoaded(true);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.96 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const nodeVariants = {
+    hidden: (i: number) => ({
+      opacity: 0,
+      y: i % 2 === 0 ? 32 : -32,
+      scale: 0.85,
+    }),
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+        delay: i * 0.12 + 0.2,
+      },
+    }),
+  };
 
   const nodes = [
     {
@@ -93,10 +119,20 @@ export default function QuantumMap() {
   ];
 
   return (
-    // Component is hidden on screens smaller than md
-    <div className="relative mx-auto mt-20 hidden aspect-[12/7] w-full max-w-[1200px] overflow-hidden rounded-xl border shadow-xl dark:border-gray-800 md:block">
+    <motion.div
+      ref={ref}
+      className="relative hidden h-full w-full overflow-hidden rounded-xl border shadow-xl dark:border-gray-800 md:block"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
       {/* Munich Map Background */}
-      <div className="absolute inset-0">
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
         <Image
           src="/image_1.png"
           alt="Munich Map"
@@ -104,22 +140,23 @@ export default function QuantumMap() {
           className="object-cover opacity-60"
           priority
         />
-      </div>
+      </motion.div>
 
       {/* Nodes */}
       <div className="absolute inset-0">
         {nodes.map((node, index) => (
-          <div
+          <motion.div
             key={node.id}
-            className={`group absolute -translate-x-1/2 -translate-y-1/2 transform transition-all duration-500 ${
-              loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            }`}
+            className={`group absolute -translate-x-1/2 -translate-y-1/2 transform`}
             style={{
               left: `${node.x}%`,
               top: `${node.y}%`,
               zIndex: node.id === hoveredNode ? 10 : 1,
-              transitionDelay: `${index * 100}ms`,
             }}
+            variants={nodeVariants}
+            custom={index}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             onMouseEnter={() => setHoveredNode(node.id)}
             onMouseLeave={() => setHoveredNode(null)}
           >
@@ -161,12 +198,17 @@ export default function QuantumMap() {
                 </div>
               </>
             )}
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* Map overlay for better readability */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-    </div>
+      <motion.div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+      />
+    </motion.div>
   );
 }
