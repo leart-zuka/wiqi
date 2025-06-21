@@ -90,26 +90,26 @@ export default function Home({ params }: HomeProps) {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 10,
       },
     },
-  } as const;
+  };
 
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: (i: number) => ({
+    visible: (i: number = 1) => ({
       y: 0,
       opacity: 1,
       transition: {
         delay: i * 0.1,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 10,
       },
     }),
-  } as const;
+  };
 
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
