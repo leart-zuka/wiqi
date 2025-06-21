@@ -109,7 +109,7 @@ export default function Home({ params }: HomeProps) {
         damping: 10,
       },
     }),
-  };
+  } as const;
 
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
