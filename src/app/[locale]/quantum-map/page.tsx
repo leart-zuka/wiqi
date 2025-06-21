@@ -50,6 +50,8 @@ export default function Home({ params }: HomeProps) {
     },
   };
 
+  const wiqiDescriptionLines = t("WiQi Description").split("\n");
+
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
       {/* Hero Section - Full Width with Animated Background */}
@@ -124,7 +126,7 @@ export default function Home({ params }: HomeProps) {
       </section>
 
       {/* Description Section */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
+      <section className="px-4 py-8 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -155,13 +157,18 @@ export default function Home({ params }: HomeProps) {
             <span className="font-semibold text-purple-600 dark:text-purple-400">
               WIQI
             </span>{" "}
-            {t("WiQi Description")}
+            {wiqiDescriptionLines.map((line, idx) => (
+              <span key={idx}>
+                {line}
+                {idx < wiqiDescriptionLines.length - 1 && <br />}
+              </span>
+            ))}
           </motion.div>
         </div>
       </section>
 
       {/* Navbar Demo Section */}
-      <section className="bg-gray-50 px-4 py-16 dark:bg-gray-900 sm:px-6 lg:px-8">
+      <section className="bg-gray-50 px-4 dark:bg-gray-900 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -171,7 +178,7 @@ export default function Home({ params }: HomeProps) {
             className="space-y-8"
           >
             {/* Mock Navbar - Replica of actual Header */}
-            <div className="relative w-full border-b border-slate-200 bg-white/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-900/80">
+            <div className="relative w-full select-none border-b border-slate-200 bg-white/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-900/80">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo Section - Exact replica */}

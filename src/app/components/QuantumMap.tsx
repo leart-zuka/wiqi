@@ -78,9 +78,8 @@ export default function QuantumMap() {
       id: "center",
       label: "Quantum Center",
       icon: Atom,
-      x: 48,
-      y: 50,
-      size: 120,
+      x: 45,
+      y: 45,
     },
     {
       id: "computing",
@@ -88,7 +87,6 @@ export default function QuantumMap() {
       icon: Cpu,
       x: 40,
       y: 25,
-      size: 60,
     },
     {
       id: "algorithms",
@@ -96,15 +94,13 @@ export default function QuantumMap() {
       icon: FlowArrow,
       x: 62,
       y: 24,
-      size: 60,
     },
     {
       id: "applications",
       label: "Applications",
       icon: Monitor,
       x: 13,
-      y: 40,
-      size: 60,
+      y: 42,
     },
     {
       id: "current",
@@ -112,31 +108,27 @@ export default function QuantumMap() {
       icon: Cpu,
       x: 21,
       y: 68,
-      size: 60,
     },
     {
       id: "physical",
       label: "Physical realisations",
       icon: Ruler,
-      x: 40.2,
-      y: 87,
-      size: 60,
+      x: 39.5,
+      y: 86,
     },
     {
       id: "obstacles",
       label: "Obstacles",
       icon: Warning,
       x: 79,
-      y: 87,
-      size: 60,
+      y: 83,
     },
     {
       id: "error",
       label: "Error correction",
       icon: MagnifyingGlass,
       x: 70,
-      y: 53,
-      size: 60,
+      y: 51,
     },
   ];
 
@@ -191,7 +183,7 @@ export default function QuantumMap() {
                 <div
                   className={`flex items-center justify-center ${
                     node.id === "center"
-                      ? "h-20 w-20 lg:h-28 lg:w-28"
+                      ? "h-24 w-24 lg:h-36 lg:w-36"
                       : "h-10 w-10 lg:h-16 lg:w-16"
                   } ${
                     node.id === "center"
@@ -205,7 +197,7 @@ export default function QuantumMap() {
                 >
                   {node.icon && (
                     <node.icon
-                      size={node.id === "center" ? 56 : 32}
+                      size={node.id === "center" ? 64 : 32}
                       weight="regular"
                       className="transition-colors duration-300"
                     />
