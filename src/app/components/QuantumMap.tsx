@@ -25,6 +25,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Atom,
   Cpu,
@@ -156,6 +157,76 @@ export default function QuantumMap() {
     },
   ];
 
+  // TODO: Fix responsiveness of partner rectangles
+  // - Make rectangles transparent with proper opacity
+  // - Add responsive positioning for different screen sizes
+  // - Ensure rectangles scale properly on mobile devices
+  // - Add hover effects for better user interaction
+
+  // TODO: Add missing partner organizations
+  // - Add Garching Forschungszentrum (German Aerospace Center - DLR)
+  // - Add Deutschland Map button/link
+  // - Update partnerRectangles array with new entries
+  // - Ensure proper positioning and sizing for new partners
+
+  // TODO: Implement responsive design improvements
+  // - Use CSS Grid or Flexbox for better layout control
+  // - Add media queries for different breakpoints
+  // - Ensure partner rectangles don't overlap on smaller screens
+  // - Add smooth transitions for responsive changes
+
+  // Partner map rectangles - easily customizable positions, sizes, and URLs
+  const partnerRectangles = [
+    {
+      id: "meetiqm",
+      x: 340,
+      y: 27,
+      width: 180,
+      height: 140,
+      url: "https://meetiqm.com/",
+    },
+    {
+      id: "munich-quantum-valley",
+      x: 730,
+      y: 110,
+      width: 200,
+      height: 120,
+      url: "https://www.munich-quantum-valley.de/",
+    },
+    {
+      id: "mcqst",
+      x: 700,
+      y: 285,
+      width: 180,
+      height: 135,
+      url: "https://www.mcqst.de/",
+    },
+    {
+      id: "deutsches-museum",
+      x: 660,
+      y: 568,
+      width: 320,
+      height: 100,
+      url: "https://www.deutsches-museum.de/",
+    },
+    {
+      id: "partner5",
+      x: 1000,
+      y: 10,
+      width: 320,
+      height: 180,
+      url: "https://example.com/partner5",
+    },
+    {
+      id: "partner6",
+      x: 180,
+      y: 450,
+      width: 240,
+      height: 250,
+      url: "https://example.com/partner6",
+    },
+  ];
+
   return (
     <motion.div
       ref={ref}
@@ -225,7 +296,7 @@ export default function QuantumMap() {
             />
             {/* Inset blur overlay */}
             <div
-              className="absolute inset-0 backdrop-blur-sm"
+              className="pointer-events-none absolute inset-0 backdrop-blur-sm"
               style={{
                 maskImage:
                   "radial-gradient(ellipse at center, transparent 70%, black 100%)",
@@ -233,6 +304,34 @@ export default function QuantumMap() {
                   "radial-gradient(ellipse at center, transparent 70%, black 100%)",
               }}
             />
+            {/* Partner Map Rectangles - Clickable areas positioned on top of partner map */}
+            {partnerRectangles.map((rect, index) => (
+              <motion.div
+                key={rect.id}
+                className="absolute z-10"
+                style={{
+                  left: `${rect.x}px`,
+                  top: `${rect.y}px`,
+                  width: `${rect.width}px`,
+                  height: `${rect.height}px`,
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  ease: easing,
+                  delay: index * 0.1 + 0.3,
+                }}
+              >
+                <Link
+                  href={rect.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full w-full cursor-pointer border-2 border-blue-500/70 bg-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/80 hover:bg-blue-500/30"
+                  title={`Visit ${rect.id}`}
+                />
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
