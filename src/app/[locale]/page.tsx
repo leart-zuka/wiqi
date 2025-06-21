@@ -95,7 +95,7 @@ export default function Home({ params }: HomeProps) {
         damping: 10,
       },
     },
-  };
+  } as const;
 
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
