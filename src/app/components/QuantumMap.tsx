@@ -1,16 +1,39 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+// ===============================================
+// =                   TODO                      =
+// ===============================================
+//
+// ISSUE: Map scaling breaks icon positioning
+//
+// PROBLEM:
+// - Icons are positioned using percentage-based coordinates (x%, y%)
+// - When screen size changes, the map container resizes
+// - But the background image aspect ratio doesn't match container
+// - This causes icons to drift from their intended map locations
+// - Icons should stay on specific map landmarks regardless of screen size
+//
+// NEEDED SOLUTION:
+// - Implement responsive scaling that maintains aspect ratio
+// - Ensure icons remain anchored to their map positions
+// - Consider using CSS aspect-ratio or responsive image techniques
+// - May need to recalculate icon positions based on actual image dimensions
+//
+// @Leart Zuka
+//
+// ===============================================
+
+import { useState, useRef } from "react";
 import Image from "next/image";
 import {
-  AlertTriangle,
-  Code,
+  Atom,
   Cpu,
-  Maximize2,
-  Search,
-  AtomIcon,
-  MonitorIcon,
-} from "lucide-react";
+  FlowArrow,
+  Monitor,
+  Ruler,
+  Warning,
+  MagnifyingGlass,
+} from "phosphor-react";
 import { motion, useInView } from "framer-motion";
 
 export default function QuantumMap() {
@@ -54,10 +77,10 @@ export default function QuantumMap() {
     {
       id: "center",
       label: "Quantum Center",
-      icon: AtomIcon,
-      x: 50,
-      y: 45,
-      size: 80,
+      icon: Atom,
+      x: 48,
+      y: 50,
+      size: 120,
     },
     {
       id: "computing",
@@ -70,52 +93,51 @@ export default function QuantumMap() {
     {
       id: "algorithms",
       label: "Algorithms",
-      icon: Code,
-      x: 63,
-      y: 25,
+      icon: FlowArrow,
+      x: 62,
+      y: 24,
       size: 60,
     },
     {
       id: "applications",
       label: "Applications",
-      icon: MonitorIcon,
-      x: 15,
-      y: 35,
+      icon: Monitor,
+      x: 13,
+      y: 40,
       size: 60,
     },
     {
       id: "current",
       label: "Current state",
       icon: Cpu,
-      x: 20,
-      y: 60,
+      x: 21,
+      y: 68,
       size: 60,
     },
     {
       id: "physical",
       label: "Physical realisations",
-      icon: Maximize2,
-      x: 40,
-      y: 80,
+      icon: Ruler,
+      x: 40.2,
+      y: 87,
       size: 60,
     },
     {
       id: "obstacles",
       label: "Obstacles",
-      icon: AlertTriangle,
-      x: 80,
-      y: 77,
+      icon: Warning,
+      x: 79,
+      y: 87,
       size: 60,
     },
     {
       id: "error",
       label: "Error correction",
-      icon: Search,
+      icon: MagnifyingGlass,
       x: 70,
-      y: 50,
+      y: 53,
       size: 60,
     },
-    { id: "wiqi", label: "< WIQI >", icon: null, x: 50, y: 5, size: 100 },
   ];
 
   return (
@@ -183,11 +205,9 @@ export default function QuantumMap() {
                 >
                   {node.icon && (
                     <node.icon
-                      className={`${
-                        node.id === "center"
-                          ? "h-8 w-8 lg:h-14 lg:w-14"
-                          : "h-5 w-5 lg:h-8 lg:w-8"
-                      } transition-colors duration-300`}
+                      size={node.id === "center" ? 56 : 32}
+                      weight="regular"
+                      className="transition-colors duration-300"
                     />
                   )}
                 </div>
