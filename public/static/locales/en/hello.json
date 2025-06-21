@@ -30,7 +30,13 @@
     "Project Name": "\"Q-tRaum: Quantum Dreams - networked outreach concept for application potentials of quantum technologies\"",
     "Funding": "and is funded by **BMBF**.",
     "WiQi Description": " is designed in the form of an interactive \"Quantum Map\" (landscape map) that is divided into several levels. On our homepage:",
-    "Map Description": "when scrolling you will find a map of Munich with various quantum technology related concepts distributed across it:"
+    "Map Description": "when scrolling you will find a map of Munich with various quantum technology related concepts distributed across it:",
+    "Instructions": "By clicking on one of the icons you will access a collection of encyclopedia-like articles on the corresponding topic. Each topic can be found in two languages (German and English), as well as on three different difficulty levels: 🧑‍🏫 - easy, 🧑‍🎓 - medium, 🧑‍🔬 - hard.",
+    "WiQi Logo Location": "In the upper left corner of the quantum map you will find the WiQi logo:",
+    "Partner Map Description": "By clicking this button, you will access the **\"Partner Map\"**, which lists all project partners. This map is divided into geographical levels: Munich, Garching and Germany. The partner logos are clickable and will direct you to further information, events and websites of the partners.",
+    "Switch Maps": "If you want to switch from the partner map to the quantum map, simply click on the **atom symbol** in the upper corner of the map:",
+    "Closing": "Have fun exploring!",
+    "Team Signature": "Your"
   },
   "About Us": {
     "main 1": "We are a group of passionate students from PushQuantum e.V., a student initiative based in Munich. Our team is made up of a diverse group of physics and engineering students from the Technical University of Munich and Ludwig-Maximilians University, united by a shared enthusiasm for quantum science and technology.",

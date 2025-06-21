@@ -30,7 +30,13 @@
     "Project Name": "\"Q-tRaum: Quanten(t)räume - vernetztes Outreachkonzept für Anwendungspotenziale von Quantentechnologien\"",
     "Funding": "und wird vom **BMBF** gefördert.",
     "WiQi Description": " ist in Form einer interaktiven \"Quantenkarte\" (Landkarte) gestaltet, die sich in mehrere Ebenen gliedert. Auf unsere Startseite:",
-    "Map Description": "finden sie beim Scrollen eine Karte von München, auf der verschiedene mit Quantentechnologien verwandten Überbegriffe verteilt sind:"
+    "Map Description": "finden sie beim Scrollen eine Karte von München, auf der verschiedene mit Quantentechnologien verwandten Überbegriffe verteilt sind:",
+    "Instructions": "Durch Klicken auf eines der Icons gelangen Sie zu einer Sammlung enzyklopädieähnlicher Beiträge zu dem entsprechenden Thema. Jedes Thema finden Sie in zwei Sprachen (Deutsch und Englisch), sowie auf drei unterschiedlichen Schwierigkeitsgraden: 🧑‍🏫 - einfach, 🧑‍🎓 - mittel, 🧑‍🔬 - schwer vor.",
+    "WiQi Logo Location": "In der oberen, linken Ecke der Quantenkarte befindet sich das WiQi-Logo:",
+    "Partner Map Description": "Betätigen Sie diesen Knopf, gelangen Sie zur **\"Partnerkarte\"**, auf der alle Projektpartner verzeichnet sind. Diese Karte ist in die geografischen Ebenen: München, Garching und Deutschland unterteilt. Die Logos der Partner sind anklickbar und leiten Sie zu weiterführenden Informationen, Events und Websites der Partner weiter.",
+    "Switch Maps": "Möchten Sie von der Partnerkarte auf die Quantenkarte wechseln, klicken Sie einfach auf das **Atomsymbol** in der oberen Ecke der Karte:",
+    "Closing": "Viel Freude beim Erkunden!",
+    "Team Signature": "Ihr"
   },
   "About Us": {
     "main 1": "Wir sind eine Gruppe motivierter Studenten von PushQuantum e.V., einer Studenteninitiative aus München. Unser Team setzt sich aus einer vielfältigen Mischung von Physik- und Ingenieurstudenten der Technischen Universität München und der Ludwig-Maximillians-Universität zusammen, die eine geteilte Leidenschaft für Quantumwissenschaft und -technologie verbindet.",
