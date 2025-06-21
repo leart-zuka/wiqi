@@ -8,6 +8,7 @@ import { ChevronDown, Search, Sun } from "lucide-react";
 import Image from "next/image";
 
 import { DarkModeAwareBackground } from "../../components/homepage/DarkModeAwareBackground";
+import QuantumMap from "../../components/QuantumMap";
 
 interface HomeProps {
   params: {
@@ -260,6 +261,38 @@ export default function Home({ params }: HomeProps) {
                 {t("Map Description")}
               </p>
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/*
+       * _______ ____  _____   ____
+       * |__   __/ __ \|  __ \ / __ \
+       *    | | | |  | | |  | | |  | |
+       *    | | | |  | | |  | | |  | |
+       *    | | | |__| | |__| | |__| |
+       *    |_|  \____/|_____/ \____/
+       *
+       * TODO: Consider using a div 2 screenshot extension to capture
+       *       the wiqi.info map and display it here for better
+       *       visual representation and user experience.
+       *
+       * This would allow users to see the actual map layout
+       * before interacting with the interactive version below.
+       * Also i hate the scaling of the map tbh.
+       */}
+
+      {/* Quantum Map Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="h-96 w-full md:h-[500px] lg:h-[600px]"
+          >
+            <QuantumMap />
           </motion.div>
         </div>
       </section>
