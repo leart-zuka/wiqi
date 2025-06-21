@@ -120,7 +120,7 @@ export default function Home({ params }: HomeProps) {
                 variants={itemVariants}
               >
                 <Link
-                  href={`/${params.locale}/posts/quantum_tuesdays`}
+                  href={`/${params.locale}/quantum-map`}
                   className="w-full sm:w-auto"
                 >
                   <motion.div

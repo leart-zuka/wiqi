@@ -3,7 +3,7 @@
     "hello button": "Besuchen Sie unsere aktuellen Blogposts",
     "quantum education": "Quantenbildung",
     "hello": "Willkommen beim",
-    "about us main": "Wir sind eine Gruppe motivierter Studenten von PushQuantum e.V., einer Studenteninitative aus München. Unser Team setzt sich aus einer vielfältigen Mischung von Physik- und Ingenieurstudenten der Technischen Universität München und der Ludwig-Maximillians-Universität zusammen, die eine geteilte Leidenschaft für Quantumwissenschaft und -technologie verbindet",
+    "about us main": "Wir sind eine Gruppe motivierter Studenten von PushQuantum e.V., einer Studenteninitiative aus München. Unser Team setzt sich aus einer vielfältigen Mischung von Physik- und Ingenieurstudenten der Technischen Universität München und der Ludwig-Maximillians-Universität zusammen, die eine geteilte Leidenschaft für Quantumwissenschaft und -technologie verbindet",
     "sub hello": "Entdecken Sie die faszinierende Welt der Quantenphysik mit interaktiven Kursen und praxisnahen Beispielen.",
     "for everyone": "Für alle",
     "difficulty levels": "Schwierigkeitsgrade",
@@ -24,8 +24,16 @@
     "Entries": "Einträge",
     "Search": "Suchen..."
   },
+  "QuantumMap": {
+    "Title": "Projekt: die Quantenkarte",
+    "Description": "Diese Website erfüllt die Rolle eines digitalen Zwillings des Verbundprojekts:",
+    "Project Name": "\"Q-tRaum: Quanten(t)räume - vernetztes Outreachkonzept für Anwendungspotenziale von Quantentechnologien\"",
+    "Funding": "und wird vom **BMBF** gefördert.",
+    "WiQi Description": " ist in Form einer interaktiven \"Quantenkarte\" (Landkarte) gestaltet, die sich in mehrere Ebenen gliedert. Auf unsere Startseite:",
+    "Map Description": "finden sie beim Scrollen eine Karte von München, auf der verschiedene mit Quantentechnologien verwandten Überbegriffe verteilt sind:"
+  },
   "About Us": {
-    "main 1": "Wir sind eine Gruppe motivierter Studenten von PushQuantum e.V., einer Studenteninitative aus München. Unser Team setzt sich aus einer vielfältigen Mischung von Physik- und Ingenieurstudenten der Technischen Universität München und der Ludwig-Maximillians-Universität zusammen, die eine geteilte Leidenschaft für Quantumwissenschaft und -technologie verbindet.",
+    "main 1": "Wir sind eine Gruppe motivierter Studenten von PushQuantum e.V., einer Studenteninitiative aus München. Unser Team setzt sich aus einer vielfältigen Mischung von Physik- und Ingenieurstudenten der Technischen Universität München und der Ludwig-Maximillians-Universität zusammen, die eine geteilte Leidenschaft für Quantumwissenschaft und -technologie verbindet.",
     "main 2": "Das Projekt geht aus den PushQuantum-Abteilungen \"Quanten(t)räume\" und \"Nachhaltigkeit\" hervor. \"Quanten(t)räume\" ist ein vom Bundesministerium für Bildung und Forschung gefördertes Outreachkonzept, welches in Zusammenarbeit mit den renommierten Institutionen Deutsches Museum, Max-Planck-Institut für Quantenoptik (MPQ), PhotonLab, Fraunhofer Institut für System- und Innovationsforschung (ISI), TECHNOMUSEUM, Munich Center for Quantum Science & Technology (MCQST), IQM und Munich Quantum Valley (MQV) durchgeführt wird.",
     "main 3": "Gemeinsam haben wir es uns zum Ziel gesetzt, die Gesellschaft über die Anwendungspotenziale von Quantentechnologien aufzuklären und den Dialog zwischen Fachleuten und der breiten Öffentlichkeit anzustoßen. Unser Engagement richtet sich danach, Quantentechnologien zugänglich und ansprechend zu gestalten - über der Nachwuchsförderung hinaus - mit der Absicht, dass sich Quantentechnologien im Einklang mit den gesellschaftlichen Vorstellungen und Wünschen weiterentwickeln können. Erst wenn mann Quantentechnologien entmystifiziert, können wir das tatsächliche Vertrauen der Bevölkerung gewinnen.",
     "main 4": "Angetrieben von dieser Vision haben wir neue Wege gesucht, den gesellschaftlichen Mehrwert unseres Vorhabens weiter zu fördern. Wir präsentieren somit den digitalen Zwilling der \"Quanten(t)räume\"-Förderung: das WiQi. Mit dieser Plattform möchten wir einen ansprechenden vernetzten Raum schaffen, der, unabhängig vom bereits bestehenden Kenntnisstandes, zum Weiterdenken anstoßt.",
