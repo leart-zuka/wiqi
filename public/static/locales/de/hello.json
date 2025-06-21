@@ -8,7 +8,7 @@
     "for everyone": "Für alle",
     "difficulty levels": "Schwierigkeitsgrade",
     "difficulty description": "Egal ob Anfänger, Fortgeschrittener oder Profi – wir haben Inhalte, die genau auf Ihr Niveau abgestimmt sind.",
-    "explore courses": "Kurse erkunden",
+    "explore courses": "Projekte erkunden",
     "About Us": "Über Uns",
     "hover to interact": "Zum Interagieren schweben",
     "Difficulty Elementary 1": "Einsteiger",
@@ -17,6 +17,12 @@
     "Difficulty High School 2": "Konzipiert für Leser mit Grundkenntnissen in Physik und Mathematik.",
     "Difficulty College 1": "Experte",
     "Difficulty College 2": "Fortgeschrittene Inhalte für Hochschulstudenten und Fachleute."
+  },
+  "Navbar": {
+    "About": "Über Uns",
+    "Quantum Tuesdays": "Quantendienstage",
+    "Entries": "Einträge",
+    "Search": "Suchen..."
   },
   "About Us": {
     "main 1": "Wir sind eine Gruppe motivierter Studenten von PushQuantum e.V., einer Studenteninitative aus München. Unser Team setzt sich aus einer vielfältigen Mischung von Physik- und Ingenieurstudenten der Technischen Universität München und der Ludwig-Maximillians-Universität zusammen, die eine geteilte Leidenschaft für Quantumwissenschaft und -technologie verbindet.",

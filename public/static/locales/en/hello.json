@@ -8,7 +8,7 @@
     "for everyone": "For Everyone",
     "difficulty levels": "Difficulty Levels",
     "difficulty description": "Whether you're a beginner, intermediate, or advanced learner, we have content tailored to your level.",
-    "explore courses": "Explore Courses",
+    "explore courses": "Explore Projects",
     "About Us": "About Us",
     "hover to interact": "Hover to interact",
     "Difficulty Elementary 1": "Elementary",
@@ -17,6 +17,12 @@
     "Difficulty High School 2": "Designed for students with basic understanding of physics and mathematics.",
     "Difficulty College 1": "College",
     "Difficulty College 2": "Advanced content for university students and professionals."
+  },
+  "Navbar": {
+    "About": "About",
+    "Quantum Tuesdays": "Quantum Tuesdays",
+    "Entries": "Entries",
+    "Search": "Search..."
   },
   "About Us": {
     "main 1": "We are a group of passionate students from PushQuantum e.V., a student initiative based in Munich. Our team is made up of a diverse group of physics and engineering students from the Technical University of Munich and Ludwig-Maximilians University, united by a shared enthusiasm for quantum science and technology.",
