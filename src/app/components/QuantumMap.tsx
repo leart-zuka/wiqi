@@ -417,7 +417,7 @@ export default function QuantumMap() {
         y: 69,
         width: 19,
         height: 27,
-        url: "https://www.mpg.de/",
+        url: "https://www.mpq.mpg.de/photonlab",
       },
     ];
 
