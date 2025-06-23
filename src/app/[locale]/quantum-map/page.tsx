@@ -7,6 +7,7 @@ import { useAnimation, useScroll, useTransform } from "motion/react";
 import { ChevronDown, Search, Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Atom } from "phosphor-react";
 
 import { DarkModeAwareBackground } from "../../components/homepage/DarkModeAwareBackground";
 import QuantumMap from "../../components/QuantumMap";
@@ -336,12 +337,15 @@ export default function Home({ params }: HomeProps) {
             {/* Placeholder for WiQi Logo Screenshot */}
             <div className="mb-8 flex items-center justify-center rounded-lg bg-gray-200 p-8 dark:bg-gray-800">
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500">
-                  <span className="text-sm font-bold text-white">WiQi</span>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Screenshot placeholder: WiQi logo in quantum map
-                </p>
+                <span className="text-sm font-bold text-white">
+                  <Image
+                    src="/wiqi_icon_button_for_map.svg"
+                    alt="Switch Map View"
+                    width={64}
+                    height={64}
+                    className="drop-shadow-lg transition-all duration-300 group-hover:drop-shadow-xl"
+                  />
+                </span>
               </div>
             </div>
           </motion.div>
@@ -371,26 +375,25 @@ export default function Home({ params }: HomeProps) {
                   ),
                 )}
             </p>
-
-            {/* Placeholder for Partner Map Screenshot */}
-            <div className="mb-8 flex items-center justify-center rounded-lg bg-gray-200 p-8 dark:bg-gray-800">
-              <div className="text-center">
-                <div className="mb-4 grid grid-cols-3 gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded bg-blue-500">
-                    <span className="text-xs font-bold text-white">IQM</span>
-                  </div>
-                  <div className="flex h-16 w-16 items-center justify-center rounded bg-green-500">
-                    <span className="text-xs font-bold text-white">MCQST</span>
-                  </div>
-                  <div className="flex h-16 w-16 items-center justify-center rounded bg-purple-500">
-                    <span className="text-xs font-bold text-white">MPQ</span>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Screenshot placeholder: Partner map with logos
-                </p>
-              </div>
-            </div>
+            {/*
+                        <div className="mb-8 flex items-center justify-center rounded-lg bg-gray-200 p-8 dark:bg-gray-800">
+                            <div className="text-center">
+                                <div className="mb-4 grid grid-cols-3 gap-4">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded bg-blue-500">
+                                        <span className="text-xs font-bold text-white">IQM</span>
+                                    </div>
+                                    <div className="flex h-16 w-16 items-center justify-center rounded bg-green-500">
+                                        <span className="text-xs font-bold text-white">MCQST</span>
+                                    </div>
+                                    <div className="flex h-16 w-16 items-center justify-center rounded bg-purple-500">
+                                        <span className="text-xs font-bold text-white">MPQ</span>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    Screenshot placeholder: Partner map with logos
+                                </p>
+                            </div>
+                        </div>*/}
           </motion.div>
         </div>
       </section>
@@ -424,12 +427,9 @@ export default function Home({ params }: HomeProps) {
               <div className="text-center">
                 <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-lg bg-black dark:bg-white">
                   <span className="text-2xl text-white dark:text-black">
-                    ⚛️
+                    <Atom />
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Screenshot placeholder: Atom symbol for map switching
-                </p>
               </div>
             </div>
           </motion.div>
