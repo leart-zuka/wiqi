@@ -93,7 +93,28 @@
     "member6 image": "Bhushan"
   },
   "Posts": {
-    "average reading time": "Durchschnittliche Lesezeit"
+    "average reading time": "Durchschnittliche Lesezeit",
+    "search articles": "Artikel suchen...",
+    "all articles": "Alle Artikel",
+    "search results": "Suchergebnisse für",
+    "clear search": "Suche löschen",
+    "loading articles": "Artikel werden geladen...",
+    "no articles found": "Keine Artikel gefunden",
+    "no articles description": "Versuchen Sie, Ihre Suchbegriffe anzupassen oder löschen Sie die Suche, um alle Artikel zu sehen.",
+    "no articles difficulty": "Für dieses Schwierigkeitsniveau sind keine Artikel verfügbar.",
+    "result": "Ergebnis",
+    "results": "Ergebnisse",
+    "min read": "Min. Lesezeit",
+    "read more": "Weiterlesen",
+    "sort by date": "Datum",
+    "sort by title": "Titel",
+    "grid view": "Rasteransicht",
+    "list view": "Listenansicht",
+    "quantum tuesday": "Quantendienstag",
+    "entry": "Eintrag",
+    "elementary": "Einsteiger",
+    "high school": "Fortgeschrittene",
+    "college": "Experte"
   },
   "Footer": {
     "Slogan": "Erforschung von Quantencomputerkonzepten durch interaktive Bildung und Visualisierung mit dem Ziel Quantencomputing für alle zugänglich machen.",

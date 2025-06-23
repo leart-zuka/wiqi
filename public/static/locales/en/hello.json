@@ -93,7 +93,28 @@
     "member6 image": "Bhushan"
   },
   "Posts": {
-    "average reading time": "Average reading time"
+    "average reading time": "Average reading time",
+    "search articles": "Search articles...",
+    "all articles": "All Articles",
+    "search results": "Search results for",
+    "clear search": "Clear search",
+    "loading articles": "Loading articles...",
+    "no articles found": "No articles found",
+    "no articles description": "Try adjusting your search terms or clear the search to see all articles.",
+    "no articles difficulty": "No articles are available for this difficulty level.",
+    "result": "result",
+    "results": "results",
+    "min read": "min read",
+    "read more": "Read more",
+    "sort by date": "Date",
+    "sort by title": "Title",
+    "grid view": "Grid view",
+    "list view": "List view",
+    "quantum tuesday": "Quantum Tuesday",
+    "entry": "Entry",
+    "elementary": "Elementary",
+    "high school": "High School",
+    "college": "College"
   },
   "Footer": {
     "Slogan": "Exploring quantum computing concepts through interactive education and visualization. Making quantum accessible for everyone.",
