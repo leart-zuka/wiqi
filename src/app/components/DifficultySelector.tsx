@@ -40,7 +40,8 @@ export default function DifficultySelector({
     (diff) => diff.id === initialDifficulty,
   );
 
-  const selectedDifficulty = initialIndex !== -1 ? difficulties[initialIndex] : difficulties[0];
+  const selectedDifficulty =
+    initialIndex !== -1 ? difficulties[initialIndex] : difficulties[0];
 
   return (
     <div className="relative z-40 flex h-12 w-48 overflow-hidden rounded-full bg-gray-200 shadow-inner dark:bg-gray-800 dark:shadow-gray-900/50">
@@ -59,8 +60,8 @@ export default function DifficultySelector({
           <button
             key={difficulty.id}
             className={`${difficulty.className} ${difficulty.hoverBg} ${
-              isSelected 
-                ? "text-white shadow-sm" 
+              isSelected
+                ? "text-white shadow-sm"
                 : "text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
             } hover:scale-105 active:scale-95`}
             onClick={() => {
