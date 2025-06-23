@@ -58,8 +58,8 @@ export default async function LocaleLayout({
         <title>WiQi</title>
       </head>
       <body className="flex min-h-screen flex-col overflow-x-clip bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
-        <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
+          <Header locale={locale} />
           <EasterEgg />
           <div className="flex-grow bg-gray-50 pb-10 text-black dark:bg-gray-900 dark:text-gray-100">
             <CookiesProvider>
