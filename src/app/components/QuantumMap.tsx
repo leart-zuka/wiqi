@@ -1,29 +1,13 @@
 "use client";
 
-// ===============================================
-// =                   TODO                      =
-// ===============================================
-//
-// ISSUE: Map scaling breaks icon positioning
-//
-// PROBLEM:
-// - Icons are positioned using percentage-based coordinates (x%, y%)
-// - When screen size changes, the map container resizes
-// - But the background image aspect ratio doesn't match container
-// - This causes icons to drift from their intended map locations
-// - Icons should stay on specific map landmarks regardless of screen size
-//
-// NEEDED SOLUTION:
-// - Implement responsive scaling that maintains aspect ratio
-// - Ensure icons remain anchored to their map positions
-// - Consider using CSS aspect-ratio or responsive image techniques
-// - May need to recalculate icon positions based on actual image dimensions
-//
-// @Leart Zuka
-//
-// ===============================================
+/**
+ * QuantumMap Component
+ *
+ * Interactive map component with quantum nodes and partner organizations.
+ * Features responsive design, hover effects, and smooth animations.
+ */
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -40,8 +24,38 @@ import { motion, useInView } from "framer-motion";
 export default function QuantumMap() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [isPartnerMap, setIsPartnerMap] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [containerDimensions, setContainerDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Check for mobile devices and update responsive state
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Track container dimensions for proper image scaling
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        setContainerDimensions({ width: rect.width, height: rect.height });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
 
   const handleLogoClick = () => {
     setIsPartnerMap(!isPartnerMap);
@@ -157,83 +171,191 @@ export default function QuantumMap() {
     },
   ];
 
-  // TODO: Fix responsiveness of partner rectangles
-  // - Make rectangles transparent with proper opacity
-  // - Add responsive positioning for different screen sizes
-  // - Ensure rectangles scale properly on mobile devices
-  // - Add hover effects for better user interaction
+  // Calculate image positioning for object-contain behavior
+  const getImageDimensions = () => {
+    if (containerDimensions.width === 0 || containerDimensions.height === 0) {
+      return { imageWidth: 0, imageHeight: 0, offsetX: 0, offsetY: 0 };
+    }
 
-  // TODO: Add missing partner organizations
-  // - Add Garching Forschungszentrum (German Aerospace Center - DLR)
-  // - Add Deutschland Map button/link
-  // - Update partnerRectangles array with new entries
-  // - Ensure proper positioning and sizing for new partners
+    // Assuming partner_map.svg has an aspect ratio of approximately 3:2 (more accurate for the map)
+    const imageAspectRatio = 3 / 2;
+    const containerAspectRatio =
+      containerDimensions.width / containerDimensions.height;
 
-  // TODO: Implement responsive design improvements
-  // - Use CSS Grid or Flexbox for better layout control
-  // - Add media queries for different breakpoints
-  // - Ensure partner rectangles don't overlap on smaller screens
-  // - Add smooth transitions for responsive changes
+    let imageWidth, imageHeight, offsetX, offsetY;
 
-  // Partner map rectangles - easily customizable positions, sizes, and URLs
-  const partnerRectangles = [
-    {
-      id: "meetiqm",
-      x: 340,
-      y: 27,
-      width: 180,
-      height: 140,
-      url: "https://meetiqm.com/",
-    },
-    {
-      id: "munich-quantum-valley",
-      x: 730,
-      y: 110,
-      width: 200,
-      height: 120,
-      url: "https://www.munich-quantum-valley.de/",
-    },
-    {
-      id: "mcqst",
-      x: 700,
-      y: 285,
-      width: 180,
-      height: 135,
-      url: "https://www.mcqst.de/",
-    },
-    {
-      id: "deutsches-museum",
-      x: 660,
-      y: 568,
-      width: 320,
-      height: 100,
-      url: "https://www.deutsches-museum.de/",
-    },
-    {
-      id: "partner5",
-      x: 1000,
-      y: 10,
-      width: 320,
-      height: 180,
-      url: "https://example.com/partner5",
-    },
-    {
-      id: "partner6",
-      x: 180,
-      y: 450,
-      width: 240,
-      height: 250,
-      url: "https://example.com/partner6",
-    },
-  ];
+    if (containerAspectRatio > imageAspectRatio) {
+      // Container is wider than image - image fits by height
+      imageHeight = containerDimensions.height;
+      imageWidth = imageHeight * imageAspectRatio;
+      offsetX = (containerDimensions.width - imageWidth) / 2;
+      offsetY = 0;
+    } else {
+      // Container is taller than image - image fits by width
+      imageWidth = containerDimensions.width;
+      imageHeight = imageWidth / imageAspectRatio;
+      offsetX = 0;
+      offsetY = (containerDimensions.height - imageHeight) / 2;
+    }
+
+    return { imageWidth, imageHeight, offsetX, offsetY };
+  };
+
+  // Partner map rectangles - positioned relative to actual image dimensions
+  const getPartnerRectangles = () => {
+    const { imageWidth, imageHeight, offsetX, offsetY } = getImageDimensions();
+
+    if (imageWidth === 0 || imageHeight === 0) {
+      return [];
+    }
+
+    // Base coordinates relative to the actual image (0-100%) - adjusted for better positioning
+    const baseRectangles = [
+      {
+        id: "meetiqm",
+        name: "MeetIQM",
+        x: 14,
+        y: 7,
+        width: 13,
+        height: 13,
+        url: "https://meetiqm.com/",
+        color: "blue",
+      },
+      {
+        id: "munich-quantum-valley",
+        name: "Munich Quantum Valley",
+        x: 49.5,
+        y: 16,
+        width: 16,
+        height: 14,
+        url: "https://www.munich-quantum-valley.de/",
+        color: "purple",
+      },
+      {
+        id: "mcqst",
+        name: "Munich Center for Quantum Science & Technology",
+        x: 46.5,
+        y: 42,
+        width: 14,
+        height: 14,
+        url: "https://www.mcqst.de/",
+        color: "green",
+      },
+      {
+        id: "deutsches-museum",
+        name: "Deutsches Museum",
+        x: 43,
+        y: 82,
+        width: 28,
+        height: 13,
+        url: "https://www.deutsches-museum.de/",
+        color: "orange",
+      },
+      {
+        id: "dlr-garching",
+        name: "DLR Garching Forschungszentrum",
+        x: 76,
+        y: 2,
+        width: 24,
+        height: 23,
+        url: "https://www.dlr.de/",
+        color: "red",
+      },
+      {
+        id: "deutschland",
+        name: "Deutschlandkarte",
+        x: 1,
+        y: 66,
+        width: 13,
+        height: 29,
+        url: "https://www.example.de/",
+        color: "teal",
+      },
+    ];
+
+    // Convert image-relative coordinates to container-relative coordinates
+    return baseRectangles.map((rect) => {
+      const actualX = offsetX + (rect.x / 100) * imageWidth;
+      const actualY = offsetY + (rect.y / 100) * imageHeight;
+      const actualWidth = (rect.width / 100) * imageWidth;
+      const actualHeight = (rect.height / 100) * imageHeight;
+
+      // Convert to percentages relative to container
+      const containerX = (actualX / containerDimensions.width) * 100;
+      const containerY = (actualY / containerDimensions.height) * 100;
+      const containerWidth = (actualWidth / containerDimensions.width) * 100;
+      const containerHeight = (actualHeight / containerDimensions.height) * 100;
+
+      return {
+        ...rect,
+        x: Math.max(0, Math.min(containerX, 95)), // Ensure rectangles stay within bounds
+        y: Math.max(0, Math.min(containerY, 95)),
+        width: Math.max(containerWidth, isMobile ? 10 : 6), // Larger minimum size for better touch targets
+        height: Math.max(containerHeight, isMobile ? 8 : 5),
+      };
+    });
+  };
+
+  const partnerRectangles = getPartnerRectangles();
+
+  // Color scheme for different partners
+  const getPartnerColors = (color: string) => {
+    const colorSchemes = {
+      blue: {
+        border: "border-blue-500/60",
+        bg: "bg-blue-500/15",
+        hoverBorder: "hover:border-blue-400/80",
+        hoverBg: "hover:bg-blue-500/25",
+      },
+      purple: {
+        border: "border-purple-500/60",
+        bg: "bg-purple-500/15",
+        hoverBorder: "hover:border-purple-400/80",
+        hoverBg: "hover:bg-purple-500/25",
+      },
+      green: {
+        border: "border-green-500/60",
+        bg: "bg-green-500/15",
+        hoverBorder: "hover:border-green-400/80",
+        hoverBg: "hover:bg-green-500/25",
+      },
+      orange: {
+        border: "border-orange-500/60",
+        bg: "bg-orange-500/15",
+        hoverBorder: "hover:border-orange-400/80",
+        hoverBg: "hover:bg-orange-500/25",
+      },
+      red: {
+        border: "border-red-500/60",
+        bg: "bg-red-500/15",
+        hoverBorder: "hover:border-red-400/80",
+        hoverBg: "hover:bg-red-500/25",
+      },
+      teal: {
+        border: "border-teal-500/60",
+        bg: "bg-teal-500/15",
+        hoverBorder: "hover:border-teal-400/80",
+        hoverBg: "hover:bg-teal-500/25",
+      },
+    };
+    return (
+      colorSchemes[color as keyof typeof colorSchemes] || colorSchemes.blue
+    );
+  };
 
   return (
     <motion.div
       ref={ref}
-      className="relative hidden h-full w-full overflow-hidden rounded-xl border shadow-xl dark:border-gray-800 md:block"
+      className={`relative h-full w-full overflow-hidden rounded-xl border shadow-xl dark:border-gray-800 ${isMobile ? "block" : "hidden md:block"} `}
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
+      style={{
+        // Ensure the map maintains a consistent aspect ratio for responsive positioning
+        aspectRatio: isMobile ? "2/3" : "3/2", // Match the image aspect ratio better
+        minHeight: isMobile ? "350px" : "450px",
+        maxHeight: isMobile ? "600px" : "none",
+      }}
     >
       {/* Map Background with Layered Switching */}
       <div className="absolute inset-0">
@@ -294,6 +416,7 @@ export default function QuantumMap() {
               fill
               className="object-contain"
             />
+
             {/* Inset blur overlay */}
             <div
               className="pointer-events-none absolute inset-0 backdrop-blur-sm"
@@ -304,42 +427,56 @@ export default function QuantumMap() {
                   "radial-gradient(ellipse at center, transparent 70%, black 100%)",
               }}
             />
-            {/* Partner Map Rectangles - Clickable areas positioned on top of partner map */}
-            {partnerRectangles.map((rect, index) => (
-              <motion.div
-                key={rect.id}
-                className="absolute z-10"
-                style={{
-                  left: `${rect.x}px`,
-                  top: `${rect.y}px`,
-                  width: `${rect.width}px`,
-                  height: `${rect.height}px`,
-                }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  ease: easing,
-                  delay: index * 0.1 + 0.3,
-                }}
-              >
-                <Link
-                  href={rect.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full w-full cursor-pointer border-2 border-blue-500/70 bg-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/80 hover:bg-blue-500/30"
-                  title={`Visit ${rect.id}`}
-                />
-              </motion.div>
-            ))}
+            {/* Partner Map Rectangles - Responsive clickable areas with improved hover effects */}
+            {partnerRectangles.map((rect, index) => {
+              const colors = getPartnerColors(rect.color);
+              return (
+                <motion.div
+                  key={rect.id}
+                  className="group absolute z-10"
+                  style={{
+                    left: `${rect.x}%`,
+                    top: `${rect.y}%`,
+                    width: `${rect.width}%`,
+                    height: `${rect.height}%`,
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: easing,
+                    delay: index * 0.1 + 0.3,
+                  }}
+                  whileHover={{ scale: 1.05, z: 20 }}
+                >
+                  <Link
+                    href={rect.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative block h-full w-full cursor-pointer rounded-lg border-2 ${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:shadow-black/20 dark:hover:shadow-white/10`}
+                    title={`Visit ${rect.name}`}
+                  >
+                    {/* Tooltip */}
+                    <div className="absolute -top-12 left-1/2 z-30 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/90 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 dark:bg-white/90 dark:text-black">
+                      {rect.name}
+                      {/* Arrow pointing down */}
+                      <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-black/90 dark:border-t-white/90" />
+                    </div>
+
+                    {/* Subtle gradient overlay for better visual feedback */}
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
 
-      {/* Logo Button - Top Left Corner */}
+      {/* Map Switch Button - Top Left Corner */}
       <motion.button
         onClick={handleLogoClick}
-        className="group absolute left-4 top-4 z-20 transition-transform duration-300 hover:scale-110"
+        className="group absolute left-2 top-2 z-20 transition-transform duration-300 hover:scale-110 md:left-4 md:top-4"
         variants={buttonVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -350,12 +487,14 @@ export default function QuantumMap() {
           <Image
             src="/wiqi_icon_button_for_map.svg"
             alt="Switch Map View"
-            width={64}
-            height={64}
+            width={isMobile ? 48 : 64}
+            height={isMobile ? 48 : 64}
             className="drop-shadow-lg transition-all duration-300 group-hover:drop-shadow-xl"
           />
           {/* Tooltip */}
-          <div className="absolute left-full top-1/2 ml-3 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/80 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+          <div
+            className={`absolute left-full top-1/2 ml-3 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/80 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 ${isMobile ? "text-xs" : "text-sm"} `}
+          >
             {isPartnerMap ? "Switch to Quantum Map" : "Switch to Partner Map"}
             {/* Arrow pointing to the button */}
             <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-black/80" />
