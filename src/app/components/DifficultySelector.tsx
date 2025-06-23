@@ -13,23 +13,26 @@ export default function DifficultySelector({
     {
       id: "elementary",
       emoji: "🧑‍🏫",
-      bg: "bg-green-400",
+      bg: "bg-green-500 dark:bg-green-600",
+      hoverBg: "hover:bg-green-600 dark:hover:bg-green-700",
       className:
-        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:bg-green-500",
+        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-all duration-300",
     },
     {
       id: "highschool",
       emoji: "🧑‍🎓",
-      bg: "bg-yellow-400",
+      bg: "bg-yellow-500 dark:bg-yellow-600",
+      hoverBg: "hover:bg-yellow-600 dark:hover:bg-yellow-700",
       className:
-        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:bg-yellow-500",
+        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-all duration-300",
     },
     {
       id: "college",
       emoji: "🧑‍🔬",
-      bg: "bg-red-400",
+      bg: "bg-red-500 dark:bg-red-600",
+      hoverBg: "hover:bg-red-600 dark:hover:bg-red-700",
       className:
-        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-colors duration-500 hover:bg-red-500",
+        "relative z-10 flex-1 rounded-full text-center font-bold text-white transition-all duration-300",
     },
   ];
 
@@ -37,27 +40,38 @@ export default function DifficultySelector({
     (diff) => diff.id === initialDifficulty,
   );
 
+  const selectedDifficulty = initialIndex !== -1 ? difficulties[initialIndex] : difficulties[0];
+
   return (
-    <div className="relative z-40 flex h-12 w-48 overflow-hidden rounded-full bg-slate-200">
+    <div className="relative z-40 flex h-12 w-48 overflow-hidden rounded-full bg-gray-200 shadow-inner dark:bg-gray-800 dark:shadow-gray-900/50">
+      {/* Sliding background indicator */}
       <div
-        className={`absolute left-0 top-0 h-full w-1/3 rounded-full transition-all duration-500 ${initialIndex !== -1 ? difficulties[initialIndex].bg : "bg-green-400"}`}
+        className={`absolute left-0 top-0 h-full w-1/3 rounded-full shadow-lg transition-all duration-500 ease-out ${selectedDifficulty.bg}`}
         style={{
           transform: `translateX(${initialIndex * 100}%)`,
         }}
       ></div>
 
-      {difficulties.map((difficulty) => (
-        <button
-          key={difficulty.id}
-          className={difficulty.className}
-          onClick={() => {
-            setDifficulty(difficulty.id);
-            setCookie("difficulty", difficulty.id);
-          }}
-        >
-          {difficulty.emoji}
-        </button>
-      ))}
+      {/* Difficulty buttons */}
+      {difficulties.map((difficulty, index) => {
+        const isSelected = index === initialIndex;
+        return (
+          <button
+            key={difficulty.id}
+            className={`${difficulty.className} ${difficulty.hoverBg} ${
+              isSelected 
+                ? "text-white shadow-sm" 
+                : "text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+            } hover:scale-105 active:scale-95`}
+            onClick={() => {
+              setDifficulty(difficulty.id);
+              setCookie("difficulty", difficulty.id);
+            }}
+          >
+            <span className="text-lg">{difficulty.emoji}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
