@@ -10,6 +10,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   Atom,
   Cpu,
@@ -21,9 +22,23 @@ import {
 } from "phosphor-react";
 import { motion, useInView } from "framer-motion";
 
+type MapView = "quantum" | "partner" | "deutschland" | "garching";
+
+interface Rectangle {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  url: string;
+  isInternal?: boolean;
+}
+
 export default function QuantumMap() {
+  const params = useParams();
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-  const [isPartnerMap, setIsPartnerMap] = useState(false);
+  const [currentMapView, setCurrentMapView] = useState<MapView>("quantum");
   const [isMobile, setIsMobile] = useState(false);
   const [containerDimensions, setContainerDimensions] = useState({
     width: 0,
@@ -58,7 +73,19 @@ export default function QuantumMap() {
   }, []);
 
   const handleLogoClick = () => {
-    setIsPartnerMap(!isPartnerMap);
+    if (currentMapView === "quantum") {
+      setCurrentMapView("partner");
+    } else {
+      setCurrentMapView("quantum");
+    }
+  };
+
+  const handleDeutschlandClick = () => {
+    setCurrentMapView("deutschland");
+  };
+
+  const handleGarchingClick = () => {
+    setCurrentMapView("garching");
   };
 
   // Shared easing curve for consistent animations
@@ -219,7 +246,6 @@ export default function QuantumMap() {
         width: 13,
         height: 13,
         url: "https://meetiqm.com/",
-        color: "blue",
       },
       {
         id: "munich-quantum-valley",
@@ -229,7 +255,6 @@ export default function QuantumMap() {
         width: 16,
         height: 14,
         url: "https://www.munich-quantum-valley.de/",
-        color: "purple",
       },
       {
         id: "mcqst",
@@ -239,7 +264,16 @@ export default function QuantumMap() {
         width: 14,
         height: 14,
         url: "https://www.mcqst.de/",
-        color: "green",
+      },
+      {
+        id: "wiqi-team",
+        name: "WiQi-Team",
+        x: 43,
+        y: 63,
+        width: 9,
+        height: 16,
+        url: "/about",
+        isInternal: true,
       },
       {
         id: "deutsches-museum",
@@ -249,7 +283,6 @@ export default function QuantumMap() {
         width: 28,
         height: 13,
         url: "https://www.deutsches-museum.de/",
-        color: "orange",
       },
       {
         id: "dlr-garching",
@@ -259,7 +292,6 @@ export default function QuantumMap() {
         width: 24,
         height: 23,
         url: "https://www.dlr.de/",
-        color: "red",
       },
       {
         id: "deutschland",
@@ -269,7 +301,6 @@ export default function QuantumMap() {
         width: 13,
         height: 29,
         url: "https://www.example.de/",
-        color: "teal",
       },
     ];
 
@@ -298,50 +329,128 @@ export default function QuantumMap() {
 
   const partnerRectangles = getPartnerRectangles();
 
-  // Color scheme for different partners
-  const getPartnerColors = (color: string) => {
-    const colorSchemes = {
-      blue: {
-        border: "border-blue-500/60",
-        bg: "bg-blue-500/15",
-        hoverBorder: "hover:border-blue-400/80",
-        hoverBg: "hover:bg-blue-500/25",
+  // Deutschland map rectangles - positioned relative to actual image dimensions
+  const getDeutschlandRectangles = () => {
+    const { imageWidth, imageHeight, offsetX, offsetY } = getImageDimensions();
+
+    if (imageWidth === 0 || imageHeight === 0) {
+      return [];
+    }
+
+    // Base coordinates relative to the Deutschland map image (0-100%)
+    const baseRectangles = [
+      {
+        id: "bmbf",
+        name: "BMBF - Bundesministerium für Bildung und Forschung",
+        x: 60,
+        y: 35.5,
+        width: 4,
+        height: 7,
+        url: "https://www.bmbf.de/DE/Home/home_node.html",
       },
-      purple: {
-        border: "border-purple-500/60",
-        bg: "bg-purple-500/15",
-        hoverBorder: "hover:border-purple-400/80",
-        hoverBg: "hover:bg-purple-500/25",
+      {
+        id: "technoseum",
+        name: "TECHNOSEUM",
+        x: 36.5,
+        y: 62.5,
+        width: 1,
+        height: 4,
+        url: "https://www.technoseum.de/",
       },
-      green: {
-        border: "border-green-500/60",
-        bg: "bg-green-500/15",
-        hoverBorder: "hover:border-green-400/80",
-        hoverBg: "hover:bg-green-500/25",
+      {
+        id: "fraunhofer",
+        name: "Fraunhofer-Gesellschaft",
+        x: 36.5,
+        y: 68.5,
+        width: 1,
+        height: 4,
+        url: "https://www.fraunhofer.de/",
       },
-      orange: {
-        border: "border-orange-500/60",
-        bg: "bg-orange-500/15",
-        hoverBorder: "hover:border-orange-400/80",
-        hoverBg: "hover:bg-orange-500/25",
-      },
-      red: {
-        border: "border-red-500/60",
-        bg: "bg-red-500/15",
-        hoverBorder: "hover:border-red-400/80",
-        hoverBg: "hover:bg-red-500/25",
-      },
-      teal: {
-        border: "border-teal-500/60",
-        bg: "bg-teal-500/15",
-        hoverBorder: "hover:border-teal-400/80",
-        hoverBg: "hover:bg-teal-500/25",
-      },
-    };
-    return (
-      colorSchemes[color as keyof typeof colorSchemes] || colorSchemes.blue
-    );
+    ];
+
+    // Convert image-relative coordinates to container-relative coordinates
+    return baseRectangles.map((rect) => {
+      const actualX = offsetX + (rect.x / 100) * imageWidth;
+      const actualY = offsetY + (rect.y / 100) * imageHeight;
+      const actualWidth = (rect.width / 100) * imageWidth;
+      const actualHeight = (rect.height / 100) * imageHeight;
+
+      // Convert to percentages relative to container
+      const containerX = (actualX / containerDimensions.width) * 100;
+      const containerY = (actualY / containerDimensions.height) * 100;
+      const containerWidth = (actualWidth / containerDimensions.width) * 100;
+      const containerHeight = (actualHeight / containerDimensions.height) * 100;
+
+      return {
+        ...rect,
+        x: Math.max(0, Math.min(containerX, 95)), // Ensure rectangles stay within bounds
+        y: Math.max(0, Math.min(containerY, 95)),
+        width: Math.max(containerWidth, isMobile ? 10 : 6), // Larger minimum size for better touch targets
+        height: Math.max(containerHeight, isMobile ? 8 : 5),
+      };
+    });
   };
+
+  // Garching map rectangles - positioned relative to actual image dimensions
+  const getGarchingRectangles = () => {
+    const { imageWidth, imageHeight, offsetX, offsetY } = getImageDimensions();
+
+    if (imageWidth === 0 || imageHeight === 0) {
+      return [];
+    }
+
+    // Base coordinates relative to the Garching map image (0-100%)
+    const baseRectangles = [
+      {
+        id: "mpq",
+        name: "Max-Planck-Institut für Quantenoptik",
+        x: 33.5,
+        y: 54,
+        width: 28,
+        height: 14,
+        url: "https://www.mpq.mpg.de/",
+      },
+      {
+        id: "photonlab",
+        name: "Photonlab",
+        x: 38.25,
+        y: 69,
+        width: 19,
+        height: 27,
+        url: "https://www.mpg.de/",
+      },
+    ];
+
+    // Convert image-relative coordinates to container-relative coordinates
+    return baseRectangles.map((rect) => {
+      const actualX = offsetX + (rect.x / 100) * imageWidth;
+      const actualY = offsetY + (rect.y / 100) * imageHeight;
+      const actualWidth = (rect.width / 100) * imageWidth;
+      const actualHeight = (rect.height / 100) * imageHeight;
+
+      // Convert to percentages relative to container
+      const containerX = (actualX / containerDimensions.width) * 100;
+      const containerY = (actualY / containerDimensions.height) * 100;
+      const containerWidth = (actualWidth / containerDimensions.width) * 100;
+      const containerHeight = (actualHeight / containerDimensions.height) * 100;
+
+      return {
+        ...rect,
+        x: Math.max(0, Math.min(containerX, 95)), // Ensure rectangles stay within bounds
+        y: Math.max(0, Math.min(containerY, 95)),
+        width: Math.max(containerWidth, isMobile ? 10 : 6), // Larger minimum size for better touch targets
+        height: Math.max(containerHeight, isMobile ? 8 : 5),
+      };
+    });
+  };
+
+  // Unified transparent styling for all rectangles
+  const getRectangleStyles = () => ({
+    border: "border-transparent",
+    bg: "bg-transparent",
+    hoverBorder: "hover:border-white/20",
+    hoverBg: "hover:bg-white/5",
+  });
 
   return (
     <motion.div
@@ -365,8 +474,8 @@ export default function QuantumMap() {
           initial={{ opacity: 0, filter: "blur(0px)", scale: 1 }}
           animate={{
             opacity: isInView ? 1 : 0,
-            filter: isPartnerMap ? "blur(4px)" : "blur(0px)",
-            scale: isPartnerMap ? 1.02 : 1,
+            filter: currentMapView !== "quantum" ? "blur(4px)" : "blur(0px)",
+            scale: currentMapView !== "quantum" ? 1.02 : 1,
           }}
           transition={{
             duration: 0.8,
@@ -374,7 +483,7 @@ export default function QuantumMap() {
             filter: {
               duration: 0.6,
               ease: easing,
-              delay: isPartnerMap ? 0 : 0.2,
+              delay: currentMapView !== "quantum" ? 0 : 0.2,
             },
             scale: { duration: 0.8, ease: easing },
           }}
@@ -393,9 +502,9 @@ export default function QuantumMap() {
           className="absolute inset-0"
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{
-            opacity: isInView && isPartnerMap ? 1 : 0,
-            scale: isInView && isPartnerMap ? 1 : 0.95,
-            y: isInView && isPartnerMap ? 0 : 10,
+            opacity: isInView && currentMapView === "partner" ? 1 : 0,
+            scale: isInView && currentMapView === "partner" ? 1 : 0.95,
+            y: isInView && currentMapView === "partner" ? 0 : 10,
           }}
           transition={{
             duration: 0.8,
@@ -403,7 +512,7 @@ export default function QuantumMap() {
             opacity: {
               duration: 0.6,
               ease: easing,
-              delay: isPartnerMap ? 0.2 : 0,
+              delay: currentMapView === "partner" ? 0.2 : 0,
             },
             scale: { duration: 0.8, ease: easing },
             y: { duration: 0.8, ease: easing },
@@ -429,7 +538,215 @@ export default function QuantumMap() {
             />
             {/* Partner Map Rectangles - Responsive clickable areas with improved hover effects */}
             {partnerRectangles.map((rect, index) => {
-              const colors = getPartnerColors(rect.color);
+              const colors = getRectangleStyles();
+              return (
+                <motion.div
+                  key={rect.id}
+                  className="group absolute z-10"
+                  style={{
+                    left: `${rect.x}%`,
+                    top: `${rect.y}%`,
+                    width: `${rect.width}%`,
+                    height: `${rect.height}%`,
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: easing,
+                    delay: index * 0.1 + 0.3,
+                  }}
+                  whileHover={{ scale: 1.05, z: 20 }}
+                >
+                  {rect.id === "deutschland" ? (
+                    <div
+                      onClick={handleDeutschlandClick}
+                      className={`relative block h-full w-full cursor-pointer rounded-lg border-2 ${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:shadow-black/20 dark:hover:shadow-white/10`}
+                      title={`View ${rect.name}`}
+                    >
+                      {/* Tooltip */}
+                      <div className="absolute -top-12 left-1/2 z-30 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/90 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 dark:bg-white/90 dark:text-black">
+                        {rect.name}
+                        {/* Arrow pointing down */}
+                        <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-black/90 dark:border-t-white/90" />
+                      </div>
+
+                      {/* Subtle gradient overlay for better visual feedback */}
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </div>
+                  ) : rect.id === "dlr-garching" ? (
+                    <div
+                      onClick={handleGarchingClick}
+                      className={`relative block h-full w-full cursor-pointer rounded-lg border-2 ${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:shadow-black/20 dark:hover:shadow-white/10`}
+                      title={`View ${rect.name}`}
+                    >
+                      {/* Tooltip */}
+                      <div className="absolute -top-12 left-1/2 z-30 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/90 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 dark:bg-white/90 dark:text-black">
+                        {rect.name}
+                        {/* Arrow pointing down */}
+                        <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-black/90 dark:border-t-white/90" />
+                      </div>
+
+                      {/* Subtle gradient overlay for better visual feedback */}
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </div>
+                  ) : (
+                    <Link
+                      href={
+                        rect.isInternal
+                          ? `/${params.locale}${rect.url}`
+                          : rect.url
+                      }
+                      target={rect.isInternal ? "_self" : "_blank"}
+                      rel={rect.isInternal ? undefined : "noopener noreferrer"}
+                      className={`relative block h-full w-full cursor-pointer rounded-lg border-2 ${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:shadow-black/20 dark:hover:shadow-white/10`}
+                      title={
+                        rect.isInternal
+                          ? `Go to ${rect.name}`
+                          : `Visit ${rect.name}`
+                      }
+                    >
+                      {/* Tooltip */}
+                      <div className="absolute -top-12 left-1/2 z-30 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/90 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 dark:bg-white/90 dark:text-black">
+                        {rect.name}
+                        {/* Arrow pointing down */}
+                        <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-black/90 dark:border-t-white/90" />
+                      </div>
+
+                      {/* Subtle gradient overlay for better visual feedback */}
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </Link>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Deutschland Map - Overlays on top when active */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{
+            opacity: isInView && currentMapView === "deutschland" ? 1 : 0,
+            scale: isInView && currentMapView === "deutschland" ? 1 : 0.95,
+            y: isInView && currentMapView === "deutschland" ? 0 : 10,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: easing,
+            opacity: {
+              duration: 0.6,
+              ease: easing,
+              delay: currentMapView === "deutschland" ? 0.2 : 0,
+            },
+            scale: { duration: 0.8, ease: easing },
+            y: { duration: 0.8, ease: easing },
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src="/deutschland_karte.svg"
+              alt="Deutschland Map"
+              fill
+              className="object-contain"
+            />
+            {/* Inset blur overlay */}
+            <div
+              className="pointer-events-none absolute inset-0 backdrop-blur-sm"
+              style={{
+                maskImage:
+                  "radial-gradient(ellipse at center, transparent 70%, black 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, transparent 70%, black 100%)",
+              }}
+            />
+            {/* Deutschland Map Rectangles - Responsive clickable areas */}
+            {getDeutschlandRectangles().map((rect, index) => {
+              const colors = getRectangleStyles();
+              return (
+                <motion.div
+                  key={rect.id}
+                  className="group absolute z-10"
+                  style={{
+                    left: `${rect.x}%`,
+                    top: `${rect.y}%`,
+                    width: `${rect.width}%`,
+                    height: `${rect.height}%`,
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: easing,
+                    delay: index * 0.1 + 0.3,
+                  }}
+                  whileHover={{ scale: 1.05, z: 20 }}
+                >
+                  <Link
+                    href={rect.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative block h-full w-full cursor-pointer rounded-lg border-2 ${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:shadow-black/20 dark:hover:shadow-white/10`}
+                    title={`Visit ${rect.name}`}
+                  >
+                    {/* Tooltip */}
+                    <div className="absolute -top-12 left-1/2 z-30 -translate-x-1/2 transform whitespace-nowrap rounded-md bg-black/90 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 dark:bg-white/90 dark:text-black">
+                      {rect.name}
+                      {/* Arrow pointing down */}
+                      <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-black/90 dark:border-t-white/90" />
+                    </div>
+
+                    {/* Subtle gradient overlay for better visual feedback */}
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Garching Map - Overlays on top when active */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{
+            opacity: isInView && currentMapView === "garching" ? 1 : 0,
+            scale: isInView && currentMapView === "garching" ? 1 : 0.95,
+            y: isInView && currentMapView === "garching" ? 0 : 10,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: easing,
+            opacity: {
+              duration: 0.6,
+              ease: easing,
+              delay: currentMapView === "garching" ? 0.2 : 0,
+            },
+            scale: { duration: 0.8, ease: easing },
+            y: { duration: 0.8, ease: easing },
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src="/garching_karte.svg"
+              alt="Garching Map"
+              fill
+              className="object-contain"
+            />
+            {/* Inset blur overlay */}
+            <div
+              className="pointer-events-none absolute inset-0 backdrop-blur-sm"
+              style={{
+                maskImage:
+                  "radial-gradient(ellipse at center, transparent 70%, black 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, transparent 70%, black 100%)",
+              }}
+            />
+            {/* Garching Map Rectangles - Responsive clickable areas */}
+            {getGarchingRectangles().map((rect, index) => {
+              const colors = getRectangleStyles();
               return (
                 <motion.div
                   key={rect.id}
@@ -495,7 +812,13 @@ export default function QuantumMap() {
           <div
             className={`absolute left-full top-1/2 ml-3 -translate-y-1/2 whitespace-nowrap rounded-md bg-black/80 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 ${isMobile ? "text-xs" : "text-sm"} `}
           >
-            {isPartnerMap ? "Switch to Quantum Map" : "Switch to Partner Map"}
+            {currentMapView === "partner"
+              ? "Switch to Quantum Map"
+              : currentMapView === "deutschland"
+                ? "Switch to Quantum Map"
+                : currentMapView === "garching"
+                  ? "Switch to Quantum Map"
+                  : "Switch to Partner Map"}
             {/* Arrow pointing to the button */}
             <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-black/80" />
           </div>
@@ -506,7 +829,7 @@ export default function QuantumMap() {
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
-        animate={{ opacity: isInView && !isPartnerMap ? 1 : 0 }}
+        animate={{ opacity: isInView && currentMapView === "quantum" ? 1 : 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         {nodes.map((node, index) => (
@@ -521,7 +844,9 @@ export default function QuantumMap() {
             variants={nodeVariants}
             custom={index}
             initial="hidden"
-            animate={isInView && !isPartnerMap ? "visible" : "hidden"}
+            animate={
+              isInView && currentMapView === "quantum" ? "visible" : "hidden"
+            }
             onMouseEnter={() => setHoveredNode(node.id)}
             onMouseLeave={() => setHoveredNode(null)}
           >
