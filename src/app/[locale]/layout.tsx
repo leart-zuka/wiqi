@@ -9,6 +9,9 @@ import { getMessages } from "next-intl/server";
 import { CookiesProvider } from "next-client-cookies/server";
 import EasterEgg from "../components/EasterEgg";
 
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 export const metadata: Metadata = {
   title: "WiQi",
   description: "From humans, for humans",
@@ -59,7 +62,11 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <EasterEgg />
           <div className="flex-grow bg-gray-50 pb-10 text-black dark:bg-gray-900 dark:text-gray-100">
-            <CookiesProvider>{children}</CookiesProvider>
+            <CookiesProvider>
+              {children}
+              <Analytics />
+              <SpeedInsights />
+            </CookiesProvider>
           </div>
           <Footer params={{ locale }} />
         </NextIntlClientProvider>
