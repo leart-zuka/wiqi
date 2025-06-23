@@ -138,7 +138,7 @@ export default function QuantumMap() {
     },
   };
 
-  // Quantum nodes data
+  // Quantum nodes data with navigation URLs
   const nodes = [
     {
       id: "center",
@@ -146,6 +146,7 @@ export default function QuantumMap() {
       icon: Atom,
       x: 45,
       y: 45,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "computing",
@@ -153,6 +154,7 @@ export default function QuantumMap() {
       icon: Cpu,
       x: 40,
       y: 25,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "algorithms",
@@ -160,6 +162,7 @@ export default function QuantumMap() {
       icon: FlowArrow,
       x: 62,
       y: 24,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "applications",
@@ -167,6 +170,7 @@ export default function QuantumMap() {
       icon: Monitor,
       x: 13,
       y: 42,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "current",
@@ -174,6 +178,7 @@ export default function QuantumMap() {
       icon: Cpu,
       x: 21,
       y: 68,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "physical",
@@ -181,6 +186,7 @@ export default function QuantumMap() {
       icon: Ruler,
       x: 39.5,
       y: 86,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "obstacles",
@@ -188,6 +194,7 @@ export default function QuantumMap() {
       icon: Warning,
       x: 79,
       y: 83,
+      url: `/${params.locale}/posts/entries`,
     },
     {
       id: "error",
@@ -195,6 +202,7 @@ export default function QuantumMap() {
       icon: MagnifyingGlass,
       x: 70,
       y: 51,
+      url: `/${params.locale}/posts/entries`,
     },
   ];
 
@@ -850,22 +858,24 @@ export default function QuantumMap() {
             onMouseEnter={() => setHoveredNode(node.id)}
             onMouseLeave={() => setHoveredNode(null)}
           >
-            <div
-              className={`flex items-center justify-center rounded-full border-2 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 ${
-                node.id === "center"
-                  ? "h-24 w-24 border-white bg-black/80 text-white shadow-[0_0_20px_rgba(0,0,0,0.5)] lg:h-36 lg:w-36"
-                  : "h-10 w-10 border-gray-800 bg-white/80 shadow-lg lg:h-16 lg:w-16"
-              } dark:!border-white dark:!bg-black/80 dark:!text-white`}
-            >
-              <node.icon
-                size={node.id === "center" ? 64 : 32}
-                weight="regular"
-                className="transition-colors duration-300"
-              />
-            </div>
-            <div className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/70 px-3 py-1.5 text-[0.6rem] font-medium text-white shadow-md transition-all duration-300 group-hover:scale-110 lg:text-sm">
-              {node.label}
-            </div>
+            <Link href={node.url} className="block">
+              <div
+                className={`flex cursor-pointer items-center justify-center rounded-full border-2 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 ${
+                  node.id === "center"
+                    ? "h-24 w-24 border-white bg-black/80 text-white shadow-[0_0_20px_rgba(0,0,0,0.5)] lg:h-36 lg:w-36"
+                    : "h-10 w-10 border-gray-800 bg-white/80 shadow-lg lg:h-16 lg:w-16"
+                } dark:!border-white dark:!bg-black/80 dark:!text-white`}
+              >
+                <node.icon
+                  size={node.id === "center" ? 64 : 32}
+                  weight="regular"
+                  className="transition-colors duration-300"
+                />
+              </div>
+              <div className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/70 px-3 py-1.5 text-[0.6rem] font-medium text-white shadow-md transition-all duration-300 group-hover:scale-110 lg:text-sm">
+                {node.label}
+              </div>
+            </Link>
           </motion.div>
         ))}
       </motion.div>
