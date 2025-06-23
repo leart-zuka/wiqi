@@ -399,6 +399,7 @@ export default function Home({ params }: HomeProps) {
       </section>
 
       {/* Switch Maps Section */}
+      {/*
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -422,7 +423,6 @@ export default function Home({ params }: HomeProps) {
                 )}
             </p>
 
-            {/* Placeholder for Atom Symbol Screenshot */}
             <div className="mb-8 flex items-center justify-center rounded-lg bg-gray-200 p-8 dark:bg-gray-800">
               <div className="text-center">
                 <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-lg bg-black dark:bg-white">
@@ -435,6 +435,7 @@ export default function Home({ params }: HomeProps) {
           </motion.div>
         </div>
       </section>
+      /*}
 
       {/* Closing Section */}
       <section className="bg-gradient-to-r from-purple-50 to-pink-50 py-16 dark:from-purple-900/20 dark:to-pink-900/20">
