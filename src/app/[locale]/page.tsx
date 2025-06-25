@@ -201,17 +201,19 @@ export default function Home({ params }: HomeProps) {
       </section>
 
       {/* Features Section */}
-      <section className="scroll-snap-section h-screen bg-gray-50/50 py-16 dark:bg-slate-900/50">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="h-full w-full"
-        >
-          <QuantumMap />
-        </motion.div>
-      </section>
+      <div className="hidden md:block">
+        <section className="scroll-snap-section h-screen bg-gray-50/50 py-16 dark:bg-slate-900/50">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="h-full w-full"
+          >
+            <QuantumMap />
+          </motion.div>
+        </section>
+      </div>
 
       {/* Difficulty Levels Section */}
       <section className="scroll-snap-section py-16">
