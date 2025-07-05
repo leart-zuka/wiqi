@@ -1,0 +1,124 @@
+---
+Titel: "Quantenoptimierung"
+subtitle: "Quantenoptimierung: Das Lösen der schwierigsten Probleme mit seltsamen Werkzeugen (mittel)"
+author: "Sudharshan Kannan"
+date: "2025-06-01"
+---
+
+# Quantenoptimierung: So könnten Quantencomputer die schwierigsten Probleme lösen
+
+## 1. Einführung
+
+Optimierung bedeutet, die **beste** Lösung unter vielen Möglichkeiten zu finden. Sie ist allgegenwärtig: von der Planung von Lieferrouten über die Planung von Unterrichtsstunden, bis hin zum Entwurf neuer Materialien. Doch je größer die Probleme werden, desto schneller wächst die Zahl der möglichen Lösungen, so dass sie für normale Computer zu schwer zu lösen sind.
+
+Quantencomputer nutzen ungewöhnliche Regeln der Quantenphysik, und sie könnten einige dieser schwierigen Optimierungsprobleme schneller oder besser lösen. Das ist die spannende Idee hinter der **Quantenoptimierung**.
+
+---
+
+## 2. Was ist Quantenoptimierung?
+
+Bei der Quantenoptimierung wird ein Problem als der Zustand mit der niedrigsten Energie eines Quantensystems dargestellt. Ziel ist es, diese niedrigste Energie, den so genannten **Grundzustand**, zu finden, der der besten Lösung des Problems entspricht. Im Folgenden werden die Ansätze zur Erreichung der Lösung untersucht.
+
+### a) Quanten-Annealing
+
+Stell dir das Problem wie eine Landschaft mit Hügeln und Tälern vor, wobei die Täler gute Lösungen darstellen. Klassische Methoden versuchen, das tiefste Tal zu finden, indem sie bergab gehen, aber sie können in kleinen Tälern stecken bleiben, die aber nicht die tiefsten sind.
+
+![Quantum Annealing](/posts/assets/entries/qoptimization/Quantum_Annealing.png)
+
+Das Quanten-Annealing lässt das System durch Hügel „tunneln“, was es einfacher macht, das tiefste Tal (die beste Lösung) zu finden. Diese Idee nutzen Unternehmen wie D-Wave um ihre Maschinen zu bauen, mit denen sie Probleme lösen, die als nach oben oder unten gerichtete Spins (wie winzige Magnete) behandelt werden. Das ist auch als das **Ising-Modell** bekannt.
+
+### b) Das QUBO-Problem und das Ising-Modell
+
+Viele Optimierungsprobleme lassen sich als **QUBO-Problem** (quadratische, nicht-eingeschränkte binäre Optimierung, auf Englisch Quadratic Unconstrained Binary Optimization) formulieren. Das bedeutet, dass das Problem darin besteht, eine Funktion wie die folgende zu minimieren:
+
+$$
+\min_{x \in \{0,1\}^n} x^T Q x + c^T x
+$$
+
+Hier:
+
+- $x$ ist eine Liste von binären Variablen (jeweils 0 oder 1),
+- $Q$ ist eine Matrix, die beschreibt, wie die Variablen interagieren,
+- $c$ ist ein Vektor von linearen Termen.
+
+Das Ising-Modell aus der Physik ist ähnlich, verwendet aber Variablen $s_i$, die entweder +1 oder -1 sein können:
+
+$$
+\min_{s \in \{-1, +1\}^n} \sum_{i < j} J_{ij} s_i s_j + \sum_i h_i s_i
+$$
+
+Man kann zwischen diesen beiden Formulierungen leicht umrechnen, indem man:
+
+$$
+s_i = 2 x_i - 1
+$$
+
+Beim Quanten-Annealing wird nach dem niedrigsten Energiezustand im Ising-Modell gesucht, der der Lösung des ursprünglichen Problems entspricht.
+
+### c) Variations-Quantenalgorithmen (VQAs) und QAOA
+
+Quanten-Annealing ist nicht der einzige Weg. Ein weiterer beliebter Ansatz sind **Gatter-basierte Quantencomputer** (wie die von IBM oder Google). Diese Computer arbeiten mit Schaltkreisen, die aus Quantengattern bestehen und durch einstellbare Parameter gesteuert werden.
+
+**Variations-Quantenalgorithmen (VQAs)** bauen einen Quantenschaltkreis mit Parametern auf, die Sie einstellen können. Ein klassischer Computer ändert diese Parameter und versucht so, die beste Lösung zu finden.
+
+Ein berühmter VQA ist der **Quantenapproximierter Optimierungsalgorithmus (QAOA)**. Er arbeitet mit zwei sich abwechselnden Schritten:
+
+1. Anwendung der Kosteninformationen des Problems,
+2. Anwendung eines „Mixer“-Schrittes zur Lösungsfindung.
+
+Durch die Anpassung der Parameter in diesen Schritten versucht QAOA, einen Quantenzustand zu erzeugen, der eine gute Lösung darstellt.
+
+![QAOA Circuit](https://quantumai.google/cirq/experiments/qaoa/images/qaoa_circuit.png)> [Weiterführende Informationen](https://quantumai.google/cirq/experiments/qaoa/example_problems)
+
+> _Quelle: [arXiv:1411.4028](https://arxiv.org/abs/1411.4028) - "A Quantum Approximate Optimization Algorithm" by Farhi et al._
+
+
+VQAs sind vielversprechend, weil sie auf der heutigen Quantenhardware laufen können und klassische Optimierung mit Quantenleistung kombinieren.
+
+---
+
+## 3. Warum ist Quantenoptimierung nützlich?
+
+Die klassische Optimierung bleibt oft in „lokalen Minima“ stecken - Lösungen, die besser sind als die in der Nähe liegenden, aber nicht die besten insgesamt. Quantenmethoden, insbesondere Quanten-Annealing, können durch Barrieren in der Landschaft „tunneln“, um bessere Lösungen zu finden.
+
+Außerdem können Quantencomputer aufgrund der **Superposition** viele Lösungen auf einmal untersuchen, was die Suche möglicherweise beschleunigt.
+
+---
+
+## 4. Anwendungen
+
+Quantenoptimierung kann sich auf viele Bereiche auswirken:
+
+- **Logistik**: Die kürzeste Lieferroute für viele Städte zu finden, ist auf klassische Weise extrem schwierig. Quantenmethoden können bessere Routen schneller finden.
+- **Finanzen**: Bei der Auswahl des besten Anlageportfolios müssen Risiko und Ertrag gegeneinander abgewogen werden, was als QUBO-Problem formuliert werden kann, das mit Quantenmethoden lösbar ist.
+
+- **Materialwissenschaft**: Moleküle suchen von Natur aus nach energiearmen Zuständen. Quantenoptimierung erfüllt die gleiche Grundidee und kann so bei der Entdeckung neuer Materialien oder Medikamente helfen, indem diese Quantensysteme besser simuliert werden.
+
+- **Maschinelles Lernen**: Das Training von Modellen beinhaltet die Optimierung von Verlustfunktionen. Quantenalgorithmen können hilfreich sein, bessere Lösungen in komplexen Landschaften zu finden.
+
+---
+
+## 5. Herausforderungen
+
+Die heutigen Quantencomputer haben:
+
+- Wenige Qubits (Quantenbits), was die Größe des Problems, das man mit ihnen Lösen könnte, begrenzt.
+- Hintergrundrauschen und Fehler, die eine Fehlerkorrektur erfordern.
+
+- Probleme wie das "Barren-Plateau-Problem“, wo die Optimierungslandschaft flach und schwer zu navigieren ist.
+- Hohe Kosten und begrenzter Zugang zu Quanten-Hardware.
+
+Die Forschung arbeitet weiter an der Überwindung dieser Probleme.
+
+---
+
+## 6. Schlussfolgerung
+
+Die Quantenoptimierung verbindet Physik und Computertechnik, um Probleme zu lösen, die für klassische Computer eine Herausforderung darstellen. Durch die Nutzung von Quanteneffekten, wie Tunneln und Superposition, eröffnen sich neue Möglichkeiten. Obwohl dieses Feld noch in den Kinderschuhen steckt, hat es das Potenzial, einige der schwierigsten Probleme in der Wissenschaft und Industrie lösen zu können.
+
+## Referenzen
+
+- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
+- Lucas, [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
+- D-Wave Systems, [https://docs.dwavesys.com/docs/latest/c_qubo.html](https://docs.dwavesys.com/docs/latest/c_qubo.html)

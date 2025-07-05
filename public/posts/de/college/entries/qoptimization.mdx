@@ -1,0 +1,154 @@
+---
+Titel: "Quantenoptimierung"
+subtitle: "Quantenoptimierung: Das Lösen der schwierigsten Probleme mit den seltsamsten Werkzeugen (schwer)"
+author: "Sudharshan Kannan"
+date: "2025-06-01"
+---
+
+# Quantenoptimierung: Lösung der schwierigsten Probleme mit den seltsamsten Werkzeugen
+
+## 1. Einführung
+
+Optimierung ist allgegenwärtig. Von der Planung von Lieferrouten für Lastwagen über die Einteilung von Lehrveranstaltungen, bis hin zur Bestimmung der besten Methode zur Faltung von Proteinen in der Biologie - das sind alles Optimierungsprobleme. Vereinfacht ausgedrückt, geht es bei einem Optimierungsproblem darum, die **beste** Lösung unter vielen möglichen zu finden.
+
+Doch je größer die Probleme werden, desto höher wird die Zahl der möglichen Antworten. Stell dir z. B. vor, du möchtest Lieferwege für 100 Städte planen - es gibt mehr mögliche Wege als Atome im Universum. An diesem Punkt beginnen **klassische Computer** zu kämpfen.
+
+Könnten Quantencomputer helfen? Genau darum geht es bei der **Quantenoptimierung**: die seltsamen Regeln der Quantenmechanik zu nutzen, um riesige Lösungsräume geschickter zu erkunden als klassische Computer.
+
+---
+
+## 2. Was ist Quantenoptimierung?
+
+Im Kern der Quantenoptimierung ist das Lösen von Problemen, indem man sie in ein Quantensystem kodiert, genauer gesagt in die Energien verschiedener Quantenzustände. Ziel ist es, den Zustand mit der niedrigsten Energie, auch **Grundzustand** genannt, zu finden, der der besten Lösung des ursprünglichen Problems entspricht. Wir untersuchen nun, wie wir dies erreichen können.
+
+### a) Quanten-Annealing
+
+Das ist ein physikalischer Prozess, der von der Natur inspiriert ist. Stell dir eine Landschaft mit Hügeln und Tälern vor, in der das unterste Tal die beste Lösung darstellen soll. Beim klassischen Annealing lässt man ein Teilchen in dieser Landschaft herumhüpfen.
+Durch Quanten-Annealing können wir das globale Minimum erreichen, ohne die gesamte Landschaft zu „durchqueren“. Das ist auf der folgenden Abbildung dargestellt:
+
+![Quantum Annealing](/posts/assets/entries/qoptimization/Quantum_Annealing.png)
+
+
+Diese Methode wird von D-Wave-Systemen verwendet und konzentriert sich auf **Ising-Modell-Probleme**, bei denen jede Variable ein Spin (+1 oder -1) ist, und man die beste Spin-Konfiguration finden möchte. Im nächsten Abschnitt gehen wir näher darauf ein, wie D-Wave mit Quantum Annealing über das QUBO-Problem arbeitet.
+
+### b) QUBO-Problem
+
+Viele Optimierungsprobleme können in einer quadratischen Form über binären Variablen ausgedrückt werden, bekannt als das **QUBO** (quadratische, nicht-eingeschränkte binäre Optimierung, auf Englisch Quadratic Unconstrained Binary Optimization) Problem:
+
+$$
+
+\min_{x \in \{0,1\}^n} x^T Q x + c^T x
+
+
+$$
+
+Dabei ist $ Q $ eine $ n \times n $ reelle symmetrische Matrix, die die Interaktionsgewichte zwischen den Variablen darstellt, und c ist ein Vektor linearer Koeffizienten. In der Physik, wie auch beim Quanten-Annealing, wird dies äquivalent mit Hilfe von Spin-Variablen $s_i \in \{ -1, +1 \} $ als Ising-Modell ausgedrückt:
+
+$$
+\min_{s \in \{-1,+1 \}^n } \sum_{i <j} J_{ij} s_i s_j \ + \ \sum_i h_is_i
+$$
+
+Die beiden Formulierungen sind durch eine einfache Transformation zwischen den Variablen $ s_i = 2x_i -1 $ miteinander verbunden.
+Speziell für diese Probleme kann Quantum-Annealing angewendet werden, indem es den Grundzustand des Ising-Hamiltonians findet, der direkt der optimalen Lösung des ursprünglichen kombinatorischen, als QUBO kodierten Problems entspricht. Diese Äquivalenz zwischen QUBO und Ising-Modellen ist die Grundlage für viele Quantenoptimierungsverfahren.
+
+### c) Variations-Quantenalgorithmen (VQAs)
+
+VQAs werden auf Gatter-basierten Quantencomputern, wie den von IBM oder Google verwendet. Die Idee besteht darin, eine _parametrisierte Quantenschaltung_ zu bauen und dann die Parameter mit Hilfe eines klassischen Optimierers anzupassen, bis das Resultat eine gute Lösung ergibt.
+
+Ein berühmtes Beispiel ist der **Quantenapproximierter Optimierungsalgorithmus (QAOA)**.
+
+![QAOA-Schaltung](https://quantumai.google/cirq/experiments/qaoa/images/qaoa_circuit.png)> [Weiterführende Informationen](https://quantumai.google/cirq/experiments/qaoa/example_problems)
+
+> _Quelle: [arXiv:1411.4028](https://arxiv.org/abs/1411.4028) - "A Quantum Approximate Optimization Algorithm" von Farhi et al._
+
+QAOA wechselt zwischen zwei Hamiltonian:
+
+1. **Kosten-Hamiltonian** $H_C$
+2. **Mixer-Hamiltonian** $H_M = \sum_i \sigma_i^x$
+
+Der Quantenzustand nach ‚p‘ Schritten ist:
+
+$$
+|\psi(\boldsymbol{\gamma}, \boldsymbol{\beta})\rangle = \prod_{j=1}^{p} e^{-i \beta_j H_M} e^{-i \gamma_j H_C} |+\rangle^{\otimes n}
+$$
+
+Um die Kosten zu minimieren, definieren wir den Kosten-Hamiltonian genauer:
+
+$$
+E(\boldsymbol{\gamma}, \boldsymbol{\beta}) = \langle\psi(\boldsymbol{\gamma}, \boldsymbol{\beta})| H_C |\psi(\boldsymbol{\gamma}, \boldsymbol{\beta})\rangle
+$$
+
+---
+
+## 3. Visualisierung des Quantenvorteils
+
+Eine Möglichkeit, die Optimierung zu visualisieren, ist eine Landschaftsmetapher. Die y-Achse entspricht den Kosten oder der Energie (je niedriger, desto besser), die x-Achse ist der Raum aller möglichen Lösungen.
+Bei der klassischen Optimierung ist man wie ein Wanderer, der versucht, das tiefste Tal zu finden, aber man kann in kleinen Senken (lokalen Minima) stecken bleiben.
+
+Wie wir gesehen haben, ermöglicht die Quantenoptimierung, insbesondere Quanten-Annealing, den Teilchen, durch enge Hügel zu "_tunneln_". Dies wird durch das adiabatische Theorem geregelt: Wenn das System im Grundzustand von \(H(0)\) beginnt und die Entwicklung langsam genug ist, verbleibt es im momentanen Grundzustand. Die erforderliche Laufzeit \(T\) erfüllt:
+
+$$
+T \gg \frac{1}{\Delta_{\min}^2}
+$$
+
+wo $ \Delta\_{\min} $ die minimale spektrale Lücke im Laufe der Entwicklung ist.
+
+---
+
+## 4. Anwendungen
+
+Quantenoptimierung ist nicht nur Theorie, zumal es sich um eine hybride klassisch-quantische Implementierung handelt. Sie wirkt sich auf viele Bereiche aus, in denen die Probleme zu komplex sind, um sie mit klassischen Ansätzen zu lösen.
+
+- **Logistik**: Die optimistischste Anwendung in diesem Bereich ist die Lösung des Problems des Handlungsreisenden. Unternehmen wie FedEx oder UPS müssen herausfinden, wie sie Pakete am effizientesten zustellen können. Klassischerweise wird die Lösung dieses Problems mit zunehmender Anzahl von Standorten exponentiell schwieriger. Quantenalgorithmen können dieses Problem zu einem Problem mit polynomialer Komplexität machen.
+
+- **Portfolio-Optimierung**: Finanzunternehmen möchten zum Maximieren ihrer Erträge und Minimieren ihrer Risiken die beste Mischung von Investitionen auswählen. All dies kann in eine übersichtliche Ziel- oder Kostenfunktion einfließen, die wir optimieren möchten. Aber die Handhabung ist schwierig, weil so viele Variablen wie Marktverhalten, Korrelationen und auch einige Einschränkungen das Ziel beeinflussen. Quanten-Optimierungstechniken können eingesetzt werden, um das globale Minimum von Finanzrisikofunktionen effizienter zu ermitteln. Dies ist der Suche nach dem Grundzustand eines Quantensystems sehr ähnlich! Mathematisch wird dies wie folgt modelliert:
+
+$$
+\min_{x \in \{0,1\}^n} x^T \Sigma x - \lambda \mu^T x
+$$
+
+Dieses quadratische binäre Problem lässt sich direkt auf ein für Quantencomputer geeignetes QUBO-Format übertragen.
+
+- **Materialdesign**: In der Chemie und Materialwissenschaft suchen Moleküle, die natürliche Quantensysteme sind, immer nach der Konfiguration mit der niedrigsten Energie. Das ist auch der grundlegende Antrieb für die Quantenoptimierung, welche dadurch bessere Ansätze für die Entdeckung von Medikamenten oder neuen Materialzusammensetzungen bieten kann.
+
+- **Quantum ML**: Das Training von Modellen des maschinellen Lernens beinhaltet die Optimierung einer Verlustfunktion, genau wie im Fall des Materialdesigns und der Optimierung von Finanzportfolios. Quantenalgorithmen wie QAOA oder VQE können angepasst werden, um komplexe Verlustlandschaften effizienter zu navigieren als es Gradientenabstiege tun. Beim VQA-basierten Training hängt die Verlustfunktion $ \mathcal{L}(\theta)$ von den Parametern der Quantenschaltung ab. Die Gradienten werden mit Techniken wie der Parameter-Shift-Regel oder endlichen Differenzen geschätzt:
+
+$$
+\nabla_\theta \mathcal{L} \approx \frac{ \mathcal{L}(\theta + \delta) - \mathcal{L}(\theta - \delta) }{2\delta}
+$$
+---
+
+## 5. Herausforderungen
+
+- **Noisy Qubits und Dekohärenz:** Qubits sind sehr empfindlich, selbst kleinste Störungen in ihrer Umgebung können ihren Zustand stören. Diese Fehleranfälligkeit kann zu Schwierigkeiten bei der Durchführung langer Berechnungen führen, es sei denn, wir verwenden eine Fehlerkorrektur. Die Fehlerkorrektur macht es erforderlich, viel mehr Qubits zu verwenden.
+
+- **Begrenzte Qubits:** Die Lösung realer Probleme könnte Tausende von Qubits, inklusive Fehlerkorrekturcode erfordern. In der Praxis haben die heutigen Quantenprozesse weniger als 100 zuverlässige Qubits. Bis wir in der Lage sind, diese Zahl erhöhen zu können, bleiben die meisten Optimierungen im Stadium der Machbarkeitsstudie.
+
+- **Barren Plateaus:** Die Kostenfunktion kann in hochdimensionalen Räumen flach werden oder, einfacher gesagt, die Gradienten verschwinden. Bei der Verwendung von Variationsalgorithmen kann dies das Lernen von Parametern nahezu unmöglich machen. Das ist das Barren-Plateau-Problem: Für tiefe oder unstrukturierte Ansatzschaltungen skaliert die Gradientenvarianz wie folgt:
+
+$$
+\text{Var}\left( \frac{\partial \mathcal{L}}{\partial \theta} \right) \sim \exp(-n)
+$$
+
+wobei $n$ die Anzahl der Qubits ist, was das Training mit zunehmender Systemgröße unausführbar macht.
+([arXiv:1803.11173](https://arxiv.org/abs/1803.11173))
+
+- **Schwer zu messen:** Es ist schwierig zu beweisen, wann Quantenmethoden wirklich besser sind als klassische Heuristiken. Wir haben noch keinen klaren theoretischen "Quantenvorteil"!
+- **Kosten und Zugang:** Das Hauptproblem bei der Ausführung von Quantenalgorithmen sind natürlich die Kosten für die unterstützende Infrastruktur, einschließlich cloudbasierter Unterstützung. Diese sind teuer und in der Nutzungsdauer begrenzt. Auch wenn offen zugängliche Plattformen helfen, wird es noch einige Zeit dauern, bis eine breite Anwendung erreicht ist.
+
+---
+
+## 6. Schlussfolgerung
+
+Die Quantenoptimierung verbindet Physik und Computertechnik. Wenn die Technologie ausgereift ist, könnte sie Lösungen erschließen, die mit klassischen Methoden nicht zu erreichen sind. Die Quantenoptimierung beschleunigt nicht nur bekannte Methoden - sie nutzt neue physikalische Phänomene wie Tunnelbildung und Verschränkung, um Rechenstrategien neu zu definieren. Das volle Potenzial, insbesondere für große kombinatorische Probleme, bleibt eine offene Frage, die die aktuelle Forschung vorantreibt.
+
+---
+
+## Referenzen
+
+- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
+- Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)
+- McClean et al., [arXiv:1803.11173](https://arxiv.org/abs/1803.11173)
+- Lucas, A., [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
+- D-Wave Systems, https://docs.dwavesys.com/docs/latest/c_qubo.html
