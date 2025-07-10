@@ -5,26 +5,48 @@ author: "Helena Iréne Köhler"
 date: "2025-01-08"
 ---
 
-## Schrödinger’s Cat and Measurement
+# Schrödinger’s Cat and Measurement
 
-In 1935, Erwin Schrödinger drew the following parallel to explain the paradoxical nature of quantum physics. Imagine a box containing a cat and a flask of poison inside, which will break at a unpredictable time. If the poison is released, the cat will die; if not, the cat remains alive. Now close the box. Until we open it, we have no way of finding out whether the cat is still alive or dead. Quantum mechanics suggests that, until we open it and observe the cat, it exists in a superposition of both states (alive and dead) simultaneously. Only by opening the box are we able to “measure” the outcome of this experiment. Similarly, a qubit in quantum computing can be in a superposition of two states, such as 0 and 1, until it is measured:
-
-$$
-\ket{\Psi} = \alpha \ket{0} + \beta \ket{1}
-$$
-
-Only by measuring it, will it “collapse” into one of the two states:
+In 1935, Erwin Schrödinger drew the following parallel to explain the paradoxical nature of quantum physics. Imagine a box containing a cat and a flask of poison, which will break at a unpredictable time. If the poison is released, the cat will die; if not, the cat remains alive. Now close the box. Until we open it, we have no way of finding out whether the cat is still alive or dead. Quantum mechanics suggests that until we open it and observe the cat, it exists in a superposition of both states (alive and dead) simultaneously. Only by opening the box are we able to “measure” the outcome of this experiment. Similarly, a qubit in quantum computing can be in a superposition of two states, such as 0 and 1, until it is measured:
 
 $$
-P(0) = |\alpha|^2 \quad \text{and} \quad P(1) = |\beta|^2
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle
 $$
 
-determined by the probability distribution. The process of transition from superposition to a definite state after measurement is referred to as “wave function collapse”.
-After measurement, the superposition is lost and a system therefore must collapse to a state in the set of possible states and with this, looses the information for the not-resulting state.
+Here, $\alpha$ and $\beta$ are complex probability amplitudes. Only upon measurement does the qubit “collapse” into one of the classical states $|0\rangle$ or $|1\rangle$ with probabilities P(0) and P(1) respectively:
 
-![Schrödinger's cat](/posts/assets/entries/measurement/measurement_cat.png)
+$$
+P(0) = |\alpha|^2, \quad P(1) = |\beta|^2
+$$
 
-## Heisenbergs’ Uncertainty Principle
+determined by the probability distribution. The process of transition from superposition to a definite state after measurement is referred to as “wave function collapse”. After measurement, the superposition is lost and a system therefore must collapse to a state in the set of possible states and with this, looses the information for the not-resulting state. 
+
+This collapse is formalized in quantum mechanics using **measurement operators**. Each measurement outcome corresponds to a linear operator $M_m$, and the probability of observing outcome $m$ is:
+
+$$
+p(m) = \langle \psi | M_m^\dagger M_m | \psi \rangle = \|M_m|\psi\rangle\|^2
+$$
+
+The post-measurement state, if outcome $m$ is observed, becomes:
+
+$$
+\frac{M_m |\psi\rangle}{\| M_m |\psi\rangle\|}
+$$
+
+For standard computational basis {$ |0\rangle, |1\rangle $} measurement, the operators are projection matrices:
+
+$$
+M_0 = |0\rangle \langle 0| = 
+\begin{pmatrix}1 & 0\\ 0 & 0\end{pmatrix}, \quad 
+M_1 = |1\rangle \langle 1| = 
+\begin{pmatrix}0 & 0\\ 0 & 1\end{pmatrix}
+$$
+
+Thus, a measurement yields either outcome "0" with probability $|\alpha|^2$ or "1" with $|\beta|^2$, and the qubit collapses accordingly. 
+
+---
+
+## Heisenberg’s Uncertainty Principle and Quantum Measurement
 
 The phenomena of losing information during the measurement process has already been described by Werner Heisenberg. Electrons, negatively charged subatomic particles, move around the nucleus of an atom in a specific area with a certain momentum (velocity). However, when trying to measure an electron, Heisenberg postulated, that certain pairs of properties of a particle, such as its position and momentum, cannot be measured simultaneously with arbitrary precision. The more precisely one property is measured, the less precisely the other can be known. This is known as the Uncertainty Principle:
 
@@ -32,9 +54,50 @@ $$
 \Delta x \cdot \Delta p \geq \frac{\hbar}{2}
 $$
 
-This principle is visualized on the bottom: the electron would be the ball at the end of the rope, moving around in a certain area. If you take a photo, you can determine the position of the ball, but you cannot know how fast it's moving. If you record a video, you can track the ball’s velocity, but its exact position becomes uncertain.
+This means: the more precisely you know the position of a particle, the less precisely you can know its momentum—and vice versa.
 
-![Photo vs Video](/posts/assets/entries/measurement/cam_analogy.png)
+Visualize this with a ball on a rope:
 
-The same principle applies to measuring electrons and can be related to the wave function collapse mentioned earlier. An electron has two properties: position and velocity. If you attempt to measure the position of the electron precisely, you lose information about its momentum. Conversely, if you measure the momentum, you lose information about its exact position.
-This is a consequence of the inherent uncertainty in quantum systems and is key to understanding how measurement works. Heisenberg laid the basis of todays atom model with his “Uncertainty Principle”. We can only give a probability of where an electron might be found, as measuring one property (position or velocity) disturbs the other. This “area”, where we can find an electron with a probability of around 93% is referred to as an “orbital” and is only an estimate, since we can’t for certain measure both.
+- A **photo** gives you an exact position (but no information about speed).
+- A **video** gives you information about movement (but sacrifices position accuracy).
+
+The same principle applies to measuring electrons and can be related to the wave function collapse mentioned earlier. An electron has two properties: position and velocity. If you attempt to measure the position of the electron precisely, you lose information about its momentum. Conversely, if you measure the momentum, you lose information about its exact position. This is a consequence of the inherent uncertainty in quantum systems and is key to understanding how measurement works. Heisenberg laid the basis of todays atom model with his “Uncertainty Principle”. We can only give a probability of where an electron might be found, as measuring one property (position or velocity) disturbs the other. This “area”, where we can find an electron with a probability of around 93% is referred to as an “orbital” and is only an estimate, since we can’t for certain measure both.
+---
+
+## Projective and General Measurements
+
+Measurement in quantum mechanics can be more generally described via **projective measurements**—associated with observables like Hermitian operators $M$ with spectral decomposition:
+
+$$
+M = \sum_m \lambda_m P_m
+$$
+
+Here $P_m$ is a **projector** onto the eigenstate with eigenvalue $\lambda_m$. Measuring a qubit with respect to the computational basis is a projective measurement with:
+
+$$
+P_0 = |0\rangle \langle 0|, \quad P_1 = |1\rangle \langle 1|
+$$
+
+The probability of an outcome is:
+
+$$
+p(\lambda_m) = \langle \psi | P_m | \psi \rangle
+$$
+
+and the post-measurement state:
+
+$$
+\frac{P_m |\psi\rangle}{\sqrt{p(\lambda_m)}}
+$$
+
+These are special cases of a broader framework using general measurement operators $M_m$, satisfying the completeness relation:
+
+$$
+\sum_m M_m^\dagger M_m = I
+$$
+
+
+Sources:
+
+- Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press.
+
