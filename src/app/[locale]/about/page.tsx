@@ -144,7 +144,7 @@ export default function AboutPage() {
       bio: t("member4 bio"),
       skills: ["Education", "Outreach", "Communication"],
       social: {
-        github: "https://github.com/leart-zuka/wiqi",
+        github: "https://github.com/adhesh-sagar",
         linkedin: "https://www.linkedin.com/in/adhesh-sagar/",
         email: "adhesh004@gmail.com",
       },
@@ -157,7 +157,7 @@ export default function AboutPage() {
       skills: ["Education", "Outreach", "Communication"],
       social: {
         github: "https://github.com/codedevil13",
-        linkedin: "https://linkedin.com",
+        linkedin: "https://www.linkedin.com/in/sudharshan-k-30a3431b3",
         email: "rahulkannan356@gmail.com",
       },
     },
