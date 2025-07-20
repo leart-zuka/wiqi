@@ -279,6 +279,14 @@ export default function Home({ params }: HomeProps) {
           </div>
         </div>
       </section>
+
+      {/* 
+        IMPORTANT: This empty scroll-snap-section is required for Edge browser compatibility.
+        Edge has issues with scroll-snap when the last section doesn't have the scroll-snap-section class.
+        DO NOT DELETE this section - it ensures proper scroll behavior across all browsers.
+        The footer is handled by the layout component to avoid duplication.
+      */}
+      <section className="scroll-snap-section"></section>
     </div>
   );
 }
