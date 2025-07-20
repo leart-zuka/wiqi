@@ -9,9 +9,7 @@ import PostPreview from "@/app/components/PostPreview";
 import DifficultySelector from "@/app/components/DifficultySelector";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { BookOpen, Clock, Grid3X3, List, Atom } from "lucide-react";
-import Image from "next/image";
 
 export default function Page({
   params,
