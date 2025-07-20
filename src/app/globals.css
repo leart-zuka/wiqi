@@ -47,17 +47,37 @@ body {
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  /* Edge compatibility */
+  -ms-scroll-snap-type: y mandatory;
+  -webkit-scroll-behavior: smooth;
 }
 
 /* Enhanced scroll snap styles */
 .scroll-snap-container {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  /* Edge compatibility */
+  -ms-scroll-snap-type: y mandatory;
+  -webkit-scroll-behavior: smooth;
 }
 
 .scroll-snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  /* Edge compatibility */
+  -ms-scroll-snap-align: start;
+  -ms-scroll-snap-stop: always;
+}
+
+/* Fallback for browsers that don't support scroll snap */
+@supports not (scroll-snap-type: y mandatory) {
+  .scroll-snap-container {
+    scroll-behavior: smooth;
+  }
+
+  .scroll-snap-section {
+    min-height: 100vh;
+  }
 }
 
 /*
