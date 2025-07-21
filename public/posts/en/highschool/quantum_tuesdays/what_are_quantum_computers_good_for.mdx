@@ -24,7 +24,7 @@ Most of this post is going to be based on the amazing article by Scott Aaronson 
 Computers, be it your personal computer (`PC`) at home or a large amalgamation of very powerfull computing modules all stuck together in a box known as a server rack, serve a purpose: complete a task and do so in a very fast manner.
 
 These tasks can be: opening up your email program to send out your next email, watch a funny cat video on the internet that your aunt has sent you, or play the latest shiny video game. These tasks however are not the one's we'll be conserning ourselves with.
-The tasks I'm talking about, are catered towards solving problems on a far larger scale, which is where our powerful servers (or if there are a lot of them we call them `high computing clusters` or `HCPs`) or in the future our quantum computers come into play.
+The tasks I'm talking about, are catered towards solving problems on a far larger scale, which is where our powerful `servers` (or if there are a lot of them we call them `high computing clusters` or `HCPs`) or in the future our `quantum computers` come into play.
 
 Have you ever wondered if given a roadmap of a certain amount of towns, if it's possible to get from any random town to any other random town?
 Or a problem as old as time, your father asks you to pack up the car for the next road trip. Now what's the most efficient way to put all suitcases inside of the trunk of the car.
@@ -59,7 +59,12 @@ For simplicty sake, let's say that if the time complexity of your algorithm for 
 
 ---
 
-With our current supercomputers we are able to tackle these types of problems and actually solve them efficiently enough. Quantum computers are also able to find solutions to these problems efficiently, but are not super interesting as we already have a set of algorithms for which we don't need the special properties of these quantum computers which are very hard and expensive to keep runnning.
+With our current supercomputers we are able to tackle these types of problems and actually solve them efficiently enough. Quantum computers are also able to find solutions to these problems efficiently, but are not super interesting in this case as we already have a set of algorithms for which we don't need the special properties of these quantum computers. Furthermore utilizing quantum computers for these kinds of problems would also be unfit, as the types of computers are very laborious and expensive to keep runnning.
+
+Examples include:
+
+- Search algorithms that find the shortest path on a map e.g. the [Dijkstra algorithm](https://ftp.gwdg.de/pub/misc/EMIS/journals/DMJDMV/vol-ismp/32_schrijver-alexander-sp.pdf)
+- Checking if a number is a [prime number](https://www.cse.iitk.ac.in/users/manindra/algebra/primality_v6.pdf)
 
 It's only when we look at harder problems that quantum computers become interesting.
 
@@ -68,7 +73,7 @@ It's only when we look at harder problems that quantum computers become interest
 As mentioned previously, `NP-Problems` are a set of problems which are even harder than P-problems.
 However this doesn't mean that we can't check if a solution is correct, which is eventually what characterizes NP-problems.
 
-As finding the solution, allows us to quickly verify if it is the correct one.
+NP-problems are defined by the fact that they are very hard to solve, but if we were to find a solution, we can easily and quickly verify if the solution we got is `efficient` or not.
 
 ---
 
@@ -77,6 +82,10 @@ If given a number that is the product of two prime numbers, what are those prime
 Can easily be verified as we can simply multiply the two numbers and check if they give us the initial number
 
 ---
+
+Examples include:
+
+- 
 
 But let's now go one step further to the hardest of problems.
 
@@ -118,3 +127,7 @@ Even though it will take some time for these quantum computers to actually trans
 `Even though a Formula 1 car has shown that it can go around any track in the quickest of times, driving it around on the regular streets which consists of potholes, curbs, traffic lights and much, much more, would probably give you a very hard time to say the least.`
 
 Quantum computers can be very useful, however they won't be able to play your favorite video games better or help you write your email faster. It's about choosing the right kind of tool for the right job.
+
+### Source:
+
+Aaronson, S. (2024, February 20). The limits of quantum computers. [Scientific American.](https://www.scientificamerican.com/article/the-limits-of-quantum-computers/)
