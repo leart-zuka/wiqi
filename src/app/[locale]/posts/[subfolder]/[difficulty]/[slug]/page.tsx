@@ -9,6 +9,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import wordsCounter from "word-counting";
 import { useTranslations } from "next-intl";
+import { notFound } from "next/navigation";
 import "katex/dist/katex.min.css";
 import "./page.css";
 
@@ -64,7 +65,7 @@ export default function Post({
       });
 
       if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+        notFound();
       }
 
       const data: ApiResponse = await response.json();
@@ -77,12 +78,10 @@ export default function Post({
         setReadingTime(Math.ceil(wordCount / 200));
         setError(null);
       } else {
-        throw new Error(data.error || "Unknown error occurred");
+        notFound();
       }
     } catch (err: any) {
-      console.error("Error fetching blog post:", err);
-      setError(err.message || "An unexpected error occurred");
-      setFile(null);
+      // This is totally not ok to just leave this empty, please think of something
     } finally {
       setLoading(false);
     }
@@ -92,9 +91,7 @@ export default function Post({
     getFile(params.difficulty, params.locale, params.subfolder, params.slug);
   }, [params]);
   if (loading) return <p className="mt-20 text-center">Loading...</p>;
-  if (error)
-    return <p className="mt-20 text-center text-red-500">Error: {error}</p>;
-  if (!file) return <p className="mt-20 text-center">Post not found.</p>;
+  if (!file) notFound();
 
   return (
     <div className="my-28">
