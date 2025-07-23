@@ -1,0 +1,96 @@
+---
+title: "Quantum Sensing"
+subtitle: "Quantum Sensing: Measuring the Immeasurable with Quantum Precision(medium)"
+author: "Sudharshan Kannan"
+date: "2025-06-21"
+---
+
+# Quantum Sensing: Measuring the Immeasurable with Quantum Precision
+
+## 1. Introduction
+
+Quantum sensing is transforming how we measure the world. From detecting gravitational waves to imaging the brain’s magnetic activity or measuring extremely small forces, quantum sensors go far beyond the limits of traditional measurement tools.
+
+Quantum sensing uses unique quantum effects like superposition (where things can be in multiple states at once), entanglement (where particles are linked even at a distance), and squeezing (reducing uncertainty in one property at the expense of another) to achieve higher sensitivity and precision. These ideas are part of quantum metrology, which sets the ultimate limits for how precisely we can measure things.
+
+With regular (classical) probes, measurement precision improves as $1/\sqrt{N}$, where $N$ is the number of particles. Quantum-enhanced probes, like entangled or squeezed states, can reach the so-called Heisenberg limit, where precision scales as $1/N$. This means quantum sensors can be much more sensitive than classical ones[^1][^2].
+
+## 2. Theoretical Foundations
+
+### a) Quantum Cramér–Rao Bound (QCRB)
+
+The QCRB tells us the best possible precision for measuring a parameter using quantum systems. The more quantum resources (like entanglement) you use, the better your measurement can be.
+
+- **Standard Quantum Limit (SQL):** With independent particles, the best you can do is:
+  $$
+  \Delta\theta \geq \frac{1}{\sqrt{N}}
+  $$
+- **Heisenberg Limit:** With quantum tricks (like entanglement), you can do even better:
+  $$
+  \Delta\theta \geq \frac{1}{N}
+  $$
+
+![SQLvsHL](../../../assets/qsensing/SQLvsHL.png)
+
+### b) Quantum Resources: Entanglement and Squeezing
+
+Entanglement allows particles to work together, improving measurement precision. Squeezed states reduce uncertainty in one property (like position) while increasing it in another (like momentum), letting us measure some things more accurately than classical physics allows.
+
+![Squeezed Uncertainty Ellipse vs Circular Uncertainty](../../../assets/qsensing/elvcq.png)
+
+## 3. Experimental Techniques
+
+### Optical Interferometry
+
+A Mach-Zehnder interferometer splits a beam of light into two paths. If something changes the length of one path, the beams combine differently at the end, and we can measure that change very precisely. Using squeezed light can further improve the sensitivity.
+
+![Mach Zehnder](https://www.researchgate.net/profile/Lasmar-Zakarya/publication/327134479/figure/fig1/AS:661970038571029@1534837364494/Schematic-representation-of-Mach-Zehnder-interferometer.png)  
+*Source: [researchgate.net](https://www.researchgate.net/profile/Lasmar-Zakarya/publication/327134479/figure/fig1/AS:661970038571029@1534837364494/Schematic-representation-of-Mach-Zehnder-interferometer.png)*
+
+### Ramsey Interferometry
+
+Ramsey interferometry is used in atomic clocks. Atoms are put into a superposition, allowed to evolve, and then measured. The way the atoms change tells us about time or frequency very precisely.
+
+![Ramsey](../../../assets/qsensing/ramsey.png)
+
+### NV Centers in Diamond
+
+A nitrogen-vacancy (NV) center is a tiny defect in a diamond. It acts like a tiny magnet and can sense very small magnetic fields. Scientists use lasers to read out the state of the NV center and measure magnetic fields with high precision.
+
+![NV Centre](../../../assets/qsensing/nvc.png)
+
+### Trapped Ions and Cold Atoms
+
+Ions or atoms are trapped and cooled. Their quantum states are used to measure things like gravity or acceleration very accurately. Cold atom interferometers, for example, can measure gravitational acceleration by splitting and recombining atomic clouds.
+
+![Trapped Ion and Cold Atom](https://www.researchgate.net/profile/Shuhua-Yan/publication/349981186/figure/fig1/AS:11431281181772004@1692154482403/a-Schematic-setup-and-the-time-sequence-of-the-cold-atom-interferometer-The-total-time.png)  
+*Source: [researchgate.net](https://www.researchgate.net/profile/Shuhua-Yan/publication/349981186/figure/fig1/AS:11431281181772004@1692154482403/a-Schematic-setup-and-the-time-sequence-of-the-cold-atom-interferometer-The-total-time.png)*
+
+### Optomechanics
+
+Optomechanical sensors use tiny mirrors or cantilevers that move when forces act on them. By shining light on them and measuring how the light changes, we can detect very small movements. Squeezed light can help reach even better sensitivity.
+
+## 4. Real-World Applications
+
+- **Gravitational Wave Detection:** Quantum sensors help detect ripples in space caused by huge cosmic events. Squeezed light is used in LIGO to improve sensitivity.
+  
+  ![LIGO Schematic](https://www.researchgate.net/publication/348563734/figure/download/fig1/AS:981166995812369@1610939849413/Schematic-diagram-of-Advanced-LIGO-showing-the-main-optics-nominal-power-levels-and.png)  
+  *Source: [researchgate.net](https://www.researchgate.net/publication/348563734/figure/download/fig1/AS:981166995812369@1610939849413/Schematic-diagram-of-Advanced-LIGO-showing-the-main-optics-nominal-power-levels-and.png)*
+
+- **Atomic Clocks:** The most accurate clocks use quantum effects to keep time for GPS and science.
+- **Magnetometry:** Quantum sensors can see tiny magnetic fields, useful in medicine and electronics.
+- **Inertial Navigation:** Quantum sensors help with navigation in planes and submarines, even without GPS.
+- **Medical Imaging:** Quantum sensors might one day help scan the brain or heart without big machines.
+- **Gravimetry:** Measuring tiny changes in gravity helps find water underground or study earthquakes.
+- **Materials Science:** Quantum sensors can look inside materials to see how they work at the smallest scales.
+
+## 5. Challenges
+
+Quantum sensors are extremely sensitive, but this also makes them vulnerable to noise and disturbances from the environment. Keeping quantum effects alive is hard, and making these sensors small, affordable, and practical for everyday use is still a challenge. Many quantum sensors require special conditions, like very low temperatures or vacuum, which makes them harder to use outside the lab.
+
+---
+
+## References
+
+[^1]: Giovannetti, V., Lloyd, S., & Maccone, L. (2011). Advances in quantum metrology. *Nature Photonics*, 5(4), 222–229.  
+[^2]: Degen, C. L., Reinhard, F., & Cappellaro, P. (2017). Quantum sensing. *Reviews of Modern
