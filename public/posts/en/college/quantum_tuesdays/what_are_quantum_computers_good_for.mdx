@@ -53,9 +53,10 @@ $$
 
 ![quadratic equation graph](/posts/assets/quantum_tuesdays/what_are_qc_good_for/quadratic_en.png)
 
-Computer scientists rank the "quality" of an algorithm for finding a solution for a given problem, via something called a `time complexity`. All this means is that for the size of a given dataset (that can be the length of a number, or the amount of boxes you're trying to pack into the trunk of your car) it would take you a certain amount of time to find the solution. And how how long it takes you exactly is explained by the time complexity of your solution, which is often represented as a quadratic function or an exponential one.
+For each algorithm computer scientists come up with to solve a problem, they also figure out the so called `time complexity` of these algorithms. This means that for a given size of a dataset, the time complexity of the algorithm will tell you how much time it's going to need to find the solution when using that algorithm.
+Alongside the time complexity there's also a special property of these algorithms called the `space complexity`, which is a measure for how much memory on your actual computer you're going to need in order to store all the temporary data, until you calculate the final result. This property can also be described by function, but won't be further discussed as we're only going to be looking at the time complexity. 
 
-For simplicity sake, let's say that if the time complexity of your algorithm for the problem that you're trying to solve (which needs to rigorously calculated by your friendly neighborhood computer scientist/mathematician/etc.) has the form of a quadratic function we see at the top, then the algorithm is `efficient`. But if the algorithm has the time complexity that looks more like an exponential function, it is deemed `unefficient` and we need to look for a better one.
+For simplicity sake, let's say that if the time complexity of the algorithm we're using for our problem has the form of polynomial function, then the algorithm is deemed `efficient`. If it looks anything like an exponential function, we deem it `unefficient` and we need to look for a better and more efficient one.
 
 ---
 
@@ -73,7 +74,7 @@ It's only when we look at harder problems that quantum computers become interest
 As mentioned previously, `NP-Problems` are a set of problems which are even harder than P-problems.
 However this doesn't mean that we can't check if a solution is correct, which is eventually what characterizes NP-problems.
 
-NP-problems are defined by the fact that they are very hard to solve, but if we were to be given a solution, we can easily and `efficiently` (here meaning in polynomial time) verify if that solution is correct.
+NP-problems are defined by the fact that they are very hard to solve, but if we were to be given a solution, we can easily and `efficiently` verify if that solution is correct.
 
 ---
 
@@ -114,7 +115,7 @@ _Source: [Wikipedia BQP](https://en.wikipedia.org/wiki/BQP)_
 But what actually allows quantum computers to outperform classical computers when it comes to solving these complicated problems?
 At the end it all boils down to two things:
 
-1. Quantum computers use qubits instead of bits in classical computers which can be in a [superposition](https://wiqi.info/en/posts/entries/highschool/superposition) between the classical 1 and 0, allowing for a wider range of possibilities and manipulation when it comes to computing (read more [here](https://wiqi.info/en/posts/quantum_tuesdays/highschool/Bits%20To%20Qubits)). One caviat however is that after performing a [measurement](https://wiqi.info/en/posts/entries/highschool/measurement) on the qubit it can only take up either 1 or 0 as its value, leading one to believe that it's the same as a classical bit. However that's where the second property comes in.
+1. Quantum computers use qubits instead of bits in classical computers which can be in a [superposition](https://wiqi.info/en/posts/entries/college/superposition) between the classical 1 and 0, allowing for a wider range of possibilities and manipulation when it comes to computing (read more [here](https://wiqi.info/en/posts/quantum_tuesdays/college/Bits%20To%20Qubits)). One caviat however is that after performing a [measurement](https://wiqi.info/en/posts/entries/college/measurement) on the qubit it can only take up either 1 or 0 as its value, leading one to believe that it's the same as a classical bit. However that's where the second property comes in.
 
 2. The state of one qubit can interfere with another qubit, leading to what's called destructive/constructive interference, where the two states overlap and can lead to the two states cancelling or amplifying each other. Good quantum algorithms make use of this property two reduce all the possibilities of solutions that are not correct and bring forth the ones which are, thus getting the edge on classical computers.
 
