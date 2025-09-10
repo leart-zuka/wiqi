@@ -24,9 +24,10 @@ However, approximations always lack in accuracy to a certain degree, and perhaps
 This is where quantum computers offer a quantum advantage. Classical computers struggle, since electrons don't exist in only one state at the same time, because they are inherently quantum, and thereby not natively representable in binary logic. However, a qubit behaves according to quantum mechanics and thereby displayes the same phenomenas. Since qubits can be in a superposition state, they can simply store the state of an electron. Similarly, qubits can be entagled with each other and accurately mimick the entaglement of electrons in a molecule.
 For example, a [study](https://pubmed.ncbi.nlm.nih.gov/21812485/) showed, that simulating 8 caffeine molecules in water took 50 days on a 8-core Linux cluster. And this is still a very moderate system - far from the molecular complexity that real breakthroughs in drug discovery or materials science demand. For reference, compare the size of a caffeine molecule (top) to the cytostatic (medication used to treat cancer) compound Paclitaxel (bottom):
 ![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
-_Caffeine_ 
+
+_Caffeine_ (Source: [Wikipedia](https://en.m.wikipedia.org/wiki/File:Caffeine_%281%29_3D_ball.png))
 ![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
-_Taxol_ 
+_Taxol_  (Source: [Wikipedia](https://en.m.wikipedia.org/wiki/File:Taxol%28Paclitaxel%293D.png))
 
 Simulating even larger molecules, such as complex biomolecules or metal-organic frameworks is beyond the classical methods.
 Quantum computers have the capability to overcome all of these challenges, enabling the accurate simulation of quantum systems which are currently intractable. For example, recent developments in quantum algorithms highlighted a quantum computers strength regarding solving the quantum many-body problem, which occurs in a variety of areas within quantum chemistry. For instance, in electronic structure theory algorithms such as the Quantum Phase Estimation Algorithm (QPEA) exist to determine ground state energies of molecular systems.
@@ -37,7 +38,7 @@ $$
 H = \sum_{pq} h_{pq} a_p^\dagger a_q + \frac{1}{2} \sum_{pqrs} h_{pqrs} a_p^\dagger a_q^\dagger a_r a_s
 $$
 
-Here, $ a*p^\dagger $ and $ a_q $ are the fermionic creation and annihilation operators, and the coefficients $ h*{pq} $ and $ h\_{pqrs} $ correspond to one- and two-electron integrals that depend on the molecular orbitals. This Hamiltonian encodes all the interactions within the molecule and is the object that quantum algorithms like QPEA or the Variational Quantum Eigensolver (VQE) attempt to solve.
+Here, $ a_p^\dagger $ and $ a_q $ are the fermionic creation and annihilation operators, and the coefficients $ h_{pq} $ and $ h_{pqrs} $ correspond to one- and two-electron integrals that depend on the molecular orbitals. This Hamiltonian encodes all the interactions within the molecule and is the object that quantum algorithms like QPEA or the Variational Quantum Eigensolver (VQE) attempt to solve.
 In the case of VQE, the algorithm prepares a trial quantum state $ \psi(\theta) $ and evaluates the expectation value of the Hamiltonian:
 
 $$
@@ -54,6 +55,12 @@ a_j = \frac{1}{2} (X_j + i Y_j) \bigotimes_{k=0}^{j-1} Z_k, \quad
 a_j^\dagger = \frac{1}{2} (X_j - i Y_j) \bigotimes_{k=0}^{j-1} Z_k.
 $$
 
-This representation is exact in one dimension and commonly used for simulating fermionic systems like molecules or lattice models. Other mapping techniques include the parity mapping and the Bravyi-Kitaev scheme. Once the mapping is suitable, an algorithm, such as the ones mentioned, prepare the quantum state or electronic density of the molecule of interest and compute the averages from the qubits of the quantum circuits in order to retrieve simulation parameters.
+This representation is exact in one dimension and commonly used for simulating fermionic systems like molecules or lattice models. Here, $X_j$, $Y_j$, and $Z_k$ are Pauli matrices acting on qubit $j$ or $k$, and the tensor product $\bigotimes$ ensures correct ordering and anticommutation properties required for fermions. Other mapping techniques include the parity mapping and the Bravyi-Kitaev scheme. Once the mapping is suitable, an algorithm, such as the ones mentioned, prepare the quantum state or electronic density of the molecule of interest and compute the averages from the qubits of the quantum circuits in order to retrieve simulation parameters.
 
 Quantum simulations hold the potential to revolutionise the modeling of molecules and their interactions for both drug discovery, as well as material science. These are two of the most promising applications of quantum computing in the near future.
+
+### Sources:
+
+[Quantum computing and chemistry](https://www.cell.com/cell-reports-physical-science/fulltext/S2666-3864(24)00383-7?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2666386424003837%3Fshowall%3Dtrue)
+Weidman, Jared D. et al.
+Cell Reports Physical Science, Volume 5, Issue 9, 102105
