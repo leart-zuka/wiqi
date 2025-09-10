@@ -3,12 +3,11 @@ import type { Metadata } from "next";
 import "../globals.css";
 import "katex/dist/katex.min.css";
 import { NextIntlClientProvider } from "next-intl";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { getMessages } from "next-intl/server";
 import { CookiesProvider } from "next-client-cookies/server";
 import EasterEgg from "../components/EasterEgg";
-
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -61,7 +60,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} />
           <EasterEgg />
-          <div className="flex-grow bg-gray-50 pb-10 text-black dark:bg-gray-900 dark:text-gray-100">
+          <div className="flex-grow bg-gray-50 text-black">
             <CookiesProvider>
               {children}
               <Analytics />
