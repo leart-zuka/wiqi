@@ -21,27 +21,34 @@ Interference of waves was experimentally demonstrated by Young through his **dou
 
 ## Interference in Quantum Mechanics:
 
-Quantum interference describes the interference of quanta on each other, while in a superposition state. When a quantum system, like a qubit, is in a superposition of states, it behaves similarly to a wave, with each state corresponding to a different probability amplitude. The different probability amplitudes can interfere with each other, causing the same interference phenomena (constructive and deconstructive), leading to an increased or decreased probability of measuring one of the states.
-The probability distribution for detecting a quantum particle when two paths are available (as in the double-slit experiment) can be expressed as the sum of three contributions: the probability from path A alone, the probability from path B alone, and an interference term that arises from the superposition of the two paths:
+Imagine a particle that can reach a screen in two different ways, from **source A** or from **source B**. In quantum physics, we describe each possibility with a _wave_, called a **wavefunction**:
+
+$$ \Psi_A(x,t) \quad\text{and}\quad \Psi_B(x,t) $$
+
+To find the chance of detecting the particle at some position x, we add the two waves first, then take the square of the total size:
+
+$$ P(x) = |\Psi_A(x,t)+\Psi_B(x,t)|^2 $$
+
+When we expand this, we get three terms:
+
+$$ P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 + 2 \operatorname{Re}(\Psi_A^\*(x,t) \Psi_B(x,t)) $$
 
 $$ |\Psi_A(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source A.
 
 $$ |\Psi_B(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source B.
 
-and the interference term $$ \Psi*A(x,t)\Psi_B^*(x,t) + \Psi*A^*(x,t)\Psi_B(x,t) $$. This interference contribution results from the wave-like nature of quantum states.
-Using complex conjugates, this term can also be rewritten as:
+and the interference term
 
 $$
 2 \operatorname{Re} (\Psi_A^*(x,t) \Psi_B(x,t))
 $$
 
-This thereby implies, that if interference is present, the total probability distribution $$ P(x) $$ will show constructive and destructive interference patterns. However, if interference is absent (for example, if the paths are distinguishable), then the interference term disappears, and the total probability is simply the sum of individual probabilities:
+It comes from the wavelike nature of particles and is responsible for the bright and dark bands seen in experiments like the double slit. If we can tell which path the particle took (or if something destroys the phase relationship), the interference term vanishes.
+Then the total probability is just the sum of the two individual ones:
 
-$$
-P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2
-$$
+$$ P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 $$
 
-This equation is a fundamental result in quantum mechanics, demonstrating how probability amplitudes interfere rather than probabilities themselves.
+However, if the interference term stays, we get an interference pattern.
 
 ## Applications in Quantum Computing
 

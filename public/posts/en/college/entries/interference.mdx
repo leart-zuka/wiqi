@@ -22,20 +22,18 @@ Interference of waves was experimentally demonstrated by Young through his **dou
 ## Interference in Quantum Mechanics:
 
 Quantum interference describes the interference of quanta on each other, while in a superposition state. When a quantum system, like a qubit, is in a superposition of states, it behaves similarly to a wave, with each state corresponding to a different probability amplitude. The different probability amplitudes can interfere with each other, causing the same interference phenomena (constructive and deconstructive), leading to an increased or decreased probability of measuring one of the states.
-The probability distribution for detecting a quantum particle when two paths are available (as in the double-slit experiment) can be expressed as the sum of three contributions: the probability from path A alone, the probability from path B alone, and an interference term that arises from the superposition of the two paths:
+When conducting experiments, such as the double-slit experiment, a quantum particle can take multiple paths to our screen. For example, through path A and path B. The probability of this particle can then be expressed as the sum of three contributions: the probability from path A alone, the probability from path B alone, and an interference term that arises from the superposition of the two paths:
 
 $$ |\Psi_A(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source A.
 
 $$ |\Psi_B(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source B.
 
-and the interference term $$ \Psi*A(x,t)\Psi_B^*(x,t) + \Psi*A^*(x,t)\Psi_B(x,t) $$. This interference contribution results from the wave-like nature of quantum states.
-Using complex conjugates, this term can also be rewritten as:
+and the interference term $$ 2 \operatorname{Re} (\Psi_A^\*(x,t) \Psi_B(x,t)) $$. This interference contribution results from the wave-like nature of quantum states.
+This thereby implies, that if interference is present, the total probability distribution $$ P(x) $$ will show constructive and destructive interference patterns:
 
-$$
-2 \operatorname{Re} (\Psi_A^*(x,t) \Psi_B(x,t))
-$$
+$$ P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 + 2 \operatorname{Re}(\Psi_A^\*(x,t) \Psi_B(x,t)) $$
 
-This thereby implies, that if interference is present, the total probability distribution $$ P(x) $$ will show constructive and destructive interference patterns. However, if interference is absent (for example, if the paths are distinguishable), then the interference term disappears, and the total probability is simply the sum of individual probabilities:
+However, if interference is absent (for example, if the paths are distinguishable), then the interference term disappears, and the total probability is simply the sum of individual probabilities:
 
 $$
 P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2
@@ -147,6 +145,10 @@ $$
 
 If $$f(0) = f(1)$$ (**constant**), the amplitudes for $$|1\rangle$$ cancel destructively, leaving the first qubit in $$|0\rangle$$.
 If $$f(0) \neq f(1)$$ (**balanced**), the amplitudes for $$|0\rangle$$ cancel destructively, leaving the first qubit in $$|1\rangle$$.
+
+As an example, imagine we have a coin that might be **real** (it has two different sides: “heads” and “tails”) or **fake** (both sides show the same pattern).  
+A classical computer would need to _query_ the coin at least twice — once for each side — to determine its authenticity.  
+A quantum computer, however, can make a single query by sending a **superposition** of “heads” and “tails,” and use interference to decide whether the coin is real or fake.
 
 Thus, the algorithm distinguishes constant from balanced functions with a single query. The key mechanism is quantum interference:
 the probability amplitudes corresponding to different computational paths interfere constructively or destructively, eliminating one outcome
