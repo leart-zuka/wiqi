@@ -12,13 +12,12 @@ Zeit und Geld. Angesichts der jüngsten Ereignisse wie dem Ausbruch von SARS-CoV
 steigenden Kosten für die Einführung eines neuen Medikaments steigt die Nachfrage nach Fortschritten in der
 Entwicklung weiter zunehmen.
 
-Das computergestützte Arzneimitteldesign (CADD) hat sich zu einem transformativen Bereich entwickelt, der das Potenzial hat
-mit dem Potenzial, die Arzneimittelforschung zu revolutionieren, da es die oben genannten Herausforderungen angeht. Traditionell,
-kann es 10-15 Jahre dauern, bis ein neues Medikament auf den Markt kommt. Dieser Prozess kann erheblich
-Dieser Prozess kann durch die Kombination von CADD mit Technologien wie Künstlicher Intelligenz (KI) erheblich beschleunigt werden,
-Maschinelles Lernen (ML) und Deep Learning (DL). Mit CADD wird der In-silico-Testprozess beschleunigt, so dass
+Das computergestützte Arzneimitteldesign (CADD) hat sich zu einem transformativen Bereich entwickelt, der das Potenzial hat, die Arzneimittelforschung zu revolutionieren, da es die oben genannten Herausforderungen minimiert. Traditionell,
+kann es 10-15 Jahre dauern, bis ein neues Medikament auf den Markt kommt.
+Dieser Prozess kann durch die Kombination von CADD mit Technologien wie Künstlicher Intelligenz (KI),
+Maschinelles Lernen (ML) und Deep Learning (DL) erheblich beschleunigt werden. Mit CADD wird der In-silico-Testprozess vorangetrieben, so dass
 Vorhersage von Wechselwirkungen zwischen Wirkstoff und Zielorganismus, die Bewertung der Toxizität und die Optimierung des Wirkstoffdesigns in einer
-einer virtuellen Umgebung zu optimieren. Dadurch sind In-silico-Tests zu einem leistungsstarken Werkzeug für die frühe Phase der
+virtuellen Umgebung optimiert werden kann. Dadurch sind In-silico-Tests zu einem leistungsstarken Werkzeug für die frühe Phase der
 Arzneimittelentdeckung geworden. Darüber hinaus verringert sie die Abhängigkeit von traditionellen, zeitaufwändigen
 Tierversuchen und trägt damit auch zu ethischen Grundsätzen bei. Derselbe Vorteil zeigt sich auch bei der Anwendung von Berechnungsmethoden in der Materialwissenschaft. Trotz der laufenden Entwicklungen auf diesem Gebiet sind den herkömmlichen Computern jedoch aufgrund der Natur eines Moleküls nach wie vor Grenzen gesetzt.
 Das Verhalten eines Moleküls hängt von seinen Elektronen ab, die von Quantennatur sind und den Regeln der Quantenmechanik unterliegen. Dazu gehören Phänomene wie Überlagerung und Verschränkung. Diese Quanteneigenschaften machen es für klassische, binäre Computer schwierig, Moleküle zu simulieren, da umfangreiche Berechnungen erforderlich sind.
@@ -27,13 +26,13 @@ Klassische Computer müssen die gesamte Quantenwellenfunktion abbilden und alle 
 Da diese Aufgaben sowohl ressourcen- als auch zeitintensiv sind, werden sie durch Annäherungen mit Hilfe der Dichtefunktionaltheorie (DFT) oder Hartree-Fock durchgeführt.
 
 Näherungsrechnungen sind jedoch immer bis zu einem gewissen Grad ungenau, und die vielleicht größte Herausforderung ist die exponentielle Komplexität eines Quantensystems. Diese Berechnungen können nur für eine sehr kleine Anzahl von Atomen durchgeführt werden, bevor die exponentielle Skalierung die erforderlichen Rechenressourcen auf ein nicht mehr machbares Maß ansteigen lässt.
-An dieser Stelle bieten Quantencomputer einen Quantenvorteil. Klassische Computer haben es schwer, da Elektronen nicht in nur einem Zustand gleichzeitig existieren können, weil sie von Natur aus quantenhaft sind und daher nicht in binärer Logik dargestellt werden können. Ein Qubit verhält sich jedoch gemäß der Quantenmechanik und zeigt daher die gleichen Phänomene. Da Qubits in einem Überlagerungszustand sein können, können sie einfach den Zustand eines Elektrons speichern. In ähnlicher Weise können Qubits miteinander verschränkt werden und die Verschränkung von Elektronen in einem Molekül genau nachahmen.
+An dieser Stelle bieten Quantencomputer einen Quantenvorteil. Klassische Computer haben es schwer, da Elektronen nicht nur in mehreren Zuständen gleichzeitig existieren können, weil sie von Natur aus quantenhaft sind, was wiederum nicht in binärer Logik dargestellt werden kann. Ein Qubit verhält sich jedoch gemäß der Quantenmechanik und zeigt daher die gleichen Phänomene. Es kann somit in einem Überlagerungszustand sein, wodurch es einfach den Zustand eines Elektrons speichern kann. In ähnlicher Weise können Qubits miteinander verschränkt werden und die Verschränkung von Elektronen in einem Molekül genau nachahmen.
 
-So wurde beispielsweise eine [Studie](https://pubmed.ncbi.nlm.nih.gov/21812485/) zeigte, dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
+So zeigt beispielsweise eine [Studie](https://pubmed.ncbi.nlm.nih.gov/21812485/), dass die Simulation von 8 Koffeinmolekülen in Wasser 50 Tage auf einem 8-Core-Linux-Cluster benötigte. Und das ist immer noch ein sehr bescheidenes System - weit entfernt von der molekularen Komplexität, die für echte Durchbrüche in der Arzneimittelforschung oder Materialwissenschaft erforderlich ist. Vergleichen Sie zum Beispiel die Größe eines Koffeinmoleküls (oben) mit dem Zytostatikum (Medikament zur Behandlung von Krebs) Paclitaxel (unten):
 ![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
-_Coffein_
+_Coffein_ (Quelle: [Wikipedia](https://en.m.wikipedia.org/wiki/File:Caffeine_%281%29_3D_ball.png))
 ![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
-_Taxol_
+_Taxol_ (Quelle: [Wikipedia](https://en.m.wikipedia.org/wiki/File:Taxol%28Paclitaxel%293D.png))
 
 Die Simulation noch größerer Moleküle, wie z. B. komplexer Biomoleküle oder metallorganischer Gerüste, übersteigt die Möglichkeiten klassischer Methoden.
 Quantencomputer sind in der Lage, all diese Herausforderungen zu bewältigen und ermöglichen die genaue Simulation von Quantensystemen, die derzeit noch unlösbar sind. Jüngste Entwicklungen im Bereich der Quantenalgorithmen haben beispielsweise die Stärke von Quantencomputern bei der Lösung des Quanten-Vielteilchen-Problems hervorgehoben, das in einer Vielzahl von Bereichen der Quantenchemie auftritt. In der Elektronenstrukturtheorie gibt es beispielsweise Algorithmen wie den Quantum Phase Estimation Algorithm (QPEA) zur Bestimmung der Grundzustandsenergien von Molekülsystemen.
@@ -44,7 +43,7 @@ $$
 H = \sum_{pq} h_{pq} a_p^\dagger a_q + \frac{1}{2} \sum_{pqrs} h_{pqrs} a_p^\dagger a_q^\dagger a_r a_s
 $$
 
-Hier sind $ a*p^\dagger $ und $ a_q $ die fermionischen Schöpfungs- und Annihilationsoperatoren, und die Koeffizienten $ h*{pq} $ und $ h\_{pqrs} $ entsprechen Ein- und Zwei-Elektronen-Integralen, die von den Molekülorbitalen abhängen. Dieser Hamiltonian kodiert alle Wechselwirkungen innerhalb des Moleküls und ist das Objekt, das Quantenalgorithmen wie QPEA oder der Variational Quantum Eigensolver (VQE) zu lösen versuchen.
+Hier sind $ a_p^\dagger $ und $ a_q $ die fermionischen Schöpfungs- und Annihilationsoperatoren, und die Koeffizienten $ h_{pq} $ und $ h_{pqrs} $ entsprechen Ein- und Zwei-Elektronen-Integralen, die von den Molekülorbitalen abhängen. Dieser Hamiltonian kodiert alle Wechselwirkungen innerhalb des Moleküls und ist das Objekt, das Quantenalgorithmen wie QPEA oder der Variational Quantum Eigensolver (VQE) zu lösen versuchen.
 
 Im Falle von VQE bereitet der Algorithmus einen Versuchsquantenzustand vor und wertet den Erwartungswert des Hamiltonian aus:
 
@@ -62,6 +61,12 @@ a_j = \frac{1}{2} (X_j + i Y_j) \bigotimes_{k=0}^{j-1} Z_k, \quad
 a_j^\dagger = \frac{1}{2} (X_j - i Y_j) \bigotimes_{k=0}^{j-1} Z_k.
 $$
 
-Diese Darstellung ist in einer Dimension exakt und wird häufig für die Simulation fermionischer Systeme wie Moleküle oder Gittermodelle verwendet. Andere Abbildungsmethoden sind die Paritätsabbildung und das Bravyi-Kitaev-Schema. Sobald die Zuordnung geeignet ist, bereitet ein Algorithmus, wie die genannten, den Quantenzustand oder die elektronische Dichte des Moleküls von Interesse vor und berechnet die Mittelwerte aus den Qubits der Quantenschaltungen, um Simulationsparameter zu erhalten.
+Diese Darstellung ist in einer Dimension exakt und wird häufig für die Simulation fermionischer Systeme wie Moleküle oder Gittermodelle verwendet. Hier sind $X_j$, $Y_j$ und $Z_k$ Pauli-Matrizen, die auf das Qubit $j$ oder $k$ wirken, und das Tensorprodukt $\bigotimes$ gewährleistet die für Fermionen erforderlichen Eigenschaften der korrekten Reihenfolge und Antikommutativität. Andere Abbildungsmethoden sind die Paritätsabbildung und das Bravyi-Kitaev-Schema. Sobald die Zuordnung geeignet ist, bereitet ein Algorithmus, wie die genannten, den Quantenzustand oder die elektronische Dichte des Moleküls von Interesse vor und berechnet die Mittelwerte aus den Qubits der Quantenschaltungen, um Simulationsparameter zu erhalten.
 
 Quantensimulationen haben das Potenzial, die Modellierung von Molekülen und ihren Wechselwirkungen sowohl für die Arzneimittelforschung als auch für die Materialwissenschaft zu revolutionieren. Dies sind zwei der vielversprechendsten Anwendungen der Quantencomputer in der Zukunft.
+
+### Quellen:
+
+[Quantum computing and chemistry](https://www.cell.com/cell-reports-physical-science/fulltext/S2666-3864(24)00383-7?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2666386424003837%3Fshowall%3Dtrue)
+Weidman, Jared D. et al.
+Cell Reports Physical Science, Volume 5, Issue 9, 102105
