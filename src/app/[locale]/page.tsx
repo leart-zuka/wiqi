@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { useAnimation, useScroll, useTransform } from "motion/react";
-import { ChevronRight, Sparkles, BookOpen, GraduationCap } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import QuantumMap from "../components/QuantumMap";
 import Link from "next/link";
@@ -21,8 +20,6 @@ interface HomeProps {
 
 export default function Home({ params }: HomeProps) {
   const t = useTranslations("Index");
-  const images = ["superpos.svg", "|1>.svg", "|0>.svg", "main.svg"];
-  const [visibleIndex, setVisibleIndex] = useState<number>(0);
   const controls = useAnimation();
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -52,27 +49,6 @@ export default function Home({ params }: HomeProps) {
     },
   ];
 
-  // Beispiel-Features
-  const features = [
-    {
-      icon: <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />,
-      title: t("Interactive Learning 1"),
-      description: t("Interactive Learning 2"),
-    },
-    {
-      icon: (
-        <GraduationCap className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-      ),
-      title: t("Structured Courses 1"),
-      description: t("Structured Courses 2"),
-    },
-    {
-      icon: <Sparkles className="h-6 w-6 text-rose-600 dark:text-rose-400" />,
-      title: t("Real-world Applications 1"),
-      description: t("Real-world Applications 2"),
-    },
-  ];
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -90,7 +66,7 @@ export default function Home({ params }: HomeProps) {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 10,
       },
@@ -99,12 +75,12 @@ export default function Home({ params }: HomeProps) {
 
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: (i: number) => ({
+    visible: (i: number = 1) => ({
       y: 0,
       opacity: 1,
       transition: {
         delay: i * 0.1,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 10,
       },
@@ -112,9 +88,9 @@ export default function Home({ params }: HomeProps) {
   };
 
   return (
-    <div className="bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
+    <div className="scroll-snap-container bg-gradient-to-b from-slate-50 to-white dark:from-black dark:to-slate-900">
       {/* Hero Section - Full Width with Animated Background */}
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+      <section className="scroll-snap-section relative flex h-screen w-full items-center justify-center overflow-hidden">
         {/* Quantum Background with hover effect */}
         <div className="absolute inset-0 h-full w-full">
           {/* DarkModeAwareBackground: A dynamic background component that switches between light and dark wave animations based on the user's theme preference. 
@@ -158,7 +134,7 @@ export default function Home({ params }: HomeProps) {
                 variants={itemVariants}
               >
                 <Link
-                  href={`/${params.locale}/posts/quantum_tuesdays`}
+                  href={`/${params.locale}/quantum-map`}
                   className="w-full sm:w-auto"
                 >
                   <motion.div
@@ -225,77 +201,22 @@ export default function Home({ params }: HomeProps) {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gray-50/50 py-16 dark:bg-slate-900/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="mb-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="mb-4 bg-purple-100 text-purple-800 hover:bg-purple-100 dark:bg-purple-900/30 dark:text-purple-300 dark:hover:bg-purple-900/30">
-              {t("features")}
-            </Badge>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-              {t("why choose us")}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-              {t("features description")}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <motion.div
-                  whileHover={{
-                    y: -5,
-                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card className="h-full border-gray-200 bg-white/70 backdrop-blur-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-slate-800/70">
-                    <CardContent className="p-6">
-                      <motion.div
-                        className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"
-                        whileHover={{ rotate: 5, scale: 1.1 }}
-                      >
-                        {feature.icon}
-                      </motion.div>
-                      <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-
+      <div className="hidden md:block">
+        <section className="scroll-snap-section h-screen bg-gray-50/50 py-16 dark:bg-slate-900/50">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            className="h-full w-full"
           >
             <QuantumMap />
           </motion.div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Difficulty Levels Section */}
-      <section className="py-16">
+      <section className="scroll-snap-section py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <motion.div
@@ -358,6 +279,14 @@ export default function Home({ params }: HomeProps) {
           </div>
         </div>
       </section>
+
+      {/* 
+        IMPORTANT: This empty scroll-snap-section is required for Edge browser compatibility.
+        Edge has issues with scroll-snap when the last section doesn't have the scroll-snap-section class.
+        DO NOT DELETE this section - it ensures proper scroll behavior across all browsers.
+        The footer is handled by the layout component to avoid duplication.
+      */}
+      <section className="scroll-snap-section"></section>
     </div>
   );
 }

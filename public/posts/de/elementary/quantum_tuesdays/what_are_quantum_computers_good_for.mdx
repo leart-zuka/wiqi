@@ -1,0 +1,120 @@
+---
+title: "Quantencomputer - wofür sind sie zu gebrauchen?"
+subtitle: "Erläuterung der tatsächlichen Stärken von Quantencomputern und möglicher anderer Anwendungen"
+author: "Leart Zuka"
+date: "2025-06-10"
+---
+
+# Intro
+
+Ich bin sicher, jeder hat schon einmal etwas über Quantencomputer gehört und darüber, wie sie die Welt der modernen Computer verändern werden.
+Sei es Ihr Lieblingskonzern, der in letzter Zeit seine Zehen in dieses Gebiet getaucht hat, um sich einen Vorsprung vor seinen Konkurrenten zu verschaffen und den Shareholder Value weiter zu maximieren, oder jemand in Ihrer Familie, der darüber gelesen hat und plötzlich nicht mehr aufhören kann, darüber zu reden.
+Jeder scheint von dieser neuen Technologie und ihrer Entwicklung fasziniert zu sein, aber was hat es mit dem ganzen Hype wirklich auf sich?
+Wird in Zukunft jeder vor seinem neuen, glänzenden Quantencomputer sitzen, um seine nächste Quanten-E-Mail an seinen Chef zu schreiben, der durch KI ersetzt wurde?
+Dieser Blogbeitrag soll Ihnen dabei helfen, zu verstehen, inwiefern Quantencomputer für uns wirklich von Nutzen sein werden und ob sie dem Hype gerecht werden.
+
+---
+
+Der größte Teil dieses Beitrags basiert auf dem erstaunlichen Artikel von Scott Aaronson mit dem Titel „The Limits of Quantum Computers“ aus dem Jahr 2008, den Sie [hier](https://www.scientificamerican.com/article/the-limits-of-quantum-computers/) lesen können. Obwohl er manchmal recht technisch ist, empfehle ich Ihnen, ihn zu lesen, da er sehr schön erklärt, wie Quantencomputer uns helfen werden, einige sehr schwierige Probleme zu lösen.
+
+---
+
+# Welche Probleme müssen gelöst werden?
+
+Computer, sei es Ihr persönlicher Computer (PC) zu Hause oder eine große Ansammlung sehr leistungsfähiger Computermodule, die alle in einem Kasten, einem so genannten Serverschrank, untergebracht sind, erfüllen einen Zweck: Sie sollen eine Aufgabe erfüllen, und zwar auf sehr schnelle Weise.
+
+Diese Aufgabe kann darin bestehen, Ihr E-Mail-Programm zu öffnen, um Ihre nächste E-Mail zu versenden, ein lustiges Katzenvideo im Internet anzusehen, das Ihnen Ihre Tante geschickt hat, oder das neueste Videospiel zu spielen. Diese Aufgaben sind jedoch nicht die, mit denen wir uns beschäftigen werden.
+Die Aufgaben, von denen ich spreche, zielen auf die Lösung von Problemen in weitaus größerem Maßstab ab. Hier kommen unsere leistungsstarken Server (oder wenn es viele davon gibt, nennen wir sie „High Computing Cluster“ oder „HCP“) oder in Zukunft unsere Quantencomputer ins Spiel.
+
+Haben Sie sich jemals gefragt, ob es bei einer Straßenkarte mit einer bestimmten Anzahl von Städten möglich ist, von jeder beliebigen Stadt zu jeder anderen beliebigen Stadt zu gelangen?
+Oder ein Problem, das so alt ist wie die Zeit: Ihr Vater bittet Sie, das Auto für die nächste Reise zu packen. Wie kann man nun am effizientesten alle Koffer in den Kofferraum packen?
+Hier ist eine noch bizarrere Aufgabe: Wie sieht die kürzeste Route aus, auf der Sie eine bestimmte Anzahl von Städten genau einmal besuchen und zum Ausgangspunkt zurückkehren können?
+
+Diese Probleme sind es, mit denen sich Informatiker beschäftigen, und sie lassen sich in 3 Kategorien einteilen:
+
+- **P-Probleme**: Die einfachsten von allen und diejenigen, die moderne Computer effizient lösen können
+- **NP-Probleme**: Probleme, bei denen es sehr schwierig ist, eine Lösung zu finden, die aber leicht überprüft werden kann, wenn sie gefunden wurde
+- **NP-Vollständige Probleme**: Die schwierigsten der Gruppe, aber interessant, da die Suche nach einer effizienten Lösung für alle NP-Probleme zu einer effizienten Lösung führen würde
+
+Aber was bedeuten diese Namen eigentlich und was bedeutet es für Sie, das Problem _effizient_ lösen zu können?
+
+## P-Probleme
+
+Der Name „P-Probleme“ rührt von der Tatsache her, dass diese Probleme in sogenannter „polynomieller Zeit“ gelöst werden können.
+Ein Informatikproblem in dieser polynomiellen Zeit lösen zu können, bedeutet, dass wir es „effizient“ lösen können.
+
+---
+
+Wie sie sich vielleicht aus dem Mathematikunterricht erinnern können, ist "polynomial" eine Kombination aus _poly-_ (was "viele" bedeutet) und _-nomial_ (hier: was "Term" bedeutet), was "viele Terme" ergibt. Eines der einfachsten Polynome ist die quadratische Gleichung, die die folgende Form hat:
+
+$$
+y = x^2
+$$
+
+![quadratic equation graph](/posts/assets/quantum_tuesdays/what_are_qc_good_for/quadratic_de.png)
+
+Informatiker bewerten die „Qualität“ eines [Algorithmus](https://wiqi.info/de/posts/entries/elementary/algorithms) zur Lösung eines bestimmten Problems anhand der sogenannten „Zeitkomplexität“. Das bedeutet, dass ein Algorithmus für die Größe eines bestimmten Datensatzes (z. B. die Länge einer Zahl oder die Anzahl der Kartons, die Sie in den Kofferraum Ihres Autos packen wollen) eine bestimmte Zeit braucht, um die Lösung zu finden. Wie lange Sie genau brauchen, wird durch die Zeitkomplexität Ihrer Lösung erklärt, die oft als quadratische Funktion oder Exponentialfunktion dargestellt wird.
+
+Der Einfachheit halber nehmen wir an, dass die Zeitkomplexität Ihres Algorithmus für das Problem, das Sie zu lösen versuchen (die von Ihrem freundlichen Informatiker/Mathematiker/etc. aus der Nachbarschaft genau berechnet werden muss), die Form einer quadratischen Funktion hat, wie wir sie oben sehen, dann ist der Algorithmus `effizient`. Wenn der Algorithmus jedoch eine Zeitkomplexität hat, die eher einer Exponentialfunktion ähnelt, gilt er als `ineffizient` und wir müssen nach einem besseren Algorithmus suchen.
+
+---
+
+Mit unseren heutigen Supercomputern sind wir in der Lage, diese Art von Problemen anzugehen und sie tatsächlich effizient genug zu lösen. Quantencomputer sind ebenfalls in der Lage, diese Probleme effizient zu lösen, sind aber nicht besonders interessant, da wir bereits eine Reihe von Algorithmen haben, für die wir die besonderen Eigenschaften dieser Quantencomputer, die sehr schwer und teuer zu betreiben sind, nicht benötigen.
+
+Quantencomputer werden erst dann interessant, wenn wir uns mit schwierigeren Problemen beschäftigen.
+
+## NP-Probleme
+
+Wie bereits erwähnt, sind „NP-Probleme“ eine Reihe von Problemen, die noch schwieriger sind als P-Probleme.
+Das bedeutet jedoch nicht, dass wir nicht überprüfen können, ob eine Lösung korrekt ist, was schließlich das Charakteristikum von NP-Problemen ist.
+
+Denn wenn wir die Lösung finden, können wir schnell überprüfen, ob sie richtig ist.
+
+---
+
+Wenn man eine Zahl erhält, die das Produkt zweier Primzahlen ist, welche sind diese Primzahlen?
+
+Kann leicht überprüft werden, da wir die beiden Zahlen einfach multiplizieren und prüfen können, ob sie die Ausgangszahl ergeben
+
+---
+
+Aber gehen wir nun einen Schritt weiter zu den schwierigsten Problemen.
+
+## NP-vollständige Probleme
+
+NP-vollständige Probleme sind die schwierigsten der hier aufgeführten.
+Aber sie kommen mit einem netten Zusatz: Wenn ein NP-komplettes Problem effizient gelöst werden kann, kann man diese Lösung nehmen und so anpassen, dass sie jedes NP-Problem lösen kann.
+
+# Wo passen Quantencomputer hinein?
+
+Wie wir gerade gesehen haben, sind nur die P-Probleme von klassischen Computern wirklich effizient lösbar.
+Quantencomputer hingegen sind auch dazu in der Lage und gehen sogar noch etwas weiter, wie man hier sehen kann:
+
+![BQP complexity diagram](/posts/assets/quantum_tuesdays/what_are_qc_good_for/BQP.png)
+_Quelle: [Wikipedia BQP](https://en.wikipedia.org/wiki/BQP)_
+
+Aber haben Quantencomputer tatsächlich einen Vorteil gegenüber klassischen Computern?
+Am Ende läuft alles auf zwei Dinge hinaus:
+
+1. Quantencomputer verwenden Qubits anstelle von Bits wie wir sie aus klassischen Computern kennen. Diese sind in Lage sich in einem Stadium der [Superposition](https://wiqi.info/de/posts/entries/elementary/superposition) zwischen den klassischen 1 und 0 zu befinden, was eine breitere Palette von Möglichkeiten und Manipulationen beim Rechnen ermöglicht (lesen Sie mehr [hier](https://wiqi.info/de/posts/quantum_tuesdays/elementary/Bits%20To%20Qubits)). Ein Nachteil ist jedoch, dass das Qubit nach einer [Messung](https://wiqi.info/de/posts/entries/elementary/measurement) nur wiederum 1 oder 0 als Wert annehmen kann, was zu der Annahme führen könnte, dass es sich von einem klassisches Bit nicht unterscheidet. Hier kommt jedoch die zweite Eigenschaft ins Spiel.
+
+2. Der Zustand eines Qubits kann mit einem anderen Qubit interferieren, was zu einer so genannten destruktiven/konstruktiven Interferenz führt, bei der sich die beiden Zustände überlappen und sich gegenseitig aufheben oder verstärken können. Gute Quantenalgorithmen machen sich diese Eigenschaft zunutze, indem sie alle Möglichkeiten von Lösungen, die nicht korrekt sind, reduzieren und die korrekten Lösungen hervorbringen.
+
+# Ausblick
+
+Heißt das also, dass Quantencomputer jedes Problem lösen können, das Wissenschaftler ihnen vorlegen, und ein Ergebnis ausspucken, für dessen Berechnung unsere größten Supercomputer Äonen brauchen würden? Höchstwahrscheinlich nicht. Quantencomputer sind in ihrer Funktionsweise sehr speziell, so dass es auch sehr schwierig ist, ihre volle Leistung zu nutzen. Ganz abgesehen davon, dass der Betrieb eines Quantencomputers unglaublich schwierig ist, da diese von allen Umgebungsgeräuschen (z. B. Vibrationen) abgeschirmt werden muss, in vielen Fällen auf sehr niedrige Temperaturen gekühlt werden muss und vieles andere mehr.
+
+Das heißt aber nicht, dass sie ihren Zweck nicht erfüllen. Im Jahr 1994 entwickelte der amerikanische Mathematiker Peter Shor einen genialen Algorithmus namens „Shors Algorithmus“, mit dem man schnell die Primfaktoren einer Zahl finden kann. Dieser Algorithmus ist sehr nützlich, wenn es um Datenverschlüsselungstechniken geht. Er ist auch einer der wenigen Quantenalgorithmen, die im Vergleich zu den besten klassischen Algorithmen tatsächlich einen Geschwindigkeitsvorteil bieten.
+
+Darüber hinaus gibt es eine Reihe von Anwendungen der Quantentechnologien, die von vielen übersehen werden und die hier erwähnt werden sollen:
+
+- Quantenkryptographie zur Ver- und Entschlüsselung von Daten, die zu Protokollen führt, die praktisch unknackbar sind
+- Simulation von Quantensystemen, die es uns ermöglicht, die Funktionsweise von Quantensystemen wie Proteinen oder Transistoren, die immer kleiner werden, besser zu verstehen
+- Quantensensoren, die die Tatsache nutzen, dass diese Quantensysteme so empfindlich auf ihre Umgebung reagieren, um Bilder auf kleinstem Raum aufzulösen
+- und vieles mehr...
+
+Auch wenn es noch einige Zeit dauern wird, bis diese Quantencomputer tatsächlich verwendet werden und nicht nur als ein Spielzeug für Wissenschaftler und große Unternehmen angesehen werden, mag es für einige eine Enttäuschung sein, dass diese neuen Arten von Computern für die Allgemeinheit kaum von direktem Nutzen sein werden. An dieser Stelle möchte ich die folgende Analogie anbringen:
+
+`Auch wenn ein Formel-1-Auto bewiesen hat, dass es jede Rennstrecke in kürzester Zeit bewältigen kann, würde es auf normalen Straßen, die aus Schlaglöchern, Bordsteinen, Ampeln und vielem mehr bestehen, wahrscheinlich sehr schwer bzw. praktisch unmöglich zu fahren sein.`
+
+Quantencomputer können sehr nützlich sein, aber sie werden nicht in der Lage sein, Ihre Lieblingsvideospiele besser zu spielen oder Ihnen zu helfen, Ihre E-Mails schneller zu schreiben. Es geht darum, die richtige Art von Werkzeug für die richtige Aufgabe zu wählen.
