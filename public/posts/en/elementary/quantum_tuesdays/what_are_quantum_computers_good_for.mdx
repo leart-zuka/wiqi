@@ -7,7 +7,7 @@ date: "2025-06-10"
 
 # Intro
 
-I'm sure everyone's heard a few things about quantum computers and how they are going to shape the world of modern computation.
+I'm sure everyone's heard a few things about quantum computers and how they are going to shape the world of modern computers.
 Be it your favorite big corporation that in recent times has dipped its toes into the field in order to get the edge on their competitors to further maximise shareholder value or someone in your family that has read about it and all of a sudden can't stop talking about it.
 Everyone seems to be faszinated by this new kind of technology and where it's going to head, but what's all the hype really on about?
 Is everyone in the future going to be sitting in front of their new shiny quantum computer in order to write their next quantum email to their boss that's been replaced by AI?
@@ -21,20 +21,20 @@ Most of this post is going to be based on the amazing article by Scott Aaronson 
 
 # What problems need to be solved?
 
-Computers, be it your personal computer (`PC`) at home or a large amalgamation of very powerful computing modules all stuck together in a box known as a server rack, serve a purpose: complete a task and do so in a very fast manner.
+Computers, be it your personal computer (`PC`) at home or a large amalgamation of very powerfull computing modules all stuck together in a box known as a server rack, serve a purpose: complete a task and do so in a very fast manner.
 
-These tasks can be: opening up your email program to send out your next email, watch a funny cat video on the internet that your aunt has sent you, or play the latest shiny video game. These tasks however are not the one's we'll be concerning ourselves with.
-The tasks I'm talking about, are catered towards solving problems on a far larger scale, which is where our powerful `servers` (or if there are a lot of them we call them `high computing clusters` or `HCPs`) or in the future our `quantum computers` come into play.
+These tasks can be: opening up your email program to send out your next email, watch a funny cat video on the internet that your aunt has sent you, or play the latest shiny video game. These tasks however are not the one's we'll be conserning ourselves with.
+The tasks I'm talking about, are catered towards solving problems on a far larger scale, which is where our powerful servers (or if there are a lot of them we call them `high computing clusters` or `HCPs`) or in the future our quantum computers come into play.
 
 Have you ever wondered if given a roadmap of a certain amount of towns, if it's possible to get from any random town to any other random town?
-Or a problem as old as time: your father asks you to pack up the car for the next road trip. Now what's the most efficient way to put all suitcases inside of the trunk of the car.
-Here is a more bizarre one: given another roadmap, what's the shortest possible route that you can take in order visit a certain amount of cities exactly once and return to the starting point?
+Or a problem as old as time, your father asks you to pack up the car for the next road trip. Now what's the most efficient way to put all suitcases inside of the trunk of the car.
+Here is a more bizarre one: given another roadmap, what's the shortest possible route for you to visit a certain amount of cities exactly once and return to the starting point?
 
 These problems are the one's that computer scientists concern themselves with and they can be grouped into 3 categories:
 
 - **P Problems**: The easiest out of the bunch and the ones modern computers can solve efficiently
 - **NP Problems**: Problems for which finding a solution is very hard but can be easily verified if found
-- **NP-Complete Problems**: A sub-category of the NP problems and the hardest out of the bunch, but interesting since finding an efficient solution for would provide and efficient solution to all NP Problems
+- **NP-Complete Problems**: The hardest out of the bunch, but interesting since finding an efficient solution for woudl provide and efficient solution to all NP Problems
 
 But what do these names actually mean and what does it mean for you to be able to _solve the problem efficiently_?
 
@@ -45,18 +45,21 @@ Being able to solve any computer science problem in this polynomial time means t
 
 ---
 
-What it actually means to `be able to solve a problem in polynomial time` requires a lot of math and can be ommited here, since we just want to be able to understand what kind of problems we're dealing with.
+As you may remember from your math class, `polynomial` is a combination of _poly-_ (meaning "many") and _-nomial_ (here: meaning "term"), thus resulting in "many terms". One of the simplest polynomials is the quadratic equation which has the following form:
 
-If you want to get a better insight though, check out the more in-depth version of this [blog post](https://wiqi.info/en/posts/quantum_tuesdays/highschool/what_are_quantum_computers_good_for).
+$$
+y = x^2
+$$
+
+![quadratic equation graph](/posts/assets/quantum_tuesdays/what_are_qc_good_for/quadratic_en.png)
+
+Computer scientists rank the "quality" of an algorithm for finding a solution for a given problem, via something called a `time complexity`. All this means is that for the size of a given dataset (that can be the length of a number, or the amount of boxes you're trying to pack into the trunk of your car) it would take you a certain amount of time to find the solution. And how how long it takes you exactly is explained by the time complexity of your solution, which is often represented as a quadratic function or an exponential one.
+
+For simplicty sake, let's say that if the time complexity of your algorithm for the problem that you're trying to solve (which needs to rigorously calculated by your friendly neighborhood computer scientist/mathematician/etc.) has the form of a quadratic function we see at the top, then the algorithm is `efficient`. But if the algorithm has the time complexity that looks more like an exponential function, it is deemed `unefficient` and we need to look for a better one.
 
 ---
 
-With our current supercomputers we are able to tackle these types of problems and actually solve them efficiently enough. Quantum computers are also able to find solutions to these problems efficiently, but are not super interesting in this case as we already have a set of algorithms for which we don't need the special properties of these quantum computers. Furthermore utilizing quantum computers for these kinds of problems would also be unfit, as the types of computers are very laborious and expensive to keep runnning.
-
-Examples include:
-
-- Search algorithms that find the shortest path on a map e.g. the [Dijkstra algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-- Checking if a number is a [prime number](https://www.cse.iitk.ac.in/users/manindra/algebra/primality_v6.pdf)
+With our current supercomputers we are able to tackle these types of problems and actually solve them efficiently enough. Quantum computers are also able to find solutions to these problems efficiently, but are not super interesting as we already have a set of algorithms for which we don't need the special properties of these quantum computers which are very hard and expensive to keep runnning.
 
 It's only when we look at harder problems that quantum computers become interesting.
 
@@ -65,35 +68,22 @@ It's only when we look at harder problems that quantum computers become interest
 As mentioned previously, `NP-Problems` are a set of problems which are even harder than P-problems.
 However this doesn't mean that we can't check if a solution is correct, which is eventually what characterizes NP-problems.
 
-NP-problems are defined by the fact that they are very hard to solve, but if we were to be given a solution, we can easily and `efficiently` (here meaning in polynomial time, again if you want to read more about this check out the post [here](https://wiqi.info/en/posts/quantum_tuesdays/highschool/what_are_quantum_computers_good_for)) verify if that solution is correct.
+As finding the solution, allows us to quickly verify if it is the correct one.
 
 ---
-
-### For example:
 
 If given a number that is the product of two prime numbers, what are those prime numbers?
 
-Can easily be verified as we can simply multiply the two numbers and check if they give us the initial number.
+Can easily be verified as we can simply multiply the two numbers and check if they give us the initial number
 
 ---
-
-Examples include:
-
-- **[Integer/Prime factorization](https://stackoverflow.com/questions/20074207/why-is-factoring-in-np-but-not-in-p)**: The act of deconstructing a number into smaller integers/prime numbers that when multiplied together form the initial number
-- Pairing multiple employees up together in groups and making sure that they will get along based off of moral and ethics. Hard to find a general solution on how to pair them up, easy to verify if pairs will get along.
 
 But let's now go one step further to the hardest of problems.
 
 ## NP-Complete Problems
 
-NP-Complete problems are the hardest out of the bunch listed here. They are in essence the hardest of the NP problems.
-
-**But they come with a nice little addition**: If any NP-complete problem can be solved efficiently, one would be able to take that solution and adjust in a way so that it is able to solve any NP-problem.
-
-Examples include:
-
-- [Sudoku](https://www.researchgate.net/publication/238205893_Complexity_and_Completeness_of_Finding_Another_Solution_and_Its_Application_to_Puzzles), just regular old Sudoku
-- **[Travelling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem#Complexity_of_approximation)**: "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
+NP-Complete problems are the hardest out of the bunch listed here.
+But they come with a nice addition: if any NP-complete problem can be solved efficiently, one would be able to take that solution and adjust in a way so that it is able to solve any NP-problem.
 
 # Where do Quantum Computers fit in
 
@@ -103,7 +93,7 @@ Quantum computers on the other hand, are able to do so aswell and go a bit furth
 ![BQP complexity diagram](/posts/assets/quantum_tuesdays/what_are_qc_good_for/BQP.png)
 _Source: [Wikipedia BQP](https://en.wikipedia.org/wiki/BQP)_
 
-But what actually allows quantum computers to outperform classical computers when it comes to solving these complicated problems?
+But is it that quantum computers actually have the edge over classical computers?
 At the end it all boils down to two things:
 
 1. Quantum computers use qubits instead of bits in classical computers which can be in a [superposition](https://wiqi.info/en/posts/entries/elementary/superposition) between the classical 1 and 0, allowing for a wider range of possibilities and manipulation when it comes to computing (read more [here](https://wiqi.info/en/posts/quantum_tuesdays/elementary/Bits%20To%20Qubits)). One caviat however is that after performing a [measurement](https://wiqi.info/en/posts/entries/elementary/measurement) on the qubit it can only take up either 1 or 0 as its value, leading one to believe that it's the same as a classical bit. However that's where the second property comes in.
@@ -112,25 +102,19 @@ At the end it all boils down to two things:
 
 # Outlook
 
-So does that mean that quantum computers will solve any problems that scientists throw at them and spit out a result which would take our biggest supercomputers eons to calculate? Most likely not. 
+So does that mean that quantum computers will solve any problems that scientists throw at them and spit out an result which would take our biggest supercomputers eons to calculate? Most likely not. Quantum computers are very special in the way they operate, making it also very difficult utilize their full powers. This is also excluding the fact that running a quantum computer is incredibly difficult due to the fact that it needs to be properly detached from any environmental noise (like vibrations), in a lot of cases be cooled to very low temperatures, and a lot of other things.
 
-Quantum computers are very special in the way they operate, making it also very difficult to utilize their full potential. This is also excluding the fact that running a quantum computer is incredibly difficult due to the fact that it needs to be properly detached from any environmental noise (like mechanical vibrations, thermal fluctuations,...), in a lot of cases be cooled to very low temperatures, and a lot of other things.
+This doesn't mean that they don't serve their purpose. In 1994, the American mathematician Peter Shor came up with a genius algorithm called `Shor's algorithm`, which allows one to quickly find the prime factors of a number. This comes in super handy when talking about data encryption techniques. It is also one of the few quantum algorithms that actually provide a speedup compared to the best classical algorithms.
 
-This doesn't mean that they don't serve their purpose. In 1994, the American mathematician Peter Shor came up with a genius algorithm called `Shor's algorithm`, which allows one to quickly find the prime factors of a number, aka solving the `Prime factorization` problem which is a classic NP-problem as we've seen before. This comes in super handy when talking about data encryption techniques. It is also one of the few quantum algorithms that actually provide a speedup compared to the best classical algorithms.
+Furthermore there are a lot of applications of quantum technologies which a lot of people leave out, which shall be mentioned here:
 
-Furthermore there are a lot of other applications of quantum technologies which a lot of people leave out, which shall be mentioned here:
+- Quantumcryptographry for encryption and decryption of data, giving rise to protocols which are practically unbreakable
+- Simluation of quantum systems, allowing us to better understand the workings of quantum systems like proteins or transistors which get smaller and smaller
+- Quantumsensors, which use the fact that these quantum systems are so sensitive to their environment in order to resolve images on the smallest of scales
+- much more...
 
-- **Quantumcryptographry** for encryption and decryption of data, giving rise to protocols which are practically unbreakable
-- **Simulation of quantum systems**, allowing us to better understand the workings of quantum systems like proteins or transistors which get smaller and smaller
-- **Quantumsensors**, which use the fact that these quantum systems are so sensitive to their environment in order to resolve e.g. images on the smallest of scales
-- and much much more...
-
-Even though it will take some time before these quantum computers are not just a toy for researchers to play around with, it may come at a dissappointment to some that these new types of computers would be of hardly any use for the general public directly. Which is where I'd like to make the following analogy:
+Even though it will take some time for these quantum computers to actually transition away from a fancy toy for researchers and big corporations to gain better understanding of this new technology, it may come at a dissappointment to some that these new types of computers would be of hardly any use for the general public directly. Which is where I'd like to make the following analogy:
 
 `Even though a Formula 1 car has shown that it can go around any track in the quickest of times, driving it around on the regular streets which consists of potholes, curbs, traffic lights and much, much more, would probably give you a very hard time to say the least.`
 
 Quantum computers can be very useful, however they won't be able to play your favorite video games better or help you write your email faster. It's about choosing the right kind of tool for the right job.
-
-### Source:
-
-Aaronson, S. (2024, February 20). The limits of quantum computers. [Scientific American.](https://www.scientificamerican.com/article/the-limits-of-quantum-computers/)
