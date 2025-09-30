@@ -11,7 +11,7 @@ Optimization is everywhere. From planning pizza delivery routes to deciding how 
 
 Imagine you have a physical map in your hands and you are trying to find the shortest way to visit 3 friends, all in random locations in the city. It should be a pretty easy problem to solve if you give it some thought, because there would only be a handful of routes to choose from. But if you were visiting 10 friends, you'd find it super difficult to solve. And you would probably give up right away if it was 100 friends.
 
-So as problems grow bigger and complicated, the number of possible answers explodes. When trying to plan a route to visit 100 friends, there are more possible paths than there are atoms in the universe. Trying to find the shortest path in this case is nearly impossible. This is where **classical computers** start to struggle. Not even (classical) supercomputers can solve complex optimization problems quickly. Could quantum computers help us here? That's what **quantum optimization** is all about: using the strange rules of quantum mechanics to explore huge sets of solutions more cleverly than classical computers.
+So as problems grow bigger and more complicated, the number of possible answers explodes. When trying to plan a route to visit 100 friends, there are more possible paths than there are atoms in the universe. Trying to find the shortest path in this case is nearly impossible. This is where **classical computers** start to struggle. Not even (classical) supercomputers can solve complex optimization problems quickly. Could quantum computers help us here? That's what **quantum optimization** is all about: using the strange rules of quantum mechanics to explore huge sets of solutions more cleverly than classical computers.
 
 ## What is Quantum Optimization?
 
@@ -21,10 +21,10 @@ But now you might ask, 'How do we find the ground state though?'. There are mult
 
 ## Quantum Annealing
 
-This is infact a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. But the particle could accidentally land in a shallow valley without any knowledge of other deeper valleys. In **quantum annealing** however, the particle can also_tunnel_ through hills instead of climbing over them, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the true lowest point (global minimum) without going through the entire landscape.
+This is infact a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you'd let a particle bounce around this landscape and hope it settles in the deepest valley. But the particle could accidentally land in a shallow valley without any knowledge of other deeper valleys. In **quantum annealing** however, the particle can also _tunnel_ through hills instead of climbing over them, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the true lowest point (global minimum) without going through the entire landscape.
 
 ![A diagram showing a particle tunneling through a hill in a landscape, representing Quantum Annealing.](/posts/assets/entries/qoptimisation/quantum_annealing.webp)
-*Image Source: [The Vessel Project](https://www.vesselproject.io/essays/life-through-quantum-annealing)*
+_Image Source: [The Vessel Project](https://www.vesselproject.io/essays/life-through-quantum-annealing)_
 
 ## Visualizing the Quantum Advantage
 
@@ -32,21 +32,22 @@ A classical computer is like a hiker who walks downhill and stops in the first v
 
 ## Applications
 
-This problem solving ability of Quantum Optimisation has impacted many fields where problems are too complex for brute-force classical approaches generally used. Finding the shortest route could help delivery companies save fuel and cost. Finding the perfect mix of investments from thousands of options could help you in Finance.
+This problem solving ability of Quantum Optimisation has impacted many fields where problems are too complex for the almost brute-force like nature of classical algorithms approaches. Finding e.g. the shortest route could help delivery companies save fuel and cost. Finding the perfect mix of investments from thousands of options could help investment brokers maximise theirs shareholders' value.
 
 ## Challenges
 
-However, the journey isn't easy. Today's quantum computers face big hurdles. The building blocks, qubits, are fragile and we don't have enough of them yet. The slightest vibration or temperature change in the environment (called decoherence) can cause them to "pop" and lose their quantum information. Training the algorithms can also be incredibly difficult, and it's still hard to prove when they are truly better than our best classical computers.
+However, the journey isn't as easy as outlined here. Today's quantum computers face big hurdles. The building blocks, qubits, are fragile and we don't have enough of them yet. The slightest mechanical vibration or temperature change in the environment can cause them to "pop" and lose their quantum information, which physicists call **decoherence**. Training the algorithms can also be incredibly difficult, and it's still hard to prove when they are truly better than our best classical computers.
 
 ## Conclusion
 
 Quantum optimization blends physics and computing. As technology matures, it might unlock solutions classical methods can't reach. Quantum optimization doesn't just accelerate known methods it uses new physical phenomena like tunneling and entanglement to redefine problem solving strategies. The full potential, particularly for large-scale problems, remains an open question driving current research.
 
 ## References
-* Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
-* Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
-* Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)
-* McClean et al., [arXiv:1803.11173](https://arxiv.org/abs/1803.11173)
-* Lucas, A., [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
-* D-Wave Systems, https://docs.dwavesys.com/docs/latest/c_qubo.html
-* Morales, Samuel, "Life Through Quantum Annealing," The Vessel Project, https://www.vesselproject.io/essays/life-through-quantum-annealing (Image Source)
+
+- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
+- Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)
+- McClean et al., [arXiv:1803.11173](https://arxiv.org/abs/1803.11173)
+- Lucas, A., [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
+- D-Wave Systems, https://docs.dwavesys.com/docs/latest/c_qubo.html
+- Morales, Samuel, "Life Through Quantum Annealing," The Vessel Project, https://www.vesselproject.io/essays/life-through-quantum-annealing (Image Source)
