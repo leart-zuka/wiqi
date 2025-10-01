@@ -36,8 +36,7 @@ export default function Post({
           {t("average reading time")}: ~{readingTime} m
         </p>
       </div>
-
-      <article className="prose mx-auto block max-w-2xl px-6 text-justify text-black dark:text-white dark:prose-headings:text-white dark:prose-a:text-white dark:prose-strong:text-white dark:prose-code:bg-slate-500 dark:prose-code:text-white dark:prose-li:marker:text-white">
+      <article className="prose mx-auto block max-w-2xl px-6 text-justify text-black dark:text-white dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:border-gray-400 dark:prose-blockquote:text-white dark:prose-strong:text-white dark:prose-code:bg-slate-500 dark:prose-code:text-white dark:prose-li:marker:text-white">
         <ReactMarkdown
           remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[
