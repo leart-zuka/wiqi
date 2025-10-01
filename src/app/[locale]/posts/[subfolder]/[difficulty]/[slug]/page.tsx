@@ -76,12 +76,12 @@ export default function Post({
         // Calculate reading time
         const wordCount = wordsCounter(data.post.content).wordsCount;
         setReadingTime(Math.ceil(wordCount / 200));
-        setError(null);
       } else {
         notFound();
       }
     } catch (err: any) {
-      // This is totally not ok to just leave this empty, please think of something
+      console.error("Failed to fetch blog post:", err);
+      notFound();
     } finally {
       setLoading(false);
     }
