@@ -129,10 +129,14 @@ export default function NotFound() {
       );
     };
 
-    const interval = setInterval(animate, 16);
+    // Start animation loop using requestAnimationFrame
+    const runAnimation = () => {
+      animate();
+      animationRef.current = requestAnimationFrame(runAnimation);
+    };
+    animationRef.current = requestAnimationFrame(runAnimation);
 
     return () => {
-      clearInterval(interval);
       window.removeEventListener("mousemove", handleMouseMove);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useCookies } from "next-client-cookies";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,31 +26,34 @@ export default function Page({
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   // Get the files
-  const getFiles = async (difficulty: string, locale: string) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/getBlogPosts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          language: locale,
-          difficulty: difficulty,
-          folder: [params.subfolder],
-        }),
-      });
-      const data = await response.json();
-      setFiles(data.files);
-      setFilteredFiles(data.files);
-    } catch (err) {
-      console.debug(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const getFiles = useCallback(
+    async (difficulty: string, locale: string) => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("/api/getBlogPosts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            language: locale,
+            difficulty: difficulty,
+            folder: [params.subfolder],
+          }),
+        });
+        const data = await response.json();
+        setFiles(data.files);
+        setFilteredFiles(data.files);
+      } catch (err) {
+        console.debug(err);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [params.subfolder],
+  );
 
   useEffect(() => {
     getFiles(difficulty, params.locale);
-  }, [difficulty, params.locale]);
+  }, [difficulty, params.locale, getFiles]);
 
   // Sort files by date (newest first)
   useEffect(() => {

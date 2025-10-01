@@ -54,6 +54,8 @@
  *   routing logic, potentially suggesting posts that don't exist in the file system.
  * - This can cause users to click on suggestions and get another 404 error.
  * - The API now validates file existence, but edge cases may still occur.
+ *   TODO: Investigate and enumerate possible edge cases where file existence validation may fail (e.g., race conditions, file system sync delays, or permission issues).
+ *   Mitigation: Consider adding logging for failed suggestions, monitoring for repeated 404s after suggestions, and providing user feedback mechanisms to report broken links.
  */
 
 import { NextRequest, NextResponse } from "next/server";

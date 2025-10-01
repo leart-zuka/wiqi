@@ -60,8 +60,13 @@ export default function NotFound() {
       );
     };
 
-    const interval = setInterval(animate, 60);
-    return () => clearInterval(interval);
+    let animationFrameId: number;
+    const animationLoop = () => {
+      animate();
+      animationFrameId = requestAnimationFrame(animationLoop);
+    };
+    animationFrameId = requestAnimationFrame(animationLoop);
+    return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
   return (

@@ -79,7 +79,7 @@ export default function Post({
       } else {
         notFound();
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Failed to fetch blog post:", err);
       notFound();
     } finally {
