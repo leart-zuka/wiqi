@@ -15,18 +15,22 @@ However, even powerful classical computers have limits. That’s because molecul
 
 For example, a [study](https://pubmed.ncbi.nlm.nih.gov/21812485/) showed, that simulating 8 caffeine molecules in water took 50 days on a 8-core Linux cluster. And this is still a very moderate system - far from the molecular complexity that real breakthroughs in drug discovery or materials science demand. For reference, compare the size of a caffeine molecule (top) to the cytostatic (medication used to treat cancer) compound Paclitaxel (bottom):
 ![Caffeine Molecule](/posts/assets/entries/qchemistry/caffeinemol.png)
-_Caffeine_
+_Caffeine_ (Source: [Wikipedia](https://en.m.wikipedia.org/wiki/File:Caffeine_%281%29_3D_ball.png))
 ![Taxol Molecule](/posts/assets/entries/qchemistry/taxolmol.png)
-_Taxol_
+_Taxol_ (Source: [Wikipedia](https://en.m.wikipedia.org/wiki/File:Taxol%28Paclitaxel%293D.png))
 
 To deal with this, scientists use approximations, like Density Functional Theory (DFT, a ground-state theory, based on the Hohenberg-Kohn theorem, which defines the energy of a system as a functional of the electronic density), but these aren't always accurate, especially for large systems.
 
 This is where quantum computers come in. Instead of using bits (in a classical computer), they use qubits, which behave like electrons because they follow the same quantum rules. Qubits can be in multiple states at once and get entangled — just like electrons in a molecule.
 
-For example, one study showed that simulating just 8 caffeine molecules in water took 50 days using a classical computer cluster. But more complex molecules, like cancer drugs, are far beyond what classical methods can handle well.
-
 Quantum computers are designed to simulate quantum systems directly. In quantum chemistry, scientists use an equation called the Schrödinger equation, which includes the Hamiltonian that describes the total energy of a molecule. To run this on a quantum computer, the equation needs to be transformed so it fits into a quantum circuit and provides the most useful information.
 
-Once this transformation is done, quantum algorithms like VQE (Variational Quantum Eigensolver) or QPE (Quantum Phase Estimation) can simulate the molecule’s behavior by calculating things like ground state energy.
+Once this transformation is done, quantum algorithms like VQE (Variational Quantum Eigensolver) or QPE (Quantum Phase Estimation) can simulate the molecule’s behavior by calculating things like the ground state energy of the system.
 
 Quantum simulations will soon help us design better medicines and materials faster than ever before.
+
+### Sources:
+
+[Quantum computing and chemistry](https://www.cell.com/cell-reports-physical-science/fulltext/S2666-3864(24)00383-7?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2666386424003837%3Fshowall%3Dtrue)
+Weidman, Jared D. et al.
+Cell Reports Physical Science, Volume 5, Issue 9, 102105
