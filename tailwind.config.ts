@@ -25,9 +25,62 @@ const config: Config = {
             "background-position": "0% 50%",
           },
         },
+        "spin-slow": {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        "spin-slow-reverse": {
+          "0%": {
+            transform: "rotate(360deg)",
+          },
+          "100%": {
+            transform: "rotate(0deg)",
+          },
+        },
+        "bounce-slow": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+            "animation-timing-function": "cubic-bezier(0.8,0,1,1)",
+          },
+          "50%": {
+            transform: "translateY(-25%)",
+            "animation-timing-function": "cubic-bezier(0,0,0.2,1)",
+          },
+        },
+        "pulse-slow": {
+          "0%, 100%": {
+            opacity: "1",
+          },
+          "50%": {
+            opacity: "0.3",
+          },
+        },
+        "float-equation": {
+          "0%": {
+            transform: "translateY(0px) rotate(0deg)",
+            opacity: "0.2",
+          },
+          "50%": {
+            transform: "translateY(-20px) rotate(1deg)",
+            opacity: "0.4",
+          },
+          "100%": {
+            transform: "translateY(0px) rotate(0deg)",
+            opacity: "0.2",
+          },
+        },
       },
       animation: {
         "gradient-x": "gradient-x 10s ease infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
+        "spin-slow-reverse": "spin-slow-reverse 12s linear infinite",
+        "bounce-slow": "bounce-slow 3s ease-in-out infinite",
+        "pulse-slow": "pulse-slow 4s ease-in-out infinite",
+        "float-equation": "float-equation 6s ease-in-out infinite",
       },
       borderRadius: {
         lg: "var(--radius)",
