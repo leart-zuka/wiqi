@@ -1,56 +1,88 @@
 ---
 title: "Superposition"
-subtitle: "The concept of Superposition and its history (middle)"
+subtitle: "Quantum superposition, how nature multitasks"
 author: "Helena Iréne Köhler"
-date: "2025-01-08"
+date: "2025-10-02"
+tags: ["highschool", "quantum", "superposition"]
+summary: "A story driven tour of superposition, from double slits to Stern–Gerlach, and why it matters for qubits, sensors, and communication."
 ---
 
-## Corpuscular Theory of Light:
+You can almost hear the snow crunching under Erwin Schrödinger’s boots. It is the
+winter of 1925 in the Swiss Alps, and he is hiking with a notebook inside his coat,
+thinking about a simple yet stubborn question, what is a particle, really, when the
+experiments keep drawing wave patterns around it. Down in Göttingen, Werner
+Heisenberg has already had his hay fever revelations on the island of Helgoland. In
+Leiden and Copenhagen, letters zip back and forth. It is like a detective story
+where our culprit is hiding in plain sight, superposition, and everyone is circling
+the clues.
 
-Sir Isaac Newton's corpuscular theory was one of the earliest scientific attempts at understanding the nature of light. In optics, the corpuscular theory of light states that light is made up of small discrete particles called "corpuscles" (little particles). These particles were believed to be emitted from luminous sources and travel in straight lines at a finite speed. Their interactions with materials such as surfaces, walls, and the human eye were assumed to follow Newtonian physics. Isaac Newton laid the foundations for this theory through his work in optics. Newton rejected the wave theory of light, primarily because he believed, that unlike sound, light lacked diffraction characteristics. He argued, that one can hear sound from behind an obstacle, but can’t see light, thus supporting his view that light is a particle.
-However, his model had key limitations. For example, Newton proposed that different colors of light resulted from corpuscles of various sizes, but this claim could not be experimentally validated. Moreover, phenomena like interference—where light waves can constructively and destructively interfere with each other—could not be explained by his particle theory. This lack of an explanation for wave-like phenomena such as interference pointed to the limitations of the corpuscular model.
+We will not start with a definition. Let's start with two experiments and simple
+rules. After that, whatever “superposition” means, you will definitely know what
+it's not.
 
-![Newton](/posts/assets/entries/superposition/light_particle.png)
+### Experiment 1: Three ways to shoot
 
-## Huygens’ Wave Model of Light:
+Set up a wall with two narrow slits and a screen behind it.
 
-In contrast to Newton's corpuscular theory, Christiaan Huygens' wave model of light proposed that light behaves as a wave, specifically a longitudinal wave. In the 17th century, Huygens suggested that light's propagation could be better understood by observing the motion of water waves. In addition, he extended the understanding of light as a wave by proposing that a primary wave front can be perceived as infinite number of points, each point generating a secondary wavelet in a spherical manner. The interference of these secondary wavelets create wavefronts of varying shapes and direction. His model is thereby also often used to understand the concept of diffraction. At the time of this proposal, Huygens was able to explain most of the properties of light including refraction, reflection & partial refraction and reflection, as well as diffraction.
-However, similarly to Newton’s model, this model also showed limitations. While it was successful in explaining many of light's classical properties, it could not account for the quantum mechanical phenomena observed later, such as the photoelectric effect, the Compton effect, or the Raman effect. These limitations ultimately led to further developments in the understanding of light.
+**Bullets.** Fire tiny pellets, one at a time. After a while, the screen shows two fat piles, one behind each slit. No surprises here, right!
+**Water waves.**  Send ripples toward the slits. On the screen, you get bright and dark bands, places where ripples add and places where they cancel. Again, no surprises here. If we want to get fancy with the words, then that is interference.
 
-![Newton vs Huygen](/posts/assets/entries/superposition/light_waves.png)
+As we have established the basic intuition, let’s go into the quantum realm.
 
-## The Double-slit Experiment
+**Electrons.**  Now the strange part. Fire electrons one by one, so far apart they never meet. You would expect two fat piles like bullets, but what do you get? You get bands like waves. And this pattern builds up dot by dot. There is no way around it; each single electron behaves as if both slits matter. But we must be careful now about how we try to understand it. So, what do you think where did these freak of quantum particles go through? 
 
-In 1801, Thomas Young conducted an experiment using a double-slit apparatus, providing clear evidence of light's wave-like nature. A monochromatic light source was directed through two narrow slits, creating an interference pattern on a screen placed behind them. A viewing screen was set-up directly behind the apparatus. Newton's corpuscular (particle) model of light and Huygens' wave model of light made different predictions regarding the pattern of light formed on the screen. According to Newton, if light was a particle or consisted of particles, only light particles which passed through the slits would be observed on the viewing screen, one would thereby only see two bands.  
-Instead, Young observed multiple bright and dark bands spanning a large area. This phenomenon could only be explained by the wave nature of light. The waves passing through the slits interfere with each other, creating alternating dark and bright spots (minima and maxima), since constructive interference produce maxima and destructive produce minima.
+Well, there are a few possibilities, maybe it went through slit 1 or maybe it went through slit 2, or perhaps if you have read about this experiment, then you must have seen this mentioned that the electron went through both of the slits at once and then interfered behind the slit. Okay..okay… we are getting ahead of ourselves now, we are physics students, we should think about how we can test the possibilities we have thought of.
 
-The double-slit diffraction experiment challenged Newton’s theory of light and provided strong evidence supporting Huygens’ wave model, as this experiment was conducted before the development of quantum mechanics and the concept of wave–particle duality.
+Well, say the electron went through only slit 1, so next time we are doing the experiment we can cover slit 2 and what do we get out? Yes, we get a single fat pile behind slit 1, basically ruling out our theory of all electrons going through slit 1, and by symmetry, we can also rule out all the electrons going through slit 2. 
+Now comes the mumbo jumbo part. If you have seen this experiment, you must have heard that the electron went through both the slits and did the recombination magic behind the slits. Well, can we test this? Yes, absolutely, we can by doing a simple tweak to our experimental setup, we just don't allow the electron to do its magic recombination so we bring the screen really close to the slits. And according to our current theory, the electron must have gone through both the slits, so a single electron yielding a dot behind both the slits, right? But what do we find experimentally- nope, this is also not true, we just get one dot behind one of the slits, ruling out this possibility too. 
+Hmmm, so then what is the electron actually doing?
+The electron is in a **Quantum Superposition!** To be honest, we can't actually tell what the electron does; we can tell what it doesn't do for sure. This is because quantum superposition is not something that we have an intuitive sense of in our world. It would be similar to making an alien who has only ever heard and understood single musical notes listen to a chord, it would be something entirely different for him. 
 
 ![Double-slit Experiment](/posts/assets/entries/superposition/ds_exp.png)
 
-## Wave-Particle Duality
+That is our problem with superposition. We can say what it is not, not just slit 1, not just slit 2, not two tiny pellets sneaking through both and meeting behind the wall. But the beauty is that even if our everyday intuition does not have a built-in chord, our mathematical rules predict every click on the screen. The best analogy I can make is that superposition is like adding two arrows, because the direction also matters. We get a third different arrow. 
+Each arrow is not a yes or no, it is a contribution to what can happen. Length is “how strong,” direction is “how it lines up with others.” If two routes are not told apart, we add the arrows first, then square the length to get the chance of a click. The moment the routes are told apart, even in principle, we stop adding arrows and we just add plain chances. That is the whole trick behind stripes and piles.
+So let us try being nosy.
 
-Although Young’s experiment validated the wave model of light, it’s limitations were still not solved and led to researchers in the 19th and 20th century challenging this model, the discovery of the photoelectric effect (light can eject electrons from the atoms of several metals) being a major breakdown of this model. In 1902, Philipp Lenard, studied how the energy of the emitted photoelectrons varied with the intensity and frequency of light. He also measured the magnitude of current produced by the ejected electrons.
+**Add a tiny watcher.** We put a little “which slit?” sensor next to slit 1. It only blinks when an electron passes that opening. We do not even need to look at the blink. The possibility that the path could be known is enough. So we are not at the center stage of the universe here, it doesn't matter if we looked. The stripes wash out into two piles just by the act of putting this nosy detector. Not because the electron got offended, but because our setup changed the kind of question we asked. Before, the two routes were like two singers keeping time, now our gadget lets the world gossip about who sang which line, so the duet falls apart. That gossip has a fancy name in textbooks, decoherence, I will skip it. Think of it like spoilers. Once spoilers leak, the surprise of this one particle doing interference is gone.
 
-The variable light source was used to illuminate a positively charged metal plate (cathode) in an evacuated tube (vacuum). The ejected electrons, which are termed photoelectrons, were traveling towards the negatively charged metal (anode). But the experimental results did not align with the predictions made based on Huygen’s model. In 1905, Albert Einstein formulated the “quantum model of light” from this concept and the experimental observations: light consists of photons which are discrete packets of energy, leading back to particle behavior. It was Louis de Broglie, who then introduced the idea of electron waves in 1924, merging the idea of them as a particle, as well as as a wave, also connecting to a similar relativistic formulation of Einstein a few years prior. De Broglie's proposal of “wave–particle duality” of electrons led to Schrödinger’s wave equation of motion for electrons, now known as “Schrödinger’s equation”:
+> What we observe is not nature itself, but nature exposed to our method of questioning. — Werner Heisenberg
 
-$$
-i\hbar \frac{\partial}{\partial t} \ket{\Psi(t)} = \hat{H} \ket{\Psi(t)}
-$$
+Now the second story. Same idea, new toy, crazy consequences.
 
-![Discussion](/posts/assets/entries/superposition/superpos_disc.png)
+### Experiment 2, tiny compasses and their strange behavior
 
-## Schrödinger’s Cat
+Imagine each silver atom carries a tiny compass needle inside. We send a stream of these atoms through a magnet that only asks one kind of question, “Are you pointing up or down?” The beam splits neatly into two spots on a screen, one up, one down. We cover the down spot and keep only the up crowd. So far, clean.
 
-In quantum mechanics, the wave-particle duality leads to a concept referred to as “superposition”.
+Now we rotate the magnet by a quarter turn and ask a different question, “Are you pointing left or right?” Our tidy-up crowd splits in half. Left and right share the screen equally. Now, we keep only the right crowd. Okay, so far so good, so our intuition tells us that as our compasses were randomly prepared, some were pointing up, some pointing down, some pointing left, some pointing right. And the directions left and right are independent of directions up and down. What we basically did was first, we separated these tiny magnets into the ones pointed up and down. We took the ones that pointed up and then checked which one of these pointed right.  
 
-$$
-\ket{\Psi} = \alpha \ket{0} + \beta \ket{1}
-$$
+Now comes the fun part. Rotate the magnet back to the original up versus down question. You might expect our right crowd to still be all up, right? **But no, it is not!!** It splits again into up and down. The left versus right question wiped the earlier up versus down answer. Not because the atoms forgot, but because you changed the question. The needle snaps to whatever axis you ask about, and when you switch axes, you are asking for a fresh answer.
 
-A particle, such as an electron, exhibits both wave-like and particle-like behavior. Due its wave nature, it can exist in multiple wave paths simultaneously, in a superposition of states. By measuring the particle, this superposition collapses into one of these states, a phenomena known as “wave function collapse”.
+*Actually, the pointing up, down, left, right also has no meaning in the quantum realm; it's just that we humans have used these analogies to tie their behaviour to something we already know and can understand intuitively, i.e., magnets.*
 
-In 1935 physicist Erwin Schrödinger formulated the following thought experiment as an analogy. A hypothetical cat is locked into a box with a deadly poison, which may or may not be released at a random point depending on the decay of a radioactive atom in the box. If the atom decays, the poison flask breaks and the cat dies. If the atom does not decay, the cat stays alive. According to quantum mechanics, until one opens the box, the cat is to be considered simultaneously both alive and dead. The system's state is a quantum superposition of these two possibilities.
-The image below illustrates this superposition, where the cat’s state is represented as a quantum state vector. It combines the two equally probable $$ (\frac{1}{\sqrt{2}}) $$ possibilities of the cat being alive or dead. Opening the box will collapse the system into only one of the two states.
+In 1922, Stern and Gerlach actually did their magnet trick with a beam of hot silver atoms and a smoky glass plate. They expected a smear; they got two crisp dots. Heisenberg was a few years away from writing the rulebook that made sense of it. Schrödinger was about to take that rulebook and write his wave equation on a long winter walk. Einstein kept poking the whole thing with thought experiments because that is what you do when something is both correct and strange. The arguments were sharp, but notice the rhythm; no one stopped doing experiments. When the math and the lab disagree, you keep measuring until they have to shake hands.
 
-![Schrödinger's cat](/posts/assets/entries/superposition/superpos_cat.png)
+Back to our story.
+At this point, we can say what superposition is not. Not just slit 1, not just slit 2, not two pellets doing a secret handshake behind the wall, not a compass that “really” points one way while pretending to point both. What it is, is a rule for combining live possibilities when the world has not pushed you to choose yet. The combination itself has effects you can see, bright and dark bands, all or nothing splits, patterns that are not in any one path alone.
+
+
+### A pragmatic definition, and a “useful” misunderstanding
+
+People often say that superposition means being in two places at once. That picture is not wrong, it is just a teenager. A better version is, superposition means reality evolves by combining possibilities, and the combination rules are wave-like, so they interfere. When you observe, you pick out one slice that is consistent with that context. The rest does not vanish as fiction; it fed the interference that shaped what you saw.
+
+This is also why superposition is not the same as classical ignorance. If you hide a coin in your hand, it is either heads or tails, and your ignorance is about you. In the quantum case, before the measurement, the system is genuinely described by the chord, not by a single note you simply do not know yet. When you open your hand in the quantum story, you do not reveal a fact, you help create one.
+
+> No phenomenon is a real phenomenon until it is an observed phenomenon. — John Wheeler
+
+### Why does any of this matter outside a chalkboard?
+
+- **Qubits.** A qubit can hold a blend of answers like 0 and 1. With several qubits, you choreograph additions so wrong answers cancel and right answers build up. This is the skeleton of quantum algorithms.We are still early, but this is why people get excited.
+- **Sharper measurement.** Superposed states are sensitive to tiny nudges, which makes world class clocks and sensors possible.
+- **Secure communication.** A peek turns “add arrows” into “add chances,” which changes the pattern, so eavesdropping leaves footprints, the idea behind certain quantum key distribution schemes.
+- **Everyday tech with quantum bones.** Lasers, cameras, and MRI all trace back to taking these rules seriously.
+
+### Closing thought
+
+When we set up the double slit, we were not discovering that nature is flaky. We were discovering that **how you ask decides what can be answered**. Leave paths indistinguishable, answers add like ripples and make stripes. Make paths distinguishable, additions stop, you get piles. Rotate the magnet, the compass snaps to the new question. Change the question again, be ready for a fresh answer.
+
+If you remember one habit from this, use it on everything else you learn. Hold two live options a little longer, let them jostle in your head, then commit. In physics that is called **superposition**, in daily life it is called **not rushing**.
