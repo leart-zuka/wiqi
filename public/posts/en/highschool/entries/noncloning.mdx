@@ -3,39 +3,110 @@ title: "The non-cloning theorem"
 subtitle: "Why you can't copy a quantum state? (middle)"
 author: "Jannik Pflieger"
 date: "2025-01-20"
+tags: ["highschool", "quantum", "no-cloning"]
+summary: "A friendly, visual walk through why a perfect quantum photocopier cannot exist, and why that is good news for quantum tech."
 ---
 
-## Introduction
+Picture a tiny shop tucked between a coffee stand and a lab door. A handwritten sign hangs in the window, **Quantum Photocopier, we copy any state, no questions asked.** You bring in your precious qubit, a delicate chord of possibilities you tuned with care. The clerk smiles, feeds it into the machine, and promises two perfect twins.
 
-In quantum physics, there’s a rule called the non-cloning theorem,
-which says you can’t create an operation that perfectly copies a quantum state.
-To understand this, imagine you have two quantum objects:
-one contains the information you want to copy, and the other is empty,
-ready to become a copy. The non-cloning theorem says
-it’s impossible to build a process (a "unitary operator")
-that can take the information from the first object and make an exact copy of it
-in the second object.
+Here is the twist. That shop cannot exist. Not because the clerk is lazy, but because nature says no. The **no cloning theorem** is the rule that there is no machine that copies an **arbitrary unknown** quantum state without changing what makes it quantum. If you could build such a copier, the rest of quantum theory would unravel, your arrows would stop adding the way they do, and the stripes on your double slit screen would tell on you.
 
-## Proof
+We will not start with a formal definition. We will build a story, two small tests, and one kitchen table proof that rests on the same arrows you used for superposition.
 
-To understand why copying a quantum state is impossible, we start by pretending it is possible.
-This is a common method in math and science: assume something works, and then see if that leads to a contradiction.
-Now, let’s test this process with two different pieces of information:
-one for the first object and a different one for the second.
-The process should still work and copy the information correctly in each case.
+![Nocloning meme](/posts/assets/entries/nocloning/nocloningmeme.png)
 
-Here’s where things get tricky: in quantum mechanics,
-the way two pieces of information are related to each other is very important.
-This relationship (called the "inner product") has to stay the same before and after the copying process.
-If we do the math (which we won’t go into here), we find that this rule creates a big problem.
-It turns out that the copying process can only work if the two pieces of information are either:
+## The rule we already know, add arrows, not just chances
 
-1. Completely unrelated (as different as possible), or
-2. Exactly the same (already identical).
+From the superposition story, a quantum state is like a chord, not a single note. We add **arrows** before squaring lengths to get chances. The direction of the arrow matters. Change the question you ask, and the arrows get re expressed, so the answers change.
 
-But in quantum mechanics, we often deal with information that doesn’t fall into these categories.
-It can be a mix or "superposition" of different possibilities.
-This means the copying process can’t handle every situation—it only works in very specific cases.
+A copier that claims to work for *any* unknown chord must respect that arrow math. It cannot peek to learn the state first, because peeking is a measurement and that pushes the system into one slice. The copier must act **blindly** yet perfectly. That is the impossible part.
 
-So, the idea of copying any quantum information turns out to be impossible for an arbitrary quantum state.
-This is why the non-cloning theorem is true: you can’t create a perfect copy of an unknown quantum state.
+## Build the copier and watch it fail
+
+Let us design the friendliest possible copier. It lives inside a box and acts the same way every time.
+
+![Quantum copier, idea sketch](/posts/assets/entries/nocloning/photocopier.png)
+*Quantum copier input $ \lvert 0 \rangle $ and $ \lvert \text{blank} \rangle $, output $ \lvert 0 \rangle \lvert 0 \rangle $.*
+
+1. **It should copy two clear reference states just fine.**  
+   Give it an up arrow denoted by $ \lvert \uparrow \rangle $ and a blank sheet $ \lvert \text{blank} \rangle $.  
+   It promises
+   $$
+   \ket{\uparrow}\ket{\text{blank}} \xrightarrow{\text{copy}} \ket{\uparrow}\ket{\uparrow}.
+   $$
+    Give it a right arrow $ \lvert \downarrow \rangle $ with a blank sheet.  
+   It promises
+   $$
+   \ket{\downarrow}\ket{\text{blank}} \xrightarrow{\text{copy}} \ket{\downarrow}\ket{\downarrow}.
+   $$
+   So far so good. Copying two **orthogonal** states, simply put, states that are independent of each other, is easy. That is classical.
+
+2. **Now feed it a chord, for example the superposition state $ \lvert + \rangle $.**  
+   Take $ \lvert + \rangle = \lvert \uparrow \rangle + \lvert \downarrow \rangle $, the equal blend of up and right.  
+   Linearity says a lawful device treats blends linearly, so the copier must do
+   $$
+   \big(\lvert \uparrow \rangle+\lvert \downarrow \rangle\big)\,\lvert \text{blank} \rangle
+   = \lvert \uparrow \rangle\,\lvert \text{blank} \rangle + \lvert \downarrow \rangle\,\lvert \text{blank} \rangle
+   \xrightarrow{\text{copy}}
+   \lvert \uparrow \rangle\,\lvert \uparrow \rangle + \lvert \downarrow \rangle\,\lvert \downarrow \rangle .
+   $$
+   But a **perfect copy** of the chord $ \lvert \uparrow \rangle+\lvert \downarrow \rangle $ should be
+   $$
+   \big(\lvert \uparrow \rangle+\lvert \downarrow \rangle\big)\otimes\big(\lvert \uparrow \rangle+\lvert \downarrow \rangle\big)
+   = \lvert \uparrow \uparrow \rangle + \lvert \uparrow \downarrow \rangle + \lvert \downarrow \uparrow \rangle + \lvert \downarrow \downarrow \rangle .
+   $$
+   The mixed terms $ \lvert \uparrow \downarrow \rangle $ and $ \lvert \downarrow \uparrow \rangle $ never appear with the device above. The machine produces a **duet** $ \lvert \uparrow \uparrow \rangle + \lvert \downarrow \downarrow \rangle $, not two independent solos. In other words, we got an **entangled pair** instead of two standalone copies.
+
+![The copier output misses the cross terms](/posts/assets/entries/nocloning/contradiction.png)
+*We did not get what we expected.*
+
+So we basically have a contradiction. This simple math tells us something profound about nature. This is the heart of the theorem. A universal copier would need to be both linear, to respect superposition, and nonlinear, to manufacture those extra cross terms. Nature picks linear. The copy shop shuts its doors because it knows that it would go out of business.
+
+## What would break if cloning were allowed
+
+1. **You could beat the uncertainty principle.**  
+   Clone your unknown qubit many times, measure half along up versus down and the other half along left versus right. Combine results and you learn both incompatible properties of the original in one go.
+
+2. **You could tell non orthogonal states apart perfectly.**  
+   Today, two different chords that are not at right angles can never be told apart with $100\%$ single shot certainty. A perfect cloner would let you make many copies, do gentle statistics, and push error to zero. That would kill the security of quantum key distribution.
+
+3. **You would scramble interference.**  
+   A copier would have to leave the incoming chord intact while creating a second one. Real machines that try to learn the chord leak which path gossip into the world, so stripes wash into piles. True cloning would have to evade that gossip without changing the arrows, which is not how quantum setups behave.
+
+## Okay, but what can you copy
+
+- **Known states.** If you know the exact state in advance, you can just prepare another one. That is not cloning the unknown, that is rebuilding from the recipe.  
+- **Orthogonal families.** You can make a device that copies either up or down, because those answers are independent of each other. Same for left or right, pick your basis and stay within it.  
+- **Classical data in quantum hardware.** When a qubit has already been asked a question and pinned to a basis state, it behaves like a clean 0 or 1. You can copy that classical outcome freely.
+
+## How do we cope
+
+- **Approximate cloning exists.** You can build gadgets that produce best possible copies on average. For a single unknown qubit, a well known universal cloner reaches fidelity $5/6$, about $83\%$. Good, but never perfect, and the errors grow with ambition.  
+- **Teleportation does not clone.** Quantum teleportation moves a state to a distant system using entanglement and two classical bits. The original is deliberately destroyed when you measure. No extra copy survives.  
+- **Quantum error correction is not cheating.** We do not copy the state. We spread its *information* across several qubits using entanglement, so that if a few are nudged, the global pattern still lets us restore the chord. It is more like hiding a melody across several instruments than making identical recordings.  
+- **Amplifiers and repeaters respect no cloning.** Fiber links lose photons, so we cannot just clone a faint qubit to boost it. Instead we use entanglement swapping and heralding to stitch longer links.
+
+## A pocket proof you can tell a friend
+
+Say your copier works on two clean notes, $ \lvert \uparrow \rangle $ and $ \lvert \downarrow \rangle $. Now give it a chord, $ \alpha \lvert \uparrow \rangle + \beta \lvert \downarrow \rangle $. Because lab devices add arrows, the output must be
+$$
+\alpha\,\lvert \uparrow \rangle \lvert \uparrow \rangle + \beta\,\lvert \downarrow \rangle \lvert \downarrow \rangle .
+$$
+A perfect copy would be
+$$
+\alpha^2 \lvert \uparrow \rangle \lvert \uparrow \rangle
++ \alpha\beta \lvert \uparrow \rangle \lvert \downarrow \rangle
++ \alpha\beta \lvert \downarrow \rangle \lvert \uparrow \rangle
++ \beta^2 \lvert \downarrow \rangle \lvert \downarrow \rangle .
+$$
+These differ unless $ \alpha\beta = 0 $, which means the input was not really a chord, so either $ \alpha = 0 $ or $ \beta = 0 $. In that case you did not give a chord to the copier, you gave one clean note. So a device that copies those two notes cannot also copy their blends. That is the no cloning theorem in one breath.
+
+## Why the rule is beautiful, not annoying
+
+You might think that this no cloning rule is a roadblock. In practice it is a **shape** that guides design. The same shape gives you security against eavesdropping, sensitivity for better sensors, and a clear line between what is classical and what is deeply quantum. It tells you what questions you are allowed to ask together, and which ones must be asked in sequence, so you can plan good experiments and good algorithms.
+
+If superposition taught us to *add arrows when paths stay indistinguishable*, no cloning teaches us that *making a faithful copy of the whole chord would require knowing the chord without asking*, which is not a question physics lets you ask.
+
+## TL,DR, the shop stays closed
+
+A universal quantum photocopier would have to break the arrow math you already trust. It would need to keep inner angles the same and also change them, it would need to be linear and also not linear. That contradiction is why the sign in the window is a fairy tale. In quantum land, the best you can do is copy known notes, or spread a melody across instruments so it survives noise, or teleport the tune by destroying the original as the new one appears.
