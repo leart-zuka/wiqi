@@ -25,31 +25,11 @@ At its core, quantum optimization tries to solve problems by encoding them into 
 
 This is a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. In **quantum annealing**, the particle can also _tunnel_ through hills, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the global minimum without "traversing" the entire landscape as shown in the image below.
 
-![Quantum Annealing](/posts/assets/entries/qoptimization/Quantum_Annealing.png)
+![A diagram showing a particle tunneling through a hill in a landscape, representing Quantum Annealing.](/posts/assets/entries/qoptimization/quantum_annealing.jpg)
 
 This method is used by D-Wave systems and focuses on **Ising model problems**, where each variable is a spin (+1 or -1), and you want to find the best spin configuration. In the next section we engage more with how D-Wave works with Quantum Annealing through the QUBO problem.
 
-### b) QUBO problem
-
-Many optimization problems can be expressed in a quadratic form over binary variables, known as the **QUBO (Quadratic Unconstrained Binary Optimization)** problem:
-
-$$
-
-\min_{x \in \{0,1\}^n} x^T Q x + c^T x
-
-
-$$
-
-Here $ Q $ is an $ n \times n $ real symmetric matrix that represents the interaction weights between variables, and c is a vector of linear coefficients. In physics and quantum annealing, this is equivalently expressed using spin variables $s_i \in \{ -1, +1 \} $ as the Ising model:
-
-$$
-\min_{s \in \{-1,+1 \}^n  } \sum_{i <j} J_{ij} s_i s_j \ + \ \sum_i h_is_i
-$$
-
-The two formulations are related through a simple transformation between variables $ s_i = 2x_i -1 $.
-So specific to this problem, quantum annealers work by finding the ground state of the Ising Hamiltonian which directly corresponds to the optimal solution of the original combinatorial problem encoded as QUBO. This equivalence between QUBO and Ising models is foundational for many quantum optimization methods.
-
-### c) Variational Quantum Algorithms (VQAs)
+### b) Variational Quantum Algorithms (VQAs)
 
 These are used on gate-based quantum computers like IBM’s or Google’s. The idea is to build a _parameterized quantum circuit_, then adjust the parameters using a classical optimizer until the output gives you a good solution.
 
@@ -88,7 +68,7 @@ $$
 T \gg \frac{1}{\Delta_{\min}^2}
 $$
 
-where $ \Delta\_{\min} $ is the minimum spectral gap during the evolution.
+where $ \Delta_{\min} $ is the minimum spectral gap during the evolution.
 
 ---
 
