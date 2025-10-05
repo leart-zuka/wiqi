@@ -206,11 +206,11 @@ export default function Page({
               </span>
             </h1>
 
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300 dark:text-gray-200">
+            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300 dark:text-gray-100">
               {categoryInfo.description}
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400 dark:text-gray-300">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400 dark:text-gray-200">
               <div className="flex items-center gap-2">
                 <span>{files.length} Articles</span>
               </div>
@@ -239,8 +239,8 @@ export default function Page({
                 onClick={() => setViewMode("grid")}
                 className={`h-8 w-8 p-0 ${
                   viewMode === "grid"
-                    ? "dark:bg-white dark:text-slate-900 dark:hover:bg-gray-100"
-                    : "dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+                    ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600"
+                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                 }`}
               >
                 <Grid3X3 className="h-4 w-4" />
@@ -251,8 +251,8 @@ export default function Page({
                 onClick={() => setViewMode("list")}
                 className={`h-8 w-8 p-0 ${
                   viewMode === "list"
-                    ? "dark:bg-white dark:text-slate-900 dark:hover:bg-gray-100"
-                    : "dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+                    ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600"
+                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                 }`}
               >
                 <List className="h-4 w-4" />
@@ -302,7 +302,7 @@ export default function Page({
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   className="h-8 w-8 rounded-full border-4 border-purple-200 border-t-purple-600 dark:border-purple-800 dark:border-t-purple-400"
                 />
-                <span className="text-gray-600 dark:text-gray-400">
+                <span className="text-gray-600 dark:text-gray-300">
                   {t("loading articles")}
                 </span>
               </div>
@@ -316,12 +316,12 @@ export default function Page({
               className="flex flex-col items-center justify-center py-20 text-center"
             >
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800">
-                <BookOpen className="h-8 w-8 text-gray-400 dark:text-gray-500" />
+                <BookOpen className="h-8 w-8 text-gray-400 dark:text-gray-300" />
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
                 {t("no articles found")}
               </h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 dark:text-gray-300">
                 {t("no articles difficulty")}
               </p>
             </motion.div>
