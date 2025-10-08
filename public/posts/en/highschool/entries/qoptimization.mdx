@@ -28,17 +28,13 @@ _Image Source: [The Vessel Project](https://www.vesselproject.io/essays/life-thr
 
 This is the power of quantum annealing and it is used by companies like D-Wave to solve complex optimization problems. By finding the lowest energy configuration of spins (spin-up or spin-down), they can find the optimal solution to real-world challenges.
 
-### b) QUBO (Quadratic Unconstrained Binary Optimization)
+### b) VQA (Variational Quantum Algorithms)
 
-So, how do we translate a real-world problem into a quantum problem? The answer is in the QUBO (Quadratic Unconstrained Binary Optimization) framework. The core idea of QUBO is to break a problem down into a set of simple choices, like a coin flip that can be either heads or tails.
+Another exciting way to solve these problems is with Variational Quantum Algorithms (VQAs), where we create a team between a classical computer and a quantum computer. 
 
-Imagine a TV show where you are given 5 coins to flip. Your overall goal is to find the best combination of heads/tails for a specific scenario. For example, if coin 1 and coin 2 both land on heads, you get an extra bonus and if coin 1 and coin 5 are the same there's a special penalty.
+We start of with an initial guess to solve the problem at hand which we then ask our quantum computer to evaluate. After receiving its side of the result, it gets handed to our classical computer to figure out wether our initial guess gave us the correct results. If that's the case then we can all be happy and go home. However, more often than not, if that's not the case, our classical computer will give us a new set of parameters based off of the result of the first experimental run, and we repeat the cycle until we receive our desired result. 
 
-In the world of physics, this exact same problem is described using something called the Ising model. Instead of heads/tails, the Ising model thinks in terms of physical "spins" that can be either "up" or "down." Ultimately, quantum annealers are built to find the lowest energy state of an Ising model. Because the Ising model is equivalent to the QUBO problem, its lowest energy state directly gives us the optimal solution to our original challenge.
-
-### c) VQA (Variational Quantum Algorithms)
-
-Another exciting way to solve these problems is with Variational Quantum Algorithms (VQAs), where we create a team between a classical computer and a quantum computer. The idea is to use a classical computer to tune the parameters of a quantum system. This allows us to find solutions by starting with a good guess and then refining it over and over. Sort of like making a pot out of clay.
+The idea is to use a classical computer to tune the parameters of a quantum system. This allows us to find solutions by starting with a good guess and then refining it over and over. Sort of like making a pot out of clay.
 
 ## Visualizing the Quantum Advantage
 
