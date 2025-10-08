@@ -1,0 +1,272 @@
+---
+title: "Quantensensorik"
+subtitle: "Quantensensorik: Das scheinbar Unmessbare mit Quantenpräzision erfassen (schwer)"
+author: "Sudharshan Kannan"
+date: "2025-06-21"
+---
+
+
+# Quantensensorik: Das scheinbar Unmessbare mit Quantenpräzision erfassen
+
+## 1. Einleitung
+
+Die Quantensensorik verändert die Art und Weise, wie wir die Welt messen. Ob es um die Detektion von Gravitationswellen, die Darstellung der magnetischen Aktivität des Gehirns oder die Messung extrem kleiner Kräfte und Felder geht – die Quantensensorik führt über die Grenzen klassischer Messtechniken hinaus.
+
+Um die Empfindlichkeit und Präzision von Messung zu verbesserun, basiert die Quantensensorik auf einzigartigen Quantenphänomenen wie Superposition, Verschränkung und Quetschung. Sie ist eng mit dem Bereich der Quantenmetrologie verbunden, der den theoretischen Rahmen liefert. Insbesondere die Quanten-Cramér-Rao-Grenze (QCRB), die die ultimativen Grenzen der Präzision definiert.
+
+Bei unabhängigen klassischne Sonden skaliert die Messgenauigkeit mit $1/\sqrt{N}$, wobei $N$ die Anzahl der bei der Messung verwendeten Teilchen ist. Mit quantenverstärkten Sonden, wie verschränkten oder gequetschten Zuständen, können wir uns jedoch der Heisenberg-Grenze annähern, bei der die Präzision mit $1/N$ skaliert. Diese Verbesserung ist erheblich; sie bedeutet, dass Quantensensoren in einigen Fällen ihre klassischen Pendants um Größenordnungen übertreffen können[^1][^2].
+
+## 2. Theoretische Grundlagen
+
+### a) Quanten-Cramér-Rao-Grenze (QCRB)
+
+Die QCRB legt die minimal mögliche Varianz für einen unverzerrten Schätzer in einer Quantenmessung fest:
+
+$$
+(\Delta\theta)^2 \ge \frac{1}{m F_Q}
+$$
+
+Hier ist $m$ die Anzahl der unabhängigen Messungen und $F_Q$ die Quanten-Fisher-Information (QFI). Die QFI hängt vollständig vom Quantenzustand der Sonde und davon, wie der Parameter, den wir schätzen möchten, in diesem Zustand kodiert ist, ab.
+
+Bei Verwendung unabhängiger klassischer Sonden:
+
+$$
+\Delta\theta \ge \frac{1}{\sqrt{m N}}
+$$
+
+Dies ist als Standard-Quantengrenze (SQL) bekannt.
+
+Bei Verwendung verschränkter Sonden:
+
+$$
+\Delta\theta \ge \frac{1}{m N}
+$$
+
+Dies ist die Heisenberg-Grenze (HL), die den möglichen Quantenvorteil, der mit Verschränkung erreicht werden kann, verdeutlicht [^3][^4].
+
+![SQLvsHL](/posts/assets/entries/qsensing/SQLvsHL.png)
+
+### b) Quantenressourcen: Verschränkung und Quetschung
+
+Die Verschränkung ermöglicht es uns, eine kollektive Empfindlichkeit zu erreichen, die über das hinausgeht, was mit unabhängigen Teilchen möglich ist. Gequetschste Zustände hingegen reduzieren die Unsicherheit in einer Observablen, während sie sie in ihrer konjugierten Observablen gemäß dem Heisenbergschen Unschärfeprinzip erhöhen.
+
+Wenn beispielsweise $[\hat{X}, \hat{P}] = i \hbar$ ist, kann Quetschen die Varianz von $\hat{X}$ unter den Standardgrenzwert reduzieren:
+
+$$
+\Delta X < \sqrt{\frac{\hbar}{2}} \quad \text{während} \quad \Delta P > \sqrt{\frac{\hbar}{2}}
+$$
+
+Bei Spinsystemen wird der Spin-Quetschung-Parameter $\xi^2$ verwendet, um die Verbesserung gegenüber der Standard-Quantengrenze zu quantifizieren:
+
+$$
+\xi^2 = \frac{N (\Delta J_\perp)^2}{| \langle \vec{J} \rangle |^2} < 1
+$$
+
+Ein Wert von $\xi^2 < 1$ bestätigt einen Quantenvorteil[^5][^6].
+
+![Squeezed Uncertainty Ellipse vs Circular Uncertainty](/posts/assets/entries/qsensing/elvcq.png)
+
+## 3. Experimentelle Techniken
+
+### Optische Interferometrie
+
+Ein Mach-Zehnder-Interferometer teilt einen Lichtstrahl in zwei separate Pfade auf. In einem Pfad sammelt das Licht eine Phasenverschiebung $\phi$ in Abhängigkeit vom gemessenen Parameter. Die beiden Strahlen werden dann wieder zusammengeführt, und die Intensitätsdifferenz zwischen den beiden Ausgängen liefert direkt Informationen über $\phi$.
+
+Bei Verwendung von klassischem Licht ergibt sich die Phasenunsicherheit aus:
+
+$$
+\Delta \phi \sim \frac{1}{\sqrt{N}}
+$$
+
+Mit gequetschtem Licht, das das Rauschen in einer Quadratur reduziert, verbessert sich die Phasenunsicherheit zu:
+
+$$
+\Delta \phi \sim \frac{e^{-r}}{\sqrt{N}}
+$$
+
+wobei $r$ der Quetschparameter ist. Die Intensitäten an den Ausgangspunkten können wie folgt ausgedrückt werden:
+
+$$
+I_{\pm} = I_0 \frac{1 \pm \cos \phi}{2}
+$$
+
+Diese Methode war entscheidend für die Verbesserung der Empfindlichkeit von Großdetektoren wie LIGO[^7][^8].
+
+![Mach Zehnder](https://www.researchgate.net/profile/Lasmar-Zakarya/publication/327134479/figure/fig1/AS:661970038571029@1534837364494/Schematic-representation-of-Mach-Zehnder-interferometer.png) 
+> *Quelle: [Schematische Darstellung des Mach-Zehnder-Apparats](https://www.researchgate.net/profile/Lasmar-Zakarya/publication/327134479/figure/fig1/AS:661970038571029@ 1534837364494/Schematische Darstellung eines Mach-Zehnder-Interferometers.png)
+
+### Ramsey-Interferometrie
+
+Die Ramsey-Interferometrie wird häufig in Atomuhren eingesetzt. Bei dieser Technik werden Atome mithilfe eines Impulses in einen Überlagerungszustand versetzt, sodass sie sich frei entwickeln und Phasen akkumulieren können. Anschließend wird ein zweiter Impuls angewendet, um die Interferenz zu schließen.
+
+Die Wahrscheinlichkeit, nach dieser Sequenz ein Atom im angeregten Zustand zu finden, beträgt:
+
+$$
+P_e = \frac{1 + \cos \phi}{2}
+$$
+
+Hier steht $\phi$ in Zusammenhang mit der Verstimmung zwischen dem atomaren Übergang und dem Antriebsfeld. Die Genauigkeit der Phasenschätzung verbessert sich erheblich, wenn die Atome spin-gequetscht sind:
+
+$$
+\Delta \phi \sim \frac{\xi}{\sqrt{N m}}
+$$
+
+Die Ramsey-Interferometrie ist die Grundlage für die präzisesten Atomuhren, die in globalen Positionierungssystemen und grundlegenden physikalischen Experimenten verwendet werden[^9][^10].
+
+![Ramsey](/posts/assets/entries/qsensing/ramsey.png)
+
+### Spinbasierte Sensoren: Stickstoff-Fehlstellen-Zentren (NV-Zentren)
+
+NV-Zentren in Diamanten sind Punktdefekte, bei denen ein Stickstoffatom ein Kohlenstoffatom neben einer Gitterlücke ersetzt. Diese Zentren eignen sich hervorragend als Quantensensoren, da ihre Elektronenspinzustände bei Raumtemperatur optisch initialisiert, manipuliert und ausgelesen werden können.
+
+Die Spin-Energieniveaus des NV-Zentrums spalten sich unter einem externen Magnetfeld aufgrund des Zeeman-Effekts:
+
+$$
+\Delta E = g \mu_B B
+$$
+
+wobei $g$ der g-Faktor, $\mu_B$ das Bohrsche Magneton und $B$ das Magnetfeld ist. Die Empfindlichkeit der NV-Magnetometrie lässt sich wie folgt ausdrücken:
+
+$$
+\delta B \sim \frac{1}{g \mu_B T \sqrt{m}}
+$$
+
+Hier ist $T$ die freie Evolutionszeit und $m$ die Anzahl der Wiederholungen. NV-Zentren können Magnetfelder bis in den Nanotesla- oder sogar Femtotesla-Bereich mit nanoskaliger räumlicher Auflösung detektieren. 
+Der NV-Spin-Zustand kann durch Detektion der Fluoreszenz ausgelesen werden, die bei Anregung durch einen grünen Laser emittiert wird. Die Fluoreszenzintensität hängt vom Spin-Zustand ab, wodurch die Magnetresonanz optisch beobachtet werden kann.
+
+NV-Zentren sind daher leistungsstarke Werkzeugen für die Abbildung magnetischer Strukturen in Materialien, oder die Untersuchung der Aktivität einzelner Neuronen und die Durchführung von Messungen im Bereich der mikroskaligen Kernspinresonanz (NMR) mit dem Potenzial, biochemische Prozesse auf zellulärer Ebene zu beobachten[^11][^12].
+
+![NV-Zentrum](/posts/assets/entries/qsensing/nvc.png)
+
+### Gefangene Ionen und kalte Atome
+
+In Ionenfallen gefangene Ionen werden mithilfe elektromagnetischer Felder isoliert und manipuliert. Ihr Hamilton-Operator lässt sich wie folgt schreiben:
+
+$$
+H = \frac{\hbar \Omega}{2} \sigma_x + \frac{\hbar \Delta}{2} \sigma_z
+$$
+
+wobei $\Omega$ die Rabi-Frequenz und $\Delta$ die Verstimmung ist. Die Phasenentwicklung über die Zeit $T$ lautet:
+
+$$
+\phi = \omega T
+$$
+
+In Interferometern mit kalten Atomen werden Bose-Einstein-Kondensate (BECs) mit Laserimpulsen aufgespalten und dann wieder kombiniert, um Gravitationsfelder zu messen. Die akkumulierte Phase ist:
+
+$$
+\phi = k_{\text{eff}} g T^2
+$$
+
+Diese Geräte können die Gravitationsbeschleunigung und Rotationen mit extrem hoher Präzision messen und werden in der Geophysik, Navigation und für grundlegende physikalische Tests verwendet[^13] [^14].
+
+![Trapped Ion and Cold Atom](https://www.researchgate.net/profile/Shuhua-Yan/publication/349981186/figure/fig1/AS:11431281181772004@1692154482403/a-Schematic-setup-and-the-time-sequence-of-the-cold-atom-interferometer-The-total-time.png)
+> *Quelle: [Kaltes Atom Interferometer](https://www.researchgate.net/profile/Shuhua-Yan/publication/349981186/figure/fig1/AS:11431281181772004@1692154482403/a-Schematic-setup-and-the-time-sequence-of-the-cold-atom-interferometer-The-total-time.png)
+
+### Optomechanik
+
+Optomechanische Sensoren koppeln mechanische Bewegungen an Lichtfelder. Kleine Verschiebungen eines mechanischen Elements, wie beispielsweise eines Auslegers oder Spiegels, verschieben die Phase des reflektierten oder durchgelassenen Lichts. Die Verschiebungsempfindlichkeit wird durch das Schrotrauschen begrenzt:
+
+$$
+\Delta x \sim \frac{\lambda}{4 \pi \sqrt{N}}
+$$
+
+Durch die Injektion von gequetschtem Licht in das System wird das Messrauschen weiter reduziert und die Empfindlichkeit erhöht. Optomechanische Systeme erreichen mittlerweile eine quantenbegrenzte Detektion von Verschiebungen und Kräften und sind für Präzisionsmessgeräte wie LIGO[^15][^16] von entscheidender Bedeutung.
+
+
+## 4. Anwendungen in der Praxis
+
+Quantensensorik findet bereits in vielen Branchen und wissenschaftlichen Bereichen wichtige Anwendungen.
+
+* **Gravitationswellen-Detektion:** In Observatorien wie LIGO ermöglicht die Quantensensorik die Detektion extrem schwacher Gravitationswellen, die durch Ereignisse wie die Verschmelzung von Schwarzen Löchern entstehen. Mit Hilfe von gequetschten Lichtquellen wird die klassische Schrotrauschgrenze überschritten, wodurch die Dehnungsempfindlichkeit verbessert wird, gegeben durch:
+
+$$
+\delta h \sim \frac{\lambda}{2 \pi L \sqrt{N}}
+$$
+
+Die Fähigkeit, solch winzige Längenänderungen über Kilometer lange Interferometerarme hinweg zu messen, ist nur mit quantenunterstützten Methoden möglich. Diese Messungen helfen uns, die energiereichsten Ereignisse im Universum zu verstehen[^7][^8].
+
+![LIGO Schematic](https://www.researchgate.net/publication/348563734/figure/download/fig1/AS:981166995812369@1610939849413/Schematic-diagram-of-Advanced-LIGO-showing-the-main-optics-nominal-power-levels-and.png)
+>Quelle [LIGO Schematic](https://www.researchgate.net/publication/348563734/figure/download/fig1/AS:981166995812369@1610939849413/Schematic-diagram-of-Advanced-LIGO-showing-the-main-optics-nominal-power-levels-and.png)
+
+* **Atomuhren:** Quantensensoren wie optische Gitteruhren und ionenbasierte Uhren bieten eine Stabilität, die wie folgt ausgedrückt wird:
+
+$$
+\sigma(\tau) \sim \frac{1}{Q \sqrt{N \tau}}
+$$
+
+Diese Uhren bieten die für globale Navigationssysteme, die Synchronisation der Telekommunikation und grundlegende Tests wie die Konstanz physikalischer Konstanten erforderliche Genauigkeit. Moderne Atomuhren haben Unsicherheiten im Bereich von $10^{-18}$ erreicht[^9][^10].
+
+* **Magnetometrie:** NV-Zentrum-basierte Magnetometer werden zur Kartierung neuronaler Aktivitäten, zur Überwachung mikroelektronischer Schaltungen und zur Abbildung der magnetischen Struktur von Materialien verwendet. Sie erreichen Empfindlichkeiten von:
+
+$$
+\delta B \sim \frac{1}{g \mu_B T \sqrt{N m}}
+$$
+
+Diese hochpräzise magnetische Sensorik wird bereits in biologischen Systemen und bei der Analyse von Mikrofluidik-Chips eingesetzt und ist vielversprechend für die tragbare medizinische Diagnostik[^11][^12].
+
+* **Trägheitsnavigation:** Kaltatom-Interferometer ermöglichen hochpräzise Trägheitsmessungen:
+
+$$
+\delta a \sim \frac{1}{k_{\text{eff}} T^2 \sqrt{N m}}
+$$
+
+Dies ermöglicht die Navigation in U-Booten, Flugzeugen und Raumfahrzeugen ohne GPS, bietet stabile Langzeitdriftcharakteristiken und verbessert die Sicherheit und Autonomie[^13][^14].
+
+* **Medizinische Bildgebung:** Quantenmagnetometer auf Basis von NV-Zentren können nicht-invasiv magnetische Signale im Femtotesla-Bereich aus Nerven- und Herzaktivitäten erfassen. Dies könnte zu hochempfindlichen und tragbaren Technologien zur Bildgebung des Gehirns führen, die ohne große magnetisch abgeschirmte Räume auskommen[^12].
+
+* **Gravimetrie:** Kaltatom-Gravimeter erfassen winzige Veränderungen der Erdbeschleunigung:
+
+$$
+\delta g \sim \frac{1}{k_{\text{eff}} T^2 \sqrt{N m}}
+$$
+
+Zu den Anwendungsbereichen gehören die Erdbebenüberwachung, die Rohstoffexploration und sogar klimabezogene Studien wie die Verfolgung von Grundwasserspiegeln und Gletschern. Diese Instrumente werden für den mobilen Einsatz vor Ort miniaturisiert[^13][^14].
+
+* **Materialwissenschaft:** Einzelspin-NV-Sensoren werden verwendet, um nanoskalige magnetische Domänen, elektrische Felder und Temperaturgradienten in fortschrittlichen Materialien abzubilden und bieten damit wichtige Erkenntnisse für die Elektronik der nächsten Generation und Quantencomputerplattformen[^11].
+
+
+## 5. Herausforderungen
+
+Eines der größten Hindernisse bei der Quantensensorik ist die **Bewältigung von Dekohärenz und Rauschen**. Quantensensoren sind darauf angewiesen, fragile Quantenzustände wie Verschränkung und Quetschung aufrechtzuerhalten, die durch Wechselwirkungen mit ihrer Umgebung leicht gestört werden können. Temperaturschwankungen, elektromagnetische Streufelder und mechanische Vibrationen tragen alle zur Dekohärenz bei und beeinträchtigen den Quantenvorteil rapide. Darüber hinaus beeinträchtigen technische Störgeräusche aufgrund von Unvollkommenheiten in der Laserstabilität, Kontrollfeldern und Detektorineffizienzen die Messgenauigkeit. Zwar gibt es Techniken zur Minderung, wie dynamische Entkopplung und Quantenfehlerkorrektur. Diese erhöhen jedoch die Komplexität und den Aufwand, sodass die Unterdrückung von Störgeräuschen und Dekohärenz eine anhaltende und kritische Herausforderung darstellt[^17][^18].
+
+Die **Skalierung von Quantensensoren und ihre Integration in praktische Geräte** stellt eine weitere große Hürde dar. Um die Heisenberg-Grenze zu erreichen, muss eine Verschränkung über viele Teilchen hinweg erzeugt und aufrechterhalten werden, aber mit zunehmender Größe des Systems wächst die Schwierigkeit, die Kohärenz aufrechtzuerhalten, exponentiell. Viele Quantensensorplattformen erfordern spezielle Bedingungen wie kryogene Temperaturen, Ultrahochvakuum oder komplexe Lasersysteme, was die Miniaturisierung und Portabilität einschränkt. Obwohl Sensoren für Raumtemperatur wie NV-Zentren vielversprechend sind, bleibt die Integration verschiedener Quantentechnologien in kompakte, robuste und benutzerfreundliche Geräte eine aktive technische Herausforderung. Nahtlose hybride quanten-klassische Schnittstellen und skalierbare Fertigungsmethoden sind notwendig, um die Lücke zwischen Laboraufbauten und realen Anwendungen zu schließen[^19][^20].
+
+**Kalibrierung und systematische Fehler** erschweren Präzisionsmessungen zusätzlich. Quantensensoren müssen über einen langen Zeitraum hinweg extrem stabil bleiben, doch Abweichungen bei Temperatur, Laserfrequenz und Magnetfeldern können zu Verzerrungen führen. Die Messrückwirkung, bei der der Akt der Beobachtung den Quantenzustand stört, erfordert sorgfältig ausgearbeitete Protokolle, um Störungen zu minimieren. Darüber hinaus reagieren viele Sensoren gleichzeitig auf mehrere Umgebungsparameter, was es schwierig macht, die interessierende Größe zu isolieren. Die Entwicklung robuster Kalibrierungsverfahren und Strategien zur Fehlerminderung, die Genauigkeit und Reproduzierbarkeit in komplexen Umgebungen gewährleisten, ist für eine zuverlässige Quantensensorik unerlässlich[^17].
+
+Die **Komplexität und die Kosten von Quantensensoriksystemen** stellen ebenfalls erhebliche Herausforderungen dar. Viele Sensoren erfordern eine teure und sperrige Infrastruktur, darunter Verdünnungskühlschränke oder flüssiges Helium für die Kryotechnik, mehrere hochstabile abstimmbare Laser und fortschrittliche Nanofabrikation von fehlerfreien Materialien. Diese Komplexität schränkt die breite Einführung und Portabilität ein. Die Bemühungen zur Verringerung dieser Hindernisse konzentrieren sich auf den Betrieb bei Raumtemperatur, integrierte Photonik und neuartige Materialien, aber diese Technologien befinden sich noch in der Entwicklung. Die Reduzierung der Kosten und technischen Anforderungen bei gleichbleibend hoher Leistung ist entscheidend für den Übergang von Quantensensoren aus Forschungslabors in die praktische Anwendung[^19][^20].
+
+Schließlich müssen **grundlegende Grenzen der Ausleseeffizienz und anwendungsspezifische Einschränkungen** überwunden werden. Quantenprojektionsrauschen und unvollkommene Detektoren schränken die Genauigkeit der Messung von Quantenzuständen ein und begrenzen die erreichbare Empfindlichkeit. Eine schnellere Auslesung kann Rauschen verursachen und die Genauigkeit verringern, was zu einem empfindlichen Gleichgewicht führt. Darüber hinaus bringt der Einsatz von Sensoren in biologischen Umgebungen, unter Feldbedingungen oder in grundlegenden physikalischen Experimenten einzigartige Herausforderungen mit sich, wie z. B. Biokompatibilität, mechanische Robustheit und extreme Isolationsanforderungen. Das Fehlen standardisierter Messgrößen, Schwierigkeiten bei der Reproduzierbarkeit und die Notwendigkeit neuer regulatorischer Rahmenbedingungen erschweren die Kommerzialisierung und den großflächigen Einsatz zusätzlich. Theoretische Herausforderungen bei der Optimierung von Sensorprotokollen, adaptiven Messungen und Fehlerkorrekturen tragen zur Komplexität der vollständigen Realisierung des Potenzials der Quantensensorik bei[^17][^18][^19].
+
+---
+
+## Quellen
+
+[^1]: Giovannetti, V., Lloyd, S., & Maccone, L. (2011). Advances in quantum metrology. *Nature Photonics*, 5(4), 222–229. https://doi.org/10.1038/nphoton.2011.35  
+[^2]: Degen, C. L., Reinhard, F., & Cappellaro, P. (2017). Quantum sensing. *Reviews of Modern Physics*, 89(3), 035002. https://doi.org/10.1103/RevModPhys.89.035002  
+[^3]: Pezzè, L., Smerzi, A., Oberthaler, M. K., Schmied, R., & Treutlein, P. (2018). Quantum metrology with nonclassical states of atomic ensembles. *Reviews of Modern Physics*, 90(3), 035005. https://doi.org/10.1103/RevModPhys.90.035005  
+[^4]: Braun, D., Adesso, G., Benatti, F., Floreanini, R., Marzolino, U., Mitchell, M. W., & Pirandola, S. (2018). Quantum-enhanced measurements without entanglement. *Reviews of Modern Physics*, 90(3), 035006. https://doi.org/10.1103/RevModPhys.90.035006  
+[^5]: Wineland, D. J., Bollinger, J. J., Itano, W. M., & Heinzen, D. J. (1994). Squeezed atomic states and projection noise in spectroscopy. *Physical Review A*, 50(1), 67–88. https://doi.org/10.1103/PhysRevA.50.67  
+[^6]: Ma, J., Wang, X., Sun, C. P., & Nori, F. (2011). Quantum spin squeezing. *Physics Reports*, 509(2-3), 89–165. https://doi.org/10.1016/j.physrep.2011.08.003  
+[^7]: Tse, M., et al. (2019). Quantum-Enhanced Advanced LIGO Detectors in the Era of Gravitational-Wave Astronomy. *Physical Review Letters*, 123(23), 231107. https://doi.org/10.1103/PhysRevLett.123.231107  
+[^8]: Grote, H., et al. (2013). First Long-Term Application of Squeezed States of Light in a Gravitational-Wave Observatory. *Physical Review Letters*, 110(18), 181101. https://doi.org/10.1103/PhysRevLett.110.181101  
+[^9]: Ludlow, A. D., Boyd, M. M., Ye, J., Peik, E., & Schmidt, P. O. (2015). Optical atomic clocks. *Reviews of Modern Physics*, 87(2), 637–701. https://doi.org/10.1103/RevModPhys.87.637  
+[^10]: Hosten, O., Engelsen, N. J., Krishnakumar, R., & Kasevich, M. A. (2016). Measurement noise 100 times lower than the quantum-projection limit using entangled atoms. *Nature*, 529(7587), 505–508. https://doi.org/10.1038/nature16176  
+[^11]: Rondin, L., Tetienne, J.-P., Hingant, T., Roch, J.-F., Maletinsky, P., & Jacques, V. (2014). Magnetometry with nitrogen-vacancy defects in
+[^12]: Schirhagl, R., Chang, K., Loretz, M., & Degen, C. L. (2014). Nitrogen-Vacancy Centers in Diamond: Nanoscale Sensors for Physics and Biology. *Annual Review of Physical Chemistry*, 65(1), 83–105. https://doi.org/10.1146/annurev-physchem-040513-103659
+
+[^13]: Cronin, A. D., Schmiedmayer, J., & Pritchard, D. E. (2009). Optics and interferometry with atoms and molecules. *Reviews of Modern Physics*, 81(3), 1051–1129. https://doi.org/10.1103/RevModPhys.81.1051
+
+[^14]: Bongs, K., Holynski, M., Vovrosh, J., Bouyer, P., Condon, G., Rasel, E., Schubert, C., Roura, A., Schleich, W. P., & Peters, A. (2019). Taking atom interferometric quantum sensors from the laboratory to real-world applications. *Nature Reviews Physics*, 1(12), 731–739. https://doi.org/10.1038/s42254-019-0100-9
+
+[^15]: Aspelmeyer, M., Kippenberg, T. J., & Marquardt, F. (2014). Cavity optomechanics. *Reviews of Modern Physics*, 86(4), 1391–1452. https://doi.org/10.1103/RevModPhys.86.1391
+
+[^16]: Caves, C. M. (1981). Quantum-mechanical noise in an interferometer. *Physical Review D*, 23(8), 1693–1708. https://doi.org/10.1103/PhysRevD.23.1693
+
+[^17]: Preskill, J. (2018). Quantum Computing in the NISQ era and beyond. *Quantum*, 2, 79. https://doi.org/10.22331/q-2018-08-06-79
+
+[^18]: Huelga, S. F., & Plenio, M. B. (2013). Quantum sensing. *Contemporary Physics*, 54(2), 181–207. https://doi.org/10.1080/00107514.2013.795610
+
+[^19]: Dutta, S., Smetanin, I., & Leuchs, G. (2021). Quantum sensing technologies: Current status and future perspectives. *Quantum Science and Technology*, 6(4), 043001. https://doi.org/10.1088/2058-9565/ac17d0
+
+[^20]: Pezzè, L., Smerzi, A., Oberthaler, M. K., Schmied, R., & Treutlein, P. (2020). Quantum metrology with nonclassical states of atomic ensembles. *Reviews of Modern Physics*, 90(3), 035005. https://doi.org/10.1103/RevModPhys.90.035005
