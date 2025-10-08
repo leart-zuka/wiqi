@@ -23,7 +23,7 @@ At its core, quantum optimization tries to solve problems by encoding them into 
 
 ### a) Quantum Annealing
 
-This is a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. In **quantum annealing**, the particle can also _tunnel_ through hills, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the global minimum without "traversing" the entire landscape as shown in the image below.
+This is a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. In **quantum annealing**, the particle can also [_tunnel_](/en/posts/entries/college/qtunnelling) through hills, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the global minimum without "traversing" the entire landscape as shown in the image below.
 
 ![Quantum Annealing](/posts/assets/entries/qoptimization/Quantum_Annealing.png)
 
@@ -82,7 +82,7 @@ $$
 
 One way to visualize optimization is through a landscape metaphor. The y-axis is the cost or energy (lower is better), and the x-axis is the space of all possible solutions. In classical optimization, you're like a hiker trying to find the lowest valley, but you can get stuck in small dips (local minima).
 
-Quantum optimization, especially quantum annealing as we have seen, allows the particle to _tunnel_ through narrow hills. This is governed by the adiabatic theorem: if the system begins in the ground state of \(H(0)\) and the evolution is slow enough, it stays in the instantaneous ground state. The required runtime \(T\) satisfies:
+Quantum optimization, especially quantum annealing as we have seen, allows the particle to [_tunnel_](/en/posts/entries/college/qtunnelling) through narrow hills. This is governed by the adiabatic theorem: if the system begins in the ground state of \(H(0)\) and the evolution is slow enough, it stays in the instantaneous ground state. The required runtime \(T\) satisfies:
 
 $$
 T \gg \frac{1}{\Delta_{\min}^2}
@@ -139,7 +139,7 @@ where $n$ is the number of qubits — making training infeasible as system size 
 
 ## 6. Conclusion
 
-Quantum optimization blends physics and computing. As technology matures, it might unlock solutions classical methods can’t reach. Quantum optimization doesn’t just accelerate known methods — it uses new physical phenomena like tunneling and entanglement to redefine computational strategies. The full potential, particularly for large-scale combinatorial problems, remains an open question driving current research.
+Quantum optimization blends physics and computing. As technology matures, it might unlock solutions classical methods can’t reach. Quantum optimization doesn’t just accelerate known methods — it uses new physical phenomena like [_tunneling_](/en/posts/entries/college/qtunnelling) and [_entanglement_](/en/posts/entries/college/entanglement) to redefine computational strategies. The full potential, particularly for large-scale combinatorial problems, remains an open question driving current research.
 
 ---
 
