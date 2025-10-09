@@ -28,7 +28,7 @@ export default function Post({
   const numberOfWords = wordsCounter(post.content).wordsCount;
   const readingTime = Math.ceil(numberOfWords / 200);
   return (
-    <div className="min-h-screen bg-white py-28 dark:bg-slate-900">
+    <div className="min-h-screen bg-white py-12 dark:bg-slate-900">
       <div className="py-12 text-center">
         <h1 className="text-2xl text-slate-600 dark:text-white">
           {post.data.title}
