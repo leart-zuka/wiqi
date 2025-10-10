@@ -13,20 +13,17 @@ Aber zuerst müssen wir verstehen, was ein Standard-Bit ist, bevor wir zu seinem
 
 Danach werden wir uns ansehen, wie wir diese beiden neu erlernten Konzepte umwandeln können und wie sich Qubits dank ihrer Quanteneigenschaften ganz anders verhalten.
 
----
-
-# Bit
+## Bit
 
 Ein Bit ist die grundlegendste Informationseinheit, wenn es um Daten geht, die z.B. von Computern verarbeitet werden.
 Es speichert einen Wert, der entweder als „1“ oder „0“ (oder „ein“ oder „aus“) dargestellt werden kann, ähnlich wie ein Lichtschalter entweder auf „ein“ oder „aus“ stehen kann.
 
-# Qubit
+## Qubit
 
-Ein Qubit ist leider nicht so einfach zu verstehen und man braucht viel Mathematik, um es richtig zu beschreiben und dementsprechend auch zu verstehen.
+Ein Qubit ist leider nicht so einfach zu verstehen, und man braucht viel Mathematik, um es richtig zu verstehen.
 Und mit viel Mathe meine ich sehr viel.
 
 Um es einfach zu halten, werden wir uns eine Metapher ansehen, die die grobe Idee hinter dem Konzept eines Qubits erklärt.
-
 Wir alle waren entweder selbst in dieser Situation oder haben Kinder, die wir in genau diese Situation gebracht haben.
 
 Stellen Sie sich vor, Sie sind ein Kind, das in ein Spielwarengeschäft geht und zwei Spielzeuge findet, die Sie unbedingt haben möchten, sagen wir einen Basketball und einen ausgestopften Pinguin (diese Beispiele wurden aufgrund meiner eigenen Erfahrungen ausgewählt).
@@ -35,27 +32,25 @@ Am Anfang gefiel dir der Pinguin mit seiner lustigen Form besser, dann fühlst d
 Als du dich schließlich dem Kassenbereich näherst, entscheidest du dich nach dem Zufallsprinzip, welches Spielzeug du haben möchtest. Wird es der süße Pinguin oder der Basketball sein?
 
 Qubits können, genau wie in unserer kleinen Metapher, letztlich nur einen von zwei Werten annehmen, nachdem sie zur Kasse gebeten wurden, was in einer realen Laborumgebung bedeuten würde, dass man misst, welchen der beiden Werte sie jetzt tatsächlich haben.
-Das Interessante daran ist aber, dass das Qubit zufällig entscheidet, welchen Wert, also entweder „1“ oder „0“ oder, wenn man von Qubits spricht, allgemein als $$\ket{1}$$ oder $$\ket{0}$$ dargestellt, es annehmen will.
+Das Interessante daran ist aber, dass das Qubit zufällig entscheidet, welchen Wert, also entweder „1“ oder „0“ oder, wenn man von Qubits spricht, allgemein als `|1>` oder `|0>` dargestellt, es annehmen will.
 
-Eine Möglichkeit zur Veranschaulichung, wie diese „zufällige Auswahl“ funktionieren könnte, ist eine so genannte „Bloch-Kugel“, bei der die Wahrscheinlichkeit, $$\ket{1}$$ oder $$\ket{0}$$ zu wählen, durch einen Pfeil dargestellt wird, der vom Mittelpunkt der Oberfläche zur Kugel zeigt.
+Eine Möglichkeit zur Veranschaulichung, wie diese „zufällige Auswahl“ funktionieren könnte, ist eine so genannte „Bloch-Kugel“, bei der die Wahrscheinlichkeit, `|1>` oder `|0>` zu wählen, durch einen Pfeil dargestellt wird, der vom Mittelpunkt der Oberfläche zur Kugel zeigt.
 
 Das scheint alles sehr interessant zu sein, aber jetzt müssen wir auch verstehen, wie wir diese Qu-/Bits manipulieren können, um sie für unsere, hoffentlich gutmütigen, Zwecke nützlich zu machen.
 
-## Visualisierung eines Qubit-Zustands
+### Visualisierung eines Qubit-Zustands
 
-Ein so genannter Qubit-Zustand, also die Wahrscheinlichkeit, dass ein Qubit entweder $$\ket{1}$$ oder $$\ket{0}$$ ist, kann durch eine so genannte `Bloch-Sphäre` beschrieben werden, benannt nach dem Physiker Felix Bloch.
+Ein so genannter Qubit-Zustand, also die Wahrscheinlichkeit, dass ein Qubit entweder `|1>` oder `|0>` ist, kann durch eine so genannte `Bloch-Sphäre` beschrieben werden, benannt nach dem Physiker Felix Bloch.
 
 ![Bloch Sphere](/posts/assets/quantum_tuesdays/Bits_to_qubits/init.png)
 
 Die wichtigsten Ideen sind:
 
-- Je weiter der Pfeil nach oben oder unten zeigt, desto größer ist die Wahrscheinlichkeit, dass bei der Messung des Zustands des Qubits entweder $$\ket{0}$$ oder $$\ket{1}$$ angezeigt wird. Das bedeutet auch, dass, wenn der Pfeil entlang des Äquators zeigt, die Chancen, entweder $$\ket{0}$$ oder $$\ket{1}$$ zu erhalten, 50/50 sind.
+- Je weiter der Pfeil nach oben oder unten zeigt, desto größer ist die Wahrscheinlichkeit, dass bei der Messung des Zustands des Qubits entweder `|0>` oder `|1>` angezeigt wird. Das bedeutet auch, dass, wenn der Pfeil entlang des Äquators zeigt, die Chancen, entweder `|0>` oder `|1>` zu erhalten, 50/50 sind.
 
 - Nach der Messung zeigt das Qubit, je nach Ergebnis, immer entweder ganz nach oben oder ganz nach unten, da es dann auf seinen endgültigen Wert „kollabiert“.
 
 - Seine Drehung, also ob es entlang der x- oder y-Achse zeigt, spielt ebenfalls eine Rolle, würde aber den Rahmen dieses Beitrags sprengen.
-
----
 
 # Logische Gatter
 
@@ -82,28 +77,24 @@ Für ein `AND`-Gatter benötigen wir zwei Bits als Eingang, die dann ein Bit als
 ## Qubits
 
 Ein Quantengatter beschreibt im Wesentlichen immer eine Drehung unseres Zustands, also unseres Pfeils auf der Bloch-Sphäre.
-Wir haben diese Sektion in zwei Teile unterteilt: Zuerst werden wir uns die logischen Quantengatter anschauen, welche den Zustand von nur 1 Qubit manipulieren und danach schauen wir uns die logischen Quantengatter an, welche die Zustände von 2 Qubits manipulieren.
-
-### 1 Qubit Gater
-
 Die Hauptformen dieser Rotationen sind die X-, Y- und Z-Gatter, die, wie der Name schon sagt, alle eine Rotation entlang ihrer jeweiligen Achse durchführen.
-Im Kontext von Quantencomputern, wäre dies das Equivalente zum `NOT` gate bei klassischen Computern, da diese Rotation den Zustand auf unserer Blochsphäre immer um 180° drehen.
+Ein weiteres sehr wichtiges 1-Qubit-Gatter ist das so genannte „Hadamard-Gatter“, benannt nach dem Physiker Jacques Hadamard, das unseren Pfeil von einem der Pole der Bloch-Sphäre zum Äquator bringt, was sich später als nützlich erweisen wird.
 
-#### X - Gatter
+### 1 Qubit Gaterr
+
+### X - Gatter
 
 ![X-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/x_rot.png)
 
-#### Y - Gatter
+### Y - Gatter
 
 ![Y-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/y_rot.png)
 
-#### Z - Gatter
+### Z - Gatter
 
-![Z-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/z_rot.png)
+![Z-Tor](/posts/assets/quantum_tuesdays/Bits_to_qubits/z_rot.png)
 
 ### Hadamard - Gatter
-
-Ein weiteres sehr wichtiges 1-Qubit-Gatter ist das so genannte `Hadamard-Gatter`, benannt nach dem Physiker `Jacques Hadamard``, das unseren Pfeil von einem der Pole der Bloch-Sphäre zum Äquator bringt. Das ist in der Hinsicht interessant, da man damit in der Lage ist unser Qubit in einen Zustand der [Superposition](https://wiqi.info/de/posts/entries/elementary/superposition) zu bringen. Dies bedeutet dann im Endeffekt, die Chance unser Qubit entweder in $$\ket{0}$$ oder $$\ket{1}$$ zu finden bei jeweils 50% liegen.
 
 ![Hadamard-Gatter](/posts/assets/quantum_tuesdays/Bits_to_qubits/h_rot.png)
 
@@ -111,15 +102,15 @@ Ein weiteres sehr wichtiges 1-Qubit-Gatter ist das so genannte `Hadamard-Gatter`
 
 Mit diesem neu gewonnenen Wissen wenden wir uns nun den 2-Qubit-Gattern zu, die im Gegensatz zu den klassischen Logikgattern nicht nur einen Ausgang für zwei Eingänge liefern, sondern den Zustand der beiden Eingangs-Qubits verändern.
 
-#### C-NOT-Gatter
+### C-NOT-Gatter
 
-Das bekannteste 2-Qubit-Gatter ist das so genannte „C-NOT“- oder „kontrollierte NOT“-Gatter. Dieses Gatter ermöglicht es uns, eine Drehung eines Qubits (typischerweise um die x-Achse) basierend auf dem Zustand des anderen Qubits durchzuführen. Das eine Qubit, mit dem wir prüfen, ob wir die Drehung durchführen werden, wird als „Kontroll-Qubit“ bezeichnet (in den Bildern auf der Seite mit dem Punkt) und das andere Qubit wird als „Ziel-Qubit“ bezeichnet (in den Bildern auf der Seite mit dem Kreuz).
+Das bekannteste 2-Qubit-Gatter ist das so genannte „C-NOT“- oder „kontrollierte NOT“-Gatter. Dieses Gatter ermöglicht es uns, eine Drehung eines Qubits (typischerweise um die x-Achse) auf der Grundlage des Zustands des anderen Qubits durchzuführen. Das eine Qubit, mit dem wir prüfen, ob wir die Drehung durchführen werden, wird als „Kontroll-Qubit“ bezeichnet (in den Bildern auf der Seite mit dem Punkt) und das andere Qubit wird als „Ziel-Qubit“ bezeichnet (in den Bildern auf der Seite mit dem Kreuz).
 
-Nehmen wir also an, wir geben zwei Qubits in unser C-NOT-Gatter ein, wobei sich das erste und das zweite im Zustand $$\ket{0}$$ („Pfeil nach oben“) befinden. Hier ist das erste Qubit das „steuernde Qubit“, aber da es sich im Zustand $$\ket{0}$$ befindet, wird es keine Drehung des „Ziel-Qubits“ durchführen.
+Nehmen wir also an, wir geben zwei Qubits in unser C-NOT-Gatter ein, wobei sich das erste und das zweite im Zustand `|0>` („Pfeil nach oben“) befinden. Hier ist das erste Qubit das „steuernde Qubit“, aber da es sich im Zustand `|0>` befindet, wird es keine Drehung des „Ziel-Qubits“ durchführen.
 
 ![CNOT gate 0](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_0.png)
 
-Wenn sich das `kontrollierende Qubit` allerdings im Zustand $$\ket{1}$$ befindet („Pfeil zeigt nach unten“), dann wird es eine Rotation auf dem `Ziel-Qubit` durchführen.
+Wenn sich das `kontrollierende Qubit` allerdings im Zustand `|1>` befindet („Pfeil zeigt nach unten“), dann wird es eine Rotation auf dem `Ziel-Qubit` durchführen.
 
 ![CNOT gate 1](/posts/assets/quantum_tuesdays/Bits_to_qubits/c_not_rot_1.png)
 
@@ -127,14 +118,10 @@ Wenn sich das `kontrollierende Qubit` allerdings im Zustand $$\ket{1}$$ befindet
 
 Was können wir nun mit all dem anfangen?
 
-Wie bereits erwähnt, wenn unser Qubit-Zustand entlang des Äquators zeigt, bedeutet das, dass die Chance, entweder ein $$\ket{0}$$ oder ein $$\ket{1}$$ zu erhalten, 50/50 ist. Das wirft die Frage auf, was passiert, wenn wir ein Qubit in einem solchen Zustand haben und dann eine „C-NOT“-Operation mit diesem Qubit als „kontrollierendes Qubit“ an einem anderen „Ziel-Qubit“ durchführen.
+Wie bereits erwähnt, wenn unser Qubit-Zustand entlang des Äquators zeigt, bedeutet das, dass die Chance, entweder ein `|0>` oder ein `|1>` zu erhalten, 50/50 ist. Das wirft die Frage auf, was passiert, wenn wir ein Qubit in einem solchen Zustand haben und dann eine „C-NOT“-Operation mit diesem Qubit als „kontrollierendes Qubit“ an einem anderen „Ziel-Qubit“ durchführen.
 
-Auf diese Weise würde etwas entstehen, das Physiker als [Quantenverschränkung](https://wiqi.info/de/posts/entries/elementary/entanglement) bezeichnen, denn nach der Durchführung solcher Operationen würde ein Zustand entstehen, in dem die Messung eines Qubits das Ergebnis des nächsten direkt beeinflusst, was technisch gesehen eine sofortige Kommunikation zwischen zwei Personen ermöglicht, wenn beide eines der beiden Qubits teilen.
+Dies würde etwas schaffen, was Physiker als „Quantenverschränkung“ bezeichnen, da wir nach der Durchführung solcher Operationen einen Zustand schaffen würden, in dem die Messung eines Qubits das Ergebnis des nächsten direkt beeinflusst, was technisch gesehen eine sofortige Kommunikation zwischen zwei Personen ermöglichen würde, wenn beide eines der beiden Qubits teilen würden.
 
-All dies wirft dann die Frage auf, wie solche Qubits technisch am besten realisiert werden können. Nun, derzeit gibt es keine richtige Antwort darauf, da es viele Möglichkeiten gibt, ein solches Qubit-System zu schaffen. Sei es durch das Einfangen einzelner Atome mit Arrays von `Optical Tweezers` und das Beschießen mit Lasern, um solche Rotationen durchzuführen, durch das Leiten von Strom durch `supraleitende Schaltkreise`, in denen die Richtung spezieller Teilchen unseren Zustand anzeigt, oder durch die Beeinflussung `einzelner Elektronen-Spins` innerhalb eines `Diamantkristalls`. Bislang wurde noch keine perfekte Lösung vorgeschlagen, da alle von uns genannten Plattformen ihre Vor- und Nachteile haben.
+Und wie lassen sich solche Qubits technisch am besten realisieren? Nun, darauf gibt es noch keine richtige Antwort, denn es gibt viele Möglichkeiten, ein solches Qubit-System zu schaffen. Es gibt viele Möglichkeiten, ein solches Qubit-System zu erzeugen, sei es, dass man Ionen in so genannten „Iontraps“ einfängt und sie mit Lasern beschießt, um solche Rotationen durchzuführen (dies funktioniert auch mit neutralen Atomen, die zwischen faseroptischen Hohlräumen gefangen sind), dass man Strom durch supraleitende Schaltkreise fließen lässt, wobei die Richtung der speziellen Teilchen unseren Zustand anzeigt, oder dass man einzelne Spins in einem Diamantkristall beeinflusst. Bislang wurde noch keine perfekte Lösung vorgeschlagen, da alle genannten Plattformen ihre Vor- und Nachteile haben.
 
-### Quellen:
-
-- [Logic Gates](https://en.wikipedia.org/wiki/Logic_gate)
-- [Quantum Logic Gates](https://en.wikipedia.org/wiki/Quantum_logic_gate)
-- [Qubit Visualization](https://bloch.kherb.io/)
+Dies ist jedoch ein Diskussionsthema für einen anderen Tag.
