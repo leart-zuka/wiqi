@@ -1,0 +1,63 @@
+---
+title: "Quantum Optimization"
+subtitle: "Quantum Optimization: Solving the Hardest Problems with the Weirdest Tools(middle)"
+author: "Sudharshan Kannan, Adhesh Sagar"
+date: "2025-05-31"
+---
+
+## Understanding Optimization
+
+Optimization is everywhere. From planning pizza delivery routes to deciding how to schedule school/college courses, or even how proteins fold in biology-these are all optimization problems. In simple terms, an optimization problem is one where you want to find the **best** solution out of many possible ones. 'Best' in terms of saving time, money or resources.
+
+Imagine you have a physical map in your hands and you are trying to find the shortest way to visit 3 friends, all in random locations in the city. It should be a pretty easy problem to solve if you give it some thought, because there would only be a handful of routes to choose from. But if you were visiting 10 friends, you'd find it super difficult to solve. And you would probably give up right away if it was 100 friends.
+
+So as problems grow bigger and more complicated, the number of possible answers explodes. When trying to plan a route to visit 100 friends, there are more possible paths than there are atoms in the universe. Trying to find the shortest path in this case is nearly impossible. This is where **classical computers** start to struggle. Not even (classical) supercomputers can solve complex optimization problems quickly. Could quantum computers help us here? That's what **quantum optimization** is all about: using the strange rules of quantum mechanics to explore huge sets of solutions more cleverly than classical computers.
+
+## What is Quantum Optimization?
+
+At its core, quantum optimization tries to solve problems by turning them into a quantum system; where each possible answer has an associated energy. The goal is to find the lowest-energy state, the **ground state**, which corresponds to the best solution to the original problem. Pretty much like trying to find the shortest route home. Find the ground state and that's your answer.
+
+But now you might ask, 'How do we find the ground state though?' There are multiple ways to find it.
+
+### a) Quantum Annealing
+
+This is infact a physical process inspired by nature. Imagine a landscape of hills and valleys where the lowest valley is the best solution. In classical annealing, you let a particle bounce around this landscape and hope it settles in the deepest valley. But the particle could accidentally land in a shallow valley without any knowledge of other deeper valleys. In **quantum annealing** however, the particle can also [_tunnel_](/en/posts/entries/highschool/qtunnelling) through hills instead of climbing over them, allowing it to escape local traps more easily. Through Quantum Annealing you can reach the true lowest point (global minimum) without going through the entire landscape.
+
+![A diagram showing a particle tunneling through a hill in a landscape, representing Quantum Annealing.](/posts/assets/entries/qoptimization/q_annealing.png)
+_Image Source: [The Vessel Project](https://www.vesselproject.io/essays/life-through-quantum-annealing)_
+
+This is the power of quantum annealing and it is used by companies like D-Wave to solve complex optimization problems. By finding the lowest energy configuration of spins (spin-up or spin-down), they can find the optimal solution to real-world challenges.
+
+### b) VQA (Variational Quantum Algorithms)
+
+Another exciting way to solve these problems is with Variational Quantum Algorithms (VQAs), where we create a team between a classical computer and a quantum computer. 
+
+We start of with an initial guess to solve the problem at hand which we then ask our quantum computer to evaluate. After receiving its side of the result, it gets handed to our classical computer to figure out wether our initial guess gave us the correct results. If that's the case then we can all be happy and go home. However, more often than not, if that's not the case, our classical computer will give us a new set of parameters based off of the result of the first experimental run, and we repeat the cycle until we receive our desired result. 
+
+The idea is to use a classical computer to tune the parameters of a quantum system. This allows us to find solutions by starting with a good guess and then refining it over and over. Sort of like making a pot out of clay.
+
+## Visualizing the Quantum Advantage
+
+A classical computer is like a hiker who walks downhill and stops in the first valley they find. They get stuck there, even if a much deeper valley is just over the next hill. While on the other hand, a quantum computer can use [_tunneling_](/en/posts/entries/highschool/qtunnelling) to pass straight through the hills, making it much easier to find the absolute lowest valley.
+
+## Applications
+
+This problem solving ability of Quantum Optimisation has impacted many fields where problems are too complex for the almost brute-force like nature of classical algorithms approaches. Finding e.g. the shortest route could help delivery companies save fuel and cost. Finding the perfect mix of investments from thousands of options could help investment brokers maximise theirs shareholders' value.
+
+## Challenges
+
+However, the journey isn't as easy as outlined here. Today's quantum computers face big hurdles. The building blocks, qubits, are fragile and we don't have enough of them yet. The slightest mechanical vibration or temperature change in the environment can cause them to "pop" and lose their quantum information, which physicists call **decoherence**. Training the algorithms can also be incredibly difficult, and it's still hard to prove when they are truly better than our best classical computers.
+
+## Conclusion
+
+Quantum optimization blends physics and computing. As technology matures, it might unlock solutions classical methods can't reach. Quantum optimization doesn't just accelerate known methods it uses new physical phenomena like [_tunneling_](/en/posts/entries/highschool/qtunnelling) and [_entanglement_](/en/posts/entries/highschool/entanglement) to redefine problem solving strategies. The full potential, particularly for large-scale problems, remains an open question driving current research.
+
+## References
+
+- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
+- Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)
+- McClean et al., [arXiv:1803.11173](https://arxiv.org/abs/1803.11173)
+- Lucas, A., [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
+- D-Wave Systems, https://docs.dwavesys.com/docs/latest/c_qubo.html
+- Morales, Samuel, "Life Through Quantum Annealing," The Vessel Project, https://www.vesselproject.io/essays/life-through-quantum-annealing (Image Source)
