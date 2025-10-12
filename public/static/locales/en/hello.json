@@ -123,5 +123,11 @@
     "Entries": "Entries",
     "About Us": "Abous Us",
     "Connect": "Connect"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved. Let's get you back to exploring the quantum world!",
+    "goHome": "Go Home",
+    "helpText": "If you believe this is an error, please check the URL or try navigating from our homepage."
   }
 }

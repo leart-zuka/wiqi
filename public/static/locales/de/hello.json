@@ -123,5 +123,11 @@
     "Entries": "Generelle Einträge",
     "About Us": "Über Uns",
     "Connect": "Kontakte"
+  },
+  "NotFoundPage": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Seite, die Sie suchen, existiert nicht oder wurde verschoben. Lassen Sie uns Sie zurück zur Erkundung der Quantenwelt bringen!",
+    "goHome": "Zur Startseite",
+    "helpText": "Wenn Sie glauben, dass dies ein Fehler ist, überprüfen Sie bitte die URL oder versuchen Sie, von unserer Startseite aus zu navigieren."
   }
 }
