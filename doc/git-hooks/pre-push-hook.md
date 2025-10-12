@@ -1,6 +1,11 @@
 ---
 id: "pre-push-hook"
-date: "2025-01-12"
+date: "2025-10-13"
+title: "Pre-push Git Hook for Code Quality"
+description: "Automated code quality checks before pushing commits to maintain consistent code standards"
+author: "WiQi Development Team"
+category: "Development Tools"
+tags: ["git", "hooks", "code-quality", "linting", "formatting", "typescript"]
 ---
 
 # Pre-push Git Hook for Code Quality
@@ -52,25 +57,28 @@ The hook runs validation checks in this order:
 📋 What pre-push checks do:
    • bun lint       - Run ESLint checks
    • bun types      - Run TypeScript type checking
-   • bun format:check - Verify code is properly formatted
+   • bun format:check - Check if code is properly formatted
 
 [error output from validation checks]
 
 📊 Summary:
-   • Errors: 2
-   • Warnings: 3
+   • Errors: 1
+   • Warnings: 1
+   • Code formatting: ✅ Properly formatted
 
 ❌ Errors found:
-   15:error TS2304: Cannot find name 'undefinedVariable'.
-   23:Error: Missing semicolon
+
+./src/app/components/Header.tsx
+23:15  Error: Cannot find name 'undefinedVariable'. TS2304
 
 ⚠️  Warnings found:
-   8:warning: Unused variable 'temp'
-   12:Warning: Prefer const over let
-   18:warning: Missing JSDoc comment
+
+./src/app/components/homepage/FeaturedCard.tsx
+81:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
 
 ❌ Pre-push checks failed!
 Please fix the issues above before pushing.
+You can run 'bun lft' manually to see the errors.
 ```
 
 ## Benefits
@@ -108,18 +116,47 @@ chmod +x .git/hooks/pre-push
 # Pre-push hook to run bun lft before pushing
 # This ensures code quality checks pass before commits are pushed
 
-echo "🔍 Running pre-push checks (bun lft)..."
-echo ""
-echo "📋 What pre-push checks do:"
-echo "   • bun lint       - Run ESLint checks"
-echo "   • bun types      - Run TypeScript type checking"
-echo "   • bun format:check - Verify code is properly formatted"
-echo ""
+# Color codes for console output
+# Check if terminal supports colors
+if [ -t 1 ] && [ "$TERM" != "dumb" ] && command -v tput >/dev/null 2>&1 && tput colors >/dev/null 2>&1; then
+    RED=$(tput setaf 1)
+    GREEN=$(tput setaf 2)
+    YELLOW=$(tput setaf 3)
+    BLUE=$(tput setaf 4)
+    PURPLE=$(tput setaf 5)
+    CYAN=$(tput setaf 6)
+    WHITE=$(tput setaf 7)
+    BOLD=$(tput bold)
+    NC=$(tput sgr0) # No Color
+else
+    # Fallback to no colors if terminal doesn't support them
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    PURPLE=""
+    CYAN=""
+    WHITE=""
+    BOLD=""
+    NC=""
+fi
+
+printf "${BLUE}${BOLD}🔍 Running pre-push checks (bun lft)...${NC}\n"
+printf "\n"
+printf "${CYAN}${BOLD}📋 What pre-push checks do:${NC}\n"
+printf "   ${WHITE}• bun lint${NC}       - Run ESLint checks\n"
+printf "   ${WHITE}• bun types${NC}      - Run TypeScript type checking\n"
+printf "   ${WHITE}• bun format:check${NC} - Check if code is properly formatted\n"
+printf "\n"
 
 # Capture output and count errors/warnings
 # Use format:check instead of format to avoid modifying files during pre-push
 OUTPUT=$(bun lint && bun types && bun format:check 2>&1)
 EXIT_CODE=$?
+
+# Check formatting status specifically
+FORMAT_OUTPUT=$(bun format:check 2>&1)
+FORMAT_EXIT_CODE=$?
 
 # Extract and count errors and warnings
 ERROR_LINES=$(echo "$OUTPUT" | grep -n "error\|Error\|ERROR" || true)
@@ -141,40 +178,79 @@ fi
 # Display the output
 echo "$OUTPUT"
 
-echo ""
-echo "📊 Summary:"
-echo "   • Errors: $ERROR_COUNT"
-echo "   • Warnings: $WARNING_COUNT"
+printf "\n"
+printf "${PURPLE}${BOLD}📊 Summary:${NC}\n"
+printf "   ${RED}• Errors: $ERROR_COUNT${NC}\n"
+printf "   ${YELLOW}• Warnings: $WARNING_COUNT${NC}\n"
+
+# Show formatting status
+if [ $FORMAT_EXIT_CODE -eq 0 ]; then
+    printf "   ${GREEN}• Code formatting: ✅ Properly formatted${NC}\n"
+else
+    printf "   ${RED}• Code formatting: ❌ Needs formatting${NC}\n"
+fi
 
 # List all errors if any
 if [ "$ERROR_COUNT" -gt 0 ]; then
-    echo ""
-    echo "❌ Errors found:"
-    echo "$ERROR_LINES" | while IFS= read -r line; do
-        echo "   $line"
+    printf "\n"
+    printf "${RED}${BOLD}❌ Errors found:${NC}\n"
+    echo "$OUTPUT" | grep -B1 -A0 "error\|Error\|ERROR" | while IFS= read -r line; do
+        # Check if this line contains a file path (starts with ./ or /)
+        if echo "$line" | grep -q "^\./\|^/"; then
+            printf "\n${CYAN}${line}${NC}\n"
+        # Check if this line contains an error
+        elif echo "$line" | grep -q "error\|Error\|ERROR"; then
+            # Extract line:column and message
+            if echo "$line" | grep -q "^[0-9]*:[0-9]*"; then
+                line_col=$(echo "$line" | sed -E 's/^([0-9]*:[0-9]*).*/\1/')
+                message=$(echo "$line" | sed -E 's/^[0-9]*:[0-9]*[[:space:]]*//')
+                # Color the line:column in red, message in white
+                printf "${RED}${line_col}${NC}  ${WHITE}${message}${NC}\n"
+            else
+                # Fallback for other error formats
+                colored_line=$(echo "$line" | sed "s/Error:/${RED}Error:${NC}${WHITE}/g" | sed "s/ERROR:/${RED}ERROR:${NC}${WHITE}/g" | sed "s/error:/${RED}error:${NC}${WHITE}/g")
+                printf "${WHITE}${colored_line}${NC}\n"
+            fi
+        fi
     done
 fi
 
 # List all warnings if any
 if [ "$WARNING_COUNT" -gt 0 ]; then
-    echo ""
-    echo "⚠️  Warnings found:"
-    echo "$WARNING_LINES" | while IFS= read -r line; do
-        echo "   $line"
+    printf "\n"
+    printf "${YELLOW}${BOLD}⚠️  Warnings found:${NC}\n"
+    echo "$OUTPUT" | grep -B1 -A0 "warning\|Warning\|WARNING" | while IFS= read -r line; do
+        # Check if this line contains a file path (starts with ./ or /)
+        if echo "$line" | grep -q "^\./\|^/"; then
+            printf "\n${CYAN}${line}${NC}\n"
+        # Check if this line contains a warning
+        elif echo "$line" | grep -q "warning\|Warning\|WARNING"; then
+            # Extract line:column and message
+            if echo "$line" | grep -q "^[0-9]*:[0-9]*"; then
+                line_col=$(echo "$line" | sed -E 's/^([0-9]*:[0-9]*).*/\1/')
+                message=$(echo "$line" | sed -E 's/^[0-9]*:[0-9]*[[:space:]]*//')
+                # Color the line:column in yellow, message in white
+                printf "${YELLOW}${line_col}${NC}  ${WHITE}${message}${NC}\n"
+            else
+                # Fallback for other warning formats
+                colored_line=$(echo "$line" | sed "s/Warning:/${YELLOW}Warning:${NC}${WHITE}/g" | sed "s/WARNING:/${YELLOW}WARNING:${NC}${WHITE}/g" | sed "s/warning:/${YELLOW}warning:${NC}${WHITE}/g")
+                printf "${WHITE}${colored_line}${NC}\n"
+            fi
+        fi
     done
 fi
 
 # Check if bun lft succeeded
 if [ $EXIT_CODE -ne 0 ]; then
-    echo ""
-    echo "❌ Pre-push checks failed!"
-    echo "Please fix the issues above before pushing."
-    echo "You can run 'bun lft' manually to see the errors."
+    printf "\n"
+    printf "${RED}${BOLD}❌ Pre-push checks failed!${NC}\n"
+    printf "${RED}Please fix the issues above before pushing.${NC}\n"
+    printf "${YELLOW}You can run 'bun lft' manually to see the errors.${NC}\n"
     exit 1
 fi
 
-echo ""
-echo "✅ Pre-push checks passed!"
+printf "\n"
+printf "${GREEN}${BOLD}✅ Pre-push checks passed!${NC}\n"
 exit 0
 ```
 
@@ -205,18 +281,47 @@ cat > .git/hooks/pre-push << 'EOF'
 # Pre-push hook to run bun lft before pushing
 # This ensures code quality checks pass before commits are pushed
 
-echo "🔍 Running pre-push checks (bun lft)..."
-echo ""
-echo "📋 What pre-push checks do:"
-echo "   • bun lint       - Run ESLint checks"
-echo "   • bun types      - Run TypeScript type checking"
-echo "   • bun format:check - Verify code is properly formatted"
-echo ""
+# Color codes for console output
+# Check if terminal supports colors
+if [ -t 1 ] && [ "$TERM" != "dumb" ] && command -v tput >/dev/null 2>&1 && tput colors >/dev/null 2>&1; then
+    RED=$(tput setaf 1)
+    GREEN=$(tput setaf 2)
+    YELLOW=$(tput setaf 3)
+    BLUE=$(tput setaf 4)
+    PURPLE=$(tput setaf 5)
+    CYAN=$(tput setaf 6)
+    WHITE=$(tput setaf 7)
+    BOLD=$(tput bold)
+    NC=$(tput sgr0) # No Color
+else
+    # Fallback to no colors if terminal doesn't support them
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    PURPLE=""
+    CYAN=""
+    WHITE=""
+    BOLD=""
+    NC=""
+fi
+
+printf "${BLUE}${BOLD}🔍 Running pre-push checks (bun lft)...${NC}\n"
+printf "\n"
+printf "${CYAN}${BOLD}📋 What pre-push checks do:${NC}\n"
+printf "   ${WHITE}• bun lint${NC}       - Run ESLint checks\n"
+printf "   ${WHITE}• bun types${NC}      - Run TypeScript type checking\n"
+printf "   ${WHITE}• bun format:check${NC} - Check if code is properly formatted\n"
+printf "\n"
 
 # Capture output and count errors/warnings
 # Use format:check instead of format to avoid modifying files during pre-push
 OUTPUT=$(bun lint && bun types && bun format:check 2>&1)
 EXIT_CODE=$?
+
+# Check formatting status specifically
+FORMAT_OUTPUT=$(bun format:check 2>&1)
+FORMAT_EXIT_CODE=$?
 
 # Extract and count errors and warnings
 ERROR_LINES=$(echo "$OUTPUT" | grep -n "error\|Error\|ERROR" || true)
@@ -238,40 +343,79 @@ fi
 # Display the output
 echo "$OUTPUT"
 
-echo ""
-echo "📊 Summary:"
-echo "   • Errors: $ERROR_COUNT"
-echo "   • Warnings: $WARNING_COUNT"
+printf "\n"
+printf "${PURPLE}${BOLD}📊 Summary:${NC}\n"
+printf "   ${RED}• Errors: $ERROR_COUNT${NC}\n"
+printf "   ${YELLOW}• Warnings: $WARNING_COUNT${NC}\n"
+
+# Show formatting status
+if [ $FORMAT_EXIT_CODE -eq 0 ]; then
+    printf "   ${GREEN}• Code formatting: ✅ Properly formatted${NC}\n"
+else
+    printf "   ${RED}• Code formatting: ❌ Needs formatting${NC}\n"
+fi
 
 # List all errors if any
 if [ "$ERROR_COUNT" -gt 0 ]; then
-    echo ""
-    echo "❌ Errors found:"
-    echo "$ERROR_LINES" | while IFS= read -r line; do
-        echo "   $line"
+    printf "\n"
+    printf "${RED}${BOLD}❌ Errors found:${NC}\n"
+    echo "$OUTPUT" | grep -B1 -A0 "error\|Error\|ERROR" | while IFS= read -r line; do
+        # Check if this line contains a file path (starts with ./ or /)
+        if echo "$line" | grep -q "^\./\|^/"; then
+            printf "\n${CYAN}${line}${NC}\n"
+        # Check if this line contains an error
+        elif echo "$line" | grep -q "error\|Error\|ERROR"; then
+            # Extract line:column and message
+            if echo "$line" | grep -q "^[0-9]*:[0-9]*"; then
+                line_col=$(echo "$line" | sed -E 's/^([0-9]*:[0-9]*).*/\1/')
+                message=$(echo "$line" | sed -E 's/^[0-9]*:[0-9]*[[:space:]]*//')
+                # Color the line:column in red, message in white
+                printf "${RED}${line_col}${NC}  ${WHITE}${message}${NC}\n"
+            else
+                # Fallback for other error formats
+                colored_line=$(echo "$line" | sed "s/Error:/${RED}Error:${NC}${WHITE}/g" | sed "s/ERROR:/${RED}ERROR:${NC}${WHITE}/g" | sed "s/error:/${RED}error:${NC}${WHITE}/g")
+                printf "${WHITE}${colored_line}${NC}\n"
+            fi
+        fi
     done
 fi
 
 # List all warnings if any
 if [ "$WARNING_COUNT" -gt 0 ]; then
-    echo ""
-    echo "⚠️  Warnings found:"
-    echo "$WARNING_LINES" | while IFS= read -r line; do
-        echo "   $line"
+    printf "\n"
+    printf "${YELLOW}${BOLD}⚠️  Warnings found:${NC}\n"
+    echo "$OUTPUT" | grep -B1 -A0 "warning\|Warning\|WARNING" | while IFS= read -r line; do
+        # Check if this line contains a file path (starts with ./ or /)
+        if echo "$line" | grep -q "^\./\|^/"; then
+            printf "\n${CYAN}${line}${NC}\n"
+        # Check if this line contains a warning
+        elif echo "$line" | grep -q "warning\|Warning\|WARNING"; then
+            # Extract line:column and message
+            if echo "$line" | grep -q "^[0-9]*:[0-9]*"; then
+                line_col=$(echo "$line" | sed -E 's/^([0-9]*:[0-9]*).*/\1/')
+                message=$(echo "$line" | sed -E 's/^[0-9]*:[0-9]*[[:space:]]*//')
+                # Color the line:column in yellow, message in white
+                printf "${YELLOW}${line_col}${NC}  ${WHITE}${message}${NC}\n"
+            else
+                # Fallback for other warning formats
+                colored_line=$(echo "$line" | sed "s/Warning:/${YELLOW}Warning:${NC}${WHITE}/g" | sed "s/WARNING:/${YELLOW}WARNING:${NC}${WHITE}/g" | sed "s/warning:/${YELLOW}warning:${NC}${WHITE}/g")
+                printf "${WHITE}${colored_line}${NC}\n"
+            fi
+        fi
     done
 fi
 
 # Check if bun lft succeeded
 if [ $EXIT_CODE -ne 0 ]; then
-    echo ""
-    echo "❌ Pre-push checks failed!"
-    echo "Please fix the issues above before pushing."
-    echo "You can run 'bun lft' manually to see the errors."
+    printf "\n"
+    printf "${RED}${BOLD}❌ Pre-push checks failed!${NC}\n"
+    printf "${RED}Please fix the issues above before pushing.${NC}\n"
+    printf "${YELLOW}You can run 'bun lft' manually to see the errors.${NC}\n"
     exit 1
 fi
 
-echo ""
-echo "✅ Pre-push checks passed!"
+printf "\n"
+printf "${GREEN}${BOLD}✅ Pre-push checks passed!${NC}\n"
 exit 0
 EOF
 
