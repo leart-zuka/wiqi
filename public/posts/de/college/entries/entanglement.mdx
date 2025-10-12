@@ -5,51 +5,134 @@ author: "Paula García-Mochales, Tim Kaiser, Helena Iréne Köhler, Laura Rojo G
 date: "2025-01-08"
 ---
 
-## Verschränkung
+## Einleitung: Die Quantenverschränkung
 
-Zwei Teilchen werden als verschränkt bezeichnet, wenn sie nicht unabhängig voneinander beschrieben werden können. Ihre Quantenzustände sind nicht unabhängig, sondern direkt miteinander korreliert. Ihre Messungen können daher nicht getrennt beschrieben werden, da sie untrennbar mit dem Zustand des jeweils anderen Teilchens verbunden sind.
-Um dies zu veranschaulichen, betrachten Sie die folgende Analogie von zwei Münzen. Münzen können sich in genau zwei Zuständen befinden: Kopf oder Zahl. Ähnlich verhält es sich mit Teilchen, die sich im Zustand „spin up“ oder „spin down“ oder als Qubits im Zustand „0“ oder „1“ befinden können. Die Messung der Münzen (oder Teilchen) muss einen der beiden Zustände ergeben.
-Dabei gibt es beim Werfen zweier Münzen vier mögliche Ergebnisse, die in der Grafik links dargestellt sind:
+Stellen Sie sich vor, Sie werfen zwei klassische Münzen. Jede Münze ist unabhängig, und ihre kombinierten Ergebnisse lassen sich leicht berechnen. Stellen Sie sich nun zwei Quantenpartikel vor, beispielsweise Photonen oder Elektronen, die miteinander verschränkt sind. Ihre Zustände sind nicht mehr unabhängig voneinander. Stattdessen ist ihre Existenz zu einer einzigen, untrennbaren Beschreibung verwoben. Dies ist die Quantenverschränkung, ein Konzept, das Einstein als „spukhafte Fernwirkung” abtat und Schrödinger zum Markenzeichen der Quantentheorie erhob. Was als philosophische Kuriosität begann, ist heute von zentraler Bedeutung für die moderne Physik und Technologie.
 
-![Coin entanglement](/posts/assets/entries/entanglement/coin_entanglement.png)
+![Münzenverschränkung](/posts/assets/entries/entanglement/coin_entanglement.png)
 
-Nehmen wir an, dass zwei Münzen verschränkt sind und dann getrennt werden. Person 1 erhält Münze A, Person 2 erhält Münze B. Die beiden Personen gehen in getrennte Räume. Beim Zählen von drei werfen beide ihre Münzen und halten das Ergebnis verborgen. Person 1 hebt dann die Hand und sieht, dass Münze A „Kopf“ ($$ K $$) zeigt. 
-Ohne dass Person 2 die Münze B aufdeckt, können wir bereits mit Sicherheit vorhersagen, dass Münze B „Zahl“ ($$ Z $$) zeigen wird. Nach dem Aufdecken von Münze B erweist sich diese Vorhersage als richtig.
-Normalerweise ergeben sich beim Werfen von zwei Münzen vier mögliche Kombinationen: $$ \text{KK, KZ, ZK, ZZ} $$.
+## Was bedeutet Verschränkung?
 
-In der Quantenmechanik lässt sich diese Beziehung mathematisch durch einen Quantenzustand, den so genannten Bell-Zustand, ausdrücken, der ein maximal verschränktes System darstellt. Ein solcher Bell-Zustand ist:
+In der Quantenmechanik wird ein einzelnes System durch einen Zustandsvektor im Hilbertraum $|\psi\rangle$ dargestellt. Sind zwei Systeme A und B unabhängig voneinander, ist ihr gemeinsamer Zustand einfach das Tensorprodukt:
 
 $$
-\ket{\Psi^-} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\big),
+|\Psi\rangle_{AB} = |\psi\rangle_A \otimes |\phi\rangle_B.
 $$
 
-wobei $$ \ket{\uparrow\downarrow} $$ bedeutet, dass Teilchen A einen up-spin und Teilchen B einen down-spin hat, und $$ \ket{\downarrow\uparrow} $$ bedeutet das Gegenteil.
-
-## Das EPR-Gedankenexperiment
-
-1935 schlugen Albert Einstein, Boris Podolsky und Nathan Rosen das heute als „EPR-Gedankenexperiment“ bekannte Experiment vor. Ziel dieses Experiments war es, zu zeigen, dass die Quantenmechanik „unvollständig“ ist, da sie nicht alle Elemente der Realität erklären kann.
-Bei dem Experiment werden zwei Teilchen aus einer einzigen Quelle so erzeugt, dass ihre Quantenzustände korreliert werden. Diese Teilchen werden dann durch eine beliebige Entfernung voneinander getrennt. Die Teilchen befinden sich in einem konstanten Spin, der entweder nach unten oder nach oben gerichtet sein kann. Nennt man die beiden Teilchen A und B und misst A und erhält als Ergebnis einen Spin nach oben, so befindet sich B mit 100 %iger Sicherheit in einer Position mit Spin nach unten und andersherum.
-Nach der Quantenmechanik befinden sich beide Teilchen, bevor man ihren Spin misst, in einer Überlagerung, die wie folgt beschrieben wird:
+Viele Quantenzustände widersetzen sich jedoch dieser Faktorisierung. Die **Bell-Zustände** sind kanonische Beispiele dafür. Einer davon ist
 
 $$
-\ket{\Psi} = \frac{1}{\sqrt{2}} \big(\ket{\uparrow\downarrow} + \ket{\downarrow\uparrow}\big)
+|\Psi^-\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle).
 $$
 
-Wenn wir nach dem Zusammenbruch eines Teilchens eines solchen Paares eine Messung durchführen, können wir sofort die Messung des zweiten Teilchens erfahren. Der entscheidende Punkt dabei ist, dass diese Beziehung auch dann gilt, wenn die Teilchen weit voneinander entfernt sind. Dies deutet darauf hin, dass es dadurch möglich ist, die Messung des zweiten Teilchens vorherzusagen, ohne direkt in seinen Zustand einzugreifen oder ihn zu stören.
-Dies führte jedoch zu einem Paradoxon (EPR-Paradoxon oder Einstein-Podolsky-Rosen-Paradoxon).
+Hier hat keines der Teilchen einen bestimmten Spin, bis es gemessen wird. Wenn Alice jedoch ihr Teilchen misst und feststellt, dass es einen Spin nach oben hat, weiß sie sofort, dass Bobs entferntes Teilchen einen Spin nach unten haben wird. Diese Untrennbarkeit ist nicht dasselbe wie klassische Korrelation, bei der die Ergebnisse vorprogrammiert sind. Stattdessen sind die Ergebnisse bis zur Messung wirklich unbestimmt.
 
-Bei der gleichzeitigen Messung der beiden Teilchen scheint sich die Information schneller als das Licht vom Ort des Teilchens A zum Teilchen B zu bewegen, um die Messung von B nach der Messung von A zu beeinflussen. Dies würde gegen das Relativitätsprinzip verstoßen, das eine Kommunikation schneller als das Licht verbietet. Einstein bezeichnete dieses Phänomen als „spukhafte Fernwirkung“ (spooky action from a distance).
-EPR schlussfolgerten, dass es eine lokale verborgene Variable oder ein „Element der Realität“ gibt, das vor jeder Messung genau definiert ist. Nach Einstein ist „die Situation des Systems B unabhängig davon, was mit dem System A geschieht, das räumlich von ihm getrennt ist“.
-Heute wissen wir, dass dies ein „Missverständnis“ einer quantenmechanischen Eigenschaft ist, da bei diesem Quantenprozess keine Informationen übertragen werden. Nach der allgemeinen Relativitätstheorie wäre eine klassische Kommunikation erforderlich, um einen sinnvollen Informationsaustausch durchzuführen. Diese Quanteneigenschaft wurde später von Erwin Schrödinger als „Verschränkung“ formalisiert.
+---
 
-## Bellsche Ungleichung
+## Das EPR-Paradoxon und Schrödingers Antwort
 
-1964 stellte John Bell ein bahnbrechendes mathematisches Theorem auf, das die Unvereinbarkeit lokaler Theorien mit versteckten Variablen mit der Quantenmechanik belegte. Er tat dies, indem er ein Gedankenexperiment vorschlug, bei dem diese Theorien zu unterschiedlichen Vorhersagen führen würden.
-Die Bellsche Ungleichung, die sich auf den Erwartungswert einer in einem Experiment gemessenen Größe bezieht, muss von jeder lokalen Theorie mit verborgenen Variablen erfüllt werden.
+Einstein, Podolsky und Rosen (EPR) veröffentlichten 1935 ihre berühmte Arbeit, in der sie argumentierten, dass die Quantenmechanik unvollständig sein müsse [@Einstein1935]. Sie betrachteten ein Paar verschränkter Teilchen, beschrieben durch
 
 $$
-|E(a, b) - E(a, c)| \leq 1 + E(b, c),
+|\Psi\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle + |\downarrow\uparrow\rangle).
 $$
 
-wobei $$ E $$ der Durchschnittswert ist, der über alle Experimente einer bestimmten Gruppe ermittelt wurde.
-Clauser, Horne, Shimony und Holt (CHSH) leiteten eine modifizierte Version der Bellschen Ungleichung ab, die CHSH genannt wird. Seit Bells Pionierarbeit wurden zahlreiche Experimente durchgeführt, um die CHSH-Ungleichung zu testen. Während die frühen Experimente mit verschiedenen Lücken behaftet waren, haben neuere Experimente diese Lücken geschlossen und die Verletzung der CHSH-Ungleichung überzeugend nachgewiesen, so dass lokale Theorien mit versteckten Variablen ausgeschlossen sind.
+Wenn Alice ihren Spin misst und $\uparrow$ erhält, muss Bobs Ergebnis $\downarrow$ sein, was scheinbar unabhängig von der Entfernung augenblicklich bestimmt wird. Um die Lokalität zu bewahren, schlugen EPR vor, dass es versteckte Variablen geben muss, die vorbestimmte Ergebnisse tragen.
+
+Erwin Schrödinger reagierte auf EPR und prägte den Begriff **Verschränkung** (*Verschränkung*), um diese untrennbare Verbindung zu beschreiben [@Schrodinger1935]. Er erkannte, dass die Verschränkung kein Fehler, sondern ein Merkmal der Quantenmechanik war, das unsere Vorstellungen von Trennbarkeit und Realität in Frage stellen würde.
+
+---
+
+## Bells Theorem und die CHSH-Ungleichung
+
+1964 formulierte John Bell die Debatte neu und fasste sie in einer präzisen, überprüfbaren Aussage zusammen [@Bell1964]. Er zeigte, dass keine lokale Theorie mit versteckten Variablen alle Vorhersagen der Quantenmechanik reproduzieren konnte. Das entscheidende Instrument war eine Ungleichung, die Korrelationen zwischen Messungen beinhaltete.
+
+Die CHSH-Ungleichung ist eine der am häufigsten verwendeten Formulierungen:
+
+$$
+S = |E(a,b) + E(a,b') + E(a',b) - E(a',b')| \leq 2,
+$$
+
+wobei $E(a,b)$ die Korrelation zwischen den Messergebnissen von Alice und Bob mit den gewählten Einstellungen $a$ und $b$ ist.
+
+Die Quantenmechanik sagt Verstöße gegen diese Ungleichung voraus. Für maximal verschränkte Zustände ergeben die Korrelationsfunktionen Werte von bis zu
+
+$$
+S_{QM} = 2\sqrt{2} \approx 2,828,
+$$
+
+bekannt als **Tsirelson-Grenze**. Dies ist eine direkte und messbare Abweichung vom lokalen Realismus.
+
+---
+
+## Experimente: Von Aspekten zu lückenlosen Tests
+
+Bells Arbeit verwandelte die Philosophie in experimentelle Physik. In den 1980er Jahren demonstrierten Alain Aspect und seine Mitarbeiter Verstöße gegen Bellsche Ungleichungen unter Verwendung verschränkter Photonen [@Aspect1982]. Diese Experimente stützten die Quantenmechanik, ließen jedoch technische „Lücken” in Bezug auf die Detektionseffizienz und die Freiheit der Messwahl offen.
+
+Im Jahr 2015 schlossen drei unabhängige Gruppen diese Lücken mit Hilfe fortschrittlicher Aufbauten [@Hensen2015; @Shalm2015; @Giustina2015]. Ihre Experimente kombinierten schnelle Zufallsschaltungen, hocheffiziente Detektoren und verschränkte Teilchen, die kilometerweit voneinander entfernt waren. Die Ergebnisse waren eindeutig: Die Bellschen Ungleichungen wurden ohne Lücken verletzt. Lokale Theorien mit versteckten Variablen wurden endgültig ausgeschlossen.
+
+---
+
+## Quantifizierung der Verschränkung
+
+Verschränkung ist nicht binär, sondern kann gemessen werden. Für zweiteilige reine Zustände ist ein gängiges Maß die **von-Neumann-Entropie** der reduzierten Dichtematrix. Für einen Zustand $|\Psi\rangle$, der von A und B geteilt wird, ist der reduzierte Zustand des Teilsystems A
+
+$$
+\rho_A = \text{Tr}_B (|\Psi\rangle \langle \Psi|).
+$$
+
+Die Verschränkungsentropie ist
+
+$$
+S(\rho_A) = - \text{Tr}(\rho_A \log \rho_A).
+$$
+
+Wenn $S(\rho_A) = 0$, ist der Zustand separierbar (das heißt, wir können den Zustand eines Teilchens beschreiben, ohne den Zustand des anderen Teilchens erwähnen zu müssen, d. h. sie sind nicht verschränkt). Für ein maximal verschränktes Qubit-Paar ist $S = 1$ Bit. In der Vielteilchenphysik liefert die Skalierung der Verschränkungsentropie tiefgreifende Informationen über Quantenphasen, kritische Punkte und topologische Ordnung.
+
+---
+
+## Warum Verschränkung wichtig ist
+
+Verschränkung ist nicht mehr nur eine Kuriosität. Sie ist zu einer Ressource geworden, ähnlich wie Energie in der klassischen Physik. In der **Quanten-Kryptografie** gewährleisten verschränkte Photonen eine sichere Schlüsselverteilung, da jeder Abhörversuch die Korrelationen stört. Bei der **Quantenteleportation** ermöglicht die Verschränkung die Rekonstruktion eines Quantenzustands an einem entfernten Ort, ohne dass das physikalische Teilchen übertragen werden muss. Im **Quantencomputing** ermöglichen verschränkte Qubits Berechnungen, die klassisch nicht durchführbar wären.
+
+Aus grundlegender Sicht verändert die Verschränkung unsere Vorstellung von Information und Realität. Sie zeigt, dass Quantenzustände nicht einzelne Teilchen, sondern ganzheitliche Systeme beschreiben. Und in der Spitzenforschung wird vermutet, dass die Verschränkung eine Rolle in der Struktur der Raumzeit spielt. Durch die AdS/CFT-Korrespondenz wird die Verschränkungsentropie mit der Geometrie der Raumzeit in holographischen Theorien verknüpft, was darauf hindeutet, dass die Struktur des Universums selbst aus Mustern der Quantenverschränkung entstehen könnte.
+
+---
+
+## Mathematische Anmerkung: Ableitung der Tsirelson-Grenze
+
+Für maximal verschränkte Zustände lautet die Korrelationsfunktion $E(a,b) = -a \cdot b$, wobei $a$ und $b$ Einheitsvektoren sind, die Messbedingungen darstellen. Der CHSH-Ausdruck lautet:
+
+$$
+S = |a \cdot (b+b') + a' \cdot (b-b')|.
+$$
+
+Nach der Dreiecksungleichung gilt
+
+$$
+S \leq |b+b'| + |b-b'|.
+$$
+
+Wenn $\theta$ der Winkel zwischen $b$ und $b'$ ist, dann gilt
+
+$$
+|b+b'| = 2|\cos(\theta/2)|, \quad |b-b'| = 2|\sin(\theta/2)|.
+$$
+
+Das Maximum tritt bei $\theta = 90^\circ$ auf, was ergibt:
+
+$$
+S_{max} = 2(\cos 45^\circ + \sin 45^\circ) = 2\sqrt{2}.
+$$
+
+Dies ist die Tsirelson-Grenze, die stärkste Quantenverletzung der Bellschen Ungleichung.
+
+## Quellen
+
+- @Einstein1935: Einstein, A., Podolsky, B., & Rosen, N. (1935). *Can quantum-mechanical description of physical reality be considered complete?* Physical Review, 47(10), 777–780.
+- @Schrodinger1935: Schrödinger, E. (1935). *Discussion of probability relations between separated systems.* Proceedings of the Cambridge Philosophical Society, 31, 555–563.
+- @Bell1964: Bell, J. S. (1964). *On the Einstein-Podolsky-Rosen paradox.* Physics, 1(3), 195–200.
+- @Aspect1982: Aspect, A., Dalibard, J., & Roger, G. (1982). *Experimental test of Bell’s inequalities using time‐varying analyzers.* Physical Review Letters, 49(25), 1804–1807.
+- @Hensen2015: Hensen, B. et al. (2015). *Loophole-free Bell inequality violation using electron spins separated by 1.3 kilometres.* Nature, 526, 682–686.
+- @Shalm2015: Shalm, L. K. et al. (2015). *Strong loophole-free test of local realism.* Physical Review Letters, 115(25), 250402.
+- @Giustina2015: Giustina, M. et al. (2015). *Significant-Loophole-Free Test of Bell’s Theorem with Entangled Photons.* Physical Review Letters, 115(25), 250401.
