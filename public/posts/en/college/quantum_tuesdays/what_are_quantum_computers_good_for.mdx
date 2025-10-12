@@ -45,9 +45,18 @@ Being able to solve any computer science problem in this polynomial time means t
 
 ---
 
-What it actually means to `be able to solve a problem in polynomial time` requires a lot of math and can be ommited here, since we just want to be able to understand what kind of problems we're dealing with.
+As you may remember from your math class, `polynomial` is a combination of _poly-_ (meaning "many") and _-nomial_ (here: meaning "term"), thus resulting in "many terms". One of the simplest polynomials is the quadratic equation which has the following form:
 
-If you want to get a better insight though, check out the more in-depth version of this [blog post](https://wiqi.info/en/posts/quantum_tuesdays/highschool/what_are_quantum_computers_good_for).
+$$
+y = x^2
+$$
+
+![quadratic equation graph](/posts/assets/quantum_tuesdays/what_are_qc_good_for/quadratic_en.png)
+
+For each algorithm computer scientists come up with to solve a problem, they also figure out the so called `time complexity` of these algorithms. This means that for a given size of a dataset, the time complexity of the algorithm will tell you how much time it's going to need to find the solution when using that algorithm.
+Alongside the time complexity there's also a special property of these algorithms called the `space complexity`, which is a measure for how much memory on your actual computer you're going to need in order to store all the temporary data, until you calculate the final result. This property can also be described by function, but won't be further discussed as we're only going to be looking at the time complexity. 
+
+For simplicity sake, let's say that if the time complexity of the algorithm we're using for our problem has the form of polynomial function, then the algorithm is deemed `efficient`. If it looks anything like an exponential function, we deem it `unefficient` and we need to look for a better and more efficient one.
 
 ---
 
@@ -55,7 +64,7 @@ With our current supercomputers we are able to tackle these types of problems an
 
 Examples include:
 
-- Search algorithms that find the shortest path on a map e.g. the [Dijkstra algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- Search algorithms that find the shortest path on a map e.g. the [Dijkstra algorithm](https://ftp.gwdg.de/pub/misc/EMIS/journals/DMJDMV/vol-ismp/32_schrijver-alexander-sp.pdf)
 - Checking if a number is a [prime number](https://www.cse.iitk.ac.in/users/manindra/algebra/primality_v6.pdf)
 
 It's only when we look at harder problems that quantum computers become interesting.
@@ -65,7 +74,7 @@ It's only when we look at harder problems that quantum computers become interest
 As mentioned previously, `NP-Problems` are a set of problems which are even harder than P-problems.
 However this doesn't mean that we can't check if a solution is correct, which is eventually what characterizes NP-problems.
 
-NP-problems are defined by the fact that they are very hard to solve, but if we were to be given a solution, we can easily and `efficiently` (here meaning in polynomial time, again if you want to read more about this check out the post [here](https://wiqi.info/en/posts/quantum_tuesdays/highschool/what_are_quantum_computers_good_for)) verify if that solution is correct.
+NP-problems are defined by the fact that they are very hard to solve, but if we were to be given a solution, we can easily and `efficiently` verify if that solution is correct.
 
 ---
 
@@ -93,7 +102,7 @@ NP-Complete problems are the hardest out of the bunch listed here. They are in e
 Examples include:
 
 - [Sudoku](https://www.researchgate.net/publication/238205893_Complexity_and_Completeness_of_Finding_Another_Solution_and_Its_Application_to_Puzzles), just regular old Sudoku
-- **[Travelling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem#Complexity_of_approximation)**: "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
+- **[Travelling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)**: "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"
 
 # Where do Quantum Computers fit in
 
@@ -106,7 +115,7 @@ _Source: [Wikipedia BQP](https://en.wikipedia.org/wiki/BQP)_
 But what actually allows quantum computers to outperform classical computers when it comes to solving these complicated problems?
 At the end it all boils down to two things:
 
-1. Quantum computers use qubits instead of bits in classical computers which can be in a [superposition](https://wiqi.info/en/posts/entries/elementary/superposition) between the classical 1 and 0, allowing for a wider range of possibilities and manipulation when it comes to computing (read more [here](https://wiqi.info/en/posts/quantum_tuesdays/elementary/Bits%20To%20Qubits)). One caviat however is that after performing a [measurement](https://wiqi.info/en/posts/entries/elementary/measurement) on the qubit it can only take up either 1 or 0 as its value, leading one to believe that it's the same as a classical bit. However that's where the second property comes in.
+1. Quantum computers use qubits instead of bits in classical computers which can be in a [superposition](https://wiqi.info/en/posts/entries/college/superposition) between the classical 1 and 0, allowing for a wider range of possibilities and manipulation when it comes to computing (read more [here](https://wiqi.info/en/posts/quantum_tuesdays/college/Bits%20To%20Qubits)). One caviat however is that after performing a [measurement](https://wiqi.info/en/posts/entries/college/measurement) on the qubit it can only take up either 1 or 0 as its value, leading one to believe that it's the same as a classical bit. However that's where the second property comes in.
 
 2. The state of one qubit can interfere with another qubit, leading to what's called destructive/constructive interference, where the two states overlap and can lead to the two states cancelling or amplifying each other. Good quantum algorithms make use of this property two reduce all the possibilities of solutions that are not correct and bring forth the ones which are, thus getting the edge on classical computers.
 
