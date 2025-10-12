@@ -125,9 +125,11 @@
     "Connect": "Kontakte"
   },
   "NotFoundPage": {
-    "title": "Seite nicht gefunden",
-    "description": "Die Seite, die Sie suchen, existiert nicht oder wurde verschoben. Lassen Sie uns Sie zurück zur Erkundung der Quantenwelt bringen!",
-    "goHome": "Zur Startseite",
-    "helpText": "Wenn Sie glauben, dass dies ein Fehler ist, überprüfen Sie bitte die URL oder versuchen Sie, von unserer Startseite aus zu navigieren."
+    "title": "Quanten-Superpositionsfehler",
+    "description": "Der Quantenzustand, den Sie suchen, ist in Unsicherheit kollabiert. Aber in der Quantenmechanik schafft jede Beobachtung neue Möglichkeiten.",
+    "goHome": "Zurück zur Quantenbasis",
+    "helpText": "Wenn Sie glauben, dass dies ein Fehler ist, überprüfen Sie bitte die URL oder versuchen Sie, von unserer Startseite aus zu navigieren.",
+    "errorCode": "QUANTENZUSTAND_NICHT_GEFUNDEN",
+    "quantumEquation": "|ψ⟩ = α|gefunden⟩ + β|nicht_gefunden⟩"
   }
 }

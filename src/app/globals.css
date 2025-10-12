@@ -187,3 +187,87 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/*
+ * ╔══════════════════════════════════════════════════════════════════════════════╗
+ * ║                    Quantum 404 Page Animations                               ║
+ * ╚══════════════════════════════════════════════════════════════════════════════╝
+ */
+
+@keyframes float-equation {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-15px) rotate(0.5deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-slow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-float-equation {
+  animation: float-equation 8s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 15s linear infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}

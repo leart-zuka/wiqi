@@ -125,9 +125,11 @@
     "Connect": "Connect"
   },
   "NotFoundPage": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for doesn't exist or has been moved. Let's get you back to exploring the quantum world!",
-    "goHome": "Go Home",
-    "helpText": "If you believe this is an error, please check the URL or try navigating from our homepage."
+    "title": "Quantum superposition error",
+    "description": "The quantum state you're looking for has collapsed into uncertainty. But in quantum mechanics, every observation creates new possibilities.",
+    "goHome": "Return to quantum base",
+    "helpText": "If you believe this is an error, please check the URL or try navigating from our homepage.",
+    "errorCode": "QUANTUM_STATE_NOT_FOUND",
+    "quantumEquation": "|ψ⟩ = α|found⟩ + β|not_found⟩"
   }
 }
