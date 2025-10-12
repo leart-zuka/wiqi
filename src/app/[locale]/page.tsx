@@ -170,7 +170,7 @@ export default function Home({ params }: HomeProps) {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="border-gray-300 dark:border-gray-700"
+                      className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:border-gray-600 dark:bg-transparent dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white"
                     >
                       {t("About Us")}
                     </Button>
