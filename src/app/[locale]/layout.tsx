@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import "../globals.css";
 import "katex/dist/katex.min.css";
 import { NextIntlClientProvider } from "next-intl";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { getMessages } from "next-intl/server";
 import { CookiesProvider } from "next-client-cookies/server";
 import EasterEgg from "../components/EasterEgg";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "WiQi",
@@ -55,11 +57,15 @@ export default async function LocaleLayout({
         <title>WiQi</title>
       </head>
       <body className="flex min-h-screen flex-col overflow-x-clip bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
-        <Header locale={locale} />
         <NextIntlClientProvider messages={messages}>
+          <Header locale={locale} />
           <EasterEgg />
-          <div className="flex-grow bg-gray-50 pb-10 text-black dark:bg-gray-900 dark:text-gray-100">
-            <CookiesProvider>{children}</CookiesProvider>
+          <div className="flex-grow bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
+            <CookiesProvider>
+              {children}
+              <Analytics />
+              <SpeedInsights />
+            </CookiesProvider>
           </div>
           <Footer params={{ locale }} />
         </NextIntlClientProvider>

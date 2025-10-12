@@ -5,40 +5,102 @@ author: "Helena Iréne Köhler"
 date: "2025-01-08"
 ---
 
-## Schrödingers Katze und die Messung
+# Schrödingers Katze und die Messung
 
-Im Jahr 1935 stellte Erwin Schrödinger ein Gedankenexperiment vor, um die paradoxe Natur der Quantenphysik zu erklären. Stell dir eine Box vor, die eine Katze und eine Flasche Gift enthält, die zu einem unvorhersehbaren Zeitpunkt zerbrechen wird. Wenn das Gift freigesetzt wird, stirbt die Katze; wenn nicht, bleibt die Katze am Leben. Nun schließe die Box. Bis wir sie öffnen, haben wir keine Möglichkeit herauszufinden, ob die Katze noch lebt oder tot ist.
+Im Jahr 1935 präsentierte Erwin Schrödinger ein Gedankenexperiment, um die paradoxe Natur der Quantenphysik zu erklären. Stell dir eine Box vor, die eine Katze und eine Flasche Gift enthält, die zu einem unvorhersehbaren Zeitpunkt zerbrechen wird. Wenn das Gift freigesetzt wird, stirbt die Katze; wenn nicht, bleibt die Katze am Leben. Nun schließe die Box. Bis wir sie öffnen, haben wir keine Möglichkeit herauszufinden, ob die Katze noch lebt oder tot ist.
 
-Die Quantenmechanik schlägt vor, dass die Katze, bis Sie die Box öffnen und sie beobachten, in einer Superposition beider Zustände (lebendig und tot) gleichzeitig existiert. Nur indem man die Box öffnet, kann man das Ergebnis dieses Experiments „messen“. Ebenso kann ein Qubit in der Quantencomputing in einer Superposition von zwei Zuständen, wie 0 und 1, sein, bis es gemessen wird:
-
-$$
-\ket{\Psi} = \alpha \ket{0} + \beta \ket{1}
-$$
-
-Erst durch die Messung wird es in einen der beiden Zustände „kollabieren“:
+Die Quantenmechanik schlägt vor, dass die Katze, bis man die Box öffnet und sie beobachtet, in einer Superposition beider Zustände (lebendig und tot) gleichzeitig existiert. Nur indem man die Box öffnet, kann man das Ergebnis dieses Experiments „messen“. Ebenso kann ein Qubit im Quantencomputing in einer Superposition von zwei Zuständen, wie 0 und 1, sein, bis es gemessen wird:
 
 $$
-P(0) = |\alpha|^2 \quad \text{and} \quad P(1) = |\beta|^2
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle
 $$
 
-Diese Wahrscheinlichkeiten werden durch die Wahrscheinlichkeitsverteilung bestimmt. Der Übergang von der Superposition zu einem bestimmten Zustand nach der Messung wird als „Kollaps der Wellenfunktion“ bezeichnet.
+$\alpha$ und $\beta$ sind hier komplexe Wahrscheinlichkeitsamplituden. Erst bei der Messung „kollabiert“ das Qubit in einen der klassischen Zustände $|0\rangle$ oder $|1\rangle$ mit den Wahrscheinlichkeiten P(0) bzw. P(1):
 
-Nach der Messung geht die Superposition verloren, und das System muss in einen der möglichen Zustände kollabieren, wodurch die Information für den nicht entstehenden Zustand verloren geht.
+$$
+P(0) = |\alpha|^2, \quad P(1) = |\beta|^2
+$$
 
-![Schrödinger's cat](/posts/assets/entries/measurement/measurement_cat.png)
+Diese Wahrscheinlichkeiten werden durch die Wahrscheinlichkeitsverteilung bestimmt. Der Übergang von der Superposition zu einem bestimmten Zustand nach der Messung wird als „Kollaps der Wellenfunktion“ bezeichnet. Nach der Messung geht die Superposition verloren, und das System muss in einen der möglichen Zustände kollabieren, wodurch die Information für den nicht entstehenden Zustand verloren geht.
+
+Dieser Zusammenbruch wird in der Quantenmechanik mithilfe von **Messoperatoren** formalisiert. Jedes Messergebnis entspricht einem linearen Operator $M_m$, und die Wahrscheinlichkeit, das Ergebnis $m$ zu beobachten, ist:
+
+$$
+p(m) = \langle \psi | M_m^\dagger M_m | \psi \rangle = \|M_m|\psi\rangle\|^2
+$$
+
+Der Zustand nach der Messung, wenn das Ergebnis $m$ beobachtet wird, lautet:
+
+$$
+\frac{M_m |\psi\rangle}{\| M_m |\psi\rangle\|}
+$$
+
+Für die Standard-Berechnungsbasis {$ |0\rangle, |1\rangle $} sind die Operatoren Projektionsmatrizen:
+
+$$
+M_0 = |0\rangle \langle 0| = 
+\begin{pmatrix}1 & 0\\ 0 & 0\end{pmatrix}, \quad 
+M_1 = |1\rangle \langle 1| = 
+\begin{pmatrix}0 & 0\\ 0 & 1\end{pmatrix}
+$$
+
+Somit ergibt eine Messung entweder das Ergebnis „0“ mit der Wahrscheinlichkeit $|\alpha|^2$ oder „1“ mit $|\beta|^2$, und das Qubit kollabiert entsprechend. 
+
+------
 
 ## Heisenbergs Unschärferelation
 
-Das Phänomen des Informationsverlusts während des Messprozesses wurde bereits von Werner Heisenberg beschrieben. Elektronen, negativ geladene subatomare Teilchen, bewegen sich mit einem bestimmten Impuls (Geschwindigkeit) in einem bestimmten Bereich um den Atomkern. Heisenberg stellte jedoch fest, dass bestimmte Paare von Eigenschaften eines Teilchens, wie seine Position und sein Impuls, nicht gleichzeitig mit beliebiger Genauigkeit gemessen werden können. Je präziser eine Eigenschaft gemessen wird, desto weniger präzise kann die andere bestimmt werden. Dieses Konzept ist als Unschärferelation bekannt:
+Das Phänomen des Verlusts der Informationsgenauigkeit während des Messprozesses wurde bereits von Werner Heisenberg beschrieben. Elektronen, negativ geladene subatomare Teilchen, bewegen sich mit einem bestimmten Impuls (Geschwindigkeit) in einem bestimmten Bereich um den Atomkern. Heisenberg stellte jedoch fest, dass bestimmte Paare von Eigenschaften eines Teilchens, wie seine Position und sein Impuls, nicht gleichzeitig mit beliebiger Genauigkeit gemessen werden können. Je präziser eine Eigenschaft gemessen wird, desto weniger präzise kann die andere bestimmt werden. Dieses Konzept ist als Unschärferelation bekannt:
 
 $$
 \Delta x \cdot \Delta p \geq \frac{\hbar}{2}
 $$
 
-Dieses Prinzip wird wie folgt veranschaulicht: Das Elektron ist wie der Ball am Ende eines Seils, der sich in einem bestimmten Bereich bewegt. Wenn Sie ein Foto machen, kann man die Position des Balls bestimmen, aber man kann nicht wissen, wie schnell er sich bewegt. Wenn Sie ein Video aufnehmen, kann man die Geschwindigkeit des Balls verfolgen, aber seine genaue Position wird unsicher.
+Das bedeutet: Je genauer man die Position eines Teilchens kennen, desto ungenauer kann man seinen Impuls bestimmen – und umgekehrt.
 
-![Photo vs Video](/posts/assets/entries/measurement/cam_analogy.png)
+Dies kann anhand eines Balls an einem Seil veranschaulicht werden:
 
-Dasselbe Prinzip gilt für das Messen von Elektronen und kann mit dem bereits erwähnten Kollaps der Wellenfunktion in Verbindung gebracht werden. Ein Elektron hat zwei Eigenschaften: Position und Geschwindigkeit. Wenn Sie versuchen, die Position des Elektrons genau zu messen, verliert man die Informationen über dessen Impuls. Umgekehrt, misst man den Impuls, verlieren Sie die Informationen über die genaue Position.
+- Ein **Foto** liefert Ihnen die genaue Position (aber keine Informationen über die Geschwindigkeit).
+- Ein **Video** liefert Ihnen Informationen über die Bewegung (aber auf Kosten der Positionsgenauigkeit).
 
-Dies ist eine Folge der inhärenten Unsicherheit in Quantensystemen und ist entscheidend für das Verständnis, wie Messungen in der Quantenmechanik funktionieren. Heisenberg legte mit seiner Unschärferelation die Grundlage für das heutige Atommodell. Wir können nur eine Wahrscheinlichkeit angeben, wo ein Elektron gefunden werden könnte, da die Messung einer Eigenschaft (Position oder Geschwindigkeit) die andere stört. Dieser „Bereich“, in dem wir ein Elektron mit einer Wahrscheinlichkeit von etwa 93 % finden können, wird als Orbital bezeichnet und ist nur eine Schätzung, da wir beide Eigenschaften nicht gleichzeitig genau messen können.
+Das gleiche Prinzip gilt für die Messung von Elektronen und kann mit dem zuvor erwähnten Zusammenbruch der Wellenfunktion in Verbindung gebracht werden. Ein Elektron hat zwei Eigenschaften: Position und Geschwindigkeit. Wenn man versucht, eine der beiden Eigenschaften zu messen, sinkt die Genauigkeit an Informationen über die andere Eigenschaft. Dies ist eine Folge der inhärenten Ungewissheit in Quantensystemen und ist der Schlüssel zum Verständnis der Funktionsweise von Messungen. Heisenberg legte mit seinem „Unschärfeprinzip“ den Grundstein für das heutige Atommodell. Wir können nur eine Wahrscheinlichkeit angeben, wo sich ein Elektron befinden könnte, da die Messung einer Eigenschaft (Position oder Geschwindigkeit) die andere stört. Dieser „Bereich“, in dem wir ein Elektron mit einer Wahrscheinlichkeit von etwa 93 % finden können, wird als „Orbital“ bezeichnet und ist nur eine Schätzung, da wir nicht beide Eigenschaften mit Sicherheit messen können.
+
+------- 
+
+## Projektive und allgemeine Messungen
+
+Messungen in der Quantenmechanik lassen sich allgemeiner über **projektive Messungen** beschreiben, die mit Observablen wie hermitischen Operatoren $M$ mit Spektralzerlegung assoziiert sind:
+
+$$
+M = \sum_m \lambda_m P_m
+$$
+
+$P_m$ ist hier ein **Projektor** auf den Eigenzustand mit dem Eigenwert $\lambda_m$. Die Messung eines Qubits in Bezug auf die Rechenbasis ist eine projektive Messung mit:
+
+$$
+P_0 = |0\rangle \langle 0|, \quad P_1 = |1\rangle \langle 1|
+$$
+
+Die Wahrscheinlichkeit eines Ergebnisses ist:
+
+$$
+p(\lambda_m) = \langle \psi | P_m | \psi \rangle
+$$
+
+und der Zustand nach der Messung:
+
+$$
+\frac{P_m |\psi\rangle}{\sqrt{p(\lambda_m)}}
+$$
+
+Dies sind Sonderfälle eines umfassenderen Rahmens unter Verwendung allgemeiner Messoperatoren $M_m$, die die Vollständigkeitsrelation erfüllen:
+
+$$
+\sum_m M_m^\dagger M_m = I
+$$
+
+
+### Quellen:
+
+- Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press.
+

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getCookie } from "cookies-next";
+import { useTranslations } from "next-intl";
 import Fuse from "fuse.js";
 import { replaceLocale } from "./client_utils";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
@@ -24,6 +25,7 @@ const fuseOptions = {
 
 const Header = (props: HeaderProps) => {
   const pathName = usePathname();
+  const t = useTranslations("Navbar");
   const inputRef = useRef<HTMLInputElement>(null);
   const mobileInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -221,7 +223,7 @@ const Header = (props: HeaderProps) => {
                 ref={inputRef}
                 type="search"
                 value={searchQuery}
-                placeholder={`${props.locale === "de" ? "Suchen..." : "Search..."}`}
+                placeholder={t("Search")}
                 className="h-8 flex-1 border-0 bg-transparent p-0 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white"
                 onChange={handleSearch}
                 onFocus={() => {
@@ -284,17 +286,24 @@ const Header = (props: HeaderProps) => {
           {/* Navigation - Desktop */}
           <nav className="hidden space-x-8 lg:flex">
             <Link
+              href={`/${props.locale}/about`}
+              className="group relative text-sm font-medium text-slate-700 transition-colors hover:text-purple-600 dark:text-slate-300 dark:hover:text-purple-400"
+            >
+              {t("About")}
+              <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
               href={`/${props.locale}/posts/quantum_tuesdays`}
               className="group relative text-sm font-medium text-slate-700 transition-colors hover:text-purple-600 dark:text-slate-300 dark:hover:text-purple-400"
             >
-              Quantum Tuesdays
+              {t("Quantum Tuesdays")}
               <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href={`/${props.locale}/posts/entries`}
               className="group relative text-sm font-medium text-slate-700 transition-colors hover:text-purple-600 dark:text-slate-300 dark:hover:text-purple-400"
             >
-              Entries
+              {t("Entries")}
               <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </nav>
@@ -365,7 +374,7 @@ const Header = (props: HeaderProps) => {
                   ref={mobileInputRef}
                   type="search"
                   value={searchQuery}
-                  placeholder={`${props.locale === "de" ? "Suchen..." : "Search..."}`}
+                  placeholder={t("Search")}
                   className="h-8 flex-1 border-0 bg-transparent p-0 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white"
                   onChange={handleSearch}
                   onFocus={() => {
@@ -438,6 +447,13 @@ const Header = (props: HeaderProps) => {
             {/* Mobile Navigation */}
             <nav className="space-y-4">
               <Link
+                href={`/${props.locale}/about`}
+                className="block rounded-lg px-3 py-2 text-base font-medium text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("About")}
+              </Link>
+              <Link
                 href={`/${props.locale}/posts/quantum_tuesdays`}
                 className="block rounded-lg px-3 py-2 text-base font-medium text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -446,7 +462,7 @@ const Header = (props: HeaderProps) => {
                   <Badge className="mr-2 bg-gradient-to-r from-purple-600 to-pink-500">
                     New
                   </Badge>
-                  Quantum Tuesdays
+                  {t("Quantum Tuesdays")}
                 </div>
               </Link>
               <Link
@@ -454,7 +470,7 @@ const Header = (props: HeaderProps) => {
                 className="block rounded-lg px-3 py-2 text-base font-medium text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Entries
+                {t("Entries")}
               </Link>
             </nav>
           </div>

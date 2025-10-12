@@ -137,7 +137,42 @@ export default function Footer({ params }: FooterProps) {
         {/* Copyright */}
         <div className="mt-8 border-t border-slate-200 pt-6 dark:border-slate-800">
           <p className="text-center text-sm text-slate-600 dark:text-slate-400">
-            © {year}, Built with{" "}
+            <a href="https://wiqi.info">WiQi</a> © {year} by{" "}
+            <a href="https://github.com/leart-zuka/">Leart Zuka</a>{" "}
+            <span>
+              is licensed under{" "}
+              <Link
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                CC BY-NC-ND 4.0
+              </Link>
+            </span>
+            <span className="ml-2 inline-flex items-center">
+              <img
+                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+                alt="CC"
+                className="ml-1 h-4 w-4"
+              />
+              <img
+                src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
+                alt="BY"
+                className="ml-1 h-4 w-4"
+              />
+              <img
+                src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"
+                alt="NC"
+                className="ml-1 h-4 w-4"
+              />
+              <img
+                src="https://mirrors.creativecommons.org/presskit/icons/nd.svg"
+                alt="ND"
+                className="ml-1 h-4 w-4"
+              />
+            </span>{" "}
+            <br /> Built with{" "}
             <span className="inline-block animate-pulse text-red-500 dark:text-red-400">
               <Heart className="inline h-4 w-4" />
             </span>{" "}
