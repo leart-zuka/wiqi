@@ -104,7 +104,7 @@ const testCases = [
   {
     url: "/en/your-d",
     expected: "catch-all-404",
-    description: "Easter egg URL - should show custom 404 with 'your-d not found'",
+    description: "See? Your D was not found",
   },
 
   // Edge cases with query parameters
