@@ -60,7 +60,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} />
           <EasterEgg />
-          <div className="flex-grow bg-gray-50 text-black">
+          <div className="flex-grow bg-gray-50 text-black dark:bg-gray-900 dark:text-gray-100">
             <CookiesProvider>
               {children}
               <Analytics />

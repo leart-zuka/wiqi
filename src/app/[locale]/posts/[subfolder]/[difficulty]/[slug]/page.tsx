@@ -28,16 +28,20 @@ export default function Post({
   const numberOfWords = wordsCounter(post.content).wordsCount;
   const readingTime = Math.ceil(numberOfWords / 200);
   return (
-    <div className="my-28">
-      <div className="my-12 text-center">
-        <h1 className="text-2xl text-slate-600">{post.data.title}</h1>
-        <p className="mt-2 text-slate-400">{post.data.date}</p>
-        <p className="mt-2 text-slate-400">
+    <div className="min-h-screen bg-white py-12 dark:bg-slate-900">
+      <div className="py-12 text-center">
+        <h1 className="text-2xl text-slate-600 dark:text-white">
+          {post.data.title}
+        </h1>
+        <p className="mt-2 text-slate-400 dark:text-slate-300">
+          {post.data.date}
+        </p>
+        <p className="mt-2 text-slate-400 dark:text-slate-300">
           {t("average reading time")}: ~{readingTime} m
         </p>
       </div>
 
-      <article className="prose mx-auto block max-w-2xl px-6 text-justify text-black dark:text-white dark:prose-headings:text-white dark:prose-a:text-white dark:prose-strong:text-white dark:prose-code:bg-slate-500 dark:prose-code:text-white dark:prose-li:marker:text-white">
+      <article className="prose mx-auto block max-w-2xl px-6 text-justify text-black dark:text-white dark:prose-headings:text-white dark:prose-a:text-blue-300 dark:prose-a:hover:text-blue-200 dark:prose-blockquote:border-slate-500 dark:prose-blockquote:text-slate-200 dark:prose-strong:text-white dark:prose-code:border-slate-600 dark:prose-code:bg-slate-800 dark:prose-code:text-slate-100 dark:prose-li:marker:text-slate-300 dark:prose-hr:border-slate-600">
         <ReactMarkdown
           remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[
