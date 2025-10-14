@@ -159,7 +159,7 @@ export default function Home({ params }: HomeProps) {
               WIQI
             </span>{" "}
             {wiqiDescriptionLines.map((line, idx) => (
-              <span key={idx}>
+              <span key={idx} className="text-gray-700 dark:text-gray-300">
                 {line}
                 {idx < wiqiDescriptionLines.length - 1 && <br />}
               </span>
