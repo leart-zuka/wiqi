@@ -1,0 +1,165 @@
+---
+title: "Interferenz"
+subtitle: "Interferenz und ihre Rolle im Quantencomputing (schwer)"
+author: "Helena Iréne Köhler"
+date: "2025-09-08"
+---
+
+
+## Wellenbewegung und Interferenz
+
+Wenn zwei kohärente Wellen aufeinandertreffen, addieren sich ihre Wellen zu einer neuen Welle. Dieser Vorgang wird als **„Interferenz”** bezeichnet. Die Amplitude der resultierenden Welle hängt von der Phasendifferenz zwischen den beiden Wellen ab. Wenn die Wellen in Phase sind, d. h. ihre Phasendifferenz ein ganzzahliges Vielfaches von $$ 2\pi $$ beträgt, liegen ihre Spitzen und Täler auf einer Linie. Sie verstärken sich gegenseitig, was zu einer **konstruktiven** Interferenz führt, bei der die Amplitude der kombinierten Welle größer ist als die der einzelnen Wellen. Sind die Wellen hingegen gegenphasig (Phasendifferenz ein ungerades Vielfaches von $$ \pi $$) und ihre Spitzen stimmen mit den Tälern der anderen Welle überein, heben sie sich gegenseitig auf. Dies führt zu einer **destruktiven** Interferenz, bei der die Amplitude der kombinierten Welle reduziert wird.
+
+![Welleninterferenz](/posts/assets/entries/interference/waves_interference.png)
+
+Interferenz kann bei jeder Art von Welle auftreten: Licht-, Wasser-, Radio-, Schwerkraft- oder Schallwellen. Sie ist ein grundlegendes Konzept in der Physik und spielt eine entscheidende Rolle in der Quantenmechanik, wo sie als **„Quanteninterferenz”** bezeichnet wird.
+
+## Klassische Interferenz
+
+Die Interferenz von Wellen wurde von Young durch sein **Doppelspaltexperiment** experimentell nachgewiesen. Dieses Experiment trug wesentlich zur Akzeptanz des Lichts als Welle bei. Youngs qualitativen Beobachtungen zeigten, dass Licht nicht partikelartig sein kann, da es sonst nur zwei helle Streifen direkt hinter den beiden Spalten erzeugen würde. 
+Es handelt sich vielmehr um eine Welle, bei der sich die durch einen Spalt hindurchtretenden Wellen gegenseitig überlagern und abwechselnd **Maxima** (konstruktive Interferenz) und **Minima** (destruktive Interferenz) erzeugen. Diese sind dann als helle (hier rote) und dunkle (hier schwarze) Streifen auf einem Bildschirm sichtbar:
+
+![Doppelspaltwellen](/posts/assets/entries/interference/doubleslit_waves.png)
+
+## Interferenz in der Quantenmechanik:
+
+Quanteninterferenz beschreibt die Interferenz von Quanten untereinander, während sie sich in einem Überlagerungszustand befinden. Befindet sich ein Quantensystem, wie beispielsweise ein Qubit, in einer Überlagerung von Zuständen, verhält es sich ähnlich wie eine Welle, wobei jeder Zustand einer anderen Wahrscheinlichkeitsamplitude entspricht. Die verschiedenen Wahrscheinlichkeitsamplituden können sich gegenseitig beeinflussen und dieselben Interferenzphänomene (konstruktiv und destruktiv) verursachen. Das führt zu einer erhöhten oder verringerten Wahrscheinlichkeit, einen der Zustände zu messen.
+Bei der Durchführung von Experimenten, wie beispielsweise dem Doppelspaltexperiment, kann ein Quantenteilchen mehrere Wege zu unserem Bildschirm nehmen. Zum Beispiel durch Weg A und Weg B. Die Wahrscheinlichkeit dieses Teilchens kann dann als Summe von drei Beiträgen ausgedrückt werden: die Wahrscheinlichkeit allein für Weg A, die Wahrscheinlichkeit allein für Weg B und ein Interferenzterm, der sich aus der Überlagerung der beiden Wege ergibt:
+
+$$ |\Psi_A(x,t)|^2 $$: Wahrscheinlichkeit, das Teilchen an der Position $$x$$ zu detektieren, wenn es nur von Quelle A kam.
+$$ |\Psi_B(x,t)|^2 $$: Wahrscheinlichkeit, das Teilchen an der Position $$x$$ zu detektieren, wenn es nur von Quelle B stammt.
+
+und der Interferenzterm $$ 2 \operatorname{Re} (\Psi_A^\*(x,t) \Psi_B(x,t)) $$. Dieser Interferenzbeitrag resultiert aus der wellenartigen Natur von Quantenzuständen.
+Das bedeutet, dass bei Vorhandensein von Interferenz die Gesamtwahrscheinlichkeitsverteilung $$ P(x) $$ konstruktive und destruktive Interferenzmuster aufweist:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 + 2 \operatorname{Re}(\Psi_A^*(x,t) \Psi_B(x,t))
+$$
+
+Wenn jedoch keine Interferenz vorliegt (z. B. wenn die Wege unterscheidbar sind), verschwindet der Interferenzterm und die Gesamtwahrscheinlichkeit ist einfach die Summe der einzelnen Wahrscheinlichkeiten:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2
+$$
+
+Diese Gleichung ist ein grundlegendes Ergebnis der Quantenmechanik und zeigt, wie Wahrscheinlichkeitsamplituden statt Wahrscheinlichkeiten selbst interferieren.
+
+### Pfadintegralformulierung
+
+Die von Richard Feynman eingeführte **Pfadintegralformulierung** bietet eine alternative Möglichkeit, Quanteninterferenz zu beschreiben. Anstelle einer einzigen Flugbahn nimmt ein Teilchen alle möglichen Pfade ein, von denen jeder einen Phasenfaktor beiträgt.
+
+Die Wahrscheinlichkeitsamplitude eines Teilchens, das sich von $$ x_i $$ nach $$ x_f $$ bewegt, ist gegeben durch:
+
+$$
+\Psi(x_f, t) = \sum_{j} e^{i S_j / \hbar}
+$$
+
+wobei $$ S_j $$ die Wirkung entlang jedes Pfades ist und $$ \hbar $$ die reduzierte Planck-Konstante ist. Pfade in der Nähe der klassischen Bahn verstärken sich gegenseitig, während andere destruktiv interferieren.
+
+Für zwei Pfade im **Doppelspaltexperiment** beträgt die Gesamtamplitude:
+
+$$
+\Psi = e^{i S_1 / \hbar} + e^{i S_2 / \hbar}
+$$
+
+was zu folgender Wahrscheinlichkeit führt:
+
+$$
+P = \left| e^{i S_1 / \hbar} + e^{i S_2 / \hbar} \right|^2
+$$
+
+die von der Phasendifferenz $$ \Delta S = S_2 - S_1 $$ abhängt. Ist $$ \Delta S $$ ein Vielfaches von $$2\pi$$, ist die Interferenz **konstruktiv**; ist sie ein ungerades Vielfaches von $$ \pi $$, ist sie **destruktiv**.
+
+Diese Formulierung liefert tiefe Einblicke in die Quantenmechanik, den Tunneleffekt und die Quantenfeldtheorie.
+
+## Anwendungen in der Quanteninformatik
+
+Dieses Phänomen ist ein sehr leistungsfähiges Werkzeug in der Quanteninformatik, da Quantencomputer mit Wahrscheinlichkeiten statt mit definitiven Zuständen arbeiten. Interferenz kann verwendet werden, um die Wahrscheinlichkeiten von Quanten zu manipulieren, indem bestimmte Quantengatter und Operatoren in einem Quantencomputer angewendet werden, wodurch das Ergebnis von Berechnungen effektiv gesteuert und verändert werden kann. Verschiedene Quantenalgorithmen können verwendet werden, um eine Abfolge von Operationen auf einem Quantencomputer zu erstellen, die dann durch Interferenz die gewünschte Manipulation und damit die gewünschte Ausgabe liefern.
+
+Wenn man sich Qubits als Münzen vorstellt, die entweder im Zustand „Kopf“ oder „Zahl“ landen können, würde die Interferenz wie eine Kraft wirken, beispielsweise wie ein Magnet, der die Münze in eine andere Position lenkt. 
+Dadurch würde sich die Wahrscheinlichkeit ändern, mit der die Münze in dem einen oder anderen Zustand landet. Durch Quantengatter kann man diese „Magnetkraft“ manipulieren, um die Wahrscheinlichkeiten zu steuern.
+
+Betrachten wir ein konkretes Beispiel für Quanteninterferenz:
+
+#### Interferenz im Deutsch-Jozsa-Algorithmus
+
+Der Deutsch-Jozsa-Algorithmus liefert eine der einfachsten Demonstrationen dafür, wie Quanteninterferenz für rechnerische Vorteile genutzt werden kann.
+Die Aufgabe besteht darin, mit nur einer einzigen Abfrage zu bestimmen, ob eine gegebene Boolesche Funktion $$f:\{0,1\}\to\{0,1\}$$ **konstant** $$f(0)=f(1)$$ oder **ausgeglichen** $$f(0)\neq f(1)$$ ist.
+
+Der Schaltkreis des Deutsch-Jozsa-Algorithmus sieht wie folgt aus:
+
+![Deutschs Schaltkreis](/posts/assets/entries/interference/deutsch_alg.png)
+
+**Schritt 1: Initialisierung**
+
+Wir beginnen mit dem Zwei-Qubit-Zustand
+
+$$
+|\psi_0\rangle = |0\rangle \otimes |1\rangle.
+$$
+
+**Schritt 2: Hadamard-Gatter**
+
+Die Anwendung von Hadamard-Gattern auf beide Qubits ergibt
+
+$$
+|\psi_1\rangle =
+\frac{|0\rangle + |1\rangle}{\sqrt{2}} \otimes
+\frac{|0\rangle - |1\rangle}{\sqrt{2}}.
+$$
+
+**Schritt 3: Orakelaktion**
+
+Das Orakel $$U_f$$ wirkt wie folgt
+
+$$
+U_f |x,y\rangle = |x,\, y \oplus f(x)\rangle.
+$$
+
+Da sich das zweite Qubit im Zustand $$\tfrac{|0\rangle - |1\rangle}{\sqrt{2}}$$ befindet, führt es zu einer Phasenverschiebung von $$(-1)^{f(x)}$$ auf dem ersten Qubit:
+
+$$
+|\psi_2\rangle =
+\frac{(-1)^{f(0)}|0\rangle + (-1)^{f(1)}|1\rangle}{\sqrt{2}}
+\otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}}.
+$$
+
+**Schritt 4: Interferenz durch Hadamard**
+
+Ein anschließender Hadamard auf dem ersten Qubit transformiert den Zustand zu
+
+$$
+|\psi_3\rangle =
+\frac{1}{2}\Big( \big((-1)^{f(0)} + (-1)^{f(1)}\big)|0\rangle
++ \big((-1)^{f(0)} - (-1)^{f(1)}\big)|1\rangle \Big)
+\otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}}.
+$$
+
+**Schritt 5: Messung**
+
+Nun bestimmt die Interferenz das Ergebnis.
+
+$$
+|\psi_4\rangle =
+\begin{cases}
+|0\rangle \otimes \tfrac{|0\rangle - |1\rangle}{\sqrt{2}}, & f(0)=f(1) \quad (\text{konstant}) \\[6pt]
+|1\rangle \otimes \tfrac{|0\rangle - |1\rangle}{\sqrt{2}}, & f(0)\neq f(1) \quad (\text{ausgeglichen})
+\end{cases}
+$$
+
+Wenn $$f(0) = f(1)$$ (**konstant**), heben sich die Amplituden für $$|1\rangle$$ destruktiv auf, sodass das erste Qubit in $$|0\rangle$$ verbleibt.
+Wenn $$f(0) \neq f(1)$$ (**ausgeglichen**), heben sich die Amplituden für $$|0\rangle$$ destruktiv auf, sodass das erste Qubit in $$|1\rangle$$ verbleibt.
+
+Stell dir zum Beispiel vor, wir hätten eine Münze, die entweder **echt** (sie hat zwei verschiedene Seiten: „Kopf“ und „Zahl“) oder **gefälscht** (beide Seiten zeigen das gleiche Muster) sein könnte.  
+Ein klassischer Computer müsste die Münze mindestens zweimal – einmal für jede Seite – abfragen, um ihre Echtheit festzustellen.  
+Ein Quantencomputer kann jedoch eine einzige Abfrage durchführen, indem er eine **Superposition** von „Kopf“ und „Zahl“ sendet und anhand der Interferenz entscheidet, ob die Münze echt oder gefälscht ist.
+Somit unterscheidet der Algorithmus mit einer einzigen Abfrage zwischen konstanten und ausgeglichenen Funktionen. Der Schlüsselmechanismus ist die Quanteninterferenz:
+Die Wahrscheinlichkeitsamplituden, die verschiedenen Berechnungspfaden entsprechen, interferieren konstruktiv oder destruktiv, wodurch ein Ergebnis eliminiert
+und das andere verstärkt wird. Diese Interferenz ermöglicht es, eine globale Eigenschaft der Funktion effizienter zu extrahieren, als dies klassisch möglich ist.
+
+
+### Quellen
+
+- Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press.
+- [Douglas College Physics 1207](https://pressbooks.bccampus.ca/introductorygeneralphysics2phys1207/chapter/27-3-youngs-double-slit-experiment/)
+- https://www.physics-and-radio-electronics.com/physics/waveinterference.html
