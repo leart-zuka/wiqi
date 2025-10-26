@@ -180,7 +180,7 @@ export default function PostClient({
                                             onClick={() => setIsLeftSidebarOpen(false)}
                                             className="h-6 w-6"
                                         >
-                                            <ChevronRight className="h-4 w-4" />
+                                            <ChevronLeft className="h-4 w-4" />
                                         </Button>
                                     </div>
                                     {toc.length > 0 && (
@@ -310,7 +310,7 @@ export default function PostClient({
                                             onClick={() => setIsRightSidebarOpen(false)}
                                             className="h-6 w-6"
                                         >
-                                            <ChevronLeft className="h-4 w-4" />
+                                            <ChevronRight className="h-4 w-4" />
                                         </Button>
                                     </div>
                                     <div className="space-y-2">
