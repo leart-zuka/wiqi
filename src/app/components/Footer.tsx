@@ -37,7 +37,7 @@ export default function Footer({ params }: FooterProps) {
               <div className="flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
                 <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-purple-600 to-pink-500 p-0.5 shadow-lg">
                   <Image
-                    src="/wq.png"
+                    src="/static/logos/wiqi/wq.png"
                     alt="WiQi Logo"
                     width={30}
                     height={30}

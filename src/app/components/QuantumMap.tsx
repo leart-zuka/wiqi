@@ -497,7 +497,7 @@ export default function QuantumMap() {
           }}
         >
           <Image
-            src="/image_1.png"
+            src="/static/map/munich_map_bg_bare.png"
             alt="Munich Map"
             fill
             className="object-cover"
@@ -528,7 +528,7 @@ export default function QuantumMap() {
         >
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/partner_map.svg"
+              src="/static/map/partner_map.svg"
               alt="Partner Map"
               fill
               className="object-contain"
@@ -654,7 +654,7 @@ export default function QuantumMap() {
         >
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/deutschland_karte.svg"
+              src="/static/map/deutschland_karte.svg"
               alt="Deutschland Map"
               fill
               className="object-contain"
@@ -737,7 +737,7 @@ export default function QuantumMap() {
         >
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/garching_karte.svg"
+              src="/static/map/garching_karte.svg"
               alt="Garching Map"
               fill
               className="object-contain"
@@ -810,7 +810,7 @@ export default function QuantumMap() {
       >
         <div className="relative">
           <Image
-            src="/wiqi_icon_button_for_map.svg"
+            src="/static/map/wiqi_icon_button_for_map.svg"
             alt="Switch Map View"
             width={isMobile ? 48 : 64}
             height={isMobile ? 48 : 64}

@@ -392,7 +392,7 @@ export default function AboutPage() {
                     className="relative z-10 h-64 w-64 overflow-hidden rounded-full bg-gradient-to-r from-indigo-500/10 to-blue-500/10 p-1 backdrop-blur-sm dark:from-pink-500/10 dark:to-indigo-500/10 lg:h-80 lg:w-80"
                   >
                     <Image
-                      src="/Wiqi_Mascot_Minimalistic.png"
+                      src="/static/logos/wiqi/Wiqi_Mascot_Minimalistic.png"
                       alt="WiQi Mascot"
                       width={1024}
                       height={1024}

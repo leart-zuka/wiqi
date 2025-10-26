@@ -47,7 +47,7 @@ export default async function LocaleLayout({
         <meta property="og:title" content="WiQi" />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/wq.png`}
+          content={`${process.env.NEXT_PUBLIC_API_BASE_URL}/static/logos/wiqi/wq.png`}
         />
         <meta
           property="og:description"

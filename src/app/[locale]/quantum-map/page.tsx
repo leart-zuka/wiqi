@@ -187,7 +187,7 @@ export default function Home({ params }: HomeProps) {
                     <div className="flex items-center space-x-2">
                       <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-purple-600 to-pink-500 p-0.5 shadow-lg">
                         <Image
-                          src="/wq.png"
+                          src="/static/logos/wiqi/wq.png"
                           alt="WiQi Logo"
                           width={30}
                           height={30}
@@ -243,7 +243,7 @@ export default function Home({ params }: HomeProps) {
                     {/* Language Switcher */}
                     <div className="overflow-hidden rounded-full ring-2 ring-white transition-transform duration-200 dark:ring-slate-800">
                       <Image
-                        src="/de.svg"
+                        src="/static/flags/de.svg"
                         alt="Deutsch"
                         width={24}
                         height={24}
@@ -339,7 +339,7 @@ export default function Home({ params }: HomeProps) {
               <div className="text-center">
                 <span className="text-sm font-bold text-white">
                   <Image
-                    src="/wiqi_icon_button_for_map.svg"
+                    src="/static/map/wiqi_icon_button_for_map.svg"
                     alt="Switch Map View"
                     width={64}
                     height={64}
