@@ -39,7 +39,7 @@ export default async function Post({
     
     // Extract table of contents from markdown
     const extractTOC = (content: string) => {
-        const headingRegex = /^#{2}\s+(.+)$/gm;
+        const headingRegex = /^#{2,3}\s+(.+)$/gm;
         const headings = [];
         let match;
         while ((match = headingRegex.exec(content)) !== null) {
@@ -50,9 +50,15 @@ export default async function Post({
     
     const toc = extractTOC(post.content);
     
+    // Serialize post data to plain object for client component
+    const postData = {
+        content: post.content,
+        data: post.data,
+    };
+    
     return (
         <PostClient
-            post={post}
+            post={postData}
             params={params}
             readingTime={readingTime}
             tldrContent={tldrContent}

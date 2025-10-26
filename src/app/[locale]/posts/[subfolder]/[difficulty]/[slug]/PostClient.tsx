@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { setCookie } from "cookies-next";
 import Link from "next/link";
-import { ChevronLeft, X, Menu, GraduationCap } from "lucide-react";
+import { ChevronLeft, ChevronRight, Menu, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -41,6 +41,19 @@ export default function PostClient({
     const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(true);
     const [readingProgress, setReadingProgress] = useState(0);
+    
+    // Format date in European format (DD.MM.YYYY)
+    const formatDate = (dateString: string) => {
+        try {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}.${month}.${year}`;
+        } catch {
+            return dateString;
+        }
+    };
     
     // Progress bar
     useEffect(() => {
@@ -80,9 +93,23 @@ export default function PostClient({
     const currentDifficultyIndex = difficulties.findIndex(d => d.id === params.difficulty);
     
     const switchDifficulty = (newDifficulty: string) => {
-        const newPath = pathname.replace(/\/[^\/]+\//, `/${newDifficulty}/`);
-        setCookie("difficulty", newDifficulty);
-        router.push(newPath);
+        // Get all path segments
+        const pathSegments = pathname.split('/');
+        // Find the index of difficulty in the path (it's at index 3: /en/posts/entries/[difficulty]/slug)
+        const difficultyIndex = pathSegments.indexOf(params.difficulty);
+        
+        if (difficultyIndex !== -1) {
+            // Replace the difficulty segment
+            pathSegments[difficultyIndex] = newDifficulty;
+            const newPath = pathSegments.join('/');
+            setCookie("difficulty", newDifficulty);
+            router.push(newPath);
+        }
+    };
+    
+    // Helper function to generate IDs for headings
+    const generateHeadingId = (text: string) => {
+        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     };
     
     return (
@@ -107,7 +134,7 @@ export default function PostClient({
                                 {post.data.subtitle}
                             </p>
                             <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-                                <span>{post.data.date}</span>
+                                <span>{formatDate(post.data.date)}</span>
                                 <span>•</span>
                                 <span>{t("average reading time")}: ~{readingTime} m</span>
                                 {post.data.author && (
@@ -125,56 +152,72 @@ export default function PostClient({
             <div className="mx-auto max-w-7xl">
                 <div className="flex gap-6">
                     {/* Left Sidebar - Desktop */}
-                    <aside className={`hidden lg:block transition-all duration-300 ${isLeftSidebarOpen ? 'w-64' : 'w-0 overflow-hidden'}`}>
-                        <div className="sticky top-1 py-6">
-                            <Card className="p-4">
-                                <div className="mb-3 flex items-center justify-between">
-                                    <h3 className="font-semibold text-slate-900 dark:text-white">Navigation</h3>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
-                                        className="h-6 w-6"
-                                    >
-                                        <X className="h-4 w-4" />
-                                    </Button>
-                                </div>
-                                {toc.length > 0 && (
-                                    <nav className="space-y-2">
-                                        {toc.map((heading, index) => (
-                                            <a
-                                                key={index}
-                                                href={`#${heading.toLowerCase().replace(/\s+/g, '-')}`}
-                                                className="block rounded-md px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                                            >
-                                                {heading}
-                                            </a>
-                                        ))}
-                                    </nav>
-                                )}
-                                <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-800">
-                                    <Link 
-                                        href={`/${params.locale}/posts/${params.subfolder}`}
-                                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                                    >
-                                        <ChevronLeft className="h-4 w-4" />
-                                        Back to Posts
-                                    </Link>
-                                </div>
-                            </Card>
-                        </div>
-                    </aside>
-                    
-                    {/* Mobile: Show sidebar toggle button if sidebar is hidden */}
-                    {!isLeftSidebarOpen && (
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="fixed left-4 top-24 z-40 lg:hidden"
-                            onClick={() => setIsLeftSidebarOpen(true)}
-                        >
-                            <Menu className="h-5 w-5" />
-                        </Button>
+                    {isLeftSidebarOpen ? (
+                        <aside className="hidden lg:block w-64 transition-all duration-300">
+                            <div className="sticky top-1 py-6">
+                                <Card className="p-4">
+                                    <div className="mb-3 flex items-center justify-between">
+                                        <h3 className="font-semibold text-slate-900 dark:text-white">Navigation</h3>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => setIsLeftSidebarOpen(false)}
+                                            className="h-6 w-6"
+                                        >
+                                            <ChevronRight className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                    {toc.length > 0 && (
+                                        <nav className="space-y-2">
+                                            {toc.map((heading, index) => {
+                                                const id = generateHeadingId(heading);
+                                                return (
+                                                    <a
+                                                        key={index}
+                                                        href={`#${id}`}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            const element = document.getElementById(id);
+                                                            if (element) {
+                                                                const offset = 80; // Add space above the heading
+                                                                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                                                                const offsetPosition = elementPosition - offset;
+                                                                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                                                            }
+                                                        }}
+                                                        className="block rounded-md px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                                                    >
+                                                        {heading}
+                                                    </a>
+                                                );
+                                            })}
+                                        </nav>
+                                    )}
+                                    <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-800">
+                                        <Link 
+                                            href={`/${params.locale}/posts/${params.subfolder}`}
+                                            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                                        >
+                                            <ChevronLeft className="h-4 w-4" />
+                                            Back to Posts
+                                        </Link>
+                                    </div>
+                                </Card>
+                            </div>
+                        </aside>
+                    ) : (
+                        <aside className="hidden lg:block w-12 transition-all duration-300">
+                            <div className="sticky top-1 py-6">
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    onClick={() => setIsLeftSidebarOpen(true)}
+                                    className="h-10 w-10"
+                                >
+                                    <Menu className="h-5 w-5" />
+                                </Button>
+                            </div>
+                        </aside>
                     )}
                     
                     {/* Main Content */}
@@ -201,6 +244,24 @@ export default function PostClient({
                                     [rehypeKatex, { throwOnError: false, strict: false }],
                                 ]}
                                 components={{
+                                    h2({ node, children, ...props }) {
+                                        const headingText = String(children);
+                                        const id = generateHeadingId(headingText);
+                                        return (
+                                            <h2 id={id} {...props}>
+                                                {children}
+                                            </h2>
+                                        );
+                                    },
+                                    h3({ node, children, ...props }) {
+                                        const headingText = String(children);
+                                        const id = generateHeadingId(headingText);
+                                        return (
+                                            <h3 id={id} {...props}>
+                                                {children}
+                                            </h3>
+                                        );
+                                    },
                                     code({ node, className, children, ...props }) {
                                         const match = /language-(\w+)/.exec(className || "");
                                         return match ? (
@@ -221,47 +282,50 @@ export default function PostClient({
                     </main>
                     
                     {/* Right Sidebar - Desktop */}
-                    <aside className={`hidden lg:block transition-all duration-300 ${isRightSidebarOpen ? 'w-64' : 'w-0 overflow-hidden'}`}>
-                        <div className="sticky top-1 py-6">
-                            <Card className="p-4">
-                                <div className="mb-3 flex items-center justify-between">
-                                    <h3 className="font-semibold text-slate-900 dark:text-white">Difficulty</h3>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => setIsRightSidebarOpen(!isRightSidebarOpen)}
-                                        className="h-6 w-6"
-                                    >
-                                        <X className="h-4 w-4" />
-                                    </Button>
-                                </div>
-                                <div className="space-y-2">
-                                    {difficulties.map((difficulty) => (
+                    {isRightSidebarOpen ? (
+                        <aside className="hidden lg:block w-64 transition-all duration-300">
+                            <div className="sticky top-1 py-6">
+                                <Card className="p-4">
+                                    <div className="mb-3 flex items-center justify-between">
+                                        <h3 className="font-semibold text-slate-900 dark:text-white">Difficulty</h3>
                                         <Button
-                                            key={difficulty.id}
-                                            variant={params.difficulty === difficulty.id ? "default" : "outline"}
-                                            className="w-full justify-start"
-                                            onClick={() => switchDifficulty(difficulty.id)}
+                                            variant="ghost"
+                                            size="icon"
+                                            onClick={() => setIsRightSidebarOpen(false)}
+                                            className="h-6 w-6"
                                         >
-                                            <span className="mr-2">{difficulty.emoji}</span>
-                                            {difficulty.label}
+                                            <ChevronLeft className="h-4 w-4" />
                                         </Button>
-                                    ))}
-                                </div>
-                            </Card>
-                        </div>
-                    </aside>
-                    
-                    {/* Mobile: Show sidebar toggle button if sidebar is hidden */}
-                    {!isRightSidebarOpen && (
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="fixed right-4 top-24 z-40 lg:hidden"
-                            onClick={() => setIsRightSidebarOpen(true)}
-                        >
-                            <GraduationCap className="h-5 w-5" />
-                        </Button>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {difficulties.map((difficulty) => (
+                                            <Button
+                                                key={difficulty.id}
+                                                variant={params.difficulty === difficulty.id ? "default" : "outline"}
+                                                className="w-full justify-start"
+                                                onClick={() => switchDifficulty(difficulty.id)}
+                                            >
+                                                <span className="mr-2">{difficulty.emoji}</span>
+                                                {difficulty.label}
+                                            </Button>
+                                        ))}
+                                    </div>
+                                </Card>
+                            </div>
+                        </aside>
+                    ) : (
+                        <aside className="hidden lg:block w-12 transition-all duration-300">
+                            <div className="sticky top-1 py-6">
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    onClick={() => setIsRightSidebarOpen(true)}
+                                    className="h-10 w-10"
+                                >
+                                    <GraduationCap className="h-5 w-5" />
+                                </Button>
+                            </div>
+                        </aside>
                     )}
                 </div>
             </div>
