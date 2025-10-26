@@ -30,6 +30,20 @@ interface ParsedMarkdown {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+
+    // Validate request body
+    if (
+      !body.folder ||
+      !Array.isArray(body.folder) ||
+      !body.language ||
+      !body.difficulty
+    ) {
+      return NextResponse.json(
+        { error: "Invalid request parameters" },
+        { status: 400 },
+      );
+    }
+
     const response: Response[] = [];
     body.folder.forEach((folder: string) => {
       const files_in_folder = getBlogPosts(
@@ -49,7 +63,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ files: response }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Couldn't retrieve blog posts" },
+      {
+        error: "Couldn't retrieve blog posts",
+        details: error instanceof Error ? error.message : String(error),
+      },
       { status: 500 },
     );
   }
@@ -69,24 +86,39 @@ function readMDXFile(filePath: fs.PathOrFileDescriptor): ParsedMarkdown {
 }
 
 function getMDXData(dir: string) {
-  let mdxFiles = getMDXFiles(dir); // file names of all posts
+  try {
+    let mdxFiles = getMDXFiles(dir); // file names of all posts
 
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
+    return mdxFiles.map((file) => {
+      let { metadata, content } = readMDXFile(path.join(dir, file));
+      let slug = path.basename(file, path.extname(file));
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
+      return {
+        metadata,
+        slug,
+        content,
+      };
+    });
+  } catch (error) {
+    console.error(`Error reading MDX data from ${dir}:`, error);
+    return [];
+  }
 }
 
 function getBlogPosts(folder: string, locale: string, difficulty: string) {
-  return getMDXData(
-    path.join(
-      `${process.cwd()}/public/posts/${locale}/${difficulty}/${folder}`,
-    ),
+  const folderPath = path.join(
+    `${process.cwd()}/public/posts/${locale}/${difficulty}/${folder}`,
   );
+
+  // Check if the directory exists
+  // This validation is needed even though we have a catch-all route at [...rest]/page.tsx
+  // because the more specific [locale]/posts/[subfolder]/page.tsx route matches first,
+  // causing this API to be called before the catch-all route can handle the 404.
+  // This prevents server crashes when invalid subfolders are accessed.
+  // For detailed explanation of the complete 404 handling system, see: src/app/[locale]/[...rest]/page.tsx
+  if (!fs.existsSync(folderPath)) {
+    return [];
+  }
+
+  return getMDXData(folderPath);
 }

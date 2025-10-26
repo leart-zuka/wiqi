@@ -1,0 +1,63 @@
+---
+title: "Quantenoptimierung"
+subtitle: "Quantenoptimierung: Die schwierigsten Probleme mit den seltsamsten Werkzeugen lösen (mittel)"
+author: "Sudharshan Kannan"
+date: "2025-05-31"
+---
+
+## Optimierung verstehen
+
+Optimierung ist allgegenwärtig. Von der Planung von Pizza-Lieferrouten über die Erstellung von Stundenplänen für Schulen und Hochschulen bis hin zur Faltung von Proteinen in der Biologie – all dies sind Optimierungsprobleme. Einfach ausgedrückt handelt es sich bei einem Optimierungsproblem um eine Aufgabe, bei der Sie aus vielen möglichen Lösungen die **beste** finden möchten. „Beste“ im Sinne von Zeit-, Geld- oder Ressourceneinsparung.
+
+Stellen Sie sich vor, Sie haben eine Karte in der Hand und versuchen, den kürzesten Weg zu finden, um drei Freunde zu besuchen, die alle an zufälligen Orten in der Stadt wohnen. Wenn Sie etwas darüber nachdenken, sollte dieses Problem recht einfach zu lösen sein, da es nur eine Handvoll Routen gibt, aus denen Sie wählen können. Wenn Sie jedoch zehn Freunde besuchen wollten, wäre die Lösung sehr schwierig. Und bei 100 Freunden würden Sie wahrscheinlich sofort aufgeben.
+
+Wenn Probleme also größer und komplizierter werden, explodiert die Anzahl der möglichen Antworten. Wenn Sie versuchen, eine Route zu planen, um 100 Freunde zu besuchen, gibt es mehr mögliche Wege als Atome im Universum. In diesem Fall ist es fast unmöglich, den kürzesten Weg zu finden. Hier kommen **klassische Computer** an ihre Grenzen. Nicht einmal (klassische) Supercomputer können komplexe Optimierungsprobleme schnell lösen. Könnten Quantencomputer uns hier helfen? Genau darum geht es bei der **Quantenoptimierung**: die seltsamen Regeln der Quantenmechanik zu nutzen, um riesige Lösungsmengen intelligenter zu erkunden als klassische Computer.
+
+## Was ist Quantenoptimierung?
+
+Im Kern versucht die Quantenoptimierung, Probleme zu lösen, indem sie diese in ein Quantensystem umwandelt, in dem jede mögliche Antwort mit einer bestimmten Energie verbunden ist. Das Ziel besteht darin, den Zustand mit der niedrigsten Energie, den **Grundzustand**, zu finden, der der besten Lösung für das ursprüngliche Problem entspricht. Das ist in etwa so, als würde man versuchen, den kürzesten Weg nach Hause zu finden. Finden Sie den Grundzustand, und Sie haben Ihre Antwort.
+
+Aber jetzt fragen Sie sich vielleicht: „Wie finden wir den Grundzustand?“ Es gibt mehrere Möglichkeiten, ihn zu finden.
+
+### a) Quanten-Annealing
+
+Dies ist tatsächlich ein physikalischer Prozess, der von der Natur inspiriert ist. Stellen Sie sich eine Landschaft mit Hügeln und Tälern vor, in der das tiefste Tal die beste Lösung darstellt. Beim klassischen Annealing lässt man ein Teilchen in dieser Landschaft herumhüpfen und hofft, dass es sich im tiefsten Tal niederlässt. Das Teilchen könnte jedoch versehentlich in einem flachen Tal landen, ohne etwas von anderen tieferen Tälern zu wissen. Beim **Quanten-Annealing** hingegen kann das Teilchen auch durch Hügel hindurch [_tunneln_](/de/posts/entries/highschool/qtunnelling), anstatt sie zu überqueren, wodurch es leichter aus lokalen Fallen entkommen kann. Durch Quanten-Annealing können Sie den tatsächlich tiefsten Punkt (globales Minimum) erreichen, ohne die gesamte Landschaft durchlaufen zu müssen.
+
+![Ein Diagramm, das ein Teilchen zeigt, das durch einen Hügel in einer Landschaft tunnelt und Quantum Annealing darstellt.](/posts/assets/entries/qoptimization/q_annealing.png)
+_Bildquelle: [The Vessel Project](https://www.vesselproject.io/essays/life-through-quantum-annealing)_
+
+Das ist die Stärke des Quanten-Annealing, das von Unternehmen wie D-Wave zur Lösung komplexer Optimierungsprobleme eingesetzt wird. Durch die Ermittlung der Konfiguration mit der niedrigsten Energie der Spins (Spin-up oder Spin-down) können sie die optimale Lösung für reale Herausforderungen finden.
+
+### b) VQA (Variational Quantum Algorithms)
+
+Eine weitere spannende Möglichkeit, diese Probleme zu lösen, sind Variational Quantum Algorithms (VQAs), bei denen wir ein Team aus einem klassischen Computer und einem Quantencomputer bilden. 
+
+Wir beginnen mit einer ersten Vermutung zur Lösung des vorliegenden Problems, die wir dann von unserem Quantencomputer auswerten lassen. Nachdem wir das Ergebnis erhalten haben, wird es an unseren klassischen Computer weitergeleitet, um herauszufinden, ob unsere anfängliche Vermutung zu den richtigen Ergebnissen geführt hat. Ist dies der Fall, können wir uns alle freuen und nach Hause gehen. Ist dies jedoch meistens nicht der Fall, gibt uns unser klassischer Computer auf der Grundlage des Ergebnisses des ersten Versuchsdurchlaufs einen neuen Satz von Parametern, und wir wiederholen den Zyklus, bis wir das gewünschte Ergebnis erhalten. 
+
+Die Idee besteht darin, einen klassischen Computer zu verwenden, um die Parameter eines Quantensystems abzustimmen. Auf diese Weise können wir Lösungen finden, indem wir mit einer guten Vermutung beginnen und diese dann immer weiter verfeinern. Das ist in etwa so, als würde man einen Topf aus Ton herstellen.
+
+## Visualisierung des Quantenvorteils
+
+Ein klassischer Computer ist wie ein Wanderer, der bergab geht und im ersten Tal, das er findet, Halt macht. Dort bleibt er stecken, auch wenn sich hinter dem nächsten Hügel ein viel tieferes Tal befindet. Ein Quantencomputer hingegen kann mithilfe des Tunneleffekts direkt durch die Hügel hindurchgehen, wodurch es viel einfacher ist, das absolut tiefste Tal zu finden.
+
+## Anwendungen
+
+Diese Problemlösungsfähigkeit der Quantenoptimierung hat sich auf viele Bereiche ausgewirkt, in denen Probleme zu komplex sind, um mit den fast schon brutalen Methoden klassischer Algorithmen gelöst zu werden. Die Ermittlung der kürzesten Route könnte beispielsweise Lieferunternehmen helfen, Kraftstoff und Kosten zu sparen. Die Ermittlung der perfekten Mischung aus Tausenden von Anlageoptionen könnte Investmentbrokern helfen, den Wert für ihre Aktionäre zu maximieren.
+
+## Herausforderungen
+
+Allerdings ist der Weg dorthin nicht so einfach, wie hier beschrieben. Die heutigen Quantencomputer stehen vor großen Hürden. Die Bausteine, die Qubits, sind empfindlich und es gibt noch nicht genug davon. Die geringste mechanische Vibration oder Temperaturänderung in der Umgebung kann dazu führen, dass sie „platzen” und ihre Quanteninformationen verlieren, was Physiker als **Dekohärenz** bezeichnen. Das Trainieren der Algorithmen kann ebenfalls unglaublich schwierig sein, und es ist immer noch schwer zu beweisen, wann sie wirklich besser sind als unsere besten klassischen Computer.
+
+## Fazit
+
+Die Quantenoptimierung verbindet Physik und Informatik. Mit zunehmender Reife der Technologie könnte sie Lösungen ermöglichen, die mit klassischen Methoden nicht erreichbar sind. Die Quantenoptimierung beschleunigt nicht nur bekannte Methoden, sondern nutzt auch neue physikalische Phänomene wie [_Tunneln_](/de/posts/entries/highschool/qtunnelling) und [_Verschränkung_](/de/posts/entries/highschool/entanglement), um Problemlösungsstrategien neu zu definieren. Das volle Potenzial, insbesondere für groß angelegte Probleme, bleibt eine offene Frage, die die aktuelle Forschung vorantreibt.
+
+## Quellen
+
+- Farhi et al., [arXiv:1411.4028](https://arxiv.org/abs/1411.4028)
+- Denchev et al., [arXiv:1611.04471](https://arxiv.org/abs/1611.04471)
+- Lucas et al., [arXiv:1706.01945](https://arxiv.org/abs/1706.01945)
+- McClean et al., [arXiv:1803.11173](https://arxiv.org/abs/1803.11173)
+- Lucas, A., [arXiv:1302.5843](https://arxiv.org/abs/1302.5843)
+- D-Wave Systems, https://docs.dwavesys.com/docs/latest/c_qubo.html
+- Morales, Samuel, "Life Through Quantum Annealing," The Vessel Project, https://www.vesselproject.io/essays/life-through-quantum-annealing (Image Source)

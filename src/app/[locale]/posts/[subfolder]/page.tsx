@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { File } from "@/types";
 import PostPreview from "@/app/components/PostPreview";
@@ -19,6 +20,7 @@ export default function Page({
   params: { locale: string; subfolder: string };
 }) {
   const cookies = useCookies();
+  const router = useRouter();
   const t = useTranslations("Posts");
   const initialDifficulty = cookies.get("difficulty") ?? "elementary";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
@@ -26,9 +28,26 @@ export default function Page({
   const [filteredFiles, setFilteredFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [shouldRedirectToNotFound, setShouldRedirectToNotFound] = useState(false);
+
+  // Check if subfolder is valid
+  // This prevents users from accessing arbitrary subfolders that don't exist
+  // and ensures we only serve content from known, valid categories.
+  // Without this validation, users could access URLs like /posts/invalid-folder
+  // which would cause errors or show empty pages instead of properly redirecting to 404.
+  const isValidSubfolder = (subfolder: string) => {
+    const validSubfolders = ["entries", "quantum_tuesdays"];
+    return validSubfolders.includes(subfolder);
+  };
 
   // Get the files
   const getFiles = async (difficulty: string, locale: string) => {
+    // Check subfolder validity first to avoid unnecessary API calls
+    if (!isValidSubfolder(params.subfolder)) {
+      setShouldRedirectToNotFound(true);
+      return;
+    }
+
     setIsLoading(true);
     try {
       const response = await fetch("/api/getBlogPosts", {
@@ -41,10 +60,17 @@ export default function Page({
         }),
       });
       const data = await response.json();
+      
+      // If valid subfolder but no files found, still redirect to 404
+      if (!data.files || data.files.length === 0) {
+        setShouldRedirectToNotFound(true);
+        return;
+      }
+      
       setFiles(data.files);
       setFilteredFiles(data.files);
     } catch (err) {
-      console.debug(err);
+      setShouldRedirectToNotFound(true);
     } finally {
       setIsLoading(false);
     }
@@ -53,6 +79,13 @@ export default function Page({
   useEffect(() => {
     getFiles(difficulty, params.locale);
   }, [difficulty, params.locale]);
+
+  // Handle 404 redirect
+  useEffect(() => {
+    if (shouldRedirectToNotFound) {
+      router.push(`/${params.locale}/not-found`);
+    }
+  }, [shouldRedirectToNotFound, router, params.locale]);
 
   // Sort files by date (newest first)
   useEffect(() => {
@@ -138,6 +171,24 @@ export default function Page({
     }),
   };
 
+  // Show loading while redirecting
+  if (shouldRedirectToNotFound) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+        <div className="flex items-center gap-3">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="h-8 w-8 rounded-full border-4 border-purple-200 border-t-purple-600 dark:border-purple-800 dark:border-t-purple-400"
+          />
+          <span className="text-gray-600 dark:text-gray-300">
+            Redirecting...
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`min-h-screen bg-gradient-to-br ${categoryInfo.bgGradient}`}
@@ -162,8 +213,8 @@ export default function Page({
               key={i}
               className="absolute h-2 w-2 rounded-full bg-white/20"
               initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1200,
+                y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 800,
                 scale: 0,
                 opacity: 0,
               }}
@@ -212,7 +263,7 @@ export default function Page({
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400 dark:text-gray-200">
               <div className="flex items-center gap-2">
-                <span>{files.length} Articles</span>
+                <span>{files?.length || 0} Articles</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />

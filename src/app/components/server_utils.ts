@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { notFound } from "next/navigation";
 
 /**
  * Checks if slug is safe.
@@ -59,9 +60,8 @@ export function getPostContent(folder: string, slug: string) {
 
     // Checks if file exists
     if (!fs.existsSync(file)) {
-      throw new Error(
-        `File ${sanitizedSlug}.mdx doesn't exist in folder ${folder}.`,
-      );
+      // Instead of throwing an error, redirect to 404 page
+      notFound();
     }
 
     // Reads content of file

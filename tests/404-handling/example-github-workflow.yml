@@ -1,0 +1,75 @@
+# Example GitHub Workflow for WiQi Testing
+# Place this in .github/workflows/tests.yml
+
+name: WiQi Test Suite
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-404-handling:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start development server
+        run: |
+          npm run dev &
+          sleep 10  # Wait for server to start
+
+      - name: Wait for server to be ready
+        run: |
+          timeout 30 bash -c 'until curl -f http://localhost:3000; do sleep 1; done'
+
+      - name: Run 404 Handling Tests
+        id: test-404
+        run: |
+          cd tests/404-handling
+          node test-404-handling.js | tee test-output.log
+
+      - name: Parse Test Results
+        run: |
+          if grep -q "WIQI_TEST_RESULT: 404-HANDLING-SUCCESS" tests/404-handling/test-output.log; then
+            echo "✅ 404 handling tests passed successfully"
+            echo "test_result=success" >> $GITHUB_OUTPUT
+          elif grep -q "WIQI_TEST_RESULT: 404-HANDLING-FAILURE" tests/404-handling/test-output.log; then
+            echo "❌ 404 handling tests failed"
+            echo "test_result=failure" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "⚠️ Could not determine test result"
+            echo "test_result=unknown" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const testResult = '${{ steps.test-404.outputs.test_result }}';
+            const emoji = testResult === 'success' ? '✅' : '❌';
+            const message = testResult === 'success' 
+              ? '404 handling tests passed!' 
+              : '404 handling tests failed. Please check the logs.';
+              
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `${emoji} **404 Handling Test Results**\n\n${message}`
+            });

@@ -25,7 +25,7 @@ export default function Footer({ params }: FooterProps) {
   }, []);
 
   return (
-    <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white pt-24 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950">
+    <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white pt-4 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950">
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo and Tagline */}
