@@ -1,19 +1,20 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import { setCookie } from "cookies-next";
-import Link from "next/link";
 import { ChevronLeft, ChevronRight, Menu, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 
 interface PostClientProps {
     post: any;
@@ -40,7 +41,6 @@ export default function PostClient({
     const pathname = usePathname();
     const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(true);
-    const [readingProgress, setReadingProgress] = useState(0);
     
     // Format date in European format (DD.MM.YYYY)
     const formatDate = (dateString: string) => {
@@ -54,20 +54,6 @@ export default function PostClient({
             return dateString;
         }
     };
-    
-    // Progress bar
-    useEffect(() => {
-        const handleScroll = () => {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.scrollY || document.documentElement.scrollTop;
-            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
-            setReadingProgress(Math.min(100, Math.max(0, scrollPercentage)));
-        };
-        
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
     
     const difficulties = [
         {
@@ -130,13 +116,14 @@ export default function PostClient({
     
     return (
         <div className="min-h-screen bg-white dark:bg-slate-900">
-            {/* Progress Bar - Desktop Only */}
-            <div className="sticky top-0 z-50 hidden h-1 bg-slate-200 dark:bg-slate-800 md:block">
-                <div 
-                    className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-150"
-                    style={{ width: `${readingProgress}%` }}
-                />
-            </div>
+            {/* Modern Scroll Progress Bar */}
+            <ScrollProgressBar
+                position="sticky"
+                contentOnly={true}
+                ariaLabel="Article reading progress"
+                minProgress={1}
+                showOnMobile={false}
+            />
             
             {/* Banner */}
             <header className="border-b border-slate-200 bg-slate-50 px-4 py-8 dark:border-slate-800 dark:bg-slate-950 md:px-8">

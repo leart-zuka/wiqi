@@ -38,11 +38,23 @@ export default async function LocaleLayout({
     })();
   `;
 
+  // Scroll restoration script to ensure page starts at top
+  const scrollScript = `
+    (function() {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    })();
+  `;
+
   return (
     <html lang={locale}>
       <head>
         {/* Preload theme to prevent FOIT */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Ensure scroll position starts at 0 */}
+        <script dangerouslySetInnerHTML={{ __html: scrollScript }} />
         <meta charSet="utf-8" />
         <meta property="og:title" content="WiQi" />
         <meta
