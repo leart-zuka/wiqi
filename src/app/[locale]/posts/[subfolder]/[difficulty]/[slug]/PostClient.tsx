@@ -365,15 +365,13 @@ export default function PostClient({
                                 </Card>
                                 
                                 {/* Share Widget */}
-                                {typeof window !== 'undefined' && (
-                                    <ShareWidget
-                                        currentUrl={window.location.href}
-                                        postTitle={post.data.title}
-                                        postSubtitle={post.data.subtitle}
-                                        shareLabel={t("share")}
-                                        shareHelper={t("shareHelper")}
-                                    />
-                                )}
+                                <ShareWidget
+                                    currentUrl=""
+                                    postTitle={post.data.title}
+                                    postSubtitle={post.data.subtitle}
+                                    shareLabel={t("share")}
+                                    shareHelper={t("shareHelper")}
+                                />
                                 
                                 {/* Read Next Widget */}
                                 <Card className="p-4 h-full mt-4">

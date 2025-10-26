@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Copy, Check, Link as LinkIcon } from "lucide-react";
@@ -14,13 +14,24 @@ interface ShareWidgetProps {
 }
 
 export function ShareWidget({
-  currentUrl,
+  currentUrl: initialUrl,
   postTitle,
   postSubtitle,
   shareLabel,
   shareHelper,
 }: ShareWidgetProps) {
   const [urlCopied, setUrlCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure component only renders share buttons after hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentUrl =
+    mounted && typeof window !== "undefined"
+      ? window.location.href
+      : initialUrl || "";
 
   const shareOnTwitter = () => {
     const text = `Look what interesting post I found on WiQi!\n\n${postTitle}${postSubtitle ? ` - ${postSubtitle}` : ""}\n\n${currentUrl}`;
