@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -41,6 +41,7 @@ export default function PostClient({
     const pathname = usePathname();
     const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(true);
+    const [randomPosts, setRandomPosts] = useState<{ title: string; subtitle: string; slug: string }[]>([]);
     
     // Format date in European format (DD.MM.YYYY)
     const formatDate = (dateString: string) => {
@@ -113,6 +114,47 @@ export default function PostClient({
         }
         return '';
     };
+    
+    // Fetch random posts for "Read Next" widget
+    useEffect(() => {
+        const fetchRandomPosts = async () => {
+            try {
+                const response = await fetch("/api/getBlogPosts", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        language: params.locale,
+                        difficulty: params.difficulty,
+                        folder: [params.subfolder],
+                    }),
+                });
+                const data = await response.json();
+                
+                if (data.files && data.files.length > 0) {
+                    // Filter out current post
+                    const otherPosts = data.files.filter((file: any) => file.slug !== params.slug);
+                    
+                    if (otherPosts.length > 0) {
+                        // Shuffle array and pick up to 3 random posts
+                        const shuffled = [...otherPosts].sort(() => 0.5 - Math.random());
+                        const selectedPosts = shuffled.slice(0, Math.min(3, shuffled.length));
+                        
+                        setRandomPosts(
+                            selectedPosts.map((post: any) => ({
+                                title: post.metadata.title,
+                                subtitle: post.metadata.subtitle || '',
+                                slug: post.slug,
+                            }))
+                        );
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to fetch random posts:", error);
+            }
+        };
+        
+        fetchRandomPosts();
+    }, [params.locale, params.difficulty, params.subfolder, params.slug]);
     
     return (
         <div className="min-h-screen bg-white dark:bg-slate-900">
@@ -319,6 +361,33 @@ export default function PostClient({
                                             </Button>
                                         ))}
                                     </div>
+                                </Card>
+                                
+                                {/* Read Next Widget */}
+                                <Card className="p-4 h-full mt-4">
+                                    <div className="mb-3">
+                                        <h3 className="font-semibold text-slate-900 dark:text-white">Read Next</h3>
+                                    </div>
+                                    {randomPosts.length > 0 ? (
+                                        <div className="space-y-2">
+                                            {randomPosts.map((post, index) => (
+                                                <Link
+                                                    key={index}
+                                                    href={`/${params.locale}/posts/${params.subfolder}/${params.difficulty}/${post.slug}`}
+                                                    className="block rounded-md p-3 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                                                >
+                                                    <p className="font-semibold text-slate-900 dark:text-white">{post.title}</p>
+                                                    {post.subtitle && (
+                                                        <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{post.subtitle}</p>
+                                                    )}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="text-sm text-slate-600 dark:text-slate-400">
+                                            Loading...
+                                        </div>
+                                    )}
                                 </Card>
                             </div>
                         </aside>
