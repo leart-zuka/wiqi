@@ -159,6 +159,17 @@ export default function PostClient({
                         <aside className="hidden lg:block w-64 transition-all duration-300">
                             <div className="sticky top-1 py-6">
                                 <Card className="p-4">
+                                    {/* Back to Posts Button */}
+                                    <div className="mb-4">
+                                        <Link 
+                                            href={`/${params.locale}/posts/${params.subfolder}`}
+                                            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                                        >
+                                            <ChevronLeft className="h-4 w-4" />
+                                            Back to Posts
+                                        </Link>
+                                    </div>
+                                    
                                     <div className="mb-3 flex items-center justify-between">
                                         <h3 className="font-semibold text-slate-900 dark:text-white">Navigation</h3>
                                         <Button
@@ -196,15 +207,6 @@ export default function PostClient({
                                             })}
                                         </nav>
                                     )}
-                                    <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-800">
-                                        <Link 
-                                            href={`/${params.locale}/posts/${params.subfolder}`}
-                                            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                                        >
-                                            <ChevronLeft className="h-4 w-4" />
-                                            Back to Posts
-                                        </Link>
-                                    </div>
                                 </Card>
                             </div>
                         </aside>
