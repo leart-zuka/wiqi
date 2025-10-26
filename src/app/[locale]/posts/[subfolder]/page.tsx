@@ -28,7 +28,7 @@ export default function Page({
   const [filteredFiles, setFilteredFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [shouldRedirectToNotFound, setShouldRedirectToNotFound] = useState(false);
 
   // Check if subfolder is valid
   // This prevents users from accessing arbitrary subfolders that don't exist
@@ -44,7 +44,7 @@ export default function Page({
   const getFiles = async (difficulty: string, locale: string) => {
     // Check subfolder validity first to avoid unnecessary API calls
     if (!isValidSubfolder(params.subfolder)) {
-      setShouldRedirect(true);
+      setShouldRedirectToNotFound(true);
       return;
     }
 
@@ -63,15 +63,14 @@ export default function Page({
       
       // If valid subfolder but no files found, still redirect to 404
       if (!data.files || data.files.length === 0) {
-        setShouldRedirect(true);
+        setShouldRedirectToNotFound(true);
         return;
       }
       
       setFiles(data.files);
       setFilteredFiles(data.files);
     } catch (err) {
-      console.debug(err);
-      setShouldRedirect(true);
+      setShouldRedirectToNotFound(true);
     } finally {
       setIsLoading(false);
     }
@@ -83,10 +82,10 @@ export default function Page({
 
   // Handle 404 redirect
   useEffect(() => {
-    if (shouldRedirect) {
+    if (shouldRedirectToNotFound) {
       router.push(`/${params.locale}/not-found`);
     }
-  }, [shouldRedirect, router, params.locale]);
+  }, [shouldRedirectToNotFound, router, params.locale]);
 
   // Sort files by date (newest first)
   useEffect(() => {
@@ -173,7 +172,7 @@ export default function Page({
   };
 
   // Show loading while redirecting
-  if (shouldRedirect) {
+  if (shouldRedirectToNotFound) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
         <div className="flex items-center gap-3">

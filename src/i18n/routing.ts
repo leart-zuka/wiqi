@@ -23,7 +23,7 @@ export const routing = defineRouting({
   locales: ["en", "de"],
 
   // Used when no locale matches
-  defaultLocale: "de",
+  defaultLocale: "en",
 
   // The `pathnames` object maps pathnames to localized versions
   pathnames: {
