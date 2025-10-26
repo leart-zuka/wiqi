@@ -49,8 +49,8 @@ export default function NotFound() {
       const newParticles: Particle[] = Array.from({ length: 50 }, () => ({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 1,
-        vy: (Math.random() - 0.5) * 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 4 + 2,
         color:
           PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)],
@@ -68,7 +68,7 @@ export default function NotFound() {
     window.addEventListener("mousemove", handleMouseMove);
 
     const animate = () => {
-      setWaveOffset((prev) => prev + 0.02);
+      setWaveOffset((prev) => prev + 0.008);
 
       // Smooth mouse position interpolation
       const lerp = 0.1;
@@ -94,7 +94,7 @@ export default function NotFound() {
               newY <= 0 || newY >= window.innerHeight
                 ? -particle.vy
                 : particle.vy,
-            pulsePhase: particle.pulsePhase + 0.05,
+            pulsePhase: particle.pulsePhase + 0.02,
             opacity: 0.3 + Math.sin(particle.pulsePhase) * 0.4,
           };
         }),
@@ -267,7 +267,7 @@ export default function NotFound() {
               height: particle.size * 2,
               transform: "translate(-50%, -50%)",
               opacity: particle.opacity * 0.3,
-              animationDuration: `${2 + Math.random() * 3}s`,
+              animationDuration: `${4 + Math.random() * 6}s`,
             }}
           />
         </div>
@@ -282,7 +282,7 @@ export default function NotFound() {
             left: `${15 + i * 15}%`,
             top: `${20 + i * 10}%`,
             animationDelay: `${i * 2}s`,
-            animationDuration: `${8 + i}s`,
+            animationDuration: `${16 + i * 2}s`,
           }}
         >
           {equation}
