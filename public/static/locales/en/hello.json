@@ -114,7 +114,11 @@
     "entry": "Entry",
     "elementary": "Elementary",
     "high school": "High School",
-    "college": "College"
+    "college": "College",
+    "difficulty": "Difficulty",
+    "share": "Share",
+    "shareHelper": "Help spread the word about this article!",
+    "readNext": "Read Next"
   },
   "Footer": {
     "Slogan": "Exploring quantum computing concepts through interactive education and visualization. Making quantum accessible for everyone.",

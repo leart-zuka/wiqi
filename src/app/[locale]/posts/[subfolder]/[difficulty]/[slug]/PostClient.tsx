@@ -15,6 +15,7 @@ import { ChevronLeft, ChevronRight, Menu, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { ShareWidget } from "@/components/ShareWidget";
 
 interface PostClientProps {
     post: any;
@@ -338,7 +339,7 @@ export default function PostClient({
                             <div className="sticky top-1 py-6 h-fit">
                                 <Card className="p-4 h-full">
                                     <div className="mb-3 flex items-center justify-between">
-                                        <h3 className="font-semibold text-slate-900 dark:text-white">Difficulty</h3>
+                                        <h3 className="font-semibold text-slate-900 dark:text-white">{t("difficulty")}</h3>
                                         <Button
                                             variant="ghost"
                                             size="icon"
@@ -363,10 +364,21 @@ export default function PostClient({
                                     </div>
                                 </Card>
                                 
+                                {/* Share Widget */}
+                                {typeof window !== 'undefined' && (
+                                    <ShareWidget
+                                        currentUrl={window.location.href}
+                                        postTitle={post.data.title}
+                                        postSubtitle={post.data.subtitle}
+                                        shareLabel={t("share")}
+                                        shareHelper={t("shareHelper")}
+                                    />
+                                )}
+                                
                                 {/* Read Next Widget */}
                                 <Card className="p-4 h-full mt-4">
                                     <div className="mb-3">
-                                        <h3 className="font-semibold text-slate-900 dark:text-white">Read Next</h3>
+                                        <h3 className="font-semibold text-slate-900 dark:text-white">{t("readNext")}</h3>
                                     </div>
                                     {randomPosts.length > 0 ? (
                                         <div className="space-y-2">
