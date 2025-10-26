@@ -109,7 +109,23 @@ export default function PostClient({
     
     // Helper function to generate IDs for headings
     const generateHeadingId = (text: string) => {
-        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        // Remove brackets before generating ID to ensure matching between TOC and headings
+        const cleanText = text.replace(/[\[\]]/g, '');
+        return cleanText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    };
+    
+    // Helper function to extract text from React children (handles links, etc.)
+    const extractTextFromChildren = (children: any): string => {
+        if (typeof children === 'string') {
+            return children;
+        }
+        if (Array.isArray(children)) {
+            return children.map(child => extractTextFromChildren(child)).join('');
+        }
+        if (children && typeof children === 'object' && 'props' in children) {
+            return extractTextFromChildren(children.props.children);
+        }
+        return '';
     };
     
     return (
@@ -168,7 +184,7 @@ export default function PostClient({
                                         </Button>
                                     </div>
                                     {toc.length > 0 && (
-                                        <nav className="space-y-2">
+                                        <nav className="max-h-[60vh] space-y-2 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-600 scrollbar-track-transparent">
                                             {toc.map((heading, index) => {
                                                 const id = generateHeadingId(heading);
                                                 return (
@@ -245,7 +261,7 @@ export default function PostClient({
                                 ]}
                                 components={{
                                     h2({ node, children, ...props }) {
-                                        const headingText = String(children);
+                                        const headingText = extractTextFromChildren(children);
                                         const id = generateHeadingId(headingText);
                                         return (
                                             <h2 id={id} {...props}>
@@ -254,7 +270,7 @@ export default function PostClient({
                                         );
                                     },
                                     h3({ node, children, ...props }) {
-                                        const headingText = String(children);
+                                        const headingText = extractTextFromChildren(children);
                                         const id = generateHeadingId(headingText);
                                         return (
                                             <h3 id={id} {...props}>

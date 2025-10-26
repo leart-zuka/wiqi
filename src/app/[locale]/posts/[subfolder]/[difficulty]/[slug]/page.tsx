@@ -43,7 +43,11 @@ export default async function Post({
         const headings = [];
         let match;
         while ((match = headingRegex.exec(content)) !== null) {
-            headings.push(match[1]);
+            // Strip markdown links from headings: [text](url) becomes "[text]"
+            const cleanHeading = match[1]
+                .replace(/\[([^\]]+)\]\([^)]+\)/g, '[$1]') // Convert [text](url) to [text]
+                .trim();
+            headings.push(cleanHeading);
         }
         return headings;
     };
