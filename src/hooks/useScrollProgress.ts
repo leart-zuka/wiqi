@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from "react";
 
 interface UseScrollProgressOptions {
   /**
@@ -20,7 +20,7 @@ interface UseScrollProgressOptions {
 
 /**
  * Custom hook for tracking scroll progress with performance optimizations
- * 
+ *
  * @param options Configuration options for scroll tracking
  * @returns Object containing scroll progress percentage (0-100) and scroll position
  */
@@ -28,7 +28,7 @@ export function useScrollProgress(options: UseScrollProgressOptions = {}) {
   const {
     throttleMs = 16, // ~60fps
     element = null,
-    contentOnly = false
+    contentOnly = false,
   } = options;
 
   const [progress, setProgress] = useState(0);
@@ -39,7 +39,7 @@ export function useScrollProgress(options: UseScrollProgressOptions = {}) {
   const calculateProgress = useCallback(() => {
     const target = element || window;
     const isWindow = target === window;
-    
+
     let scrollTop: number;
     let scrollHeight: number;
     let clientHeight: number;
@@ -59,7 +59,7 @@ export function useScrollProgress(options: UseScrollProgressOptions = {}) {
 
     // Calculate progress based on content only or including viewport
     let progressPercentage: number;
-    
+
     if (contentOnly) {
       // Progress based on scrollable content only
       const maxScroll = scrollHeight - clientHeight;
@@ -77,7 +77,7 @@ export function useScrollProgress(options: UseScrollProgressOptions = {}) {
 
   const throttledCalculateProgress = useCallback(() => {
     const now = Date.now();
-    
+
     if (now - lastCallTime.current >= throttleMs) {
       lastCallTime.current = now;
       calculateProgress();
@@ -96,32 +96,32 @@ export function useScrollProgress(options: UseScrollProgressOptions = {}) {
 
   useEffect(() => {
     const target = element || window;
-    
+
     // Initial calculation
     calculateProgress();
 
     // Add event listeners with passive option for better performance
     const options: AddEventListenerOptions = { passive: true };
-    
+
     if (target === window) {
-      window.addEventListener('scroll', throttledCalculateProgress, options);
-      window.addEventListener('resize', throttledCalculateProgress, options);
+      window.addEventListener("scroll", throttledCalculateProgress, options);
+      window.addEventListener("resize", throttledCalculateProgress, options);
     } else {
       const el = target as HTMLElement;
-      el.addEventListener('scroll', throttledCalculateProgress, options);
+      el.addEventListener("scroll", throttledCalculateProgress, options);
     }
 
     return () => {
       if (rafId.current) {
         cancelAnimationFrame(rafId.current);
       }
-      
+
       if (target === window) {
-        window.removeEventListener('scroll', throttledCalculateProgress);
-        window.removeEventListener('resize', throttledCalculateProgress);
+        window.removeEventListener("scroll", throttledCalculateProgress);
+        window.removeEventListener("resize", throttledCalculateProgress);
       } else {
         const el = target as HTMLElement;
-        el.removeEventListener('scroll', throttledCalculateProgress);
+        el.removeEventListener("scroll", throttledCalculateProgress);
       }
     };
   }, [element, throttledCalculateProgress, calculateProgress]);
@@ -142,6 +142,6 @@ export function useScrollProgress(options: UseScrollProgressOptions = {}) {
     /**
      * Whether the user has reached the bottom of the content
      */
-    isAtBottom: progress >= 99.5 // Small threshold for floating point precision
+    isAtBottom: progress >= 99.5, // Small threshold for floating point precision
   };
 }

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useScrollProgress } from '@/hooks/useScrollProgress';
-import { cn } from '@/lib/utils';
+import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { cn } from "@/lib/utils";
 
 interface ScrollProgressBarProps {
   /**
@@ -27,7 +27,7 @@ interface ScrollProgressBarProps {
    * Position of the progress bar
    * @default 'fixed'
    */
-  position?: 'fixed' | 'sticky' | 'absolute' | 'relative';
+  position?: "fixed" | "sticky" | "absolute" | "relative";
   /**
    * Whether to show the progress bar on mobile devices
    * @default false
@@ -78,7 +78,7 @@ interface ScrollProgressBarProps {
 
 /**
  * A modern, accessible scroll progress bar component with performance optimizations
- * 
+ *
  * Features:
  * - Smooth animations with CSS transitions
  * - Throttled scroll events for better performance
@@ -89,22 +89,22 @@ interface ScrollProgressBarProps {
  */
 export function ScrollProgressBar({
   className,
-  height = 'h-1',
-  trackColor = 'bg-slate-200 dark:bg-slate-800',
-  progressColor = 'bg-gradient-to-r from-blue-600 to-purple-600',
-  position = 'fixed',
+  height = "h-1",
+  trackColor = "bg-slate-200 dark:bg-slate-800",
+  progressColor = "bg-gradient-to-r from-blue-600 to-purple-600",
+  position = "fixed",
   showOnMobile = false,
   contentOnly = true,
   throttleMs = 16,
   minProgress = 0,
-  animationDuration = 'duration-150',
-  zIndex = 'z-50',
-  ariaLabel = 'Reading progress',
-  showPercentage = false
+  animationDuration = "duration-150",
+  zIndex = "z-50",
+  ariaLabel = "Reading progress",
+  showPercentage = false,
 }: ScrollProgressBarProps) {
   const { progress, hasScrolled } = useScrollProgress({
     throttleMs,
-    contentOnly
+    contentOnly,
   });
 
   // Don't render if progress is below minimum threshold
@@ -113,14 +113,14 @@ export function ScrollProgressBar({
 
   // Position classes mapping
   const positionClasses = {
-    fixed: 'fixed top-0 left-0 right-0',
-    sticky: 'sticky top-0',
-    absolute: 'absolute top-0 left-0 right-0',
-    relative: 'relative'
+    fixed: "fixed top-0 left-0 right-0",
+    sticky: "sticky top-0",
+    absolute: "absolute top-0 left-0 right-0",
+    relative: "relative",
   };
 
   // Mobile visibility classes
-  const mobileClasses = showOnMobile ? 'block' : 'hidden md:block';
+  const mobileClasses = showOnMobile ? "block" : "hidden md:block";
 
   return (
     <div
@@ -132,9 +132,9 @@ export function ScrollProgressBar({
         zIndex,
         mobileClasses,
         // Smooth opacity transition
-        'transition-opacity duration-300',
-        shouldShow ? 'opacity-100' : 'opacity-0',
-        className
+        "transition-opacity duration-300",
+        shouldShow ? "opacity-100" : "opacity-0",
+        className,
       )}
       role="progressbar"
       aria-label={ariaLabel}
@@ -146,19 +146,19 @@ export function ScrollProgressBar({
       {/* Progress fill */}
       <div
         className={cn(
-          'h-full',
+          "h-full",
           progressColor,
-          'transition-all',
+          "transition-all",
           animationDuration,
-          'ease-out'
+          "ease-out",
         )}
-        style={{ 
+        style={{
           width: `${displayProgress}%`,
           // Ensure smooth transitions with transform for better performance
-          transform: 'translateZ(0)' // Force hardware acceleration
+          transform: "translateZ(0)", // Force hardware acceleration
         }}
       />
-      
+
       {/* Optional percentage display for debugging/accessibility */}
       {showPercentage && (
         <div className="absolute right-2 top-full mt-1 text-xs text-slate-600 dark:text-slate-400">
@@ -178,7 +178,7 @@ export function ScrollProgressBar({
 /**
  * Basic usage:
  * <ScrollProgressBar />
- * 
+ *
  * Custom styling:
  * <ScrollProgressBar
  *   height="h-2"
@@ -186,14 +186,14 @@ export function ScrollProgressBar({
  *   trackColor="bg-gray-100"
  *   showOnMobile={true}
  * />
- * 
+ *
  * Reading progress (content-based):
  * <ScrollProgressBar
  *   contentOnly={true}
  *   minProgress={5}
  *   ariaLabel="Article reading progress"
  * />
- * 
+ *
  * Performance optimized:
  * <ScrollProgressBar
  *   throttleMs={32}
