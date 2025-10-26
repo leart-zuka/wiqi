@@ -157,8 +157,8 @@ export default function PostClient({
                     {/* Left Sidebar - Desktop */}
                     {isLeftSidebarOpen ? (
                         <aside className="hidden lg:block w-64 transition-all duration-300">
-                            <div className="sticky top-1 py-6">
-                                <Card className="p-4">
+                            <div className="sticky top-1 py-6 h-fit">
+                                <Card className="p-4 h-full">
                                     {/* Back to Posts Button */}
                                     <div className="mb-4">
                                         <Link 
@@ -242,13 +242,15 @@ export default function PostClient({
                         )}
                         
                         {/* Article */}
-                        <article className="prose prose-lg mx-auto max-w-3xl px-4 py-6 text-justify text-slate-900 dark:prose-invert dark:text-white">
-                            <ReactMarkdown
-                                remarkPlugins={[remarkMath, remarkGfm]}
-                                rehypePlugins={[
-                                    [rehypeKatex, { throwOnError: false, strict: false }],
-                                ]}
-                                components={{
+                        <div className="py-6">
+                            <Card className="p-6 md:p-8">
+                            <article className="prose prose-lg mx-auto max-w-full text-justify text-slate-900 dark:prose-invert dark:text-white">
+                                <ReactMarkdown
+                                    remarkPlugins={[remarkMath, remarkGfm]}
+                                    rehypePlugins={[
+                                        [rehypeKatex, { throwOnError: false, strict: false }],
+                                    ]}
+                                    components={{
                                     h2({ node, children, ...props }) {
                                         const headingText = extractTextFromChildren(children);
                                         const id = generateHeadingId(headingText);
@@ -283,14 +285,16 @@ export default function PostClient({
                             >
                                 {post.content}
                             </ReactMarkdown>
-                        </article>
+                            </article>
+                            </Card>
+                        </div>
                     </main>
                     
                     {/* Right Sidebar - Desktop */}
                     {isRightSidebarOpen ? (
                         <aside className="hidden lg:block w-64 transition-all duration-300">
-                            <div className="sticky top-1 py-6">
-                                <Card className="p-4">
+                            <div className="sticky top-1 py-6 h-fit">
+                                <Card className="p-4 h-full">
                                     <div className="mb-3 flex items-center justify-between">
                                         <h3 className="font-semibold text-slate-900 dark:text-white">Difficulty</h3>
                                         <Button
