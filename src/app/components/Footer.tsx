@@ -72,6 +72,14 @@ export default function Footer({ params }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href={`/${locale}/posts/fraunhofer_isi`}
+                  className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
+                >
+                  <p>Fraunhofer ISI</p>
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${locale}/posts/entries`}
                   className="text-sm text-slate-600 transition-colors hover:text-purple-600 dark:text-slate-400 dark:hover:text-purple-400"
                 >
