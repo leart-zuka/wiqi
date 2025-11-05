@@ -1,41 +1,45 @@
 ---
-title: "The non-cloning theorem"
+title: "The Non-Cloning Theorem"
 subtitle: "Why you can't copy a quantum state? (middle)"
-author: "Jannik Pflieger"
+author: "Jannik Pflieger, Adhesh Sagar"
 date: "2025-01-20"
 ---
 
 ## Introduction
 
-In quantum physics, there’s a rule called the non-cloning theorem,
-which says you can’t create an operation that perfectly copies a quantum state.
-To understand this, imagine you have two quantum objects:
-one contains the information you want to copy, and the other is empty,
-ready to become a copy. The non-cloning theorem says
-it’s impossible to build a process (a "unitary operator")
-that can take the information from the first object and make an exact copy of it
-in the second object.
+In quantum physics, there is a rule called the **Non-Cloning Theoren** or **No-Cloning Theorem**, which states that no operation can be performed that perfectly copies a quantum state. 
+To understand this, imagine you have two quantum objects: one with the information you want to copy (like a spinning coin), and one that's blank, ready to become a copy.
+The **Non-Cloning theorem** states that it is impossible to build a machine (a "unitary operator") that can take the information from the first object and transfer an exact copy of it to the second object, every single time.
 
-## Proof
+## How do we know this?
 
-To understand why copying a quantum state is impossible, we start by pretending it is possible.
-This is a common method in math and science: assume something works, and then see if that leads to a contradiction.
-Now, let’s test this process with two different pieces of information:
-one for the first object and a different one for the second.
-The process should still work and copy the information correctly in each case.
+To understand why this is impossible, let's think about our spinning coin. It's not heads and it's not tails, but a ([_superposition_](/en/posts/entries/highschool/superposition)) of both.
+The 'information' we want to copy is the exact way it's spinning. Now, to be a perfect copier, a machine would have to work for every possible spin of the coin. Not just once or twice.
+But here's the catch: to copy the spin, the machine would have to 'look' at it. And the second it 'looks,' it forces the coin to stop spinning and become either heads or tails. It has destroyed the very 'spin' it was trying to copy!
 
-Here’s where things get tricky: in quantum mechanics,
-the way two pieces of information are related to each other is very important.
-This relationship (called the "inner product") has to stay the same before and after the copying process.
-If we do the math (which we won’t go into here), we find that this rule creates a big problem.
-It turns out that the copying process can only work if the two pieces of information are either:
+This is the physical reason it's impossible.
+
+## Can we prove this mathematically?
+
+The more formal proof just shows this with math. It pretends a "copy machine" does exist and then finds a contradiction. This is a common method in mathematics and science: you assume something works and then see if everything fits. Just like when you are unsure about a piece in a jigsaw puzzle.
+You just place it and see if everything fits together. If it doesn't, you know that piece can't be right. 
+
+Now assuming such a machine exists, we want to test it with two different sets of information: one for the first object and another for the second.
+The procedure should still work and copy the information correctly in each case.
+
+This is where it gets tricky: In quantum mechanics, the way two pieces of information are related to each other is very important. This relationship (the so-called "inner product") must remain the same before and after the copying process. When we perform the calculations (which we won't go into here), we find that this rule poses a major problem. It turns out that the copying process can only work if the two pieces of information are either:
 
 1. Completely unrelated (as different as possible), or
 2. Exactly the same (already identical).
 
-But in quantum mechanics, we often deal with information that doesn’t fall into these categories.
-It can be a mix or "superposition" of different possibilities.
-This means the copying process can’t handle every situation—it only works in very specific cases.
+In quantum mechanics, however, we often deal with information that doesn't fall into these categories. It can be a mixture or ([_superposition_](/en/posts/entries/highschool/superposition)) of different possibilities. This means that the copying process cannot handle every situation—it only works in very specific cases. It's like having a copier that can only copy blank pages or pages that are exactly the same as the original. 
+The idea of copying arbitrary quantum information thus proves impossible for any quantum state. For this reason, the law of non-cloning applies: it is impossible to create a perfect copy of an unknown quantum state.
 
-So, the idea of copying any quantum information turns out to be impossible for an arbitrary quantum state.
-This is why the non-cloning theorem is true: you can’t create a perfect copy of an unknown quantum state.
+## So what does this mean?
+
+This rule forces us to rethink how we build computers from the ground up, because we can't just copy-paste data like we do on our laptops. 
+But guess what, its not a bug, it's a feature! This feature makes it impossible to spy on quantum messages. If a spy tries to "look" at a secret message to copy it, the theorem says they will automatically wreck the original message. The sender and receiver will know immediately that someone was listening.
+
+In quantum physics, you can't simply make a perfect copy of something if you don't know exactly what it is. 
+That's one of the strange and special rules by which the quantum world works!
+

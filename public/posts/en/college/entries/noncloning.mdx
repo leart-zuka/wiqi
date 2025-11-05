@@ -1,61 +1,89 @@
 ---
-title: "The non-cloning theorem"
+title: "The Non-Cloning Theorem"
 subtitle: "Why you can't copy a quantum state? (difficult)"
-author: "Jannik Pflieger"
+author: "Jannik Pflieger, Adhesh Sagar"
 date: "2025-01-20"
 ---
 
-# Introduction
+## Introduction
 
-In quantum physics we have the non-cloning theorem, which states that it is not possible to have an operation that can copy a quantum state.
-The fastest way to explain this is to use a simple equation.
-Given two quantum systems $$ \ket{\psi}\_A $$ and $$ \ket{\psi}\_B $$, the non-cloning theorem states that it is impossible to create a unitary operator $U$ that copies the system $$ \ket{\psi}\_A $$ to $$ \ket{\psi}\_B $$ to get $$ \ket{\psi}\_B $$.
-To see why, we can first assume that such an operator $$ U $$ exists.
-This is a common method of proof in mathematics.
+In quantum physics, we have the **No-Cloning Theorem**, which states that it is not possible to have an operation that can perfectly copy an arbitrary pure quantum state while leaving the original state intact.
 
-# Proof
-
-First we assume that something is possible, but then we show that this leads to a contradiction.
-The complete quantum system can be described by the tensor product of the two systems $$ A $$ and $$ B $$:
+Let's say we have a system **A**, which is in the unknown state $$ \ket{\psi} $$ that we want to copy. We also have a system **B**, which is our blank page in a known state $$ \ket{\phi} $$.
+We use the Tensor Product ($$ \otimes $$) to combine both states A and B. A perfect cloning machine would be a unitary operator, $$ U $$, that could take this combined state and evolve it like this:
 
 $$
-\ket{\psi} \otimes \ket{\phi}
+U (\ket{\psi} \otimes \ket{\phi}) \to \ket{\psi} \otimes \ket{\psi}
 $$
 
-Now let's apply the $$ U $$ operator to the system A.
+To see why this is impossible, we can first assume that such an operator $$ U $$ does exist. This is a common method of proof in mathematics: proof by contradiction.
+
+## Proof
+
+First, we assume our cloning machine $$ U $$ works for any state.
+Let's see what happens when we feed it $$ \ket{\psi} $$:
 
 $$
 U(\ket{\psi} \otimes \ket{\phi}) = \ket{\psi} \otimes \ket{\psi}
 $$
 
-We can do this a second time with a different state $$ \ket{e} $$:
+Since the machine must work for any state, let's test it a second time with a different state $$ \ket{e} $$ while keeping the blank state $$ \ket{\phi} $$ the same:
 
 $$
 U(\ket{e} \otimes \ket{\phi}) = \ket{e} \otimes \ket{e}
 $$
 
-Since $$ U $$ is a unitary operator, it has the property that it preserves the inner product of these two states.
-If we take the inner product before cloning, we can compute:
+So far, so good. Now, here's the key: $$ U $$ is a unitary operator (it represents a valid quantum evolution). A fundamental property of all unitary operators is that they preserve the inner product.
+This means the inner product $$ \langle \cdot | \cdot \rangle $$ of our two starting states (before cloning) must be equal to the inner product of our two final states (after cloning). Let's take the inner product of our two initial states:
 
 $$
-(\ket{\psi} \otimes \ket{\phi}) \cdot \ket{e} \otimes \ket{\phi} = \braket{\psi | e}\braket{\phi | \phi}
+\langle \text{start}_1 | \text{start}_2 \rangle = (\bra{\psi} \otimes \bra{\phi}) \cdot (\ket{e} \otimes \ket{\phi})
 $$
 
-This is great, now let us do the same thing after using the cloning operator $$ U $$:
+Using the rules of tensor products, this reduces to:
 
 $$
-(\ket{\psi} \otimes \ket{\psi}) \cdot (\ket{e} \otimes \ket{e}) = \braket{\psi | e} \braket{\psi | e} = \braket{\psi | e}^2
+= \braket{\psi | e} \braket{\phi | \phi}
 $$
 
-Now, if we combine our two equations, we get:
+Since $$ \ket{\phi} $$ is our blank state, it's a normalized quantum state, which means $$ \braket{\phi | \phi} = 1 $$. So, our "before" inner product is simply:
 
 $$
-\braket{\psi | e} = \braket{\psi | e}^2
+\langle \text{start}_1 | \text{start}_2 \rangle = \braket{\psi | e}
 $$
 
-This equation has only two solutions, 0 or 1. If we have $$ \braket{\psi}{e} = 0 $$, then the two quantum states are completely orthogonal to each other. In other words, the states cannot be further apart.
-If we get 1, it means that the quantum state must be the same.
-What is the problem with this?
-Well, the problem is a bit hidden, because this means that the states cannot be arbitrary.
+Now, let's do the same thing for our two *final* states:
+
+$$
+\langle \text{final}_1 | \text{final}_2 \rangle = (\bra{\psi} \otimes \bra{\psi}) \cdot (\ket{e} \otimes \ket{e})
+$$
+
+This also separates:
+
+$$
+= \braket{\psi | e} \braket{\psi | e} = (\braket{\psi | e})^2
+$$
+
+Because $$ U $$ is unitary, the "before" and "after" inner products must be equal.
+So, we have:
+
+$$
+\braket{\psi | e} = (\braket{\psi | e})^2
+$$
+
+This equation has only two solutions, 0 or 1. 
+That is, our cloning machine only works if the states we feed it are either:
+1.  Completely orthogonal ($$ \braket{\psi | e} = 0 $$).
+2.  Exactly the same ($$ \braket{\psi | e} = 1 $$).
+
+This is the contradiction! Because this means that the states cannot be arbitrary. What if $$ \ket{\psi} = \ket{0} $$ and $$ \ket{e} = \ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) $$?
+Their inner product is $$ \braket{\psi | e} = \frac{1}{\sqrt{2}} $$.
+Our equation would be $$ \frac{1}{\sqrt{2}} = (\frac{1}{\sqrt{2}})^2 = \frac{1}{2} $$, which is false.
 If we set $$ \ket{\psi} $$ to any state we want, then we have to set $$ \ket{e} $$ either to the same state or to an orthogonal state.
+This means our assumption that such a universal cloning machine $$ U $$ exists must be wrong.
 So the theory that we cannot copy an arbitrary quantum state is true.
+
+## Conclusion
+
+This forces us to design entirely new types of algorithms that don't need to copy information. But this theorem can also be an advantage! 
+It guarantees that an anyone can't just listen in on a quantum channel and secretly copy the message. The moment they try to "look" ([_measure_](/en/posts/entries/college/measurement)), they will inevitably disturb the original, and the sender and receiver will know immediately that someone is listening.
