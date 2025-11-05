@@ -1,9 +1,44 @@
 ---
-title: "Algorithms"
+title: "Quantum Algorithms"
 subtitle: "Algorithms and computational complexity (easy)"
 author: "Helena Iréne Köhler"
 date: "2025-01-08"
 ---
+
+## What is a quantum algorithm?
+
+In a sense a quantum algorithm isn't that much different from its classical sibling. Both execute a set of well defined instructions on their respective hardware (quantum or classical computer) in order to solve a specific problems, be it calculating the shortest possible route for a delivery driver to deliver his packages or find a certain data-entry in a database. 
+
+Quantum algorithms adhere to the rules of quantum mechanics and abuse certain phenomena to `possibly` gain an advantage when compared to their classical counterparts, most notably [Superposition](/en/posts/entries/elementary/superposition) and [Interference](/en/posts/entries/elementary/interference). With these two phenomena at hand, quantum algorithms are able to check multiple solutions at once while simaltaneously throwing away the ones which are wrong.
+
+## What are the most important quantum algorithms?
+
+What follows is a summary of some of the more known quantum algorithms in the community which have been proven to achieve a significant boost in the time it takes to solve a problem and the amount of recources one needs to do so.
+
+### Shor's Algorithm
+
+Shor's algorithm is named after the mathematician who created it [Peter Shor](https://en.wikipedia.org/wiki/Peter_Shor), and is an algorithm for finding the prime factors of an integer.
+
+---
+#### **Prime factors and integers**
+
+Integers are just regular numbers, so everything ranging from 0 to $\infty$ while going up in steps of 1.
+
+Prime factors are also integers, which are only divisible by themselves and 1. Examples include:
+$$
+1,2,3,5,7,11,13,17,23,29,31,...
+$$
+
+---
+
+But why is this of any interest for us? The most widely used encryption algorithm called [RSA](https://en.wikipedia.org/wiki/RSA_cryptosystem) basically works by picking two very large **prime numbers**, multiplying them with one another, performing some other set of calculations based on these two **prime numbers**, and them having a set of very large numbers which are then used as keys to decrypt and encrypt data. Classical computers struggle to crack these encryption algorithms, due to them not being able to efficiently get these numbers due to them being so large (_sidenote:_ they are able to crack them, but them needing years to do so isn't `efficient`). Using a quantum algorithm which is able to get the prime numbers of a very large number very fast thus results in a more efficient way of solving this issue and cracking the most widely used encryption system.
+
+### Grover's Algorithm
+
+### Deutsch–Jozsa algorithm
+
+
+
 
 ## Computational Complexity Theory and Big O Notation
 
