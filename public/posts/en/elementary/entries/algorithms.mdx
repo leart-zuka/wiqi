@@ -1,7 +1,7 @@
 ---
 title: "Quantum Algorithms"
 subtitle: "Algorithms and computational complexity (easy)"
-author: "Helena Iréne Köhler"
+author: "Leart Zuka"
 date: "2025-01-08"
 ---
 
@@ -35,24 +35,42 @@ But why is this of any interest for us? The most widely used encryption algorith
 
 ### Grover's Algorithm
 
-### Deutsch–Jozsa algorithm
-
-
-
-
-## Computational Complexity Theory and Big O Notation
-
 ![Search cat](/posts/assets/entries/algorithms/search_cat.png)
+
+Grover's algorithm is what's known as a **quantum search algorithm**, and allows for a speed up in data searches. 
+It was devised by the computer scientist [Lov Grover](https://en.wikipedia.org/wiki/Lov_Grover) in 1996 and is motivated by the following (although altered for the sake of funniness) example:
+
+---
+
+Imagine a of N boxes arranged in completely random order with a cat sitting in one of those boxes. In order to find the cat with a probability of $\frac{1}{2}$ any classical algorithm will need to look at a minimum of $\frac{N}{2}$ boxes. Quantum mechanical sysmtems can be in a [superposition](/en/posts/entries/elementary/superposition) of states and simaltaneously examine multiple names. With proper adjustment, sucessful computations reinforce each other while others [interfere](/en/posts/entries/elementary/interference) randomly. As a result the cat can be found by only looking at $\sqrt{N}$ boxes. [[Grover, 1996](https://arxiv.org/pdf/quant-ph/9605043)]
+
 ![Search cat](/posts/assets/entries/algorithms/find_cat.png)
 
-Computational Complexity Theory helps us understand how hard it is for a computer to solve a problem. It’s about how much time or memory a computer needs to finish a job. Sometimes it takes longer when there are more things to do.
+---
 
-Imagine you need to look for a cat in many boxes. A computer that opens each box one by one would take $$ O(n) $$ steps, where $$ n $$ is the number of boxes. Big O notation helps us understand how time increases when there are more boxes to check.
+What this essentially means is, that through the power of interference, the probability that a wrong result will get picked from our search algorithm will get reduced, while the the one for a right one will get amplified, thus becoming more apparent in a sea of possible results.
 
-![Big O Notation](/posts/assets/entries/algorithms/bigo.png)
+### Deutsch–Jozsa algorithm
 
-## Grover’s Algorithm
+The last algorithm we'll be looking at is the Deutsch-Jozsa algorithm which was proposed by the physicist [David Deutsch](https://en.wikipedia.org/wiki/David_Deutsch) and mathematician [Richard Jozsa](https://en.wikipedia.org/wiki/Richard_Jozsa). This quantum algorithm aims at uncovering wether a function is so called `balenced` or `constant`. But what does this mean? Here's a more hands-on-example, what this means and how the quantum computer is able to outperform a classical computer:
 
-If you have to search through millions of boxes, a computer might take $$ O(n) $$ steps. But with a better algorithm, like Grover’s Algorithm, the computer can search much faster, taking only $$ O({\sqrt{n}}) $$ steps. Grover’s Algorithm shows how quantum computers can be much faster at solving large problems.
+---
 
-![Grovers' Algorithm](/posts/assets/entries/algorithms/grover.png)
+Imagine we have a coin that might be real (it has two different sides: “heads” and “tails”) or fake (both sides show the same pattern).
+A classical computer would need to throw the coin at least twice — once for each side — to determine its authenticity.
+A quantum computer, however, can make a single "throw" by sending a [superposition](/en/posts/entries/elementary/superposition) of “heads” and “tails,” and use [interference](/en/posts/entries/elementary/interference) to decide whether the coin is real or fake.
+
+Imagine now having thuosand coins which you need to verify (we don't approve the exploitation of any scientist that needs to do such an experiment)! Flipping every single coin twice would result in a million flips, whereas a quantum computer could get the same result simply by "flipping" a thousand times.
+
+---
+
+Although this algorithm isn't really of any practical use, it's interesting for the sole fact alone that it was one of the first examples of a quantum algorithm being exponentially faster than any possible classical algorithm. 
+
+
+## Final remarks
+
+Does this mean that quantum computers with all their glory will always be faster when it comes to performing any task where modern classical computers fail?
+
+Well that question is not so simple. Although quantum computers with all their quirks and gimmiks are very handy and do bring a lot of power with them, keeping them running and working efficiently can really ruffle one's feathers to say the least. 
+
+You can read more about this [here](what_are_quantum_computers_good_for), where we dive deeper into the topic of what quantum computers are actually good for.
