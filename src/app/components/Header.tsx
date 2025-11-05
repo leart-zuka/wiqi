@@ -11,7 +11,6 @@ import { replaceLocale } from "./client_utils";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import type { File } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -458,12 +457,7 @@ const Header = (props: HeaderProps) => {
                 className="block rounded-lg px-3 py-2 text-base font-medium text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <div className="flex items-center">
-                  <Badge className="mr-2 bg-gradient-to-r from-purple-600 to-pink-500">
-                    New
-                  </Badge>
-                  {t("Quantum Tuesdays")}
-                </div>
+                {t("Quantum Tuesdays")}
               </Link>
               <Link
                 href={`/${props.locale}/posts/entries`}

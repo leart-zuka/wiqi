@@ -3,7 +3,10 @@ import createMDX from "@next/mdx";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
-const withNextIntl = createNextIntlPlugin();
+// CHANGED: Added path to request.ts for better 404 handling
+// BEFORE: createNextIntlPlugin() (used default ./src/i18n.ts)
+// AFTER: createNextIntlPlugin("./src/i18n/request.ts") (uses new location)
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {

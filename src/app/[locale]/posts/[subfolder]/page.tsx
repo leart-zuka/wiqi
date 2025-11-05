@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { File } from "@/types";
 import PostPreview from "@/app/components/PostPreview";
@@ -19,6 +20,7 @@ export default function Page({
   params: { locale: string; subfolder: string };
 }) {
   const cookies = useCookies();
+  const router = useRouter();
   const t = useTranslations("Posts");
   const initialDifficulty = cookies.get("difficulty") ?? "elementary";
   const [difficulty, setDifficulty] = useState(initialDifficulty);
@@ -26,9 +28,26 @@ export default function Page({
   const [filteredFiles, setFilteredFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [shouldRedirectToNotFound, setShouldRedirectToNotFound] = useState(false);
+
+  // Check if subfolder is valid
+  // This prevents users from accessing arbitrary subfolders that don't exist
+  // and ensures we only serve content from known, valid categories.
+  // Without this validation, users could access URLs like /posts/invalid-folder
+  // which would cause errors or show empty pages instead of properly redirecting to 404.
+  const isValidSubfolder = (subfolder: string) => {
+    const validSubfolders = ["entries", "quantum_tuesdays"];
+    return validSubfolders.includes(subfolder);
+  };
 
   // Get the files
   const getFiles = async (difficulty: string, locale: string) => {
+    // Check subfolder validity first to avoid unnecessary API calls
+    if (!isValidSubfolder(params.subfolder)) {
+      setShouldRedirectToNotFound(true);
+      return;
+    }
+
     setIsLoading(true);
     try {
       const response = await fetch("/api/getBlogPosts", {
@@ -41,10 +60,17 @@ export default function Page({
         }),
       });
       const data = await response.json();
+      
+      // If valid subfolder but no files found, still redirect to 404
+      if (!data.files || data.files.length === 0) {
+        setShouldRedirectToNotFound(true);
+        return;
+      }
+      
       setFiles(data.files);
       setFilteredFiles(data.files);
     } catch (err) {
-      console.debug(err);
+      setShouldRedirectToNotFound(true);
     } finally {
       setIsLoading(false);
     }
@@ -53,6 +79,13 @@ export default function Page({
   useEffect(() => {
     getFiles(difficulty, params.locale);
   }, [difficulty, params.locale]);
+
+  // Handle 404 redirect
+  useEffect(() => {
+    if (shouldRedirectToNotFound) {
+      router.push(`/${params.locale}/not-found`);
+    }
+  }, [shouldRedirectToNotFound, router, params.locale]);
 
   // Sort files by date (newest first)
   useEffect(() => {
@@ -74,7 +107,7 @@ export default function Page({
         icon: "🌌",
         gradient: "from-purple-600 to-pink-600",
         bgGradient:
-          "from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20",
+          "from-slate-50 to-white dark:from-slate-900 dark:to-slate-800",
       };
     } else if (params.subfolder === "entries") {
       return {
@@ -83,7 +116,7 @@ export default function Page({
         icon: "⚛️",
         gradient: "from-blue-600 to-indigo-600",
         bgGradient:
-          "from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20",
+          "from-slate-50 to-white dark:from-slate-900 dark:to-slate-800",
       };
     }
     return {
@@ -92,7 +125,7 @@ export default function Page({
       icon: "📚",
       gradient: "from-gray-600 to-gray-800",
       bgGradient:
-        "from-gray-50 to-gray-100 dark:from-gray-950/20 dark:to-gray-900/20",
+        "from-slate-50 to-white dark:from-slate-900 dark:to-slate-800",
     };
   };
 
@@ -138,6 +171,24 @@ export default function Page({
     }),
   };
 
+  // Show loading while redirecting
+  if (shouldRedirectToNotFound) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+        <div className="flex items-center gap-3">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="h-8 w-8 rounded-full border-4 border-purple-200 border-t-purple-600 dark:border-purple-800 dark:border-t-purple-400"
+          />
+          <span className="text-gray-600 dark:text-gray-300">
+            Redirecting...
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`min-h-screen bg-gradient-to-br ${categoryInfo.bgGradient}`}
@@ -162,8 +213,8 @@ export default function Page({
               key={i}
               className="absolute h-2 w-2 rounded-full bg-white/20"
               initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1200,
+                y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 800,
                 scale: 0,
                 opacity: 0,
               }}
@@ -206,13 +257,13 @@ export default function Page({
               </span>
             </h1>
 
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300">
+            <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-300 dark:text-gray-100">
               {categoryInfo.description}
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400 dark:text-gray-200">
               <div className="flex items-center gap-2">
-                <span>{files.length} Articles</span>
+                <span>{files?.length || 0} Articles</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
@@ -228,16 +279,20 @@ export default function Page({
       </section>
 
       {/* Controls Section */}
-      <section className="sticky top-16 z-30 border-b border-white/10 bg-white/80 backdrop-blur-lg dark:bg-slate-900/80">
+      <section className="sticky top-16 z-30 border-b border-gray-200/50 bg-white/90 backdrop-blur-lg dark:border-gray-700/50 dark:bg-slate-900/90">
         <div className="container mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* View Mode Toggle */}
-            <div className="flex items-center gap-1 rounded-lg border border-gray-200 bg-white/50 p-1 dark:border-gray-700 dark:bg-slate-800/50">
+            <div className="flex items-center gap-1 rounded-lg border border-gray-200 bg-white/70 p-1 dark:border-gray-600 dark:bg-slate-800/70">
               <Button
                 variant={viewMode === "grid" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setViewMode("grid")}
-                className="h-8 w-8 p-0"
+                className={`h-8 w-8 p-0 ${
+                  viewMode === "grid"
+                    ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600"
+                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                }`}
               >
                 <Grid3X3 className="h-4 w-4" />
               </Button>
@@ -245,7 +300,11 @@ export default function Page({
                 variant={viewMode === "list" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setViewMode("list")}
-                className="h-8 w-8 p-0"
+                className={`h-8 w-8 p-0 ${
+                  viewMode === "list"
+                    ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600"
+                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                }`}
               >
                 <List className="h-4 w-4" />
               </Button>
@@ -292,9 +351,9 @@ export default function Page({
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="h-8 w-8 rounded-full border-4 border-purple-200 border-t-purple-600"
+                  className="h-8 w-8 rounded-full border-4 border-purple-200 border-t-purple-600 dark:border-purple-800 dark:border-t-purple-400"
                 />
-                <span className="text-gray-600 dark:text-gray-400">
+                <span className="text-gray-600 dark:text-gray-300">
                   {t("loading articles")}
                 </span>
               </div>
@@ -308,12 +367,12 @@ export default function Page({
               className="flex flex-col items-center justify-center py-20 text-center"
             >
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800">
-                <BookOpen className="h-8 w-8 text-gray-400" />
+                <BookOpen className="h-8 w-8 text-gray-400 dark:text-gray-300" />
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
                 {t("no articles found")}
               </h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 dark:text-gray-300">
                 {t("no articles difficulty")}
               </p>
             </motion.div>
