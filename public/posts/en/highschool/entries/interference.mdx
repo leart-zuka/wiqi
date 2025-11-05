@@ -1,0 +1,71 @@
+---
+title: "Interference"
+subtitle: "Interference and the role it plays in Quantum Computing (middle)"
+author: "Helena Iréne Köhler,"
+date: "2025-09-08"
+---
+
+## Wave Motion and Interference
+
+When two coherent waves meet, their waves add up to form a new one. This process is referred to as **“interference”**. The resulting wave's amplitude depends on the phase difference between the two waves. If the waves are in phase, meaning their phases are each others even multiplicatives by $$ \pi $$ (180 degrees), their peaks and troughs align. They reinforce each other, resulting in **constructive** interference, where the amplitude of the combined wave is greater than either individual wave. On the other hand, if the waves are out of phase — meaning their multiplicatives are odd, their peaks align with the troughs of the other wave — they cancel each other out. This leads to **destructive** interference, where the combined wave’s amplitude is reduced.
+
+![Wave Interference](/posts/assets/entries/interference/waves_interference.png)
+
+Interference can occur with any type of wave: light, water, radio, gravity or acoustic waves. It is a fundamental concept in physics and plays a crucial role in quantum mechanics, where it is referred to as **“quantum interference”**.
+
+## Classical Interference
+
+Interference of waves was experimentally demonstrated by Young through his **double-slit experiment**. This experiment largely contributed to the acceptance of the wave model of light. Young’s qualitative observations showed that light cannot be particle in nature as this would otherwise produce only two bright bands directly behind the two slits. Rather, it is a wave, where the waves that pass a slit interfere with each other and create alternating **maxima** (constructive interference) and **minima** (destructive interference). These are then visible as bright (here red) and dark (here black) bands on a visual screen:
+
+![Double slit waves](/posts/assets/entries/interference/doubleslit_waves.png)
+
+## Interference in Quantum Mechanics:
+
+Imagine a particle that can reach a screen in two different ways, from **source A** or from **source B**. In quantum physics, we describe each possibility with a _wave_, called a **wavefunction**:
+
+$$
+\Psi_A(x,t) \quad\text{and}\quad \Psi_B(x,t)
+$$
+
+To find the chance of detecting the particle at some position x, we add the two waves first, then take the square of the total size:
+
+$$
+P(x) = |\Psi_A(x,t)+\Psi_B(x,t)|^2
+$$
+
+When we expand this, we get three terms:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 + 2 \operatorname{Re}(\Psi_A^*(x,t) \Psi_B(x,t))
+$$
+
+$$ |\Psi_A(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source A.
+
+$$ |\Psi_B(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source B.
+
+and the interference term
+
+$$
+2 \operatorname{Re} (\Psi_A^*(x,t) \Psi_B(x,t))
+$$
+
+It comes from the wavelike nature of particles and is responsible for the bright and dark bands seen in experiments like the double slit. If we can tell which path the particle took (or if something destroys the phase relationship), the interference term vanishes.
+Then the total probability is just the sum of the two individual ones:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2
+$$
+
+However, if the interference term stays, we get an interference pattern.
+
+## Applications in Quantum Computing
+
+This phenomena is a very powerful tool in quantum computing, since quantum computers operate on probabilities, rather than definitive states. Interference can be used to manipulate the probabilities of quanta by applying certain quantum gates and operators in a quantum computer, effectively controlling and changing the outcome of computations. Different quantum algorithms can be used to create a sequence of operations on a quantum computer which then yield the desired manipulation through interference, and thereby the desired output.
+
+If you think of qubits as coins that can land in either “heads” or “tails” state, interference would act as a force, such as a magnet, directing the coin into a different position. It would therefore alter the probability of the coin landing in one state or the other. Through quantum gates, one can manipulate this “magnetic force” to control the probabilities.
+
+### Sources
+
+- Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press.
+- [Douglas College Physics 1207](https://pressbooks.bccampus.ca/introductorygeneralphysics2phys1207/chapter/27-3-youngs-double-slit-experiment/)
+- https://www.physics-and-radio-electronics.com/physics/waveinterference.html

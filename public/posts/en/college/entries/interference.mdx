@@ -1,0 +1,163 @@
+---
+title: "Interference"
+subtitle: "Interference and the role it plays in Quantum Computing (difficult)"
+author: "Helena Iréne Köhler"
+date: "2025-09-08"
+---
+
+## Wave Motion and Interference
+
+When two coherent waves meet, their waves add up to form a new one. This process is referred to as **“interference”**. The resulting wave's amplitude depends on the phase difference between the two waves. If the waves are in phase, meaning their phases are each others even multiplicatives by $$ \pi $$ (180 degrees), their peaks and troughs align. They reinforce each other, resulting in **constructive** interference, where the amplitude of the combined wave is greater than either individual wave. On the other hand, if the waves are out of phase — meaning their multiplicatives are odd, their peaks align with the troughs of the other wave — they cancel each other out. This leads to **destructive** interference, where the combined wave’s amplitude is reduced.
+
+![Wave Interference](/posts/assets/entries/interference/waves_interference.png)
+
+Interference can occur with any type of wave: light, water, radio, gravity or acoustic waves. It is a fundamental concept in physics and plays a crucial role in quantum mechanics, where it is referred to as **“quantum interference”**.
+
+## Classical Interference
+
+Interference of waves was experimentally demonstrated by Young through his **double-slit experiment**. This experiment largely contributed to the acceptance of the wave model of light. Young’s qualitative observations showed that light cannot be particle in nature as this would otherwise produce only two bright bands directly behind the two slits. Rather, it is a wave, where the waves that pass a slit interfere with each other and create alternating **maxima** (constructive interference) and **minima** (destructive interference). These are then visible as bright (here red) and dark (here black) bands on a visual screen:
+
+![Double slit waves](/posts/assets/entries/interference/doubleslit_waves.png)
+
+## Interference in Quantum Mechanics:
+
+Quantum interference describes the interference of quanta on each other, while in a superposition state. When a quantum system, like a qubit, is in a superposition of states, it behaves similarly to a wave, with each state corresponding to a different probability amplitude. The different probability amplitudes can interfere with each other, causing the same interference phenomena (constructive and deconstructive), leading to an increased or decreased probability of measuring one of the states.
+When conducting experiments, such as the double-slit experiment, a quantum particle can take multiple paths to our screen. For example, through path A and path B. The probability of this particle can then be expressed as the sum of three contributions: the probability from path A alone, the probability from path B alone, and an interference term that arises from the superposition of the two paths:
+
+$$ |\Psi_A(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source A.
+
+$$ |\Psi_B(x,t)|^2 $$: Probability of detecting the particle at position $$x$$ if it came only from source B.
+
+and the interference term $$ 2 \operatorname{Re} (\Psi_A^*(x,t) \Psi_B(x,t)) $$. This interference contribution results from the wave-like nature of quantum states.
+This thereby implies, that if interference is present, the total probability distribution $$ P(x) $$ will show constructive and destructive interference patterns:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 + 2 \operatorname{Re}(\Psi_A^*(x,t) \Psi_B(x,t))
+$$
+
+However, if interference is absent (for example, if the paths are distinguishable), then the interference term disappears, and the total probability is simply the sum of individual probabilities:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2
+$$
+
+This equation is a fundamental result in quantum mechanics, demonstrating how probability amplitudes interfere rather than probabilities themselves.
+
+### Path Integral Formulation
+
+The **path integral formulation**, introduced by Richard Feynman, provides an alternative way to describe quantum interference. Instead of a single trajectory, a particle takes all possible paths, each contributing a phase factor.
+
+The probability amplitude of a particle moving from $$ x_i $$ to $$ x_f $$ is given by:
+
+$$
+\Psi(x_f, t) = \sum_{j} e^{i S_j / \hbar}
+$$
+
+where $$ S_j $$ is the action along each path, and $$ \hbar $$ is the reduced Planck constant. Paths near the classical trajectory reinforce each other, while others interfere destructively.
+
+For two paths in the **double-slit experiment**, the total amplitude is:
+
+$$
+\Psi = e^{i S_1 / \hbar} + e^{i S_2 / \hbar}
+$$
+
+leading to the probability:
+
+$$
+P = \left| e^{i S_1 / \hbar} + e^{i S_2 / \hbar} \right|^2
+$$
+
+which depends on the phase difference $$ \Delta S = S_2 - S_1 $$. If $$ \Delta S $$ is a multiple of $$2\pi$$, interference is **constructive**; if it is an odd multiple of $$ \pi $$, it is **destructive**.
+
+This formulation provides deep insights into quantum mechanics, tunneling, and quantum field theory.
+
+## Applications in Quantum Computing
+
+This phenomena is a very powerful tool in quantum computing, since quantum computers operate on probabilities, rather than definitive states. Interference can be used to manipulate the probabilities of quanta by applying certain quantum gates and operators in a quantum computer, effectively controlling and changing the outcome of computations. Different quantum algorithms can be used to create a sequence of operations on a quantum computer which then yield the desired manipulation through interference, and thereby the desired output.
+
+If you think of qubits as coins that can land in either “heads” or “tails” state, interference would act as a force, such as a magnet, directing the coin into a different position. It would therefore alter the probability of the coin landing in one state or the other. Through quantum gates, one can manipulate this “magnetic force” to control the probabilities.
+
+Let's look at a concrete example of Quantum Interference:
+
+#### Interference in Deutsch-Jozsa-Algorithm
+
+The Deutsch-Jozsa-Algorithm provides one of the simplest demonstrations of how quantum interference can be harnessed for computational advantage.
+The task is to determine whether a given Boolean function $$f:\{0,1\}\to\{0,1\}$$ is **constant** $$f(0)=f(1)$$ or **balanced** $$f(0)\neq f(1)$$, using only a single query.
+
+The circuit of the Deutsch-Jozsa-Algorithm looks the following:
+
+![Deutsch's Circuit](/posts/assets/entries/interference/deutsch_alg.png)
+
+**Step 1: Initialization**
+
+We begin with the two-qubit state
+
+$$
+|\psi_0\rangle = |0\rangle \otimes |1\rangle.
+$$
+
+**Step 2: Hadamard gates**
+
+Applying Hadamard gates to both qubits yields
+
+$$
+|\psi_1\rangle =
+\frac{|0\rangle + |1\rangle}{\sqrt{2}} \otimes
+\frac{|0\rangle - |1\rangle}{\sqrt{2}}.
+$$
+
+**Step 3: Oracle action**
+
+The oracle $$U_f$$ acts as
+
+$$
+U_f |x,y\rangle = |x,\, y \oplus f(x)\rangle.
+$$
+
+Since the second qubit is in the state $$\tfrac{|0\rangle - |1\rangle}{\sqrt{2}}$$, it introduces a phase shift of $$(-1)^{f(x)}$$ on the first qubit:
+
+$$
+|\psi_2\rangle =
+\frac{(-1)^{f(0)}|0\rangle + (-1)^{f(1)}|1\rangle}{\sqrt{2}}
+\otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}}.
+$$
+
+**Step 4: Interference via Hadamard**
+
+A final Hadamard on the first qubit transforms the state to
+
+$$
+|\psi_3\rangle =
+\frac{1}{2}\Big( \big((-1)^{f(0)} + (-1)^{f(1)}\big)|0\rangle
++ \big((-1)^{f(0)} - (-1)^{f(1)}\big)|1\rangle \Big)
+\otimes \frac{|0\rangle - |1\rangle}{\sqrt{2}}.
+$$
+
+**Step 5: Measurement**
+
+Now interference determines the outcome.
+
+$$
+|\psi_4\rangle =
+\begin{cases}
+|0\rangle \otimes \tfrac{|0\rangle - |1\rangle}{\sqrt{2}}, & f(0)=f(1) \quad (\text{constant}) \\[6pt]
+|1\rangle \otimes \tfrac{|0\rangle - |1\rangle}{\sqrt{2}}, & f(0)\neq f(1) \quad (\text{balanced})
+\end{cases}
+$$
+
+If $$f(0) = f(1)$$ (**constant**), the amplitudes for $$|1\rangle$$ cancel destructively, leaving the first qubit in $$|0\rangle$$.
+If $$f(0) \neq f(1)$$ (**balanced**), the amplitudes for $$|0\rangle$$ cancel destructively, leaving the first qubit in $$|1\rangle$$.
+
+As an example, imagine we have a coin that might be **real** (it has two different sides: “heads” and “tails”) or **fake** (both sides show the same pattern).  
+A classical computer would need to _query_ the coin at least twice — once for each side — to determine its authenticity.  
+A quantum computer, however, can make a single query by sending a **superposition** of “heads” and “tails,” and use interference to decide whether the coin is real or fake.
+
+Thus, the algorithm distinguishes constant from balanced functions with a single query. The key mechanism is quantum interference:
+the probability amplitudes corresponding to different computational paths interfere constructively or destructively, eliminating one outcome
+and amplifying the other. This interference enables a global property of the function to be extracted more efficiently than is possible classically.
+
+### Sources
+
+- Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press.
+- [Douglas College Physics 1207](https://pressbooks.bccampus.ca/introductorygeneralphysics2phys1207/chapter/27-3-youngs-double-slit-experiment/)
+- https://www.physics-and-radio-electronics.com/physics/waveinterference.html
