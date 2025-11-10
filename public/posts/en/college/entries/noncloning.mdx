@@ -9,7 +9,7 @@ date: "2025-01-20"
 
 In quantum physics, we have the **No-Cloning Theorem**, which states that it is not possible to have an operation that can perfectly copy an arbitrary pure quantum state while leaving the original state intact.
 
-Let's say we have a system **A**, which is in the unknown state $$ \ket{\psi} $$ that we want to copy. We also have a system **B**, which is our blank page in a known state $$ \ket{\phi} $$.
+Let's say we have a system **A**, which is in the unknown state $$ \ket{\psi} $$ that we want to copy. We also have a system **B**, which is our known state $$ \ket{\phi} $$.
 We use the Tensor Product ($$ \otimes $$) to combine both states A and B. A perfect cloning machine would be a unitary operator, $$ U $$, that could take this combined state and evolve it like this:
 
 $$
@@ -85,5 +85,5 @@ So the theory that we cannot copy an arbitrary quantum state is true.
 
 ## Conclusion
 
-This forces us to design entirely new types of algorithms that don't need to copy information. But this theorem can also be an advantage! 
-It guarantees that an anyone can't just listen in on a quantum channel and secretly copy the message. The moment they try to "look" ([_measure_](/en/posts/entries/college/measurement)), they will inevitably disturb the original, and the sender and receiver will know immediately that someone is listening.
+This forces us to design entirely new types of [algorithms](/en/posts/entries/college/algorithms) that don't need to copy information. But this theorem can also be an advantage! 
+It guarantees that nobody can just listen in on a quantum channel and secretly copy the message. The moment they try to "look" ([_measure_](/en/posts/entries/college/measurement)), they will inevitably disturb the original message, and the sender and receiver will know immediately that someone is listening.
