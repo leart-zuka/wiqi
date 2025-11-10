@@ -11,7 +11,6 @@ import { replaceLocale } from "./client_utils";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import type { File } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -188,7 +187,7 @@ const Header = (props: HeaderProps) => {
             >
               <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-purple-600 to-pink-500 p-0.5 shadow-lg">
                 <Image
-                  src="/wq.png"
+                  src="/static/logos/wiqi/wq.png"
                   alt="WiQi Logo"
                   width={30}
                   height={30}
@@ -334,7 +333,7 @@ const Header = (props: HeaderProps) => {
               className="overflow-hidden rounded-full ring-2 ring-white transition-transform duration-200 hover:scale-105 dark:ring-slate-800"
             >
               <Image
-                src={`/${props.locale}.svg`}
+                src={`/static/flags/${props.locale}.svg`}
                 alt={`${props.locale === "en" ? "English" : "Deutsch"}`}
                 width={24}
                 height={24}
@@ -458,12 +457,7 @@ const Header = (props: HeaderProps) => {
                 className="block rounded-lg px-3 py-2 text-base font-medium text-slate-900 hover:bg-slate-100 dark:text-white dark:hover:bg-slate-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <div className="flex items-center">
-                  <Badge className="mr-2 bg-gradient-to-r from-purple-600 to-pink-500">
-                    New
-                  </Badge>
-                  {t("Quantum Tuesdays")}
-                </div>
+                <div className="flex items-center">{t("Quantum Tuesdays")}</div>
               </Link>
               <Link
                 href={`/${props.locale}/posts/entries`}

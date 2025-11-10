@@ -123,5 +123,13 @@
     "Entries": "Entries",
     "About Us": "Abous Us",
     "Connect": "Connect"
+  },
+  "NotFoundPage": {
+    "title": "Quantum superposition error",
+    "description": "The quantum state you're looking for has collapsed into uncertainty. But in quantum mechanics, every observation creates new possibilities.",
+    "goHome": "Return to quantum base",
+    "helpText": "If you believe this is an error, please check the URL or try navigating from our homepage.",
+    "errorCode": "QUANTUM_STATE_NOT_FOUND",
+    "quantumEquation": "|ψ⟩ = α|found⟩ + β|not_found⟩"
   }
 }

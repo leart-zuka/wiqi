@@ -1,0 +1,73 @@
+---
+title: "Interferenz"
+subtitle: "Interferenz und ihre Rolle im Quantencomputing (mittel)"
+author: "Helena Iréne Köhler"
+date: "2025-09-08"
+---
+
+## Wellenbewegung und Interferenz
+
+Wenn zwei kohärente Wellen aufeinandertreffen, addieren sich ihre Wellen zu einer neuen Welle. Dieser Vorgang wird als **„Interferenz”** bezeichnet. Die Amplitude der resultierenden Welle hängt von der Phasendifferenz zwischen den beiden Wellen ab. Wenn die Wellen in Phase sind, d. h. ihre Phasendifferenz ein ganzzahliges Vielfaches von $$ 2\pi $$ beträgt, liegen ihre Spitzen und Täler auf einer Linie. Sie verstärken sich gegenseitig, was zu einer **konstruktiven** Interferenz führt, bei der die Amplitude der kombinierten Welle größer ist als die der einzelnen Wellen. Sind die Wellen hingegen gegenphasig (Phasendifferenz ein ungerades Vielfaches von $$ \pi $$) und ihre Spitzen stimmen mit den Tälern der anderen Welle überein, heben sie sich gegenseitig auf. Dies führt zu einer **destruktiven** Interferenz, bei der die Amplitude der kombinierten Welle reduziert wird.
+
+![Welleninterferenz](/posts/assets/entries/interference/waves_interference.png)
+
+Interferenz kann bei jeder Art von Welle auftreten: Licht-, Wasser-, Radio-, Schwerkraft- oder Schallwellen. Sie ist ein grundlegendes Konzept in der Physik und spielt eine entscheidende Rolle in der Quantenmechanik, wo sie als **„Quanteninterferenz”** bezeichnet wird.
+
+## Klassische Interferenz
+
+Die Interferenz von Wellen wurde von Young durch sein **Doppelspaltexperiment** experimentell nachgewiesen. Dieses Experiment trug wesentlich zur Akzeptanz des Wellenmodells des Lichts bei. 
+
+Youngs qualitativen Beobachtungen zeigten, dass Licht nicht partikelartig sein kann, da dies sonst nur zwei helle Streifen direkt hinter den beiden Spalten erzeugen würde. Vielmehr handelt es sich um eine Welle, bei der die durch eine Spalte hindurchtretenden Wellen miteinander interferieren und abwechselnd **Maxima** (konstruktive Interferenz) und **Minima** (destruktive Interferenz) erzeugen. Diese sind dann als helle (Maxima, hier rote) und dunkle (Minima, hier schwarze) Streifen auf einem Bildschirm sichtbar:
+
+![Doppelspaltwellen](/posts/assets/entries/interference/doubleslit_waves.png)
+
+## Interferenz in der Quantenmechanik:
+
+Stellen dir ein Teilchen vor, das auf zwei verschiedene Arten einen Bildschirm erreichen kann, entweder von **Quelle A** oder von **Quelle B**. In der Quantenphysik beschreiben wir jede Möglichkeit mit einer _Welle_, die als **Wellenfunktion** bezeichnet wird:
+
+$$
+\Psi_A(x,t) \quad\text{und}\quad \Psi_B(x,t)
+$$
+
+Um die Wahrscheinlichkeit zu ermitteln, mit der das Teilchen an einer bestimmten Position x nachgewiesen werden kann, addieren wir zunächst die beiden Wellen und quadrieren dann die Gesamtgröße:
+
+$$
+P(x) = |\Psi_A(x,t)+\Psi_B(x,t)|^2
+$$
+
+Wenn wir dies ausmultiplizieren, erhalten wir drei Terme:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2 + 2 \operatorname{Re}(\Psi_A^*(x,t) \Psi_B(x,t))
+$$
+
+$$ |\Psi_A(x,t)|^2 $$: Wahrscheinlichkeit, das Teilchen an der Position $$x$$ zu detektieren, wenn es nur von Quelle A stammt.
+
+$$ |\Psi_B(x,t)|^2 $$: Wahrscheinlichkeit, das Teilchen an der Position $$x$$ zu detektieren, wenn es nur von Quelle B stammt.
+
+und der Interferenzterm
+
+$$
+2 \operatorname{Re} (\Psi_A^*(x,t) \Psi_B(x,t))
+$$
+
+Er kommt von der wellenartigen Natur der Teilchen und ist für die hellen und dunklen Streifen verantwortlich, die in Experimenten wie dem Doppelspaltexperiment zu sehen sind. Wenn wir sagen können, welchen Weg das Teilchen genommen hat (oder wenn etwas die Phasenbeziehung zerstört), verschwindet der Interferenzterm.
+Dann ist die Gesamtwahrscheinlichkeit einfach die Summe der beiden Einzelwahrscheinlichkeiten:
+
+$$
+P(x) = |\Psi_A(x,t)|^2 + |\Psi_B(x,t)|^2
+$$
+
+Bleibt der Interferenzterm jedoch bestehen, erhalten wir ein Interferenzmuster.
+
+## Anwendungen in der Quanteninformatik
+
+Dieses Phänomen ist ein sehr leistungsfähiges Werkzeug in der Quanteninformatik, da Quantencomputer mit Wahrscheinlichkeiten statt mit definitiven Zuständen arbeiten. Interferenz kann genutzt werden, um die Wahrscheinlichkeiten von Quanten zu manipulieren, indem bestimmte Quantengatter und Operatoren in einem Quantencomputer angewendet werden, wodurch das Ergebnis von Berechnungen effektiv gesteuert und verändert werden kann. Verschiedene Quantenalgorithmen können verwendet werden, um eine Abfolge von Operationen auf einem Quantencomputer zu erstellen, die dann durch Interferenz die gewünschte Manipulation und damit die gewünschte Ausgabe liefern.
+
+Wenn man sich Qubits als Münzen vorstellt, die entweder auf „Kopf“ oder „Zahl“ landen können, würde die Interferenz wie eine Kraft wirken, beispielsweise wie ein Magnet, der die Münze in eine andere Position lenkt. Dadurch würde sich die Wahrscheinlichkeit ändern, mit der die Münze in dem einen oder anderen Zustand landet. Durch Quantengatter kann man diese „Magnetkraft“ manipulieren, um die Wahrscheinlichkeiten zu steuern.
+
+### Quellen
+
+- Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press.
+- [Douglas College Physics 1207](https://pressbooks.bccampus.ca/introductorygeneralphysics2phys1207/chapter/27-3-youngs-double-slit-experiment/)
+- https://www.physics-and-radio-electronics.com/physics/waveinterference.html

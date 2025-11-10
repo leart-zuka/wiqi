@@ -25,7 +25,7 @@ export default function Footer({ params }: FooterProps) {
   }, []);
 
   return (
-    <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white pt-24 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950">
+    <footer className="border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white pt-4 dark:border-slate-800 dark:from-slate-900 dark:to-slate-950">
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo and Tagline */}
@@ -37,7 +37,7 @@ export default function Footer({ params }: FooterProps) {
               <div className="flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
                 <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-purple-600 to-pink-500 p-0.5 shadow-lg">
                   <Image
-                    src="/wq.png"
+                    src="/static/logos/wiqi/wq.png"
                     alt="WiQi Logo"
                     width={30}
                     height={30}
