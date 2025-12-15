@@ -151,24 +151,32 @@ export default function Footer({ params }: FooterProps) {
               </Link>
             </span>
             <span className="ml-2 inline-flex items-center">
-              <img
+              <Image
                 src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
                 alt="CC"
+                width={16}
+                height={16}
                 className="ml-1 h-4 w-4"
               />
-              <img
+              <Image
                 src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
                 alt="BY"
+                width={16}
+                height={16}
                 className="ml-1 h-4 w-4"
               />
-              <img
+              <Image
                 src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"
                 alt="NC"
+                width={16}
+                height={16}
                 className="ml-1 h-4 w-4"
               />
-              <img
+              <Image
                 src="https://mirrors.creativecommons.org/presskit/icons/nd.svg"
                 alt="ND"
+                width={16}
+                height={16}
                 className="ml-1 h-4 w-4"
               />
             </span>{" "}

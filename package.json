@@ -41,7 +41,7 @@
     "i18n": "^0.15.1",
     "lucide-react": "^0.483.0",
     "motion": "^12.12.1",
-    "next": "14.2.25",
+    "next": "14.2.35",
     "next-client-cookies": "^1.1.1",
     "next-intl": "^3.14.1",
     "phosphor-react": "^1.4.1",

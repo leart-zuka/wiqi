@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface CardData {
   id: string;
@@ -78,10 +79,11 @@ export default function FeaturedCard({ locale }: FeaturedCardProps) {
               href={`/${locale}/posts/quantum_tuesdays/elementary/${card.endpoint}`}
               className="relative h-48 w-full overflow-hidden rounded-lg"
             >
-              <img
+              <Image
                 src={card.imageSrc || "/placeholder.svg"}
                 alt={card.imageAlt}
-                className="h-full w-full object-cover transition-all hover:scale-105"
+                fill
+                className="object-cover transition-all hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
                 <p className="text-sm font-medium text-white">
