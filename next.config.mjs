@@ -8,22 +8,31 @@ import rehypeKatex from "rehype-katex";
 // AFTER: createNextIntlPlugin("./src/i18n/request.ts") (uses new location)
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const withMDX = createMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
-  },
+    extension: /\.mdx?$/,
+    options: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+    },
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  experimental: {
-    serverComponentsExternalPackages: ["puppeteer-core", "@sparticuz/chromium"],
-  },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+    experimental: {
+        serverComponentsExternalPackages: ["puppeteer-core", "@sparticuz/chromium"],
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "images.unsplash.com",
+                pathname: "/**",
+            },
+        ],
+    },
 };
 
 const combinedConfig = withNextIntl(withMDX(nextConfig));
