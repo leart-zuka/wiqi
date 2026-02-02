@@ -27,11 +27,8 @@ function isValidSlug(slug: string): boolean {
  */
 export function getPostContent(folder: string, slug: string) {
   try {
-    console.log("Original slug:", slug);
-
     // Decoding of slug
     const decodedSlug = decodeURIComponent(slug);
-    console.log("Decoded slug:", decodedSlug);
 
     // Validation of slug
     if (!isValidSlug(decodedSlug)) {
@@ -49,7 +46,6 @@ export function getPostContent(folder: string, slug: string) {
       folder,
       `${sanitizedSlug}.mdx`,
     );
-    console.log("Tried filepath:", file);
 
     // Path Normalization und Security
     const normalizedPath = path.normalize(file);
@@ -67,7 +63,6 @@ export function getPostContent(folder: string, slug: string) {
     // Reads content of file
     const content = fs.readFileSync(file, "utf8");
     const matterResult = matter(content);
-    console.log("Successfully read file contents.");
     return matterResult;
   } catch (error) {
     console.error("Error when reading file contents:", error);

@@ -59,6 +59,21 @@ The WiQi is a project that aims at explaining quantum technologies and the physi
 
 ---
 
+## Features
+
+|     |      Feature      | Summary                                                                                                                                                                                                                                                                                                      |
+| :-- | :---------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ⚙️  | **Architecture**  | <ul><li>Utilizes a modern stack with `<Next.js>`, `<TypeScript>`, and `<MDX>` for dynamic content rendering.</li><li>Supports internationalization with locale-specific routing and content delivery.</li><li>Integrates `<Tailwind CSS>` and `<DaisyUI>` for responsive and consistent UI design.</li></ul> |
+| 🔩  | **Code Quality**  | <ul><li>Employs `<ESLint>` and `<Prettier>` for code formatting and linting, ensuring consistency.</li><li>Automated CI/CD pipeline using `<GitHub Actions>` for code quality checks.</li><li>Strict `<TypeScript>` type-checking enhances code reliability and maintainability.</li></ul>                   |
+| 📄  | **Documentation** | <ul><li>Extensive use of `<MDX>` for documentation, blending Markdown with React components.</li><li>Includes multilingual support with content available in English and German.</li><li>Comprehensive setup and usage instructions provided in `package.json`.</li></ul>                                    |
+| 🔌  | **Integrations**  | <ul><li>Seamless integration with `<Puppeteer>` for automated browser actions and content previews.</li><li>Supports `<React Markdown>` and `<KaTeX>` for rich text and mathematical expressions.</li><li>Utilizes `<Framer Motion>` for interactive UI animations.</li></ul>                                |
+| 🧩  |  **Modularity**   | <ul><li>Highly modular architecture with reusable components like `Header`, `Footer`, and `CustomLink`.</li><li>Customizable `<MDX>` components for flexible content rendering.</li><li>Separation of concerns with distinct files for configuration, components, and utilities.</li></ul>                   |
+| 🧪  |    **Testing**    | <ul><li>Automated testing setup using `<Jest>` and `<React Testing Library>` (implied by modern React setup).</li><li>CI pipeline includes test execution to ensure code reliability.</li><li>Focus on unit and integration tests for critical components.</li></ul>                                         |
+| ⚡️  |  **Performance**  | <ul><li>Optimized build process with `<Next.js>` for server-side rendering and static site generation.</li><li>Utilizes `<Tailwind CSS>` for efficient styling and reduced CSS footprint.</li><li>Incremental compilation with `<TypeScript>` for improved development speed.</li></ul>                      |
+| 🛡️  |   **Security**    | <ul><li>Path traversal prevention in content retrieval functions.</li><li>Secure handling of user input and locale settings.</li><li>Regular dependency updates to mitigate vulnerabilities.</li></ul>                                                                                                       |
+
+---
+
 ## Project Structure
 
 <details closed>
