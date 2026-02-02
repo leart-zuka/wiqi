@@ -54,13 +54,11 @@ Before implementing this system, the application had several critical issues:
 A multi-layered 404 handling approach:
 
 1. **Client-side Validation** (`src/app/[locale]/posts/[subfolder]/page.tsx`)
-
    - Validates subfolder names against allowed values: `["entries", "quantum_tuesdays"]`
    - Prevents unnecessary API calls for invalid subfolders
    - Provides immediate user feedback with loading states
 
 2. **API Route Safety** (`src/app/api/getBlogPosts/route.ts`)
-
    - Checks directory existence before attempting file operations
    - Returns empty arrays instead of crashing on invalid paths
    - Validates request parameters
@@ -175,12 +173,10 @@ All 18 tests should pass:
 ## Files Modified During Implementation
 
 1. **`src/app/[locale]/posts/[subfolder]/page.tsx`**
-
    - Added client-side validation and redirect logic
    - Fixed `window is not defined` and `files.length` errors
 
 2. **`src/app/api/getBlogPosts/route.ts`**
-
    - Added directory existence checks
    - Improved error handling and request validation
 
