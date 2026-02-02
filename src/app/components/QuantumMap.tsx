@@ -348,13 +348,13 @@ export default function QuantumMap() {
     // Base coordinates relative to the Deutschland map image (0-100%)
     const baseRectangles = [
       {
-        id: "bmbf",
-        name: "BMBF - Bundesministerium für Bildung und Forschung",
+        id: "bmftr",
+        name: "BMFTR - Bundesministerium für Forschung, Technologie und Raumfahrt",
         x: 60,
         y: 35.5,
         width: 4,
         height: 7,
-        url: "https://www.bmbf.de/DE/Home/home_node.html",
+        url: "https://www.bmftr.bund.de/DE/Home/home_node.html",
       },
       {
         id: "technoseum",
@@ -654,7 +654,7 @@ export default function QuantumMap() {
         >
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/static/map/deutschland_karte.svg"
+              src="/static/map/germany_map.png"
               alt="Deutschland Map"
               fill
               className="object-contain"
