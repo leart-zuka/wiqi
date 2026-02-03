@@ -48,6 +48,17 @@ export default function Post({
                         [rehypeKatex, { throwOnError: false, strict: false }],
                     ]}
                     components={{
+                        p({ node, children, ...props }) {
+                            const hasImage = node?.children?.some(
+                                child => child.type === 'element' && child.tagName === 'img'
+                            );
+
+                            if (hasImage) {
+                                return <>{children}</>;
+                            }
+
+                            return <p {...props}>{children}</p>;
+                        },
                         code({ node, className, children, ...props }) {
                             const match = /language-(\w+)/.exec(className || "");
                             return match ? (
@@ -58,6 +69,18 @@ export default function Post({
                                 <code className={className} {...props}>
                                     {children}
                                 </code>
+                            );
+                        },
+                        img({ node, alt, src, title, ...props }) {
+                            return (
+                                <figure>
+                                    <img src={src} alt={alt} title={title} {...props} />
+                                    {alt && (
+                                        <figcaption>
+                                            {alt}
+                                        </figcaption>
+                                    )}
+                                </figure>
                             );
                         },
                     }}
