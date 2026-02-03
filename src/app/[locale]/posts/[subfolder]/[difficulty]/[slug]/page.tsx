@@ -24,19 +24,19 @@ export default async function Post({
         `${params.locale}/${params.difficulty}/${params.subfolder}`,
         params.slug,
     );
-    
+
     const numberOfWords = wordsCounter(post.content).wordsCount;
     const readingTime = Math.ceil(numberOfWords / 200);
-    
+
     // Extract TLDR section from content
     const extractTLDR = (content: string) => {
         const tldrRegex = /## TLDR\n\n([\s\S]*?)(?=\n## |$)/i;
         const match = content.match(tldrRegex);
         return match ? match[1].trim() : null;
     };
-    
+
     const tldrContent = extractTLDR(post.content);
-    
+
     // Extract table of contents from markdown
     const extractTOC = (content: string) => {
         const headingRegex = /^#{2,3}\s+(.+)$/gm;
@@ -51,15 +51,15 @@ export default async function Post({
         }
         return headings;
     };
-    
+
     const toc = extractTOC(post.content);
-    
+
     // Serialize post data to plain object for client component
     const postData = {
         content: post.content,
         data: post.data,
     };
-    
+
     return (
         <PostClient
             post={postData}

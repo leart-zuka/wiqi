@@ -476,6 +476,15 @@ export default function PostClient({
                                         [rehypeKatex, { throwOnError: false, strict: false }],
                                     ]}
                                     components={{
+                                    p({ node, children, ...props }) {
+                                        const hasImage = node?.children?.some(
+                                            child => child.type === 'element' && child.tagName === 'img'
+                                        );
+                                        if (hasImage) {
+                                            return <>{children}</>;
+                                        }
+                                        return <p {...props}>{children}</p>;
+                                    },
                                     h2({ node, children, ...props }) {
                                         const headingText = extractTextFromChildren(children);
                                         const id = generateHeadingId(headingText);
@@ -506,7 +515,19 @@ export default function PostClient({
                                             </code>
                                         );
                                     },
-                                }}
+                                    img({ node, alt, src, title, ...props }) {
+                                        return (
+                                            <figure>
+                                                <img src={src} alt={alt} title={title} {...props} />
+                                                {alt && (
+                                                    <figcaption>
+                                                        {alt}
+                                                    </figcaption>
+                                                )}
+                                            </figure>
+                                            );
+                                        },
+                                    }}
                             >
                                 {post.content}
                             </ReactMarkdown>

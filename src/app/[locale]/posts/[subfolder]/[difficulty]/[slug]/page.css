@@ -1,4 +1,21 @@
+figure {
+  margin: 2rem auto;
+  text-align: center;
+}
+
 img {
   display: block;
   margin: auto;
 }
+
+figcaption {
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.dark figcaption {
+  color: #cbd5e1;
+}
+
