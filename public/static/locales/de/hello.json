@@ -114,7 +114,11 @@
     "entry": "Eintrag",
     "elementary": "Einsteiger",
     "high school": "Fortgeschrittene",
-    "college": "Experte"
+    "college": "Experte",
+    "difficulty": "Schwierigkeit",
+    "share": "Teilen",
+    "shareHelper": "Helfen Sie mit, dieses Artikel zu verbreiten!",
+    "readNext": "Weiterlesen"
   },
   "Footer": {
     "Slogan": "Erforschung von Quantencomputerkonzepten durch interaktive Bildung und Visualisierung mit dem Ziel Quantencomputing für alle zugänglich machen.",

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-interface SuperpositionButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface SuperpositionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
 }
