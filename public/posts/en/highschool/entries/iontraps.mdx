@@ -1,0 +1,29 @@
+---
+title: "Ion Traps"
+subtitle: "Ion Traps (middle)"
+author: "Sara Molló Guri"
+date: "2025-03-19"
+---
+# Ion Traps
+For a qubit, we need a two-level system, so that, as in bits, we can have a defined 0 and a 1. In the so-called trapped ion quantum computer, the qubit is the trapped ion, with 0 being the ground state of the ion and 1 the excited state. Ions are interesting for quantum computing because they can be very well isolated from their environment and can store information for a long time without losing it, as they are very stable.
+
+## Why do we need to trap them?
+To operate a trapped ion quantum computer, we need to be able to manipulate the qubits. That is, we have to control the state of the ion: whether it is in the ground state, the excited state, or in a superposition of both. To do that, we use lasers. These beams of light can change the energy of the ions. When they have the right frequency, they can, for example, bring an ion from its ground state to the excited state. By carefully controlling this light, we can perform operations and run algorithms, turning the system into a quantum computer.
+But for these operations to be successful, the ions need to be trapped. Without the trap, the ions would drift away, and precise control with lasers would not be possible.
+
+## How do we trap ions?
+Firstly, we need a vacuum, which is an environment where most of the air has been removed with pumps. If an ion bumps into a molecule of air or a speck of dust, it could be knocked out of the trap. This happens because the ion is very small and light, so even a tiny collision can give it a push strong enough to move it out of the trap region.
+
+Before actually trapping the ions, they need to be moving very slowly. To make them slower, we need to make them colder, because that means they have less energy to move. We use specialized lasers to hit the ions and make them lose energy (this is called laser cooling). The lasers are set up so that the ions absorb light in the opposite direction to their motion, so they feel a kick which acts as a brake at the atomic level.
+
+How do we actually trap them? Since ions are electrically charged, they respond to electric fields. The force on a charged particle in an electric field is given by $$F=qE$$, where $$q$$ is the charge of the ion, and $$E$$ is the electric field. Because of this, a constant electric field would simply push the ion in one direction, and it would escape. 
+
+![Paul Trap](/posts/assets/entries/iontraps/paul_trap.png)
+_Caption: Paul Trap. Source: Technologies for trapped-ion quantum information systems, Eltony et al._
+
+The solution is to use a Paul trap, which uses electric fields that change direction very rapidly. These oscillating fields are created with electrodes (conductors that carry a voltage) arranged around the ions.
+
+The resulting electric field is shaped like a saddle or a Pringle chip: it curves upward in one direction and downward in another. Because a static field would let an ion simply "roll" off the sides, the trap rapidly reverses the field's polarity. This effectively swaps the "upward" and "downward" slopes of the Pringle millions of times per second. The directions of push and pull change so quickly that the ion remains trapped. Before it can slide away, the "downhill" becomes an "uphill," pushing it back toward the center. While the ion still jitters or oscillates slightly due to this constant switching, its average position remains locked in the middle.
+
+![Pringle-like Electric Field](/posts/assets/entries/iontraps/pringle.png)
+_Caption: Pringle-like shape of the resulting electric fields of the trap. Source: Jade Watt, A quadrupaul ion trap._
