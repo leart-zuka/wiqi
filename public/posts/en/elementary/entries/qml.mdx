@@ -1,0 +1,112 @@
+---
+title: "Quantum Machine Learning"
+subtitle: "Quantum Machine Learning (easy)"
+author: "Damià Vicens Ramis"
+date: "2025-03-16"
+---
+
+
+## Quantum Machine Learning
+
+Quantum Machine Learning, usually abbreviated as QML, is the field that explores what happens when ideas from quantum computing meet ideas from machine learning. The simplest way to explain it is this: in ordinary machine learning, data is processed using classical hardware and classical mathematical models, while in QML some part of that pipeline is carried out with qubits, quantum circuits, and measurements. The goal is still familiar. We still want to classify data, make predictions, model patterns, or represent complex distributions. What changes is the computational language used to do it.
+
+It is important to start with a realistic picture. QML does **not** mean that AI suddenly becomes automatically faster or better because the word *quantum* appears. In most practical settings today, classical machine learning remains the strongest, cheapest, and most mature option. The reason QML is interesting is that quantum systems process information differently, and that difference may become useful for carefully chosen problems. In some cases the value is computational, in some cases it is scientific, and in some cases it is simply that the data itself is already quantum in nature.
+
+## A good mental model
+
+One of the easiest mistakes is to imagine QML as something completely detached from ordinary machine learning. In practice, most current QML models are hybrid. Classical data is first encoded into a quantum circuit, the circuit is run, measurements are taken, and a classical optimizer updates the trainable parameters. So the process is not “all quantum.” It is usually a loop that mixes classical and quantum computation.
+
+![QNN Circuit](/posts/assets/entries/qml/qnn_circuit.png)
+
+_Caption: A small parameterized quantum circuit, used as a trainable model. Source: Qiskit Machine Learning tutorial on Quantum Neural Networks._
+
+
+The image above is a good example of the kind of object people mean when they talk about a trainable quantum model. You can see two different roles inside the same circuit. Some parameters encode the input, while others play the role of trainable weights. This is one of the main intuitions behind variational quantum circuits and quantum neural networks: data goes in, a parameterized circuit transforms it, and measurements produce the output used for learning.
+
+## The main types of Quantum Machine Learning
+
+Although people often talk about QML as if it were one single technique, it is really a family of approaches. Some are close to familiar supervised learning. Some are about learning probability distributions. Some are best understood as tools for analysing quantum states or quantum experiments. For a first internal wiki page, it helps to group the field into a few broad categories instead of trying to list every subfield.
+
+### Variational models and quantum neural networks
+
+A large part of modern QML is built around **variational quantum circuits**. These are parameterized circuits whose parameters are adjusted during training, much like weights in a classical model. When people speak about quantum neural networks, they often mean this general family. The structure does not have to mimic a classical neural network exactly, but the analogy is useful: there is an input, there is a trainable model, and there is an output that is used to compute a loss.
+
+This family is one of the most studied because it fits naturally with current noisy quantum hardware. It is also the easiest entry point for people coming from standard machine learning, since the training logic feels familiar even if the underlying computation is quantum.
+
+### Quantum kernel methods
+
+Another major direction is **quantum kernel learning**. Here, the quantum computer is not necessarily the full model. Instead, it is used to define a similarity measure between data points. That similarity can then be passed into a classical kernel method, such as a support vector machine. This is conceptually elegant because the quantum part has a very specific job: it helps map data into a feature space where separation may become easier.
+
+![Projection of data using a quantum kernel](/posts/assets/entries/qml/quantum_kernel_projection.png)
+
+_Caption: Example of data projected with a quantum-kernel-based method. Source: Qiskit Machine Learning tutorial on Quantum Kernel Machine Learning._
+
+The value of kernel methods is that they offer a clean bridge between classical and quantum ideas. Instead of claiming that the whole learning problem should be replaced by a quantum algorithm, they ask a more focused question: can a quantum feature map provide a useful notion of similarity? That makes them one of the most interpretable and conceptually grounded parts of QML.
+
+### Quantum generative models
+
+QML is not only about classification. A different branch focuses on **generative models**, which try to learn and reproduce probability distributions. In this setting, the aim is not simply to label an input, but to capture the structure of the data itself so that new samples can be generated from the learned distribution.
+
+![Results from a quantum generative adversarial network](/posts/assets/entries/qml/qgan_results.png)
+
+_Caption: Example output from a quantum generative adversarial network comparing generated and target cumulative distributions. Source: Qiskit Machine Learning tutorial on PyTorch qGANs._
+
+A common example is the **quantum generative adversarial network** or qGAN. In a qGAN, a quantum generator and a classical discriminator are trained in competition, following the same high-level spirit as a classical GAN. The figure above is useful because it shows the idea visually: the model is not just making a yes-or-no prediction, it is trying to learn the shape of a whole distribution. This makes generative QML particularly relevant when the problem is about uncertainty, sampling, or probabilistic modelling rather than plain classification.
+
+### Learning for quantum data and quantum systems
+
+One of the most serious and scientifically grounded areas of QML is the one that deals with **quantum-native problems**. Here the point is not to force an ordinary classical dataset into a quantum pipeline just because it sounds futuristic. Instead, the data or the task is already quantum in origin. Examples include classifying quantum states, analysing experimental measurement data, compressing quantum information, or learning useful structures inside quantum hardware itself.
+
+![Quantum convolutional neural network architecture](/posts/assets/entries/qml/qcnn_architecture.png)
+
+_Caption: A larger quantum circuit used in a Quantum Convolutional Neural Network. Source: Qiskit Machine Learning tutorial on QCNNs._
+
+A good example is the **Quantum Convolutional Neural Network** or QCNN. The name is borrowed from classical convolutional neural networks, but the actual implementation is built from quantum layers and pooling-like operations that reduce the active part of the circuit. This kind of model is especially interesting because it shows that QML is not only about copying classical machine learning vocabulary. It is also about building architectures that make sense for quantum information itself.
+
+Another useful example is the **quantum autoencoder**, which tries to compress information into a smaller number of qubits while preserving the most relevant structure.
+
+![Input digit for a quantum autoencoder](/posts/assets/entries/qml/quantum_autoencoder_digits.png)
+
+_Caption: Input data._
+
+![Output digit reconstructed by a quantum autoencoder](/posts/assets/entries/qml/quantum_autoencoder_digits_out.png)
+
+_Caption: Output after compression and reconstruction._
+
+These two images show why autoencoders are conceptually appealing. The goal is not just to predict a label, but to learn a compressed representation that still preserves essential information. In the quantum setting, that can be valuable for denoising, efficient state representation, and near-term hardware where qubits are scarce. More broadly, this branch of QML often feels more convincing than hype-heavy “quantum AI” claims, because the motivation is tied directly to quantum data and quantum devices.
+
+## How QML differs from classical machine learning
+
+At first glance, QML can look like ordinary machine learning executed on unusual hardware. But the difference is deeper than that. Classical machine learning works with bits, vectors, matrices, and functions that can be inspected directly at every stage. Quantum models work with qubits, amplitudes, unitary operations, and measurements. This means that information is represented differently, transformed differently, and observed differently.
+
+Measurement is especially important. In a classical model, intermediate values can usually be read out directly. In a quantum model, measurement only reveals certain quantities and in general disturbs the state. That makes the design of the model more subtle. It also means that some intuitive classical habits do not transfer cleanly to the quantum setting.
+
+Another important difference is that quantum phenomena such as superposition and entanglement do not automatically guarantee an advantage. They make the computational structure different, but not automatically better. The central research question in QML is therefore not “is quantum more powerful in general?” but “for which learning tasks, under which assumptions, and with which hardware, can quantum resources actually help?”
+
+## Why people care about QML
+
+People care about QML for a few serious reasons. One is that quantum computers may eventually provide new ways of representing data or exploring feature spaces that are difficult to reproduce classically. Another is that quantum-native datasets may be more naturally processed with quantum tools than with purely classical approximations. A third reason is more scientific than practical: QML forces researchers to rethink what it means to learn from data when the data, the model, or the hardware has explicitly quantum structure.
+
+At the same time, QML also matters because it sits at the boundary between communities that do not always speak the same language. It brings together ideas from physics, optimization, computer science, and applied machine learning. Even when a specific proposal does not outperform a classical baseline, the attempt to formulate it can still generate useful scientific insight.
+
+## A realistic view of the field
+
+A good introduction to QML should not hide the limitations. Current quantum hardware is noisy, relatively small, and expensive compared with standard computing infrastructure. Data encoding can be costly. Training can be unstable. Some models suffer from barren plateaus, where gradients become so small that optimization becomes extremely difficult. And in many published examples, the claimed practical advantage over strong classical methods remains uncertain.
+
+That is why the healthiest way to understand QML is as a serious research field rather than a finished industrial solution. It contains genuine promise, especially in hybrid methods and in quantum-native applications, but it also contains a great deal of hype. For an internal association wiki, that balanced message is important. We should understand QML well enough to appreciate its real opportunities without repeating exaggerated claims.
+
+## Final takeaway
+
+Quantum Machine Learning is best understood as the attempt to discover whether quantum computation can contribute meaningfully to learning from data. Sometimes that contribution takes the form of a trainable circuit. Sometimes it takes the form of a quantum kernel. Sometimes it appears in generative modelling. And in some of the strongest cases, it appears in the analysis or compression of quantum data itself.
+
+The key point is not that QML is “AI, but quantum.” The key point is that it is a diverse and evolving field that asks where quantum resources genuinely belong inside a learning pipeline. That is what makes it worth studying carefully.
+
+## Image sources
+
+All images used in this page were taken from official Qiskit Machine Learning tutorials:
+
+- Quantum Neural Networks
+- Quantum Kernel Machine Learning
+- PyTorch qGAN Implementation
+- The Quantum Convolutional Neural Network
+- The Quantum Autoencoder
