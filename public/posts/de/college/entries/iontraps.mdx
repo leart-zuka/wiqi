@@ -1,0 +1,34 @@
+---
+title: "Ion Traps"
+subtitle: "Ion Traps (difficult)"
+author: "Sara Molló Guri"
+date: "2025-03-19"
+---
+
+### ❗Diese Text ist noch nicht übersetzt. Wir arbeiten zurzeit daran, vielen Dank für Ihr Verständnis. PushQuantum e.V ist eine studentische Initative, die hauptsächlich auch Internationalen Studierenden besteht.❗
+
+# Ion Traps
+
+For a qubit, we require a well-defined two-level system. In trapped ion quantum computing, this is typically implemented using two internal electronic states of an ion: the ground state ($$\ket{0}$$) and the excited state ($$\ket{1}$$). Even though the ion has many possible energy levels, we can use lasers tuned to a specific transition so that only these two states are effectively involved.
+Ions are an excellent platform for quantum computing because they can be highly isolated from their environment, leading to long coherence times, while still allowing precise control via laser fields.
+
+## Why do we need to trap them?
+To operate a trapped ion quantum computer, we must control the quantum state of each ion, including preparing superpositions and performing gate operations for quantum algorithms. This is achieved using laser fields that drive transitions between the two qubit states. For example, to initialize a qubit, a laser can be used to bring the ion into its ground state. Precise control like this requires the ions to remain localized.
+
+## How do we trap ions?
+First, the ions are placed in an ultra-high vacuum environment to suppress collisions with background gas particles, which would lead to decoherence (destroying the delicate quantum superposition) and loss from the trap. Additionally, the ions must be cooled to very low temperatures. This is typically achieved via laser cooling, where momentum transfer from photons of a laser beam reduces the ions’ kinetic energy, bringing them close to their ground state.
+
+## And how do we actually trap them?
+A natural idea would be to confine ions using static electric fields. However, this is impossible due to Earnshaw's theorem. It states that you cannot trap a charged particle using only static electric fields because of the constraints of Laplace’s Equation, $$\nabla^2\Phi = 0$$. In physics terms, the "Laplacian" ($$\nabla^2$$) measures the curvature of the electric potential. For a trap to be stable, the potential would need to curve upward in every direction to form a “bowl". However, Laplace’s Equation forces the sum of these curvatures to be zero, then any static configuration creates a saddle point rather than a true trap, so the ion will always eventually leak out along an unstable direction.
+![Paul Trap](/posts/assets/entries/iontraps/paul_trap.png)
+_Caption: Paul Trap. Source: Technologies for trapped-ion quantum information systems, Eltony et al._
+
+The solution is to use a Paul trap, which uses rapidly oscillating electric fields to achieve confinement. The trap consists of a set of electrodes and two end caps. By applying a radio-frequency (RF) voltage to these electrodes, one generates a time-dependent quadrupole electric potential $$\Phi(t)$$. While the end caps provide static confinement along the axial direction, the RF field manages the radial confinement.
+At any fixed moment, the saddle-shaped potential obeys Laplace’s equation and would allow the ion to escape. However, because the potential oscillates rapidly, the ion experiences alternating regions of stability and instability. If the oscillation frequency is sufficiently high, the ion doesn't have time to escape during the "unstable" phase before the field flips. The net result is called a pseudopotential, which provides an effective time-averaged restoring force toward the center.
+![Pseudopotential](/posts/assets/entries/iontraps/pseudopotential.png)
+_Caption: Pseudopotential. Switching of the saddle shape, the last sequence is the pseudo potential. Source: Experiments with single photons emitted by single atoms, Gabriel Araneda._
+
+The resulting motion of the ion is a superposition of two scales: micromotion, which is the high-frequency jitter driven by the RF field, and secular motion, which is the slower oscillation within the time-averaged pseudopotential. On a macro scale, the ion behaves as if it is trapped in a static, three-dimensional harmonic potential.
+Once the ion is trapped and cooled, its motion becomes quantized into discrete motional states, corresponding to vibrations in the trap. These states are important because they act as a shared “bus” between ions. In a chain of ions, the Coulomb repulsion links their motion, so moving one ion affects the others. By using lasers to connect an ion’s internal state to these shared vibrations, researchers can make the ions interact and create entanglement between qubits.
+![Motional States](/posts/assets/entries/iontraps/motional.jpeg)
+_Caption: Motional States. Resulting trapped ion: energy levels of the ions and the ion’s motional states given by the trapping potential. We write these states as $$\ket{g,n}$$ for example, as an ion in the internal ground state at the $$n$$-th motional energy level._
