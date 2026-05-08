@@ -1,0 +1,125 @@
+---
+title: "Quantenkryptographie"
+subtitle: "Warum Quantencomputer ein Risiko für die Sicherheit unserer Kommunikation darstellen."
+author: "Adrian Breiding"
+date: "2026-01-06"
+---
+
+# Was ist Kryptographie?
+Kryptographie beschreibt die Wissenschaft Informationen so zu verschlüsseln und zu übertragen, sodass nur berechtigte Personen diese Informationen auch wieder entschlüsseln können.
+
+![Alice und Bob verwenden den RSA Algorithmus, um geheim eine Nachricht zu übermitteln, ohne dass Eve den Inhalt sehen kann.](/posts/assets/quantum_cryptography/cryptography_de.png)
+
+Wir unterscheiden zwischen symmetrischer und asymmetrischer Kryptographie.
+Bei der symmetrischen Kryptographie teilen sich Alice und Bob einen geheimen Schlüssel.
+Da es in der Praxis aber schwierig ist, diesen Schlüssel sicher zu übertragen, wird häufig asymmetrische Kryptographie verwendet.
+Hierfür veröffentlicht Bob einen öffentlichen Schlüssel, den Alice zum Verschlüsseln der Nachricht verwendet.
+Nur Bob, der den privaten Schlüssel besitzt, kann die Nachricht wieder entschlüsseln.
+Im nächsten Abschnitt werden wir uns den RSA Algorithmus, einem weitverbreiteten asymmetrischen Kryptosystem, anschauen.
+
+# Der RSA Algorithmus
+
+Der RSA Algorithmus basiert auf der mathematischen Schwierigkeit, große Zahlen in ihre Primfaktoren zu zerlegen.
+Um die Funktionsweise zu verstehen, betrachten wir ein einfaches Beispiel:
+
+1. Bob wählt zufällig zwei Primzahlen, z.B. $p=5$ und $q=11$. Das Produkt nennen wir $n = p \times q = 55$.
+2. Als nächstes berechnet er das kleinste gemeinsame Vielfache von $(p-1)$ und $(q-1)$, also $\text{kgv}(4, 10) = 20$. Diese Zahl nennen wir $k$ und muss genauso wie $p$ und $q$ geheim bleiben.
+3. Bob wählt eine Zahl $1 < e < k$, die teilerfremd zu $k$ ist, z.B. $e=3$.
+4. Nun berechnet Bob die Zahl $d$, die das multiplikative Inverse von [$e$ modulo $k$](https://ddi.uni-wuppertal.de/archiv/madin//material/spioncamp/dl/austausch-modulo-station.pdf) ist. In unserem Fall ist $d=7$, da $(e \times d) \mod k = 21 \mod 20 = 1$.
+5. Jetzt kann Bob den öffentlichen Schlüssel $(e, n) = (3, 55)$ veröffentlichen.
+
+Wenn Alice Bob eine Nachricht $m=42$ senden möchte, dann kann sie diese mit Bobs öffentlichem Schlüssel verschlüsseln:
+$$
+c = m^e\mod n = 42^3\mod 55 = 3
+$$
+Sie sendet die verschlüsselte Nachricht $c=3$ an Bob, der sie dann mit seinem geheimen Schlüssel ganz einfach wieder entschlüsseln kann:
+$$
+m = c^d \mod n = 3^7 \mod 55 = 42
+$$
+# Sicherheit durch Schwierigkeit
+Wenn ihr jetzt zurück geht und die Bob's Schritte anschaut, dann werdet ihr feststellen, dass jeder einzelne Schritt (vielleicht mit einem Taschenrechner) sehr einfach ist.
+Worin liegt also die Sicherheit?
+Die Sicherheit liegt darin, dass Eve dem öffentlichen Schlüssel nur $n$ entnehmen kann. $p,q$ und damit $k$ müsste sie selber berechnen.
+Nun kann man sich natürlich denken, dass es nun nicht so schwierig ist $n=55$ zu faktorisieren.
+$55$ ist aber schließlich nur ein Beispiel gewesen - eine Zahl, die mit 6 Bit im Computer dargestellt als $55_{10} = 110111_2$ werden kann.
+In der Praxis werden aber Zahlen mit einer Länge von 2048, 3072 oder sogar 4,096 Bit verwendet.
+Eine 2048 Bit Zahl sieht in etwa so aus:
+$$
+25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784406918290641249515082189298559149176184502808489120072844992687392807287776735971418347270261896375014971824691165077613379859095700097330459748808428401797429100642458691817195118746121515172654632282216869987549182422433637259085141865462043576798423387184774447920739934236584823824281198163815010674810451660377306056201619676256133844143603833904414952634432190114657544454178424020924616515723350778707749817125772467962926386356373289912154831438167899885040445364023527381951378636564391212010397122822120720357
+$$
+Und diese Zahl zu faktorisieren wird als so schwer angenommen, dass für die richtige Lösung ein Preisgeld von 200.000 US-Dollar ausgesetzt wurde.
+# Der Klassische Algorithmus
+Allein beim Anschauen der Zahl, wird klar, dass man als Mensch keine Chance hat, diese Zahl zu faktorisieren.
+Wie steht es denn aber um die Computer?
+Vielleicht kann es ja der neue Supercomputer in Jülich?
+Tatsächlich ist auch dieser damit überfordert.
+Um eine Vorstellung dafür zu bekommen, warum es so schwierig ist, schauen wir uns einen etwas einfacheren Algorithmus an: Trial Division.
+![Ablauf des Trial Division Algorithmus zur Primfaktorzerlegung von 175.](/posts/assets/quantum_cryptography/trial_division.png)
+Für eine Zahl $n = 175$ berechnet man alle Primzahlen bis $\sqrt{n} \approx 13.23$, also $2, 3, 5, 7, 11, 13$.
+Und dann ist es ein ausprobieren: Wir teilen $175$ durch jede dieser Primzahlen und schauen, ob ein ganzzahliges Ergebnis herauskommt.
+Wenn ja, dann haben wir einen Primfaktor gefunden und teilen das Ergebnis erneut durch alle Primzahlen bis das Ergebnis wieder eine Primzahl ist.
+Da eine $n$ Bit Zahl bis zu $2^n$ groß sein kann, und jede Zahl $m$ ca. $\frac{m}{\ln(m)}$ Primzahlen kleiner gleich $m$ hat (siehe [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)), müssen wir im schlimmsten Fall bis zu $\frac{2^{\frac{n}{2}+1}}{n}$ Primzahlen ausprobieren.
+In der Informatik bezeichnet man das als exponentiell in $n$ - zu Deutsch: äußerst ineffizient.
+
+# Restklassengruppe
+
+Um zu verstehen, warum ein Quantencomputer den RSA Algorithmus knacken kann, müssen wir uns zunächst etwas mit dem mathematischen Objekt der Restklassengruppe beschäftigen.
+Diese Restklasssengruppe kann man sich ein wenig wie eine Uhr vorstellen:
+
+![Visualisierung der Restklassengruppe modulo 15 (für Addition)](/posts/assets/quantum_cryptography/rest_group.png)
+
+Man kann ganz normal mit den Zahlen rechnen, nur wenn man über 15 hinauskommt, dann fängt man wieder bei 0 an, oder etwas konkreter, man berechnet den Rest bei der Division durch 15.
+Rechnet man $1+4$, dann ergibt das, wie erwartet, $5$.
+Interessant wird es erst, wenn man über $15$ hinausrechnet.
+So ist zum Beispiel $13 + 4 = 17$, aber in der Restklassengruppe modulo $15$ ist $17 \mod 15 = 2$.
+Ähnlich verhält es sich mit der Multiplikation.
+Aufgrund der mathematischen [Definition einer Gruppe](https://de.wikipedia.org/wiki/Gruppe_(Mathematik)) sieht die Restklassengruppe modulo 15 für Multiplikation etwas anders aus:
+![Visualisierung der Restklassengruppe mudolo 15 (für Multiplikation)](/posts/assets/quantum_cryptography/mult_group.png)
+Das liegt daran, dass jedes Element ein Inverses geben muss, also es muss immer eine Zahl $b$ geben, sodass $a \times b \mod 15 = 1$.
+So ist zum Beispiel $3$ kein Element der Gruppe, da es keine Zahl $b$ gibt, sodass $3 \times b \mod 15 = 1$.
+
+# Die Periodizität
+
+Aber wofür brauchen wir denn überhaupt die Restklassengruppe?
+Nun, dadurch, dass wir diese Struktur einer Uhr haben, können wir uns eine interessante Eigenschaft von Zahlen in so einer Gruppe zunutze machen: Die Periodizität.
+Das bedeutet, dass wenn wir eine Zahl $a$ in der Restklassengruppe modulo $n$ immer wieder mit sich selbst multiplizieren, dann wird irgendwann wieder $1$ herauskommen.
+Das kleinste $r$, sodass $a^r \mod n = 1$, heißt die Periode von $a$ in der Restklassengruppe modulo $n$.
+![Visualisierung der Periodizität von 2 und 4 in der Restklassengruppe modulo 15.](/posts/assets/quantum_cryptography/periodicity.png)
+In der Abbildung sehen wir, dass beispielsweise die Periode von $2$ in unserem Beispiel gleich $4$ ist, da $2^4 \mod 15 = 16 \mod 15 = 1$.
+Und jetzt kommt der Trick, denn mit etwas Glück, ist $\text{ggT}(a^{\frac{r}{2}}-1, n)$ ein nicht-trivialer Faktor (also nicht $1$ oder $n$) von $n$.
+Mathematisch lässt sich das mit dem [Satz von Euler](https://de.wikipedia.org/wiki/Kleiner_fermatscher_Satz) begründen, der an dieser Stelle aber zu weit führen würde.
+Aber zurück zu unserem Beispiel: Wählen wir $a=4$ und $r=2$, dann ist
+$$
+\text{ggT}(4^{\frac{2}{2}}-1, 15) = \text{ggT}(3, 15) = 3
+$$
+Und tatsächlich ist $3$ ein Primfaktor von $15$!
+
+# Superposition
+
+Jetzt müssen wir nur noch einen Weg finden, um die Periode $r$ effizient zu berechnen.
+Hierfür verwenden wir die Quantenmechanik und das Konzept der Superposition.
+In der Quantenmechanik können Qubits ([Hier könnt ihr mehr erfahren](https://wiqi.info/de/posts/quantum_tuesdays/elementary/Bits%20To%20Qubits)) nicht nur die Zustände $0$ und $1$ annehmen, sondern auch Überlagerungen dieser Zustände.
+Also statt, dass man im Vorfeld weiß, ob ein Qubit $0$ oder $1$ ist, kann es in einem Zustand sein, der beides gleichzeitig ist.
+Das schreiben wir so:
+$$
+\ket{\psi} = \alpha \ket{0} + \beta \ket{1}
+$$
+wobei $\alpha$ und $\beta$ komplexe Zahlen sind, deren Beträge die Wahrscheinlichkeiten angeben, mit welcher Wahrscheinlichkeit das Qubit in dem einen oder anderen Zustand gemessen wird.
+Wenn wir messen, passiert nämlich etwas Interessantes: Das Qubit "kollabiert" in einen der beiden Zustände, also entweder $0$ oder $1$, mit den Wahrscheinlichkeiten $|\alpha|^2$ und $|\beta|^2$.
+Und das macht sich ein Quantencomputer zunutze:
+![Visualisierung der Periodenbestimmung mit einem Quantencomputer.](/posts/assets/quantum_cryptography/qpe_de.png)
+Er beginnt im ersten Register mit einer Superposition aller möglichen Zustände.
+In diesem Beispiel haben wir 3 Qubits, also $2^3 = 8$ mögliche Zustände.
+Versuchen wir nun wieder die Periode von $4$ in der Restklassengruppe modulo $15$ zu bestimmen.
+Dann berechnen wir jetzt im zweiten Register $4^x \mod 15$ für jedes $x$ im ersten Register.
+Wenn wir jetzt das zweite Register messen, dann kollabiert es zu einem der Werte, entweder $1$ oder $4$.
+Wir nehmen einfach an es kollabiert zu $1$ (es macht aber keinen Unterschied).
+Dadurch kollabiert auch das erste Register, da nur die Werte $x$ übrig bleiben können, für die $4^x \mod 15 = 1$ gilt.
+Das sind in unserem Fall $x=0, 2, 4, 6$.
+Wir sehen jetzt schon, dass die Periode $r=2$ ist, da die Werte im ersten Register sich alle um $2$ unterscheiden.
+Zwar kann der "sieht" der Quantencomputer das nicht so, aber dieser kann jetzt mit einer sogenannten [Quanten-Fourier-Transformation](https://de.wikipedia.org/wiki/Quanten-Fouriertransformation) ebenfalls die Periode effizient bestimmen.
+
+# Warum wurde ich noch nicht gehackt?
+
+Wer sich nun diese Frage stellt, der kann beruhigt sein.
+Die größte Zahl, die bisher auf diese Art faktorisiert wurde, ist $15$, gerade mal das, was wir hier heute auch schon mehrfach gemacht haben.
