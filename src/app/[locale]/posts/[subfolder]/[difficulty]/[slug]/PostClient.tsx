@@ -497,7 +497,7 @@ export default function PostClient({
                                     code({ node, className, children, ...props }) {
                                         const match = /language-(\w+)/.exec(className || "");
                                         return match ? (
-                                            <SyntaxHighlighter customStyle={atomDark} language={match[1]}>
+                                            <SyntaxHighlighter style={atomDark} language={match[1]}>
                                                 {String(children).replace(/\n$/, "")}
                                             </SyntaxHighlighter>
                                         ) : (
